@@ -1,4 +1,5 @@
 package seng201.team0.models;
+import seng201.team0.models.RoundManager;
 
 public class DifficultyController {
     private int Easy = 1;
@@ -9,7 +10,6 @@ public class DifficultyController {
 
     public void onChooseDifficultyEasy(){
         CurrentDifficulty = Easy;
-
     }
 
     public void onChooseDifficultyModerate(){
@@ -31,6 +31,11 @@ public class DifficultyController {
     }
     public int getLevelCounter() {
         return LevelCounter;
+    }
+
+    // Sets up various game variables according to the current round counter and difficulty
+    public void roundDifficultySet() {
+        setTrackDistance();
     }
 
 }
