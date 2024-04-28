@@ -21,10 +21,11 @@ public class MainWindow extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader baseLoader = new FXMLLoader(getClass().getResource("/fxml/main.fxml"));
+        FXMLLoader baseLoader = new FXMLLoader(getClass().getResource("/fxml/round_game.fxml"));
         Parent root = baseLoader.load();
 
-        MainController baseController = baseLoader.getController();
+//        MainController baseController = baseLoader.getController();
+        RoundController baseController = baseLoader.getController();
         baseController.init(primaryStage);
 
         primaryStage.setTitle("SENG201 Example App");
