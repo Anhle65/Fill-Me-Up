@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import seng201.team0.gui.EnvironmentController;
 
 import java.io.IOException;
 
@@ -21,17 +22,19 @@ public class MainWindow extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader baseLoader = new FXMLLoader(getClass().getResource("/fxml/round_game.fxml"));
+        FXMLLoader baseLoader = new FXMLLoader(getClass().getResource("/fxml/wrapper.fxml"));
         Parent root = baseLoader.load();
 
 //        MainController baseController = baseLoader.getController();
-        RoundController baseController = baseLoader.getController();
-        baseController.init(primaryStage);
+//        RoundController baseController = baseLoader.getController();
+        EnvironmentController baseController= baseLoader.getController();
+
 
         primaryStage.setTitle("SENG201 Example App");
         Scene scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
+        baseController.init(primaryStage);
     }
 
     /**
