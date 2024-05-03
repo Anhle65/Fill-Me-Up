@@ -1,33 +1,100 @@
 package seng201.team0.models;
-
+/**
+ * Tower class which will be interacted by user in game
+ */
 public class Tower {
     private String resourceType;
     private int level;
     private int cost;
-    private boolean isWorking = true;
+    private boolean isWorking;
     private int resourceAmount;
     private float recoveryTime;
-    boolean inUse = false;
-    public Tower(String resourceType, int level, int cost, int resourceCapacity, float recoveryTime, boolean isWorking, boolean inUse){
+    boolean inUse;
+    /**
+     * This constructor will create tower by the different input paras(resourceType, level, price, resourceAmount)
+     */
+    public Tower(String resourceType, int level, int cost, int resourceAmount, float recoveryTime){
         this.resourceType = resourceType;
         this.level = level;
         this.cost = cost;
-        this.resourceAmount = resourceCapacity;
+        this.resourceAmount = resourceAmount;
         this.recoveryTime = recoveryTime;
-        this.isWorking = isWorking;
-        this.inUse = inUse;
+        this.isWorking = true;
+        this.inUse = false;
     }
-    public int getCapacity(){ return resourceAmount;}
+
+    /**
+     * Get the current amount of resource of the tower
+     * @return Current (int)amountResource
+     */
+    public int getResourceAmount(){ return resourceAmount;}
+
+    /**
+     * Get the current type of the tower
+     * @return Current (String)type
+     */
     public String getType(){ return resourceType;}
+
+    /**
+     * Get the current level of the tower
+     * @return Current (int)level
+     */
     public int getLevel(){ return level;}
+
+    /**
+     * Get the price of the tower
+     * @return price of tower in float
+     */
     public int getCost(){ return cost;}
+
+    /**
+     * Get the current available state of the tower
+     * @return true if the tower is working OR false if the tower is broken
+     */
     public boolean isWorkingStatus(){ return isWorking;}
+
+    /**
+     * @param isWorking
+     * Set the property this.isWorking of tower to the isWorking input
+     */
+    public void setWorkingStatus(boolean isWorking){ this.isWorking = isWorking;}
+
+    /**
+     * Get the current place (in used OR in reserved) of the tower
+     * @return true if the tower is using in round game OR false if the tower is in reserved
+     */
     public boolean isInUse(){ return inUse;}
+
+    /**
+     * @param isUsed
+     * Set the property this.inUse of tower to the isUsed input
+     */
+    public void setInUseState(boolean isUsed){ this.inUse = isUsed;}
+
+    /**
+     * Get the current recovery time after each action
+     * @return current recovery time in float
+     */
     public float getRecoveryTime(){ return recoveryTime;}
-    public void upgradeCapacity(int expand){ resourceAmount += expand; }
-    public void upgradeTime(float time){
-        if (recoveryTime - time >= 1)
-            recoveryTime -= time;
+
+    /**
+     * @param incrementAmount
+     * Increment the resource amount of the tower by expand
+     */
+    public void upgradeCapacity(int incrementAmount){ resourceAmount += incrementAmount; }
+
+    /**
+     * @param decrementTime
+     * Decrement the recovery time of the tower by decrementTime
+     */
+    public void upgradeTime(float decrementTime){
+        if (recoveryTime - decrementTime >= 1)
+            recoveryTime -= decrementTime;
     }
+
+    /**
+     * @param newType
+     * Change the resource type of the tower into newType
+     */
     public void changeTypeResource(String newType){ resourceType = newType;}
 }
