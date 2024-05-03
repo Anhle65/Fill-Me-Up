@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="95.0" minHeight="0.0" prefHeight="26.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="84.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="261.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="180.0" minHeight="0.0" prefHeight="96.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="96.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Hello">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="tower3" mnemonicParsing="false" prefHeight="86.0" prefWidth="100.0" text="Tower 3" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="tower2" mnemonicParsing="false" prefHeight="84.0" prefWidth="100.0" text="Tower 2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="tower1" layoutX="410.0" layoutY="93.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="99.0" text="Tower 1" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rs amount:" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level:" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="5.0" top="10.0" />
+         </GridPane.margin>
+      </Text>
+      <Text layoutX="25.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="5.0" top="10.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rs amount:" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level:" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rs amount:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Level:" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="5.0" />
+         </GridPane.margin>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time:" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="5.0" top="10.0" />
+         </GridPane.margin>
+      </Text>
+      <Button mnemonicParsing="false" onAction="#onUpgradedClicked" prefHeight="25.0" prefWidth="81.0" text="Upgrade" GridPane.columnIndex="2" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#onSwappedClicked" prefHeight="25.0" prefWidth="73.0" text="Swap" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#onQuitClicked" prefHeight="25.0" prefWidth="84.0" text="Quit" GridPane.columnIndex="4" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </Button>
+      <Label fx:id="tower1Time" text="Label" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="45.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower1Resource" layoutX="70.0" layoutY="188.0" text="Label" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="80.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower1Level" text="Label" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="45.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower2Level" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="45.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower2Resource" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="80.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower2Time" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="45.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower3Level" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="45.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower3Time" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="45.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower3Resource" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="80.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="playerName" text="Label">
+         <GridPane.margin>
+            <Insets left="45.0" />
+         </GridPane.margin>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="tower4" mnemonicParsing="false" prefHeight="86.0" prefWidth="101.0" text="Empty" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="tower5" mnemonicParsing="false" prefHeight="86.0" prefWidth="101.0" text="Empty" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Label fx:id="tower4Level" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="45.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower4Time" layoutX="370.0" layoutY="227.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="45.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower4Resource" layoutX="370.0" layoutY="227.0" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="80.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Rs amount:" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Level:" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower5Resource" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="80.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower5Level" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="45.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="tower5Time" text="Label" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="45.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Time:" GridPane.columnIndex="3" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="5.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Rs amount:" GridPane.columnIndex="4" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Level:" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Time:" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="5.0" top="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Reversed Tower:" GridPane.rowIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Button mnemonicParsing="false" prefHeight="71.0" prefWidth="94.0" text="Button" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="73.0" prefWidth="95.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="73.0" prefWidth="97.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="72.0" prefWidth="95.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="73.0" prefWidth="97.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Label text="Upgrade items:" GridPane.rowIndex="4" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </Label>
+      <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="92.0" text="Button" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="70.0" prefWidth="99.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="100.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="98.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="94.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#onReturnedClicked" text="Return" GridPane.columnIndex="4" />
+   </children>
+</GridPane>
