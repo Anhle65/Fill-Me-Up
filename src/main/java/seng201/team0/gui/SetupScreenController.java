@@ -51,9 +51,14 @@ public class SetupScreenController{
     }
     @FXML
     private void onAcceptClicked() {
+//        while (nameTextField.getText().length() < 5 || nameTextField.getText().length() > 15){
+//            environmentManager.setName("Sorry, your name must be between 5-15 long");
+//        }
         environmentManager.setName(nameTextField.getText());
         System.out.println("You chose: " + environmentManager.getDifficulty() + " option."); // Print the difficulty user choose
-        environmentManager.setTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
+        environmentManager.setNumberOfRounds((int)roundSlider.getValue());
+        System.out.println("You choose: "+environmentManager.getNumberOfRounds()+" rounds"); // Print number of rounds which user choose
+        environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
         environmentManager.closeSetupScreen();
     }
 
@@ -94,11 +99,6 @@ public class SetupScreenController{
                 }
             });
         }
-        roundSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            for (int i = 0; i < selectedTowerButtons.size(); i++) {
-                selectedTowerButtons.get(i).setDisable(i >= newValue.intValue());
-            }
-        });
     }
     private void updateStats(Tower tower) {
         towerType.setText(tower.getType());
