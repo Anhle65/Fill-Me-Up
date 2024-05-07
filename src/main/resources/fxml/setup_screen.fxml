@@ -209,7 +209,7 @@
                <Insets left="10.0" />
             </GridPane.margin>
          </Label>
-            <ChoiceBox prefHeight="24.0" prefWidth="77.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <ChoiceBox fx:id="difficultyOptions" prefHeight="24.0" prefWidth="103.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
