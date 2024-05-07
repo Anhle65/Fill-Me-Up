@@ -3,7 +3,6 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 
@@ -55,9 +54,9 @@ public class InventoryController {
     private int selectedTowerIndex = -1;
     private Tower selectedTowers;
     private EnvironmentManager environmentManager;
-    private List<Label> towerTime;
-    private List<Label> towerResource;
-    private List<Label> towerLevel;
+    private List<Label> towerTimeList;
+    private List<Label> towerResourceList;
+    private List<Label> towerLevelList;
 
     public InventoryController(EnvironmentManager environmentManager) {
         this.environmentManager = environmentManager;
@@ -66,15 +65,15 @@ public class InventoryController {
     @FXML
     public void initialize() {
         this.playerName.setText(this.environmentManager.getName());
-        this.towerTime = List.of(this.tower1Time, this.tower2Time, this.tower3Time, this.tower4Time, this.tower5Time);
-        this.towerResource = List.of(this.tower1Resource, this.tower2Resource, this.tower3Resource, this.tower4Resource, this.tower5Resource);
-        this.towerLevel = List.of(this.tower1Level, this.tower2Level, this.tower3Level, this.tower4Level, this.tower5Level);
+        this.towerTimeList = List.of(this.tower1Time, this.tower2Time, this.tower3Time, this.tower4Time, this.tower5Time);
+        this.towerResourceList = List.of(this.tower1Resource, this.tower2Resource, this.tower3Resource, this.tower4Resource, this.tower5Resource);
+        this.towerLevelList = List.of(this.tower1Level, this.tower2Level, this.tower3Level, this.tower4Level, this.tower5Level);
         List<Button> towerButtons = List.of(this.tower1, this.tower2, this.tower3, this.tower4, this.tower5);
 
         for(int i = 0; i < this.environmentManager.getTowerList().size(); ++i) {
             int finalI = i;
             ((Button)towerButtons.get(i)).setOnAction((event) -> {
-                this.updateStats((Tower)this.environmentManager.getTowerList().get(finalI), (Label)this.towerTime.get(finalI), (Label)this.towerResource.get(finalI), (Label)this.towerLevel.get(finalI));
+                this.updateStats((Tower)this.environmentManager.getTowerList().get(finalI), (Label)this.towerTimeList.get(finalI), (Label)this.towerResourceList.get(finalI), (Label)this.towerLevelList.get(finalI));
                 this.selectedTowerIndex = finalI;
                 towerButtons.forEach((button) -> {
                     ((Button)towerButtons.get(finalI)).setText(String.valueOf(((Tower)this.environmentManager.getTowerList().get(finalI)).getType()));
