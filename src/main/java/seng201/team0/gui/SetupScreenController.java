@@ -52,6 +52,7 @@ public class SetupScreenController{
     @FXML
     private void onAcceptClicked() {
         environmentManager.setName(nameTextField.getText());
+        System.out.println("You chose: " + environmentManager.getDifficulty() + " option."); // Print the difficulty user choose
         environmentManager.setTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
         environmentManager.closeSetupScreen();
     }
@@ -63,14 +64,11 @@ public class SetupScreenController{
      */
 
     public void initialize(){
-//        this.difficultyOptions = new ChoiceBox();
-        difficultyOptions.getItems().add("Easy");
-        difficultyOptions.getItems().add("Moderate");
-        difficultyOptions.getItems().add("Challenge");
-//        difficultyOptions.setValue("Choose the difficulty");
-//        difficultyOptions.getSelectionModel();
-//        System.out.println(environmentManager.getDifficulty());
-
+        difficultyOptions.getItems().addAll("Easy", "Moderate", "Challenge");
+        difficultyOptions.setValue("Choose the difficulty");
+        difficultyOptions.setOnAction((event) -> {
+            environmentManager.setDifficulty(difficultyOptions.getValue()); // Saved the selection of difficulty
+        });
         List<Button> selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         List<Button> towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5, towerStat6);
         for (int i = 0; i < towerButtons.size(); i++) {
@@ -109,6 +107,4 @@ public class SetupScreenController{
         recoveryTime.setText(String.valueOf(tower.getRecoveryTime()));
         resourceAmount.setText(String.valueOf(tower.getResourceAmount()));
     }
-
-    private void setDifficulty(){difficultyOptions.getValue();}
 }
