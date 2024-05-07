@@ -70,15 +70,15 @@ public class InventoryController {
         this.towerLevelList = List.of(this.tower1Level, this.tower2Level, this.tower3Level, this.tower4Level, this.tower5Level);
         List<Button> towerButtons = List.of(this.tower1, this.tower2, this.tower3, this.tower4, this.tower5);
 
-        for(int i = 0; i < this.environmentManager.getTowerList().size(); ++i) {
+        for(int i = 0; i < this.environmentManager.getCurrentTowerList().size(); ++i) {
             int finalI = i;
             ((Button)towerButtons.get(i)).setOnAction((event) -> {
-                this.updateStats((Tower)this.environmentManager.getTowerList().get(finalI), (Label)this.towerTimeList.get(finalI), (Label)this.towerResourceList.get(finalI), (Label)this.towerLevelList.get(finalI));
+                this.updateStats((Tower)this.environmentManager.getCurrentTowerList().get(finalI), (Label)this.towerTimeList.get(finalI), (Label)this.towerResourceList.get(finalI), (Label)this.towerLevelList.get(finalI));
                 this.selectedTowerIndex = finalI;
                 towerButtons.forEach((button) -> {
-                    ((Button)towerButtons.get(finalI)).setText(String.valueOf(((Tower)this.environmentManager.getTowerList().get(finalI)).getType()));
+                    ((Button)towerButtons.get(finalI)).setText(String.valueOf(((Tower)this.environmentManager.getCurrentTowerList().get(finalI)).getType()));
                     if (button == towerButtons.get(finalI)) {
-                        this.selectedTowers = (Tower) this.environmentManager.getTowerList().get(finalI);
+                        this.selectedTowers = (Tower) this.environmentManager.getCurrentTowerList().get(finalI);
                         button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
