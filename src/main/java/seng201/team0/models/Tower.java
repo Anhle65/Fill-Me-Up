@@ -13,9 +13,9 @@ public class Tower {
     /**
      * This constructor will create tower by the different input paras(resourceType, level, price, resourceAmount)
      */
-    public Tower(String resourceType, int level, int cost, int resourceAmount, float recoveryTime){
+    public Tower(String resourceType, int cost, int resourceAmount, float recoveryTime){
         this.resourceType = resourceType;
-        this.level = level;
+        this.level = 1;
         this.cost = cost;
         this.resourceAmount = resourceAmount;
         this.recoveryTime = recoveryTime;
@@ -30,16 +30,35 @@ public class Tower {
     public int getResourceAmount(){ return resourceAmount;}
 
     /**
+     * @param incrementAmount
+     * Increment the resource amount of the tower by expand
+     */
+    public void upgradeResourceAmount(int incrementAmount){ resourceAmount += incrementAmount; }
+
+    /**
      * Get the current type of the tower
      * @return Current (String)type
      */
     public String getType(){ return resourceType;}
 
     /**
+     * @param newType
+     * Change the resource type of the tower into newType
+     */
+    public void changeTypeResource(String newType){ resourceType = newType;}
+
+    /**
      * Get the current level of the tower
      * @return Current (int)level
      */
     public int getLevel(){ return level;}
+
+    /**
+     * Increment the level tower whenever it is upgraded by one
+     */
+    public void levelIncrement(){
+        this.level += 1;
+    }
 
     /**
      * Get the price of the tower
@@ -78,12 +97,6 @@ public class Tower {
     public float getRecoveryTime(){ return recoveryTime;}
 
     /**
-     * @param incrementAmount
-     * Increment the resource amount of the tower by expand
-     */
-    public void upgradeCapacity(int incrementAmount){ resourceAmount += incrementAmount; }
-
-    /**
      * @param decrementTime
      * Decrement the recovery time of the tower by decrementTime
      */
@@ -91,10 +104,4 @@ public class Tower {
         if (recoveryTime - decrementTime >= 1)
             recoveryTime -= decrementTime;
     }
-
-    /**
-     * @param newType
-     * Change the resource type of the tower into newType
-     */
-    public void changeTypeResource(String newType){ resourceType = newType;}
 }
