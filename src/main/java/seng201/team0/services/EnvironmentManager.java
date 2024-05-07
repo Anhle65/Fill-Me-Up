@@ -7,43 +7,80 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class EnvironmentManager {
-    private String type;
-    private List<Tower> usedtowerList;
+    private String userName;
+    private List<Tower> currentTowerList;
     private List<Tower> reservedTowerList;
     private String difficulty;
+    private int numberOfRounds;
     private final List<Tower> defaultTowers = new ArrayList<>();
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
+//    private final Consumer<EnvironmentManager> roundScreenLauncher;
     private final Runnable clearScreen;
-
+    /**
+     * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
+     */
     public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Runnable clearScreen) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.clearScreen = clearScreen;
-        defaultTowers.addAll(List.of(new Tower("fire",1,40,20,3), new Tower("water",1,40,20,3),
-                new Tower("food",1,40,20,3), new Tower("gold",1,40,20,3), new Tower("diamond",1,40,20,3),
-                new Tower("coal",1,40,20,3)));
+        defaultTowers.addAll(List.of(new Tower("fire",40,20,3), new Tower("water",40,20,3),
+                new Tower("food",40,20,3), new Tower("gold",40,20,3), new Tower("diamond",40,20,3),
+                new Tower("coal",40,20,3)));
         System.out.println(defaultTowers.get(0).getType());
         launchSetupScreen();
     }
-    public void setDifficulty(String diff) {this.difficulty = diff;}
+
+    /**
+     * Set the difficult level which will be chosen by user on setup page and keep through the whole game
+     * @param difficulty
+     */
+    public void setDifficulty(String difficulty) {this.difficulty = difficulty;}
+    /**
+     * Get the difficult level
+     * @return difficulty in String
+     */
     public String getDifficulty(){return this.difficulty;}
+    /**
+     * set the number of rounds which will be chosen by user on setup page and keep through the whole game
+     * @param numberOfRounds
+     */
+    public void setNumberOfRounds(int numberOfRounds){this.numberOfRounds = numberOfRounds;}
+    /**
+     * Get numberOfRounds
+     * @return numberOfRounds in int
+     */
+    public int getNumberOfRounds(){return this.numberOfRounds;}
+    /**
+     * Get the player name
+     * @return player name in String
+     */
     public String getName() {
-        return type;
+        return userName;
     }
-
-    public void setName(String type) {
-        this.type = type;
+    /**
+     * set player name which will be input by user from keyboard
+     * @param playerName
+     */
+    public void setName(String playerName) {
+        this.userName = playerName;
     }
-
-    public List<Tower> getTowerList() {
-        return usedtowerList;
+    /**
+     * @return List of the current towers are used
+     */
+    public List<Tower> getCurrentTowerList() {
+        return currentTowerList;
     }
-
-    public void setTowerList(List<Tower> usedtowerList) {
-        this.usedtowerList = usedtowerList;
+    /**
+     * set the current towers are used
+     * @param currentTowerList
+     */
+    public void setCurrentTowerList(List<Tower> currentTowerList) {
+        this.currentTowerList = currentTowerList;
     }
-
+    /**
+     * @return List of the default towers which can be selected by player on the setup page
+     */
     public List<Tower> getDefaultTowers() {
         return defaultTowers;
     }
