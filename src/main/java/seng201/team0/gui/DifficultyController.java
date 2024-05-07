@@ -1,11 +1,12 @@
-package seng201.team0.models;
+package seng201.team0.gui;
+
+import seng201.team0.models.RoundManager;
 
 public class DifficultyController {
     private int easy = 1;
     private int moderate = 2;
     private int challenging = 3;
     private int currentDifficulty = easy;
-    private int levelCounter = 1;
 
     public void onChooseDifficultyEasy(){
         currentDifficulty = easy;
@@ -19,22 +20,11 @@ public class DifficultyController {
         currentDifficulty = challenging;
     }
 
-    public void IncrementLevel() {
-        if (currentDifficulty == easy) {
-            levelCounter += 1;
-        } else if (currentDifficulty == moderate) {
-            levelCounter += 2;
-        } else {
-            levelCounter += 3;
-        }
-    }
-    public int getLevelCounter() {
-        return levelCounter;
-    }
-
-    /* Sets up various game variables according to the current round counter and difficulty
-       on a given RoundManager object
-    * */
+    /**
+     * Sets up various game variables according to the current round counter and difficulty
+     * on a given RoundManager object.
+     * @param rm RoundManager object for game environment changes to be made on
+     */
     public void roundDifficultySet(RoundManager rm) {
 
         if (currentDifficulty == easy) {
