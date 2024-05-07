@@ -23,9 +23,9 @@ public class Shop {
         defaultItems.addAll(List.of(new PurchasableItems("Upgrade time", 0, TIME_ENHANCEMENT[timeIndex], COST[timeIndex]),
                 new PurchasableItems("Upgrade amount resource", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
                 new PurchasableItems("Change the type of tower" + TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)], TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)] , 60),
-                new PurchasableItems(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], 1, 40, 20, 6)),
-                new PurchasableItems(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], 1, 40, 20, 6)),
-                new PurchasableItems(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], 1, 40, 20, 6))
+                new PurchasableItems(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], 40, 20, 6)),
+                new PurchasableItems(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], 40, 20, 6)),
+                new PurchasableItems(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], 40, 20, 6))
                 ));
     }
     public void changeTypeTower(Tower tower, String newType){

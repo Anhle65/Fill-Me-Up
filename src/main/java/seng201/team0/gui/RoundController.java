@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import seng201.team0.models.Cart;
+import seng201.team0.models.RoundManager;
 import seng201.team0.models.Tower;
 
 public class RoundController {
@@ -18,9 +19,9 @@ public class RoundController {
     private Cart cart;
 
     public void init(Stage stage){
-        tower = new Tower("water",1,40,20,3,true,true);
+        tower = new Tower("water",40,20,3);
         cart = new Cart("water", 5f,100);
-        cart.setAmount(tower.getCapacity());
+        cart.setAmount(tower.getResourceAmount());
     }
     public void onClickedTower() {
         System.out.println("Button has been clicked");
