@@ -19,7 +19,7 @@ public class EnvironmentController {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::clearPane);
+        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::clearPane);
     }
 
     public void launchSetupScreen(EnvironmentManager environmentManager) {
@@ -62,17 +62,17 @@ public class EnvironmentController {
         }
     }
 
-//    public void launchRoundScreen(EnvironmentManager towerManager) {
-//        try {
-//            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_game.fxml"));
-//            mainScreenLoader.setControllerFactory(param -> new RoundController(environmentManager));
-//            Parent setupParent  = mainScreenLoader.load();
-//            pane.getChildren().add(setupParent);
-//            stage.setTitle("Tower Manager Inventory Screen");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    public void launchRoundGameScreen(EnvironmentManager environmentManager) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_game.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new RoundController());
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Round Game Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 

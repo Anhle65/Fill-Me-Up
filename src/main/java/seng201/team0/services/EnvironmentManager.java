@@ -1,5 +1,6 @@
 package seng201.team0.services;
 
+import seng201.team0.gui.DifficultyController;
 import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
@@ -12,19 +13,21 @@ public class EnvironmentManager {
     private List<Tower> reservedTowerList;
     private String difficulty;
     private int numberOfRounds;
+    private int currentRoundNumber = 5;
     private final List<Tower> defaultTowers = new ArrayList<>();
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
     private final Consumer<EnvironmentManager> roundDifficultyScreenLauncher;
-//    private final Consumer<EnvironmentManager> roundScreenLauncher;
+    private final Consumer<EnvironmentManager> roundGameScreenLauncher;
     private final Runnable clearScreen;
     /**
      * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
      */
-    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultyScreenLauncher, Runnable clearScreen) {
+    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultyScreenLauncher, Consumer<EnvironmentManager> roundGameScreenLauncher, Runnable clearScreen) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.roundDifficultyScreenLauncher = roundDifficultyScreenLauncher;
+        this.roundGameScreenLauncher = roundGameScreenLauncher;
         this.clearScreen = clearScreen;
         defaultTowers.addAll(List.of(new Tower("fire",40,20,3), new Tower("water",40,20,3),
                 new Tower("food",40,20,3), new Tower("gold",40,20,3), new Tower("diamond",40,20,3),
@@ -53,6 +56,10 @@ public class EnvironmentManager {
      * @return numberOfRounds in int
      */
     public int getNumberOfRounds(){return this.numberOfRounds;}
+
+    public int getCurrentRoundNumber(){return this.currentRoundNumber;}
+
+    public void setCurrentRoundNumber(int currentRoundNumber){this.currentRoundNumber = currentRoundNumber;}
     /**
      * Get the player name
      * @return player name in String
@@ -95,6 +102,9 @@ public class EnvironmentManager {
         clearScreen.run();
         launchRoundDifficultyScreen();
     }
+    public void launchRoundGameScreen() {
+        roundGameScreenLauncher.accept(this);
+    }
 
     public void returnedSetupScreen() {
         clearScreen.run();
@@ -104,11 +114,10 @@ public class EnvironmentManager {
         inventoryScreenLauncher.accept(this);
     }
 
-    public void closeInventoryScreen() {
-        System.exit(0);
-    }
+    public void launchRoundDifficultyScreen() {
+        roundDifficultyScreenLauncher.accept(this);
 
-    public void launchRoundDifficultyScreen() {roundDifficultyScreenLauncher.accept(this);}
+    }
 
     public void closeRoundDifficultyScreen() {
         clearScreen.run();
