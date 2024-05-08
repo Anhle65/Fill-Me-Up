@@ -101,7 +101,7 @@
                         <Font name="Berlin Sans FB Bold" size="24.0" />
                      </font>
                   </Button>
-                  <Button fx:id="playNowButton" disable="true" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text=" Play Now" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <Button fx:id="playNowButton" disable="true" mnemonicParsing="false" onAction="#onPlayNowButtonClicked" prefHeight="40.0" prefWidth="150.0" text=" Play Now" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <font>
                         <Font name="Berlin Sans FB Bold" size="24.0" />
                      </font>
