@@ -17,7 +17,7 @@ public class RoundController {
     private Button towerButton;
     private Tower tower;
     private Cart cart;
-
+    // Initialize the game
     public void init(Stage stage){
         tower = new Tower("water",40,20,3);
         cart = new Cart("water", 5f,100);
