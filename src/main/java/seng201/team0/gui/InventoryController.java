@@ -97,6 +97,8 @@ public class InventoryController {
     @FXML
     private void onQuitClicked() {
         this.environmentManager.closeInventoryScreen();
+        this.environmentManager.launchDifficultyScreen();
+
     }
 
     @FXML
