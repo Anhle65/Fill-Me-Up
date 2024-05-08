@@ -25,7 +25,7 @@ public class DifficultyController {
     private RadioButton challengingRadioButton;
 
     @FXML
-    private Button letPlayButton;
+    private Button playNowButton;
 
     @FXML
     private Label roundNumberLabel;
@@ -34,17 +34,53 @@ public class DifficultyController {
     private Button openInventoryButton;
 
     @FXML
+    private Button backbButton;
+
+    @FXML
     public void onOpenInventoryButtonClicked() {
         environmentManager.closeRoundDifficultyScreen();
         environmentManager.launchInventoryScreen();
     }
 
+    public void onBackButtonClicked() {
+        environmentManager.closeRoundDifficultyScreen();
+        environmentManager.launchSetupScreen();
+    }
 
     public DifficultyController(EnvironmentManager em) { this.environmentManager = em; }
 
-    private void onLetPlayclicked(){
-        }
+    public void onEasyRadioButtonClicked() {
+        easyRadioButton.setSelected(true);
+        currentDifficulty = "easy";
+        roundNumbers = 1;
+        moderateRadioButton.setSelected(false);
+        challengingRadioButton.setSelected(false);
+        playNowButton.setDisable(false);
+
     }
+    public void onModerateRadioButtonClicked() {
+        moderateRadioButton.setSelected(true);
+        currentDifficulty = "moderate";
+        roundNumbers = 1;
+        easyRadioButton.setSelected(false);
+        challengingRadioButton.setSelected(false);
+        playNowButton.setDisable(false);
+
+    }
+    public void onChallengingRadioButtonClicked() {
+        challengingRadioButton.setSelected(true);
+        currentDifficulty = "challenging";
+        roundNumbers = 1;
+        easyRadioButton.setSelected(false);
+        moderateRadioButton.setSelected(false);
+        playNowButton.setDisable(false);
+
+    }
+
+
+
+}
+
     /**
      * Sets up various game variables according to the current round counter and difficulty
      * on a given RoundManager object.
