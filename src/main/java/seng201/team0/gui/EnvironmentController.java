@@ -50,17 +50,17 @@ public class EnvironmentController {
             e.printStackTrace();
         }
     }
-    public  void launchRoundDifficultyScreen(EnvironmentManager environmentManager) {
-        try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_difficulty_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new DifficultyController(environmentManager));
-            Parent setupParent  = mainScreenLoader.load();
-            pane.getChildren().add(setupParent);
-            stage.setTitle("Round Manager Round Difficulty Screen");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public  void launchRoundDifficultyScreen(EnvironmentManager environmentManager) {
+//        try {
+//            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_difficulty_screen.fxml"));
+//            mainScreenLoader.setControllerFactory(param -> new DifficultyController(environmentManager));
+//            Parent setupParent  = mainScreenLoader.load();
+//            pane.getChildren().add(setupParent);
+//            stage.setTitle("Round Manager Round Difficulty Screen");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    public void launchRoundScreen(EnvironmentManager towerManager) {
 //        try {
