@@ -95,13 +95,6 @@ public class InventoryController {
     }
 
     @FXML
-    private void onQuitClicked() {
-        this.environmentManager.closeInventoryScreen();
-//        this.environmentManager.launchDifficultyScreen();
-
-    }
-
-    @FXML
     private void onSwappedClicked() {
         System.out.println("onSwappedClicked");
 //        this.selectedTowers.setCleanliness("Sparkling");
@@ -118,5 +111,6 @@ public class InventoryController {
     @FXML
     private void onReturnedClicked(){
         environmentManager.returnedSetupScreen();
+        environmentManager.launchRoundDifficultyScreen();
     }
 }

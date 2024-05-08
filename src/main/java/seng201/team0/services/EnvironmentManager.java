@@ -15,14 +15,16 @@ public class EnvironmentManager {
     private final List<Tower> defaultTowers = new ArrayList<>();
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
+    private final Consumer<EnvironmentManager> roundDifficultyScreenLauncher;
 //    private final Consumer<EnvironmentManager> roundScreenLauncher;
     private final Runnable clearScreen;
     /**
      * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
      */
-    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Runnable clearScreen) {
+    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultyScreenLauncher, Runnable clearScreen) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
+        this.roundDifficultyScreenLauncher = roundDifficultyScreenLauncher;
         this.clearScreen = clearScreen;
         defaultTowers.addAll(List.of(new Tower("fire",40,20,3), new Tower("water",40,20,3),
                 new Tower("food",40,20,3), new Tower("gold",40,20,3), new Tower("diamond",40,20,3),
@@ -91,12 +93,11 @@ public class EnvironmentManager {
 
     public void closeSetupScreen() {
         clearScreen.run();
-        launchInventoryScreen();
+        launchRoundDifficultyScreen();
     }
 
     public void returnedSetupScreen() {
         clearScreen.run();
-        launchSetupScreen();
     }
 
     public void launchInventoryScreen() {
@@ -105,5 +106,11 @@ public class EnvironmentManager {
 
     public void closeInventoryScreen() {
         System.exit(0);
+    }
+
+    public void launchRoundDifficultyScreen() {roundDifficultyScreenLauncher.accept(this);}
+
+    public void closeRoundDifficultyScreen() {
+        clearScreen.run();
     }
 }

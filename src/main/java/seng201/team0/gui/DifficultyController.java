@@ -2,6 +2,7 @@ package seng201.team0.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import seng201.team0.models.RoundManager;
 import seng201.team0.services.EnvironmentManager;
@@ -12,6 +13,7 @@ public class DifficultyController {
     private String challenging;
     private String currentDifficulty;
     private int roundNumbers;
+    private EnvironmentManager environmentManager;
 
     @FXML
     private RadioButton easyRadioButton;
@@ -25,6 +27,20 @@ public class DifficultyController {
     @FXML
     private Button letPlayButton;
 
+    @FXML
+    private Label roundNumberLabel;
+
+    @FXML
+    private Button openInventoryButton;
+
+    @FXML
+    public void onOpenInventoryButtonClicked() {
+        environmentManager.closeRoundDifficultyScreen();
+        environmentManager.launchInventoryScreen();
+    }
+
+
+    public DifficultyController(EnvironmentManager em) { this.environmentManager = em; }
 
     private void onLetPlayclicked(){
         }
