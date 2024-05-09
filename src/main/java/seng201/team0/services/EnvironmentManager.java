@@ -13,7 +13,7 @@ public class EnvironmentManager {
     private List<Tower> reservedTowerList;
     private String difficulty;
     private int numberOfRounds;
-    private int currentRoundNumber = 5;
+    private int currentRoundNumber = 1;
     private final List<Tower> defaultTowers = new ArrayList<>();
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
@@ -57,9 +57,21 @@ public class EnvironmentManager {
      */
     public int getNumberOfRounds(){return this.numberOfRounds;}
 
+    /**
+     * Get the currentRounds which player is at
+     * @return currentRounds
+     */
     public int getCurrentRoundNumber(){return this.currentRoundNumber;}
 
-    public void setCurrentRoundNumber(int currentRoundNumber){this.currentRoundNumber = currentRoundNumber;}
+
+    /**
+     * Increment the current round when click to play
+     */
+    public void incrementCurrentRoundNumber(){
+        if (this.currentRoundNumber < numberOfRounds)
+            this.currentRoundNumber += 1;
+    }
+
     /**
      * Get the player name
      * @return player name in String
