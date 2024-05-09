@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.DifficultyController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.DifficultyController">
    <children>
       <GridPane layoutX="14.0" layoutY="-3.0" prefHeight="400.0" prefWidth="580.0">
         <columnConstraints>
@@ -60,8 +61,8 @@
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="270.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="187.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="116.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="179.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.0" minWidth="10.0" prefWidth="128.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -72,12 +73,15 @@
                         <Font name="Berlin Sans FB Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="roundNumberLabel" text="Round 1" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <Label text="Round:" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <font>
                         <Font name="Berlin Sans FB Bold" size="28.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
                   </Label>
-                  <Button fx:id="openInventoryButton" mnemonicParsing="false" onAction="#onOpenInventoryButtonClicked" prefHeight="40.0" prefWidth="122.0" text="Open Inventory" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                  <Button mnemonicParsing="false" onAction="#onOpenInventoryButtonClicked" prefHeight="48.0" prefWidth="127.0" text="Open Inventory" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                      <font>
                         <Font name="Berlin Sans FB Bold" size="13.0" />
                      </font>
@@ -85,6 +89,14 @@
                         <SepiaTone />
                      </effect>
                   </Button>
+                  <Label fx:id="currentRoundLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
             </GridPane>
             <GridPane GridPane.rowIndex="2">
@@ -96,7 +108,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Back" GridPane.halignment="CENTER">
+                  <Button mnemonicParsing="false" onAction="#onBackButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Back" GridPane.halignment="CENTER">
                      <font>
                         <Font name="Berlin Sans FB Bold" size="24.0" />
                      </font>
