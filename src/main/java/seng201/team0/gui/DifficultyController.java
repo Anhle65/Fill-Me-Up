@@ -26,16 +26,13 @@ public class DifficultyController {
     private Button playNowButton;
 
     @FXML
-    private Label roundNumberLabel;
-
-    @FXML
-    private Button openInventoryButton;
-
-    @FXML
-    private Button backbButton;
+    private Label currentRoundLabel;
 
     public DifficultyController(EnvironmentManager em) { this.environmentManager = em; }
 
+    public void initialize(){
+        currentRoundLabel.setText(String.valueOf(environmentManager.getCurrentRoundNumber()));
+    }
     @FXML
     public void onOpenInventoryButtonClicked() {
         environmentManager.closeRoundDifficultyScreen();
@@ -43,6 +40,8 @@ public class DifficultyController {
     }
 
     public void onBackButtonClicked() {
+        environmentManager.incrementCurrentRoundNumber();
+        System.out.println("Current rounds: " + environmentManager.getNumberOfRounds()); // This print the current round
         environmentManager.closeRoundDifficultyScreen();
         environmentManager.launchSetupScreen();
     }
