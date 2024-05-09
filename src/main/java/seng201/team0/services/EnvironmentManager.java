@@ -11,7 +11,7 @@ public class EnvironmentManager {
     private String userName;
     private List<Tower> currentTowerList;
     private List<Tower> reservedTowerList;
-    private String difficulty;
+    private String gameDifficulty;
     private int numberOfRounds;
     private int currentRoundNumber = 1;
     private final List<Tower> defaultTowers = new ArrayList<>();
@@ -40,12 +40,12 @@ public class EnvironmentManager {
      * Set the difficult level which will be chosen by user on setup page and keep through the whole game
      * @param difficulty
      */
-    public void setDifficulty(String difficulty) {this.difficulty = difficulty;}
+    public void setGameDifficulty(String difficulty) {this.gameDifficulty = difficulty;}
     /**
      * Get the difficult level
      * @return difficulty in String
      */
-    public String getDifficulty(){return this.difficulty;}
+    public String getGameDifficulty(){return this.gameDifficulty;}
     /**
      * set the number of rounds which will be chosen by user on setup page and keep through the whole game
      * @param numberOfRounds

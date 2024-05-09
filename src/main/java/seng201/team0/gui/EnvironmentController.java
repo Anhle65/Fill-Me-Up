@@ -65,7 +65,7 @@ public class EnvironmentController {
     public void launchRoundGameScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_game.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new RoundController());
+            mainScreenLoader.setControllerFactory(param -> new RoundController(environmentManager));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Round Game Screen");

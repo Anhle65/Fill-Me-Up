@@ -55,7 +55,7 @@ public class SetupScreenController{
 //            environmentManager.setName("Sorry, your name must be between 5-15 long");
 //        }
         environmentManager.setName(nameTextField.getText());
-        System.out.println("You chose: " + environmentManager.getDifficulty() + " option."); // Print the difficulty user choose
+        System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
         environmentManager.setNumberOfRounds((int)roundSlider.getValue());
         System.out.println("You choose: "+environmentManager.getNumberOfRounds()+" rounds"); // Print number of rounds which user choose
         environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
@@ -72,7 +72,7 @@ public class SetupScreenController{
         difficultyOptions.getItems().addAll("Easy", "Moderate", "Challenge");
         difficultyOptions.setValue("Choose the difficulty");
         difficultyOptions.setOnAction((event) -> {
-            environmentManager.setDifficulty(difficultyOptions.getValue()); // Saved the selection of difficulty
+            environmentManager.setGameDifficulty(difficultyOptions.getValue()); // Saved the selection of difficulty
         });
         List<Button> selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         List<Button> towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5, towerStat6);

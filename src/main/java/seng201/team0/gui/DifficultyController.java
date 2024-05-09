@@ -10,7 +10,7 @@ public class DifficultyController {
     private String easy;
     private String moderate;
     private String challenging;
-    private String currentDifficulty;
+    private String roundDifficulty;
     private EnvironmentManager environmentManager;
 
     @FXML
@@ -28,7 +28,7 @@ public class DifficultyController {
     @FXML
     private Label currentRoundLabel;
 
-    public DifficultyController(EnvironmentManager em) { this.environmentManager = em; }
+    public DifficultyController(EnvironmentManager environmentManager) { this.environmentManager = environmentManager; }
 
     public void initialize(){
         currentRoundLabel.setText(String.valueOf(environmentManager.getCurrentRoundNumber()));
@@ -48,7 +48,7 @@ public class DifficultyController {
 
     public void onEasyRadioButtonClicked() {
         easyRadioButton.setSelected(true);
-        currentDifficulty = "easy";
+        roundDifficulty = "easy";
         moderateRadioButton.setSelected(false);
         challengingRadioButton.setSelected(false);
         playNowButton.setDisable(false);
@@ -56,7 +56,7 @@ public class DifficultyController {
     }
     public void onModerateRadioButtonClicked() {
         moderateRadioButton.setSelected(true);
-        currentDifficulty = "moderate";
+        roundDifficulty = "moderate";
         easyRadioButton.setSelected(false);
         challengingRadioButton.setSelected(false);
         playNowButton.setDisable(false);
@@ -64,7 +64,7 @@ public class DifficultyController {
     }
     public void onChallengingRadioButtonClicked() {
         challengingRadioButton.setSelected(true);
-        currentDifficulty = "challenging";
+        roundDifficulty = "challenging";
         easyRadioButton.setSelected(false);
         moderateRadioButton.setSelected(false);
         playNowButton.setDisable(false);
@@ -77,24 +77,3 @@ public class DifficultyController {
     }
 
 }
-//
-///**
-// * Sets up various game variables according to the current round counter and difficulty
-// * on a given RoundManager object.
-// * @param rm RoundManager object for game environment changes to be made on
-// */
-//public void roundDifficultySet( rm) {
-//
-//    if (currentDifficulty == "easy") {
-//        // Set variables for easy mode
-//        rm.setTrackDistance(10);
-//    } else if (currentDifficulty == "moderate") {
-//        // Set variables for moderate mode
-//        rm.setTrackDistance(8);
-//    } else if (currentDifficulty == "challenging") {
-//        // Set variables for challenging mode
-//        rm.setTrackDistance(5);
-//    }
-//}
-//
-//
