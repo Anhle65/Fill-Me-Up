@@ -72,11 +72,11 @@ public class InventoryController {
 
         for(int i = 0; i < this.environmentManager.getCurrentTowerList().size(); ++i) {
             int finalI = i;
+            this.updateStats((Tower)this.environmentManager.getCurrentTowerList().get(finalI), (Label)this.towerTimeList.get(finalI), (Label)this.towerResourceList.get(finalI), (Label)this.towerLevelList.get(finalI));
+            ((Button)towerButtons.get(finalI)).setText(String.valueOf(((Tower)this.environmentManager.getCurrentTowerList().get(finalI)).getType()));
             ((Button)towerButtons.get(i)).setOnAction((event) -> {
-                this.updateStats((Tower)this.environmentManager.getCurrentTowerList().get(finalI), (Label)this.towerTimeList.get(finalI), (Label)this.towerResourceList.get(finalI), (Label)this.towerLevelList.get(finalI));
                 this.selectedTowerIndex = finalI;
                 towerButtons.forEach((button) -> {
-                    ((Button)towerButtons.get(finalI)).setText(String.valueOf(((Tower)this.environmentManager.getCurrentTowerList().get(finalI)).getType()));
                     if (button == towerButtons.get(finalI)) {
                         this.selectedTowers = (Tower) this.environmentManager.getCurrentTowerList().get(finalI);
                         button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
@@ -112,5 +112,8 @@ public class InventoryController {
     private void onReturnedClicked(){
         environmentManager.returnedSetupScreen();
         environmentManager.launchRoundDifficultyScreen();
+    }
+    public void changeTypeTower(Tower tower, String newType){
+        tower.changeTypeResource(newType);
     }
 }
