@@ -55,38 +55,28 @@ public class PurchasableItems {
     }
 
     /**
-     *
-     * @param item
      * @return name of the Item
      */
-    public String getNameItem(PurchasableItems item){
-        return item.nameItem;
+    public String getNameItem(){
+        return nameItem;
     };
 
     /**
-     *
-     * @param item
      * @return the price to buy the item in shop
      */
-    public int getCostItem(PurchasableItems item){
-        return item.cost;
+    public int getCostItem(){
+        return cost;
     }
 
     /**
-     *
-     * @param item
      * @return the amount resource which can be added to upgrade the tower
      */
-    public int getImprovedAmountResource(PurchasableItems item){
-        return item.improvedAmountResource;
+    public int getImprovedAmountResource(){
+        return improvedAmountResource;
     }
 
     /**
-     *
-     * @param item
      * @return the amount of time which can decrement the reload time of Tower
      */
-    public float getImprovedTime(PurchasableItems item){
-        return item.improvedTime;
-    }
+    public float getImprovedTime(){ return improvedTime;}
 }
