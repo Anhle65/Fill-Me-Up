@@ -14,6 +14,8 @@ import seng201.team0.services.EnvironmentManager;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -22,6 +24,7 @@ public class RoundController {
     private EnvironmentManager environmentManager;
     private RoundManager roundManager;
     private int trackDistance;
+    private int selectedTowerIndex = -1;
     private boolean tower1Selected = false;
     private boolean tower2Selected = false;
     private boolean tower3Selected = false;
@@ -71,7 +74,21 @@ public class RoundController {
     public void initialize() {
 //        this.roundManager = new RoundManager(this.environmentManager);
 //        this.trackDistance = roundManager.getTrackDistance();
-
+        List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
+        for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
+            int finalI = i; // variables used within lambdas must be final
+            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getType());
+            listTowerButtons.get(i).setOnAction(event -> {
+                selectedTowerIndex = finalI;
+                listTowerButtons.forEach(button -> {
+                    if (button == listTowerButtons.get(finalI)) {
+                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+        }
         TranslateTransition translate1 = new TranslateTransition();
         translate1.setNode(cartImageView);
         translate1.setDuration(Duration.millis(3000));
