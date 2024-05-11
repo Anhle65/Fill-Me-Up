@@ -4,6 +4,7 @@ import javafx.scene.control.*;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 
+import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -46,6 +47,12 @@ public class SetupScreenController{
     @FXML
     private Button acceptButton;
 
+    private boolean nameTextFieldEmpty = true;
+    private boolean gameDifficultyEmpty = true;
+    private boolean selectedTower1Empty = true;
+    private boolean selectedTower2Empty = true;
+    private boolean selectedTower3Empty = true;
+
     @FXML
     private ChoiceBox<String> difficultyOptions = new ChoiceBox<>();
     private EnvironmentManager environmentManager;
@@ -54,15 +61,52 @@ public class SetupScreenController{
     public SetupScreenController(EnvironmentManager environmentManager){
         this.environmentManager = environmentManager;
     }
+
+    @FXML
+    private void onSelectedTower1ButtonClicked(){
+        if (!selectedTower1.getText().equals("")) {
+            selectedTower1Empty = false;
+        }
+
+    }
+
+    @FXML
+    private void onSelectedTower2ButtonClicked(){
+        if (!selectedTower2.getText().equals("")) {
+            selectedTower2Empty = false;
+        }
+    }
+
+    @FXML
+    private void onSelectedTower3ButtonClicked(){
+        if (!selectedTower3.getText().equals("")) {
+            selectedTower3Empty = false;
+        }
+    }
+
+
+    @FXML
+    private void onDifficultyDropDownBoxSelected(){
+
+    }
+
     @FXML
     private void onAcceptClicked() {
 
+//        if (selectedTower1Empty |selectedTower2Empty | selectedTower3Empty) {
+//            // Print error message
+//            warningLabel.setText("Please enter name, choose game difficulty & 3 towers!");
+//        }
+//        else {
         environmentManager.setName(nameTextField.getText());
         System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
         environmentManager.setNumberOfRounds((int)roundSlider.getValue());
         System.out.println("You choose: "+environmentManager.getNumberOfRounds()+" rounds"); // Print number of rounds which user choose
         environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
         environmentManager.closeSetupScreen();
+
+
+
     }
     @FXML
     private void onExitClicked() {
