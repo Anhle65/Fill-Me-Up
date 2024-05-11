@@ -42,6 +42,11 @@ public class SetupScreenController{
     @FXML
     private Button towerStat6;
     @FXML
+    private Label warningLabel;
+    @FXML
+    private Button acceptButton;
+
+    @FXML
     private ChoiceBox<String> difficultyOptions = new ChoiceBox<>();
     private EnvironmentManager environmentManager;
     private int selectedTowerIndex = -1;
@@ -51,9 +56,7 @@ public class SetupScreenController{
     }
     @FXML
     private void onAcceptClicked() {
-//        while (nameTextField.getText().length() < 5 || nameTextField.getText().length() > 15){
-//            environmentManager.setName("Sorry, your name must be between 5-15 long");
-//        }
+
         environmentManager.setName(nameTextField.getText());
         System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
         environmentManager.setNumberOfRounds((int)roundSlider.getValue());
@@ -61,6 +64,11 @@ public class SetupScreenController{
         environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
         environmentManager.closeSetupScreen();
     }
+    @FXML
+    private void onExitClicked() {
+        System.exit(0);
+    }
+
 
 
 
@@ -83,7 +91,7 @@ public class SetupScreenController{
                 selectedTowerIndex = finalI;
                 towerButtons.forEach(button -> {
                     if (button == towerButtons.get(finalI)) {
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                        button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
                     }

@@ -79,7 +79,7 @@ public class InventoryController {
                 towerButtons.forEach((button) -> {
                     if (button == towerButtons.get(finalI)) {
                         this.selectedTowers = (Tower) this.environmentManager.getCurrentTowerList().get(finalI);
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                        button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
                     }

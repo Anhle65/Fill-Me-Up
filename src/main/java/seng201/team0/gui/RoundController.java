@@ -50,21 +50,19 @@ public class RoundController {
     private Button tower5Button;
 
     @FXML
-    private Label tower1Label;
+    private Button exitButton;
 
     @FXML
-    private Label tower2Label;
+    private Button pauseButton;
 
     @FXML
-    private Label tower3Label;
+    private Button resumeButton;
+
 
     @FXML
-    private Label tower4Label;
-
-    @FXML
-    private Label tower5Label;
-
-
+    private void onExitButtonClicked() {
+        System.exit(0);
+    }
 
     public RoundController(EnvironmentManager environmentManager) {
         this.environmentManager = environmentManager;
@@ -92,7 +90,7 @@ public class RoundController {
         TranslateTransition translate1 = new TranslateTransition();
         translate1.setNode(cartImageView);
         translate1.setDuration(Duration.millis(3000));
-        translate1.setByX(800);
+        translate1.setByX(700);
 
 
         TranslateTransition translate2 = new TranslateTransition();
@@ -104,7 +102,7 @@ public class RoundController {
         TranslateTransition translate3 = new TranslateTransition();
         translate3.setNode(cartImageView);
         translate3.setDuration(Duration.millis(3000));
-        translate3.setByX(-800);
+        translate3.setByX(-700);
 
         TranslateTransition translate4 = new TranslateTransition();
         translate4.setNode(cartImageView);
@@ -114,7 +112,7 @@ public class RoundController {
         TranslateTransition translate5 = new TranslateTransition();
         translate5.setNode(cartImageView);
         translate5.setDuration(Duration.millis(3000));
-        translate5.setByX(800);
+        translate5.setByX(700);
 
 
         translate1.setOnFinished(actionEvent -> translate2.play());
@@ -125,58 +123,8 @@ public class RoundController {
         translate1.play();
 
     }
-    public void shootInCartImageViewMouseClicked(MouseEvent mouseEvent) {
-        if (tower1Selected) {
-            for (int i=5; i>0; i--) {
-                tower1Label.setText(String.valueOf(i));
-            }
-        }
-//        if (tower2Selected) {
-//            for (int i=5; i>0; i--) {
-//                tower2Label.setText(String.valueOf(i));
-//            }
-//        }
-//        if (tower3Selected) {
-//            for (int i=5; i>0; i--) {
-//                tower3Label.setText(String.valueOf(i));
-//            }
-//        }
-//        if (tower4Selected) {
-//            for (int i=5; i>0; i--) {
-//                tower4Label.setText(String.valueOf(i));
-//            }
-//        }
-//        if (tower5Selected) {
-//            for (int i=5; i>0; i--) {
-//                tower5Label.setText(String.valueOf(i));
-//            }
-//        }
+
 
     }
 
-    public void onTower1ButtonClicked(ActionEvent actionEvent) {
-        tower1Selected = true;
-        for (int i=4; i>=0; i--) {
-            tower1Label.setText(String.valueOf(i));
-        }
-    }
 
-//    public void onTower2ButtonClicked(ActionEvent actionEvent) {
-//        tower2Selected = true;
-//    }
-//    public void onTower3ButtonClicked(ActionEvent actionEvent) {
-//        tower3Selected = true;
-//    }
-//
-//    public void onTower4ButtonClicked(ActionEvent actionEvent) {
-//        tower4Selected = true;
-//    }
-//
-//    public void onTower5ButtonClicked(ActionEvent actionEvent) {
-//        tower5Selected = true;
-//    }
-
-
-
-
-}
