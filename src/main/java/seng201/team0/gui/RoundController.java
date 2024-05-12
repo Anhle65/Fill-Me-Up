@@ -24,7 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
-public class RoundController implements MouseListener {
+public class RoundController{
     private EnvironmentManager environmentManager;
     private RoundManager roundManager;
     private int trackDistance;
@@ -89,12 +89,13 @@ public class RoundController implements MouseListener {
         listCartsInRound = List.of(new Cart("water", 20f, 100), new Cart("fire", 20f, 120));
         listCartsButton = List.of(cart1, cart2);
         for(Button cart : listCartsButton) {
-            cart.setOnMouseClicked(mouseEvent -> {
+            cart.setOnMouseClicked(mouseEvent -> {  //Set all cart buttons with the event handler
                 selectedCart.incrementAmountResourceIntoCart(selectedTower);
                 System.out.println("Mouse event " +selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
             });
         }
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
+
         for (int j = 0; j < listCartsInRound.size(); j++){
             int finalJ = j;
             listCartsButton.get(finalJ).setText(listCartsInRound.get(finalJ).getTypeResourceCart());
@@ -111,6 +112,7 @@ public class RoundController implements MouseListener {
                 });
             });
         }
+
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getType());
@@ -127,10 +129,7 @@ public class RoundController implements MouseListener {
                 });
             });
         }
-//        if (selectedCart != null && selectedTower != null) {
-//            selectedCart.incrementAmountResourceIntoCart(selectedTower);
-//            System.out.println(selectedCart.getCurrentAmountOfCart());
-//        }
+
         TranslateTransition translate1 = new TranslateTransition();
         translate1.setNode(cartImageView);
         translate1.setDuration(Duration.millis(3000));
@@ -172,9 +171,9 @@ public class RoundController implements MouseListener {
 //    public void onM
 //    @FXML
     public void onClickedCart(){
-        System.out.println("Reach cart1 clicked");
-        selectedCart.incrementAmountResourceIntoCart(selectedTower);
-        System.out.println(selectedCart.getCurrentAmountOfCart());
+//        System.out.println("Reach cart1 clicked");
+//        selectedCart.incrementAmountResourceIntoCart(selectedTower);
+//        System.out.println(selectedCart.getCurrentAmountOfCart());
     }
 
     @FXML
@@ -182,122 +181,6 @@ public class RoundController implements MouseListener {
         System.out.println("Reach fill clicked");
         selectedCart.incrementAmountResourceIntoCart(selectedTower);
         System.out.println(selectedCart.getCurrentAmountOfCart());
-    }
-
-    @FXML
-    public void onClickedTower1() {
-        selectedTowerButton.setOnAction(e -> {
-
-            TranslateTransition transition = new TranslateTransition();
-            transition.setDuration(Duration.millis(2500));
-//            transition.setNode(circledd);
-
-//            transition.setByX(50); //horizontaliai
-//            transition.setByY(0);  //Vertikaliai
-            transition.setAutoReverse(false);
-
-            selectedTowerButton.setDisable(true);
-            transition.setOnFinished(evt -> selectedTowerButton.setDisable(false));
-
-            transition.play();
-        });
-    }
-    @FXML
-    public void onClickedTower2() {
-//        selectedTowerButton.setOnAction(e -> {
-//
-//            TranslateTransition transition = new TranslateTransition();
-//            transition.setDuration(Duration.millis(2500));
-////            transition.setNode(circledd);
-//
-////            transition.setByX(50); //horizontaliai
-////            transition.setByY(0);  //Vertikaliai
-//            transition.setAutoReverse(false);
-//
-//            selectedTowerButton.setDisable(true);
-//            transition.setOnFinished(evt -> selectedTowerButton.setDisable(false));
-//
-//            transition.play();
-//        });
-    }
-    @FXML
-    public void onClickedTower3() {
-//        selectedTowerButton.setOnAction(e -> {
-//
-//            TranslateTransition transition = new TranslateTransition();
-//            transition.setDuration(Duration.millis(2500));
-////            transition.setNode(circledd);
-//
-////            transition.setByX(50); //horizontaliai
-////            transition.setByY(0);  //Vertikaliai
-//            transition.setAutoReverse(false);
-//
-//            selectedTowerButton.setDisable(true);
-//            transition.setOnFinished(evt -> selectedTowerButton.setDisable(false));
-//
-//            transition.play();
-//        });
-    }
-    @FXML
-    public void onClickedTower4() {
-//        selectedTowerButton.setOnAction(e -> {
-//
-//            TranslateTransition transition = new TranslateTransition();
-//            transition.setDuration(Duration.millis(2500));
-////            transition.setNode(circledd);
-//
-////            transition.setByX(50); //horizontaliai
-////            transition.setByY(0);  //Vertikaliai
-//            transition.setAutoReverse(false);
-//
-//            selectedTowerButton.setDisable(true);
-//            transition.setOnFinished(evt -> selectedTowerButton.setDisable(false));
-//
-//            transition.play();
-//        });
-    }
-    @FXML
-    public void onClickedTower5() {
-//        selectedTowerButton.setOnAction(e -> {
-//
-//            TranslateTransition transition = new TranslateTransition();
-//            transition.setDuration(Duration.millis(2500));
-////            transition.setNode(circledd);
-//
-////            transition.setByX(50); //horizontaliai
-////            transition.setByY(0);  //Vertikaliai
-//            transition.setAutoReverse(false);
-//
-//            selectedTowerButton.setDisable(true);
-//            transition.setOnFinished(evt -> selectedTowerButton.setDisable(false));
-//
-//            transition.play();
-//        });
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-
     }
 }
 
