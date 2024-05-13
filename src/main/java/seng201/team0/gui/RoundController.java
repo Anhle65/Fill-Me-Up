@@ -1,27 +1,21 @@
 package seng201.team0.gui;
 
 
-import com.sun.javafx.UnmodifiableArrayList;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import seng201.team0.models.Cart;
 import seng201.team0.models.RoundManager;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.List;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 
 public class RoundController{
@@ -63,13 +57,13 @@ public class RoundController{
     private Button resumeButton;
     @FXML
     private Button selectedTowerButton;
+    @FXML
+    private ProgressBar progressCart1;
+    @FXML float progress;
     private Tower selectedTower;
-    @FXML
-    private Button cart1;
-    @FXML
-    private Button cart2;
+
     private List<Cart> listCartsInRound;
-    private List<Button> listCartsButton;
+//    private List<Button> listCartsButton;
     private Cart selectedCart;
 
 
@@ -87,31 +81,40 @@ public class RoundController{
 //        this.roundManager = new RoundManager(this.environmentManager);
 //        this.trackDistance = roundManager.getTrackDistance();
         listCartsInRound = List.of(new Cart("water", 20f, 100), new Cart("fire", 20f, 120));
-        listCartsButton = List.of(cart1, cart2);
-        for(Button cart : listCartsButton) {
-            cart.setOnMouseClicked(mouseEvent -> {  //Set all cart buttons with the event handler
-                selectedCart.incrementAmountResourceIntoCart(selectedTower);
-                System.out.println("Mouse event " +selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
+        List<ImageView> listImageView = List.of(cartImageView);
+        for(int i = 0; i < listImageView.size(); i++) {
+            int finalI = i;
+            listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
+                selectedCart = listCartsInRound.get(finalI);
+                if (selectedTower != null){
+                    selectedCart.incrementAmountResourceIntoCart(selectedTower);
+                    if (selectedCart.getIsIncrementIntoCart()) {
+                        progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                        progressCart1.setProgress(progress);
+                        selectedCart.setIncrementIntoCartToFalse();
+                    }
+                    System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
+                }
             });
         }
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
 
-        for (int j = 0; j < listCartsInRound.size(); j++){
-            int finalJ = j;
-            listCartsButton.get(finalJ).setText(listCartsInRound.get(finalJ).getTypeResourceCart());
-            listCartsButton.get(finalJ).setOnAction(event -> {
-                listCartsButton.forEach(bt -> {
-                    if (bt == listCartsButton.get(finalJ)) {
-                        this.selectedCart = listCartsInRound.get(finalJ);
+//        for (int j = 0; j < listCartsInRound.size(); j++){
+//            int finalJ = j;
+//            listCartsButton.get(finalJ).setText(listCartsInRound.get(finalJ).getTypeResourceCart());
+//            listCartsButton.get(finalJ).setOnAction(event -> {
+//                listCartsButton.forEach(bt -> {
+//                    if (bt == listCartsButton.get(finalJ)) {
+//                        this.selectedCart = listCartsInRound.get(finalJ);
 //                    listCartsInRound.get(finalI).incrementAmountResourceIntoCart(selectedTower);
 //                    System.out.println(listCartsInRound.get(finalI).getCurrentAmountOfCart());
 //                        bt.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
 //                    } else {
 //                        bt.setStyle("");
-                    }
-                });
-            });
-        }
+//                    }
+//                });
+//            });
+//        }
 
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
@@ -167,21 +170,6 @@ public class RoundController{
 
     }
 
-//    @FXML
-//    public void onM
-//    @FXML
-    public void onClickedCart(){
-//        System.out.println("Reach cart1 clicked");
-//        selectedCart.incrementAmountResourceIntoCart(selectedTower);
-//        System.out.println(selectedCart.getCurrentAmountOfCart());
-    }
-
-    @FXML
-    public void onFilledClicked(){
-        System.out.println("Reach fill clicked");
-        selectedCart.incrementAmountResourceIntoCart(selectedTower);
-        System.out.println(selectedCart.getCurrentAmountOfCart());
-    }
 }
 
 
