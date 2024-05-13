@@ -19,7 +19,7 @@ public class EnvironmentController {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::clearPane);
+        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen,this::clearPane);
     }
 
     public void launchSetupScreen(EnvironmentManager environmentManager) {
@@ -74,5 +74,28 @@ public class EnvironmentController {
         }
     }
 
+    public void launchWinnerNextRoundScreen(EnvironmentManager environmentManager) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/winner_next_round_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new RoundController(environmentManager));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Winner Next Round Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void launchLoserScreen(EnvironmentManager environmentManager) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/loser_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new RoundController(environmentManager));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Loser Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

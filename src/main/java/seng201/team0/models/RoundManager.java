@@ -1,5 +1,6 @@
 package seng201.team0.models;
 
+import javafx.animation.TranslateTransition;
 import seng201.team0.services.EnvironmentManager;
 
 import javax.swing.*;

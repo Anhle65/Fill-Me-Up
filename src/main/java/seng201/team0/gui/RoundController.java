@@ -18,7 +18,7 @@ import java.util.List;
 import javafx.scene.control.Button;
 
 
-public class RoundController{
+public class RoundController {
     private EnvironmentManager environmentManager;
     private RoundManager roundManager;
     private int trackDistance;
@@ -55,15 +55,19 @@ public class RoundController{
 
     @FXML
     private Button resumeButton;
+
     @FXML
     private Button selectedTowerButton;
+
     @FXML
     private ProgressBar progressCart1;
-    @FXML float progress;
+
+    @FXML
+    float progress;
     private Tower selectedTower;
 
     private List<Cart> listCartsInRound;
-//    private List<Button> listCartsButton;
+    //    private List<Button> listCartsButton;
     private Cart selectedCart;
 
 
@@ -82,11 +86,11 @@ public class RoundController{
 //        this.trackDistance = roundManager.getTrackDistance();
         listCartsInRound = List.of(new Cart("water", 20f, 100), new Cart("fire", 20f, 120));
         List<ImageView> listImageView = List.of(cartImageView);
-        for(int i = 0; i < listImageView.size(); i++) {
+        for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
             listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
                 selectedCart = listCartsInRound.get(finalI);
-                if (selectedTower != null){
+                if (selectedTower != null) {
                     selectedCart.incrementAmountResourceIntoCart(selectedTower);
                     if (selectedCart.getIsIncrementIntoCart()) {
                         progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
@@ -133,11 +137,11 @@ public class RoundController{
             });
         }
 
+        // TODO: turn building animations into a RoundManager method. This will save having to explicitly type out each and every animation sequence.
         TranslateTransition translate1 = new TranslateTransition();
         translate1.setNode(cartImageView);
         translate1.setDuration(Duration.millis(3000));
         translate1.setByX(700);
-
 
         TranslateTransition translate2 = new TranslateTransition();
         translate2.setNode(cartImageView);
@@ -160,16 +164,59 @@ public class RoundController{
         translate5.setDuration(Duration.millis(3000));
         translate5.setByX(700);
 
+        TranslateTransition translatebar1 = new TranslateTransition();
+        translatebar1.setNode(progressCart1);
+        translatebar1.setDuration(Duration.millis(3000));
+        translatebar1.setByX(700);
+
+        TranslateTransition translatebar2 = new TranslateTransition();
+        translatebar2.setNode(progressCart1);
+        translatebar2.setDuration(Duration.millis(1000));
+        translatebar2.setByY(100);
+
+        TranslateTransition translatebar3 = new TranslateTransition();
+        translatebar3.setNode(progressCart1);
+        translatebar3.setDuration(Duration.millis(3000));
+        translatebar3.setByX(-700);
+
+        TranslateTransition translatebar4 = new TranslateTransition();
+        translatebar4.setNode(progressCart1);
+        translatebar4.setDuration(Duration.millis(1000));
+        translatebar4.setByY(100);
+
+        TranslateTransition translatebar5 = new TranslateTransition();
+        translatebar5.setNode(progressCart1);
+        translatebar5.setDuration(Duration.millis(3000));
+        translatebar5.setByX(700);
+
 
         translate1.setOnFinished(actionEvent -> translate2.play());
         translate2.setOnFinished(actionEvent -> translate3.play());
         translate3.setOnFinished(actionEvent -> translate4.play());
         translate4.setOnFinished(actionEvent -> translate5.play());
 
-        translate1.play();
+        translatebar1.setOnFinished(actionEvent -> translatebar2.play());
+        translatebar2.setOnFinished(actionEvent -> translatebar3.play());
+        translatebar3.setOnFinished(actionEvent -> translatebar4.play());
+        translatebar4.setOnFinished(actionEvent -> translatebar5.play());
 
+        translate1.play();
+        translatebar1.play();
+
+
+
+//        if (progressCart1.getProgress() == 100) {
+//            environmentManager.closeRoundGameScreen();
+//            environmentManager.launchWinnerNextRoundScreen();
+//        } else {
+//            environmentManager.closeRoundGameScreen();
+//            environmentManager.launchLoserScreen();
+//
+//        }
+        }
     }
 
-}
+
+
 
 

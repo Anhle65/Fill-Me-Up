@@ -19,15 +19,19 @@ public class EnvironmentManager {
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
     private final Consumer<EnvironmentManager> roundDifficultyScreenLauncher;
     private final Consumer<EnvironmentManager> roundGameScreenLauncher;
+    private final Consumer<EnvironmentManager> winnerScreenLauncher;
+    private final Consumer<EnvironmentManager> loserScreenLauncher;
     private final Runnable clearScreen;
     /**
      * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
      */
-    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultyScreenLauncher, Consumer<EnvironmentManager> roundGameScreenLauncher, Runnable clearScreen) {
+    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultyScreenLauncher, Consumer<EnvironmentManager> roundGameScreenLauncher, Consumer<EnvironmentManager> winnerScreenLauncher, Consumer<EnvironmentManager> loserScreenLauncher,Runnable clearScreen) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.roundDifficultyScreenLauncher = roundDifficultyScreenLauncher;
         this.roundGameScreenLauncher = roundGameScreenLauncher;
+        this.winnerScreenLauncher = winnerScreenLauncher;
+        this.loserScreenLauncher = loserScreenLauncher;
         this.clearScreen = clearScreen;
         defaultTowers.addAll(List.of(new Tower("fire",40,20,3), new Tower("water",40,20,3),
                 new Tower("food",40,20,3), new Tower("gold",40,20,3), new Tower("diamond",40,20,3),
@@ -116,6 +120,9 @@ public class EnvironmentManager {
     public void launchRoundGameScreen() {
         roundGameScreenLauncher.accept(this);
     }
+    public void closeRoundGameScreen() {
+        clearScreen.run();
+    }
 
     public void returnedSetupScreen() {
         clearScreen.run();
@@ -125,12 +132,13 @@ public class EnvironmentManager {
         inventoryScreenLauncher.accept(this);
     }
 
-    public void launchRoundDifficultyScreen() {
-        roundDifficultyScreenLauncher.accept(this);
-
-    }
+    public void launchRoundDifficultyScreen() {roundDifficultyScreenLauncher.accept(this);}
 
     public void closeRoundDifficultyScreen() {
         clearScreen.run();
     }
+
+    public void launchWinnerNextRoundScreen() { winnerScreenLauncher.accept(this);}
+
+    public void launchLoserScreen() { loserScreenLauncher.accept(this);}
 }
