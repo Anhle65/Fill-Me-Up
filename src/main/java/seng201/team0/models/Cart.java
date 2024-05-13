@@ -5,6 +5,7 @@ public class Cart {
     private final float speed;
     private final int sizeOfCart;
     private int currentAmount = 0;
+    private boolean isIncrementIntoCart = false;
     public Cart(String inputResoure, float inputSpeed, int inputSize ) {
         this.typeResourceCart = inputResoure;
         this.speed = inputSpeed;
@@ -30,11 +31,25 @@ public class Cart {
     public float getSpeed(){return this.speed;}
 
     /**
+     * Get the condition to increment into cart if it is true, no action otherwise
+     * @return boolean isIncrementIntoCart
+     */
+    public boolean getIsIncrementIntoCart(){
+        return this.isIncrementIntoCart;
+    }
+
+    /**
+     * When called, set the isIncrementIntoCart to false, which is used after increment in cart
+     */
+    public void setIncrementIntoCartToFalse(){this.isIncrementIntoCart = false;}
+
+    /**
      * Increment the amount resource into cart if the input is the same type with cart's type
      */
     public void incrementAmountResourceIntoCart(Tower tower) {
         if(tower.getType().equals(this.typeResourceCart)){
             currentAmount += tower.getResourceAmount();
+            this.isIncrementIntoCart = true;
             if(currentAmount > sizeOfCart)
                 currentAmount = sizeOfCart;
         }
