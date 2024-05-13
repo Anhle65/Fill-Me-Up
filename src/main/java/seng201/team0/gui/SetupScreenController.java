@@ -166,17 +166,16 @@ public class SetupScreenController{
             // Print error message
             warningLabel.setText("Please choose game difficulty!");
         }
-        else if (selectedTower1Empty|selectedTower2Empty|selectedTower3Empty) {
-            warningLabel.setText("Please select three towers!");
-        }
+        else {
 
-        System.out.println("reach here ");
-        environmentManager.setName(nameTextField.getText());
-        System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
-        environmentManager.setNumberOfRounds((int) roundSlider.getValue());
-        System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
-        environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
-        environmentManager.closeSetupScreen();
+            System.out.println("reach here ");
+            environmentManager.setName(nameTextField.getText());
+            System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
+            environmentManager.setNumberOfRounds((int) roundSlider.getValue());
+            System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
+            environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
+            environmentManager.closeSetupScreen();
+        }
 
 
 
