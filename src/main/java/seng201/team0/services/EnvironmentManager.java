@@ -32,7 +32,6 @@ public class EnvironmentManager {
         defaultTowers.addAll(List.of(new Tower("fire",40,20,3), new Tower("water",40,20,3),
                 new Tower("food",40,20,3), new Tower("gold",40,20,3), new Tower("diamond",40,20,3),
                 new Tower("coal",40,20,3)));
-        System.out.println(defaultTowers.get(0).getType());
         launchSetupScreen();
     }
 
