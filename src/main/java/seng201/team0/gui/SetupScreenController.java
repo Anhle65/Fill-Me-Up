@@ -43,6 +43,14 @@ public class SetupScreenController{
     @FXML
     private Button towerStat6;
     @FXML
+    private RadioButton easyGameRadioButton;
+    @FXML
+    private RadioButton moderateGameRadioButton;
+    @FXML
+    private RadioButton difficultyGameRadioButton;
+
+
+    @FXML
     private Label warningLabel;
     @FXML
     private Button acceptButton;
@@ -54,7 +62,7 @@ public class SetupScreenController{
     private boolean selectedTower3Empty = true;
 
     @FXML
-    private ChoiceBox<String> difficultyOptions = new ChoiceBox<>();
+//    private ChoiceBox<String> difficultyOptions = new ChoiceBox<>();
     private EnvironmentManager environmentManager;
     private int selectedTowerIndex = -1;
     private final Tower[] selectedTowers = new Tower[3];
@@ -86,25 +94,49 @@ public class SetupScreenController{
 
 
     @FXML
-    private void onDifficultyDropDownBoxSelected(){
+    private void onEasyGameRadioButtonClicked(){
+        easyGameRadioButton.setSelected(true);
+        moderateGameRadioButton.setSelected(false);
+        difficultyGameRadioButton.setSelected(false);
+        gameDifficultyEmpty = false;
+        environmentManager.getGameDifficulty().equals("Easy");
 
+    }
+
+    @FXML
+    private void onModerateGameRadioButtonClicked(){
+        moderateGameRadioButton.setSelected(true);
+        easyGameRadioButton.setSelected(false);
+        difficultyGameRadioButton.setSelected(false);
+        gameDifficultyEmpty = false;
+        environmentManager.getGameDifficulty().equals("Moderate");
+
+    }
+
+    @FXML
+    private void onDifficultyGameRadioButtonClicked(){
+        difficultyGameRadioButton.setSelected(true);
+        easyGameRadioButton.setSelected(false);
+        moderateGameRadioButton.setSelected(false);
+        gameDifficultyEmpty = false;
+        environmentManager.getGameDifficulty().equals("Challenging");
     }
 
     @FXML
     private void onAcceptClicked() {
 
-//        if (selectedTower1Empty |selectedTower2Empty | selectedTower3Empty) {
-//            // Print error message
-//            warningLabel.setText("Please enter name, choose game difficulty & 3 towers!");
-//        }
-//        else {
-        environmentManager.setName(nameTextField.getText());
-        System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
-        environmentManager.setNumberOfRounds((int)roundSlider.getValue());
-        System.out.println("You choose: "+environmentManager.getNumberOfRounds()+" rounds"); // Print number of rounds which user choose
-        environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
-        environmentManager.closeSetupScreen();
-
+        if (gameDifficultyEmpty) {
+            // Print error message
+            warningLabel.setText("Please enter name, choose game difficulty & 3 towers!");
+        }
+        else {
+            environmentManager.setName(nameTextField.getText());
+            System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
+            environmentManager.setNumberOfRounds((int) roundSlider.getValue());
+            System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
+            environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
+            environmentManager.closeSetupScreen();
+        }
 
 
     }
@@ -121,11 +153,12 @@ public class SetupScreenController{
      */
 
     public void initialize(){
-        difficultyOptions.getItems().addAll("Easy", "Moderate", "Challenge");
-        difficultyOptions.setValue("Choose the difficulty");
-        difficultyOptions.setOnAction((event) -> {
-            environmentManager.setGameDifficulty(difficultyOptions.getValue()); // Saved the selection of difficulty
-        });
+//        difficultyOptions.getItems().addAll("Easy", "Moderate", "Challenge");
+//        difficultyOptions.setValue("Choose the difficulty");
+//        difficultyOptions.setOnAction((event) -> {
+//            environmentManager.setGameDifficulty(difficultyOptions.getValue()); // Saved the selection of difficulty
+//
+//        });
         List<Button> selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         List<Button> towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5, towerStat6);
         for (int i = 0; i < towerButtons.size(); i++) {
