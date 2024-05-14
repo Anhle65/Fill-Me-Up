@@ -69,6 +69,7 @@ public class RoundController {
     private List<Cart> listCartsInRound;
     //    private List<Button> listCartsButton;
     private Cart selectedCart;
+    private boolean isFull = false;
 
 
     @FXML
@@ -96,29 +97,19 @@ public class RoundController {
                         progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                         progressCart1.setProgress(progress);
                         selectedCart.setIncrementIntoCartToFalse();
+                        this.isFull = selectedCart.isCartFilledUp();
+                        if (isFull) {
+                            System.out.println("Reach here.....");
+                            environmentManager.closeRoundGameScreen();
+                            environmentManager.launchLoserScreen();
+                        }
                     }
+                    selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
         }
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
-
-//        for (int j = 0; j < listCartsInRound.size(); j++){
-//            int finalJ = j;
-//            listCartsButton.get(finalJ).setText(listCartsInRound.get(finalJ).getTypeResourceCart());
-//            listCartsButton.get(finalJ).setOnAction(event -> {
-//                listCartsButton.forEach(bt -> {
-//                    if (bt == listCartsButton.get(finalJ)) {
-//                        this.selectedCart = listCartsInRound.get(finalJ);
-//                    listCartsInRound.get(finalI).incrementAmountResourceIntoCart(selectedTower);
-//                    System.out.println(listCartsInRound.get(finalI).getCurrentAmountOfCart());
-//                        bt.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
-//                    } else {
-//                        bt.setStyle("");
-//                    }
-//                });
-//            });
-//        }
 
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
@@ -129,7 +120,15 @@ public class RoundController {
                     if (button == listTowerButtons.get(finalI)) {
                         selectedTowerButton = button;
                         this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
-                        button.setStyle("-fx-background-color: #b3b3b3; -fx-background-radius: 5;");
+                        TranslateTransition translateButton = new TranslateTransition();
+                        translateButton.setNode(selectedTowerButton);
+                        translateButton.setDuration(Duration.millis((long)selectedTower.getRecoveryTime()));
+                        selectedTowerButton.setDisable(true);
+                        translateButton.setOnFinished(actionEvent -> {
+                            selectedTowerButton.setDisable(false);
+                        });
+                        translateButton.play();
+                        button.setStyle("-fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
                     }
@@ -138,6 +137,8 @@ public class RoundController {
         }
 
         // TODO: turn building animations into a RoundManager method. This will save having to explicitly type out each and every animation sequence.
+
+//        List<>
         TranslateTransition translate1 = new TranslateTransition();
         translate1.setNode(cartImageView);
         translate1.setDuration(Duration.millis(3000));
@@ -203,16 +204,6 @@ public class RoundController {
         translate1.play();
         translatebar1.play();
 
-
-
-//        if (progressCart1.getProgress() == 100) {
-//            environmentManager.closeRoundGameScreen();
-//            environmentManager.launchWinnerNextRoundScreen();
-//        } else {
-//            environmentManager.closeRoundGameScreen();
-//            environmentManager.launchLoserScreen();
-//
-//        }
         }
     }
 

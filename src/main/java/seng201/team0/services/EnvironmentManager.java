@@ -33,9 +33,8 @@ public class EnvironmentManager {
         this.winnerScreenLauncher = winnerScreenLauncher;
         this.loserScreenLauncher = loserScreenLauncher;
         this.clearScreen = clearScreen;
-        defaultTowers.addAll(List.of(new Tower("fire",40,20,3), new Tower("water",40,20,3),
-                new Tower("food",40,20,3), new Tower("gold",40,20,3), new Tower("diamond",40,20,3),
-                new Tower("coal",40,20,3)));
+        defaultTowers.addAll(List.of(new Tower("fire",40,20,3000), new Tower("water",40,20,3000),
+                new Tower("gold",40,20,3000), new Tower("diamond",40,20,3000), new Tower("coal",40,20,3000)));
         launchSetupScreen();
     }
 
@@ -120,9 +119,7 @@ public class EnvironmentManager {
     public void launchRoundGameScreen() {
         roundGameScreenLauncher.accept(this);
     }
-    public void closeRoundGameScreen() {
-        clearScreen.run();
-    }
+    public void closeRoundGameScreen() {clearScreen.run();}
 
     public void returnedSetupScreen() {
         clearScreen.run();
