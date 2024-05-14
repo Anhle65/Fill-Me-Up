@@ -172,13 +172,6 @@
                <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Button fx:id="towerStat6" mnemonicParsing="false" onAction="#onTower6ButtonClicked" prefHeight="82.0" prefWidth="92.0" text="Tower 6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                  <GridPane.margin>
-                     <Insets left="10.0" />
-                  </GridPane.margin>
-                     <font>
-                        <Font name="Verdana Bold" size="15.0" />
-                     </font></Button>
                <Button fx:id="towerStat4" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onTower4ButtonClicked" prefHeight="84.0" prefWidth="90.0" text="Tower 4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="10.0" />

@@ -41,8 +41,6 @@ public class SetupScreenController{
     @FXML
     private Button towerStat5;
     @FXML
-    private Button towerStat6;
-    @FXML
     private RadioButton easyGameRadioButton;
     @FXML
     private RadioButton moderateGameRadioButton;
@@ -88,10 +86,6 @@ public class SetupScreenController{
     }
     @FXML
     private void onTower5ButtonClicked(){
-        initialTowerSelectedEmpty = false;
-    }
-    @FXML
-    private void onTower6ButtonClicked(){
         initialTowerSelectedEmpty = false;
     }
 
@@ -194,7 +188,7 @@ public class SetupScreenController{
 
     public void initialize(){
         List<Button> selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
-        List<Button> towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5, towerStat6);
+        List<Button> towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             towerButtons.get(i).setOnAction(event -> {
