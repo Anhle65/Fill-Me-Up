@@ -16,11 +16,11 @@ public class ShopController {
     @FXML
     private Label playerCoins;
     @FXML
-    private Button upgradeTime;
+    private Button upgradeCard1;
     @FXML
-    private Button upgradeAmountResource;
+    private Button upgradeCard2;
     @FXML
-    private Button changeTypeResource;
+    private Button upgradeCard3;
     @FXML
     private Button tower1;
     @FXML
@@ -34,7 +34,7 @@ public class ShopController {
     private final Integer[] COST = {10, 15, 25, 40, 50};
     private final Integer[] RESOURCE_ENHANCEMENT = {5, 7, 10, 12, 15};
     public void initialize(){
-        List<Button> itemButtons = List.of(upgradeTime, upgradeAmountResource, changeTypeResource, tower1, tower2, tower3);
+        List<Button> itemButtons = List.of(upgradeCard1, upgradeCard2, upgradeCard3, tower1, tower2, tower3);
         Random randomResource = new Random();
         Random randomTimeUpgrade = new Random();
         Random randomTypeResource = new Random();
