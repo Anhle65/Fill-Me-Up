@@ -8,4 +8,7 @@ public class WinnerNextRoundController {
     public WinnerNextRoundController(EnvironmentManager environmentManager) {
         this.environmentManager = environmentManager;
     }
+
+    public void initialize(){}
+
 }

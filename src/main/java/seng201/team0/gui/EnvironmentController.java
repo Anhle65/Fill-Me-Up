@@ -77,7 +77,7 @@ public class EnvironmentController {
     public void launchWinnerNextRoundScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/winner_next_round_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new RoundController(environmentManager));
+            mainScreenLoader.setControllerFactory(param -> new WinnerNextRoundController(environmentManager));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Winner Next Round Screen");
@@ -89,7 +89,7 @@ public class EnvironmentController {
     public void launchLoserScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/loser_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new RoundController(environmentManager));
+            mainScreenLoader.setControllerFactory(param -> new LoserController(environmentManager));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Loser Screen");
