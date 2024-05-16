@@ -19,7 +19,7 @@ public class EnvironmentController {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen,this::clearPane);
+        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::clearPane);
     }
 
     public void launchSetupScreen(EnvironmentManager environmentManager) {
@@ -93,6 +93,18 @@ public class EnvironmentController {
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Loser Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void launchShopScreen(EnvironmentManager environmentManager) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new ShopController(environmentManager));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Shop Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }

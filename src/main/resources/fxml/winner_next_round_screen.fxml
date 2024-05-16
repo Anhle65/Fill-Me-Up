@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.WinnerNextRoundController">
    <effect>
       <SepiaTone level="0.25" />
@@ -51,12 +50,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" text="Next round" GridPane.halignment="CENTER">
+                        <Button fx:id="nextRoundButton" mnemonicParsing="false" onAction="#onNextRoundButtonClicked" prefHeight="40.0" prefWidth="188.0" text="Next round" GridPane.halignment="CENTER">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" text="Exit Game" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                        <Button fx:id="exitGameButton" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Exit Game" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>

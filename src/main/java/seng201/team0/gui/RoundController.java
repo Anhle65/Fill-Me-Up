@@ -99,16 +99,18 @@ public class RoundController {
                         selectedCart.setIncrementIntoCartToFalse();
                         this.isFull = selectedCart.isCartFilledUp();
                         if (isFull) {
-                            System.out.println("Reach here.....");
                             environmentManager.closeRoundGameScreen();
-                            environmentManager.launchLoserScreen();
+                            environmentManager.launchWinnerNextRoundScreen();
                         }
                     }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
+
         }
+
+
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
 
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {

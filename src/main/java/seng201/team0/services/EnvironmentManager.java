@@ -21,17 +21,19 @@ public class EnvironmentManager {
     private final Consumer<EnvironmentManager> roundGameScreenLauncher;
     private final Consumer<EnvironmentManager> winnerScreenLauncher;
     private final Consumer<EnvironmentManager> loserScreenLauncher;
+    private final Consumer<EnvironmentManager> shopScreenLauncher;
     private final Runnable clearScreen;
     /**
      * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
      */
-    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultyScreenLauncher, Consumer<EnvironmentManager> roundGameScreenLauncher, Consumer<EnvironmentManager> winnerScreenLauncher, Consumer<EnvironmentManager> loserScreenLauncher,Runnable clearScreen) {
+    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultyScreenLauncher, Consumer<EnvironmentManager> roundGameScreenLauncher, Consumer<EnvironmentManager> winnerScreenLauncher, Consumer<EnvironmentManager> loserScreenLauncher, Consumer<EnvironmentManager> shopScreenLauncher,Runnable clearScreen) {
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.roundDifficultyScreenLauncher = roundDifficultyScreenLauncher;
         this.roundGameScreenLauncher = roundGameScreenLauncher;
         this.winnerScreenLauncher = winnerScreenLauncher;
         this.loserScreenLauncher = loserScreenLauncher;
+        this.shopScreenLauncher = shopScreenLauncher;
         this.clearScreen = clearScreen;
         defaultTowers.addAll(List.of(new Tower("fire",40,20,3000), new Tower("water",40,20,3000),
                 new Tower("gold",40,20,3000), new Tower("diamond",40,20,3000), new Tower("coal",40,20,3000)));
@@ -138,4 +140,10 @@ public class EnvironmentManager {
     public void launchWinnerNextRoundScreen() { winnerScreenLauncher.accept(this);}
 
     public void launchLoserScreen() { loserScreenLauncher.accept(this);}
+
+    public void closeWinnerNextRoundScreen() { clearScreen.run(); }
+
+    public void closeLoserScreen() { clearScreen.run();}
+
+    public void launchShopScreen() { shopScreenLauncher.accept(this);}
 }

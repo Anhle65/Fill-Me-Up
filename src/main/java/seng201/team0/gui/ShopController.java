@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.models.PurchasableItems;
 import seng201.team0.models.Tower;
+import seng201.team0.services.EnvironmentManager;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -27,12 +28,16 @@ public class ShopController {
     private Button tower2;
     @FXML
     private Button tower3;
+    private EnvironmentManager environmentManager;
     private int selectedItemIndex = -1;
     private List<PurchasableItems> defaultItems = new ArrayList<>();
     private final String[] TYPE_RESOURCES = {"Water", "Fire", "Gold", "Food", "Coal", "Diamond"};
     private final float[] TIME_ENHANCEMENT = {1, 1.5f, 2, 2.5f, 3};
     private final Integer[] COST = {10, 15, 25, 40, 50};
     private final Integer[] RESOURCE_ENHANCEMENT = {5, 7, 10, 12, 15};
+
+    public ShopController(EnvironmentManager environmentManager) {this.environmentManager = environmentManager;}
+
     public void initialize(){
         List<Button> itemButtons = List.of(upgradeCard1, upgradeCard2, upgradeCard3, tower1, tower2, tower3);
         Random randomResource = new Random();
