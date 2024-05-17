@@ -106,13 +106,17 @@ public class EasyGameController {
                         selectedCart.setIncrementIntoCartToFalse();
                         this.isFull = selectedCart.isCartFilledUp();
                     }
+                    if (isFull) {
+                        environmentManager.closeRoundDifficultySelectScreen();
+                        environmentManager.launchWinnerNextRoundScreen();
+                    }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
         }
         if ((cartImageView.getX() == 700) && (cartImageView.getY() == 200)) {
-            System.out.println("reach");}
+            System.out.println("reach destination");}
 
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
@@ -208,11 +212,12 @@ public class EasyGameController {
         translatebar4.setOnFinished(actionEvent -> translatebar5.play());
 
         translatebar5.setOnFinished(actionEvent -> {
-            if (isFull) {
-                environmentManager.closeRoundDifficultySelectScreen();
-                environmentManager.launchWinnerNextRoundScreen();
-            }
-            else {
+            System.out.println("End game");
+            if (!isFull) {
+//                environmentManager.closeRoundDifficultySelectScreen();
+//                environmentManager.launchWinnerNextRoundScreen();
+//            }
+//            else {
                 environmentManager.closeRoundDifficultySelectScreen();
                 environmentManager.launchLoserScreen();
             }
