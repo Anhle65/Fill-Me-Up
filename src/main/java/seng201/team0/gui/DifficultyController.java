@@ -72,8 +72,18 @@ public class DifficultyController {
     }
 
     public void onPlayNowButtonClicked() {
-        environmentManager.closeRoundDifficultyScreen();
-        environmentManager.launchRoundGameScreen();
+        if (environmentManager.getGameDifficulty().equals("Easy")){
+            environmentManager.closeRoundDifficultyScreen();
+            environmentManager.launchRoundGameScreen();
+        } else if (environmentManager.getGameDifficulty().equals("Moderate")) {
+            environmentManager.closeRoundDifficultyScreen();
+            environmentManager.launchModerateGameScreen();
+        } else if (environmentManager.getGameDifficulty().equals("Challenging")){
+            environmentManager.closeRoundDifficultyScreen();
+            environmentManager.launchChallengingGameScreen();
+
+        }
+
     }
 
 }

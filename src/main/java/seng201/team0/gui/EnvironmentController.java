@@ -19,7 +19,7 @@ public class EnvironmentController {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::clearPane);
+        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::clearPane);
     }
 
     public void launchSetupScreen(EnvironmentManager environmentManager) {
@@ -109,5 +109,30 @@ public class EnvironmentController {
             e.printStackTrace();
         }
     }
+
+    public void launchModerateGameScreen(EnvironmentManager environmentManager) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/moderate_round_game.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new ModerateRoundController(environmentManager));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Moderate Game Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void launchChallengingGameScreen(EnvironmentManager environmentManager) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/challenging_round_game.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new ChallengingRoundController(environmentManager));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Challenging Game Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
