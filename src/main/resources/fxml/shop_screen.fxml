@@ -21,8 +21,8 @@
       <Label layoutX="154.0" layoutY="52.0" text="where you can find anything you want to survive " />
       <Label layoutX="51.0" layoutY="200.0" text="Want more Towers?" />
       <Label layoutX="51.0" layoutY="84.0" text="Want to boost yours Tower power?" />
-      <Button layoutX="476.0" layoutY="336.0" mnemonicParsing="false" onAction="#onBackClicked" prefHeight="31.0" prefWidth="62.0" text="Back " />
+      <Button layoutX="476.0" layoutY="336.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="Back " />
       <Label fx:id="playerCoins" layoutX="513.0" layoutY="59.0" prefHeight="50.0" prefWidth="62.0" text="Money" />
-      <Button layoutX="40.0" layoutY="336.0" mnemonicParsing="false" onAction="#onBuyClicked" prefHeight="31.0" prefWidth="62.0" text="Buy" />
+      <Button layoutX="40.0" layoutY="336.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="62.0" text="Buy" />
    </children>
 </AnchorPane>

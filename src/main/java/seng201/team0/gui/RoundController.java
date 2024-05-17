@@ -81,6 +81,10 @@ public class RoundController {
         this.environmentManager = environmentManager;
     }
 
+    public void isReachDestination(){
+        if ((cartImageView.getX() == 700) && (cartImageView.getY() == 200)) {
+            System.out.println("reach");}
+    }
 
     public void initialize() {
 //        this.roundManager = new RoundManager(this.environmentManager);
@@ -98,17 +102,26 @@ public class RoundController {
                         progressCart1.setProgress(progress);
                         selectedCart.setIncrementIntoCartToFalse();
                         this.isFull = selectedCart.isCartFilledUp();
+
                         if (isFull) {
                             environmentManager.closeRoundGameScreen();
                             environmentManager.launchWinnerNextRoundScreen();
                         }
+
+//                        else if ((cartImageView.getLayoutX() == 97) && (cartImageView.getLayoutY() == 106)) {
+//                            System.out.println("reach");
+//                            environmentManager.closeRoundGameScreen();
+//                            environmentManager.launchLoserScreen();
+//                        }
+//                        System.out.println("toa do x, y: " + cartImageView.getLayoutX() + " "+ cartImageView.getLayoutY());
                     }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
-
         }
+        if ((cartImageView.getX() == 700) && (cartImageView.getY() == 200)) {
+            System.out.println("reach");}
 
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
