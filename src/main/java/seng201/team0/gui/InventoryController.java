@@ -64,7 +64,7 @@ public class InventoryController {
 
     @FXML
     public void initialize() {
-        this.playerName.setText(this.environmentManager.getName());
+        this.playerName.setText(this.environmentManager.getPlayerName());
         this.towerTimeList = List.of(this.tower1Time, this.tower2Time, this.tower3Time, this.tower4Time, this.tower5Time);
         this.towerResourceList = List.of(this.tower1Resource, this.tower2Resource, this.tower3Resource, this.tower4Resource, this.tower5Resource);
         this.towerLevelList = List.of(this.tower1Level, this.tower2Level, this.tower3Level, this.tower4Level, this.tower5Level);
