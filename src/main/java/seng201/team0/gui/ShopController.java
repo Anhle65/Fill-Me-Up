@@ -65,9 +65,9 @@ public class ShopController {
 
         // Create 3 random upgrade card
         listUpgradeCards.addAll(List.of(
-                new PurchasableItems("Upgrade time", 0, TIME_ENHANCEMENT[timeIndex], COST[timeIndex]),
-                new PurchasableItems("Upgrade amount", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
-                new PurchasableItems("Changing Type" + TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)], TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)] , 60)
+                new PurchasableItems("Upgrade Time", 0, TIME_ENHANCEMENT[timeIndex], COST[timeIndex]),
+                new PurchasableItems("Upgrade\nAmount", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
+                new PurchasableItems("Changing Type\nTower to " + TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)], TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)] , 60)
         ));
 
         // Set the upgrade card in shop
