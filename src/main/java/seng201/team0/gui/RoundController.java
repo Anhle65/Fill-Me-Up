@@ -113,7 +113,7 @@ public class RoundController {
 //                            environmentManager.closeRoundGameScreen();
 //                            environmentManager.launchLoserScreen();
 //                        }
-//                        System.out.println("toa do x, y: " + cartImageView.getLayoutX() + " "+ cartImageView.getLayoutY());
+                        System.out.println("toa do x, y: " + cartImageView.getLayoutX() + " "+ cartImageView.getLayoutY());
                     }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
@@ -215,6 +215,10 @@ public class RoundController {
         translatebar2.setOnFinished(actionEvent -> translatebar3.play());
         translatebar3.setOnFinished(actionEvent -> translatebar4.play());
         translatebar4.setOnFinished(actionEvent -> translatebar5.play());
+
+        translatebar5.setOnFinished(actionEvent -> {
+            System.out.println("ENd game");
+        });
 
         translate1.play();
         translatebar1.play();
