@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import seng201.team0.services.EnvironmentManager;
 
-public class DifficultyController {
+public class RoundDifficultySelectController {
     private String easy;
     private String moderate;
     private String challenging;
@@ -28,21 +28,21 @@ public class DifficultyController {
     @FXML
     private Label currentRoundLabel;
 
-    public DifficultyController(EnvironmentManager environmentManager) { this.environmentManager = environmentManager; }
+    public RoundDifficultySelectController(EnvironmentManager environmentManager) { this.environmentManager = environmentManager; }
 
     public void initialize(){
         currentRoundLabel.setText(String.valueOf(environmentManager.getCurrentRoundNumber()));
     }
     @FXML
     public void onOpenInventoryButtonClicked() {
-        environmentManager.closeRoundDifficultyScreen();
+        environmentManager.closeEasyGameScreen();
         environmentManager.launchInventoryScreen();
     }
 
     public void onBackButtonClicked() {
         environmentManager.incrementCurrentRoundNumber();
         System.out.println("Current rounds: " + environmentManager.getNumberOfRounds()); // This print the current round
-        environmentManager.closeRoundDifficultyScreen();
+        environmentManager.closeEasyGameScreen();
         environmentManager.launchSetupScreen();
     }
 
@@ -72,8 +72,18 @@ public class DifficultyController {
     }
 
     public void onPlayNowButtonClicked() {
-        environmentManager.closeRoundDifficultyScreen();
-        environmentManager.launchRoundGameScreen();
+        if (environmentManager.getGameDifficulty().equals("Easy")){
+            environmentManager.closeEasyGameScreen();
+            environmentManager.launchEasyGameScreen();
+        } else if (environmentManager.getGameDifficulty().equals("Moderate")) {
+            environmentManager.closeEasyGameScreen();
+            environmentManager.launchModerateGameScreen();
+        } else if (environmentManager.getGameDifficulty().equals("Challenging")){
+            environmentManager.closeEasyGameScreen();
+            environmentManager.launchChallengingGameScreen();
+
+        }
+
     }
 
 }
