@@ -9,7 +9,7 @@ import seng201.team0.services.EnvironmentManager;
 import javafx.scene.image.ImageView;
 
 
-public class ModerateRoundController {
+public class ModerateGameController {
 
     private EnvironmentManager environmentManager;
 
@@ -54,7 +54,7 @@ public class ModerateRoundController {
         System.exit(0);
     }
 
-    public ModerateRoundController(EnvironmentManager environmentManager) {
+    public ModerateGameController(EnvironmentManager environmentManager) {
         this.environmentManager = environmentManager;
     }
 

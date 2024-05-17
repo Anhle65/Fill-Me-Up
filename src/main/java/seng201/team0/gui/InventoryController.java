@@ -111,7 +111,7 @@ public class InventoryController {
     @FXML
     private void onReturnedClicked(){
         environmentManager.returnedSetupScreen();
-        environmentManager.launchRoundDifficultyScreen();
+        environmentManager.launchRoundDifficultySelectScreen();
     }
     public void changeTypeTower(Tower tower, String newType){
         tower.changeTypeResource(newType);

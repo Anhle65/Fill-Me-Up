@@ -19,7 +19,7 @@ public class EnvironmentController {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultyScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::clearPane);
+        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultySelectScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::clearPane);
     }
 
     public void launchSetupScreen(EnvironmentManager environmentManager) {
@@ -29,7 +29,7 @@ public class EnvironmentController {
             setupLoader.setControllerFactory(param -> new SetupScreenController(environmentManager));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Tower Manager Setup");
+            stage.setTitle("Set Up Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,13 +50,13 @@ public class EnvironmentController {
             e.printStackTrace();
         }
     }
-    public  void launchRoundDifficultyScreen(EnvironmentManager environmentManager) {
+    public  void launchRoundDifficultySelectScreen(EnvironmentManager environmentManager) {
         try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_difficulty_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new DifficultyController(environmentManager));
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_difficulty_select_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new RoundDifficultySelectController(environmentManager));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Round Manager Round Difficulty Screen");
+            stage.setTitle("Round Difficulty Select Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,11 +64,11 @@ public class EnvironmentController {
 
     public void launchRoundGameScreen(EnvironmentManager environmentManager) {
         try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_game.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new RoundController(environmentManager));
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/easy_game_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new EasyGameController(environmentManager));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
-            stage.setTitle("Round Game Screen");
+            stage.setTitle("Easy Game Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,8 +112,8 @@ public class EnvironmentController {
 
     public void launchModerateGameScreen(EnvironmentManager environmentManager) {
         try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/moderate_round_game.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ModerateRoundController(environmentManager));
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/moderate_game_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new ModerateGameController(environmentManager));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Moderate Game Screen");
@@ -124,8 +124,8 @@ public class EnvironmentController {
 
     public void launchChallengingGameScreen(EnvironmentManager environmentManager) {
         try {
-            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/challenging_round_game.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ChallengingRoundController(environmentManager));
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/challenging_game_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new ChallengingGameController(environmentManager));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Challenging Game Screen");

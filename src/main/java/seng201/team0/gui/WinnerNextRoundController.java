@@ -16,7 +16,7 @@ public class WinnerNextRoundController {
     @FXML
     private void onNextRoundButtonClicked(){
         environmentManager.closeWinnerNextRoundScreen();
-        environmentManager.launchRoundDifficultyScreen();
+        environmentManager.launchRoundDifficultySelectScreen();
     }
 
 
