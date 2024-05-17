@@ -11,7 +11,13 @@ public class LoserController {
     }
 
     @FXML
-    private void onExitButtonClicked() {
+    private void onExitGameButtonClicked() {
         System.exit(0);
+    }
+
+    @FXML
+    private void onPlayAgainButtonClicked() {
+        environmentManager.closeLoserScreen();
+        environmentManager.launchSetupScreen();
     }
 }

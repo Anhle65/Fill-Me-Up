@@ -105,18 +105,6 @@ public class RoundController {
                         progressCart1.setProgress(progress);
                         selectedCart.setIncrementIntoCartToFalse();
                         this.isFull = selectedCart.isCartFilledUp();
-
-                        if (isFull) {
-                            environmentManager.closeRoundGameScreen();
-                            environmentManager.launchWinnerNextRoundScreen();
-                        }
-
-//                        else if ((cartImageView.getLayoutX() == 97) && (cartImageView.getLayoutY() == 106)) {
-//                            System.out.println("reach");
-//                            environmentManager.closeRoundGameScreen();
-//                            environmentManager.launchLoserScreen();
-//                        }
-                        System.out.println("toa do x, y: " + cartImageView.getLayoutX() + " "+ cartImageView.getLayoutY());
                     }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
@@ -220,7 +208,14 @@ public class RoundController {
         translatebar4.setOnFinished(actionEvent -> translatebar5.play());
 
         translatebar5.setOnFinished(actionEvent -> {
-            System.out.println("ENd game");
+            if (isFull) {
+                environmentManager.closeRoundGameScreen();
+                environmentManager.launchWinnerNextRoundScreen();
+            }
+            else {
+                environmentManager.closeRoundGameScreen();
+                environmentManager.launchLoserScreen();
+            }
         });
 
         translate1.play();

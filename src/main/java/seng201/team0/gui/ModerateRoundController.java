@@ -61,14 +61,13 @@ public class ModerateRoundController {
     public void initialize() {
 
 
-
         TranslateTransition translate1 = new TranslateTransition();
         translate1.setNode(cartImageView1);
         translate1.setDuration(Duration.millis(2000));
         translate1.setByX(700);
 
         TranslateTransition translate2 = new TranslateTransition();
-        translate2.setNode(cartImageView1);
+        translate2.setNode(cartImageView2);
         translate2.setDuration(Duration.millis(1000));
         translate2.setByY(100);
 
@@ -84,23 +83,23 @@ public class ModerateRoundController {
         translate4.setByY(100);
 
         TranslateTransition translate5 = new TranslateTransition();
-        translate5.setNode(cartImageView1);
-        translate5.setDuration(Duration.millis(2000));
+        translate5.setNode(cartImageView2);
+        translate5.setDuration(Duration.millis(5000));
         translate5.setByX(700);
 
         TranslateTransition translatebar1 = new TranslateTransition();
         translatebar1.setNode(progressBar1);
-        translatebar1.setDuration(Duration.millis(2000));
+        translatebar1.setDuration(Duration.millis(3000));
         translatebar1.setByX(700);
 
         TranslateTransition translatebar2 = new TranslateTransition();
-        translatebar2.setNode(progressBar1);
-        translatebar2.setDuration(Duration.millis(1000));
+        translatebar2.setNode(progressBar2);
+        translatebar2.setDuration(Duration.millis(5000));
         translatebar2.setByY(100);
 
         TranslateTransition translatebar3 = new TranslateTransition();
         translatebar3.setNode(progressBar1);
-        translatebar3.setDuration(Duration.millis(2000));
+        translatebar3.setDuration(Duration.millis(3000));
         translatebar3.setByX(-700);
 
         TranslateTransition translatebar4 = new TranslateTransition();
@@ -109,7 +108,7 @@ public class ModerateRoundController {
         translatebar4.setByY(100);
 
         TranslateTransition translatebar5 = new TranslateTransition();
-        translatebar5.setNode(progressBar1);
+        translatebar5.setNode(progressBar2);
         translatebar5.setDuration(Duration.millis(2000));
         translatebar5.setByX(700);
 
