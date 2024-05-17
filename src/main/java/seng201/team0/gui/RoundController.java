@@ -13,6 +13,7 @@ import seng201.team0.models.RoundManager;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Button;
@@ -70,7 +71,7 @@ public class RoundController {
     //    private List<Button> listCartsButton;
     private Cart selectedCart;
     private boolean isFull = false;
-
+    private List<ImageView> view = new ArrayList<>();
 
     @FXML
     private void onExitButtonClicked() {
@@ -89,7 +90,9 @@ public class RoundController {
     public void initialize() {
 //        this.roundManager = new RoundManager(this.environmentManager);
 //        this.trackDistance = roundManager.getTrackDistance();
-        listCartsInRound = List.of(new Cart("water", 20f, 100), new Cart("fire", 20f, 120));
+        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getType(), 20f, 100);
+        System.out.println(cart.getTypeResourceCart());
+        listCartsInRound = List.of(cart, new Cart("fire", 20f, 120));
         List<ImageView> listImageView = List.of(cartImageView);
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
