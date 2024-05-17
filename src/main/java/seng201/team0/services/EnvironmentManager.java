@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class EnvironmentManager {
-    private String userName;
+    private String playerName;
     private List<Tower> currentTowerList;
     private List<Tower> reservedTowerList;
     private String gameDifficulty;
@@ -81,17 +81,17 @@ public class EnvironmentManager {
 
     /**
      * Get the player name
-     * @return player name in String
+     * @return playerName
      */
-    public String getName() {
-        return userName;
+    public String getPlayerName() {
+        return playerName;
     }
     /**
      * set player name which will be input by user from keyboard
      * @param playerName
      */
     public void setName(String playerName) {
-        this.userName = playerName;
+        this.playerName = playerName;
     }
     /**
      * @return List of the current towers are used
