@@ -8,21 +8,18 @@ import java.util.List;
  */
 public class PurchasableItems {
     private String nameItem;
-    private float improvedTime;
-    private int improvedAmountResource;
+    private float improvedTime = 0;
+    private int improvedAmountResource = 0;
     private int cost;
-    private String newType;
+    private String newTypeTower = null;
     private List<PurchasableItems> items = new ArrayList<>();
 
     /**
      * This constructor to initialize tower as an item in shop
-     * @param name
      * @param tower
      */
-    public PurchasableItems(String name, Tower tower){
-        this.nameItem = name;
-        this.improvedAmountResource = 0;
-        this.improvedTime = 0;
+    public PurchasableItems(Tower tower){
+        this.nameItem = tower.getType();
         this.cost = tower.getCost();
     }
 
@@ -43,14 +40,12 @@ public class PurchasableItems {
     /**
      * This constructor to initialize the changing card which can be used to change the type of tower
      * @param name
-     * @param newType
+     * @param newTypeTower
      * @param cost
      */
-    public PurchasableItems(String name, String newType, int cost){
+    public PurchasableItems(String name, String newTypeTower, int cost){
         this.nameItem = name;
-        this.improvedAmountResource = 0;
-        this.improvedTime = 0;
-        this.newType = newType;
+        this.newTypeTower = newTypeTower;
         this.cost = cost;
     }
 
@@ -79,4 +74,10 @@ public class PurchasableItems {
      * @return the amount of time which can decrement the reload time of Tower
      */
     public float getImprovedTime(){ return improvedTime;}
+
+    /**
+     * Get the newTypeTower if the item is a changing card
+     * @return newTypeTower
+     */
+    public String getNewTypeTower(){return this.newTypeTower;}
 }
