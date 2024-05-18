@@ -34,8 +34,8 @@ public class EasyGameController {
     @FXML
     private ImageView cartImageView;
 
-//    @FXML
-//    private Label resourceLabel;
+    @FXML
+    private Label resourceLabel;
 
     @FXML
     private Button tower1Button;
@@ -141,7 +141,7 @@ public class EasyGameController {
 
         selectedCart = listCartsInRound.get(0);
 
-        this.selectedCart.generateAnimation(cartImageView, progressCart1).setOnFinished(actionEvent -> {
+        this.selectedCart.generateAnimation(cartImageView, progressCart1, resourceLabel).setOnFinished(actionEvent -> {
             System.out.println("End game");
             if (isFull) {
                 environmentManager.closeRoundDifficultySelectScreen();

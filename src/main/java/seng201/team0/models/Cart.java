@@ -17,6 +17,7 @@ public class Cart {
 
     private TranslateTransition cartTranslate = new TranslateTransition();
     private TranslateTransition progressTranslate = new TranslateTransition();
+    private TranslateTransition labelTranslate = new TranslateTransition();
 
     public Cart(String inputResoure, float inputSpeed, int inputSize ) {
         this.typeResourceCart = inputResoure;
@@ -87,7 +88,7 @@ public class Cart {
      * @return The final TranslateTransition object in the sequence, such that win/lose conditions
      *         can be found on completion of the animation sequence
      */
-    public TranslateTransition generateAnimation (ImageView cartImage, ProgressBar progressbar) {
+    public TranslateTransition generateAnimation (ImageView cartImage, ProgressBar progressbar, Label resourceLabel) {
         // Translate Transition for cart image
         this.cartTranslate = this.getTranslation(cartImage, 3000, 700, 0);
         TranslateTransition cartMove2 = this.getTranslation(cartImage, 1000, 0, 100);
@@ -102,6 +103,14 @@ public class Cart {
         TranslateTransition progressMove4 = this.getTranslation(progressbar,1000,0,100);
         TranslateTransition progressMove5 = this.getTranslation(progressbar,3000,700,0);
 
+        // Translate transition for cart resource label
+        this.labelTranslate = this.getTranslation(resourceLabel,3000,700,0);
+        TranslateTransition labelMove2 = this.getTranslation(resourceLabel,1000,0,100);
+        TranslateTransition labelMove3 = this.getTranslation(resourceLabel,3000,-700,0);
+        TranslateTransition labelMove4 = this.getTranslation(resourceLabel,1000,0,100);
+        TranslateTransition labelMove5 = this.getTranslation(resourceLabel,3000,700,0);
+
+        resourceLabel.setText(this.typeResourceCart);
 
         this.cartTranslate.setOnFinished(actionEvent -> cartMove2.play());
         cartMove2.setOnFinished(actionEvent -> cartMove3.play());
@@ -113,6 +122,11 @@ public class Cart {
         progressMove3.setOnFinished(actionEvent -> progressMove4.play());
         progressMove4.setOnFinished(actionEvent -> progressMove5.play());
 
+        this.labelTranslate.setOnFinished(actionEvent -> labelMove2.play());
+        labelMove2.setOnFinished(actionEvent -> labelMove3.play());
+        labelMove3.setOnFinished(actionEvent -> labelMove4.play());
+        labelMove4.setOnFinished(actionEvent -> labelMove5.play());
+
         return cartMove5;
     }
 
@@ -122,6 +136,7 @@ public class Cart {
     public void startAnimation() {
         this.cartTranslate.play();
         this.progressTranslate.play();
+        this.labelTranslate.play();
     }
 
     /**
