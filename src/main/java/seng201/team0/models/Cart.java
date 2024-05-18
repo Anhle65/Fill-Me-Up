@@ -80,11 +80,13 @@ public class Cart {
      */
     public boolean isCartFilledUp(){return currentAmount == sizeOfCart;}
 
+    public TranslateTransition getCartTranslate() {return this.cartTranslate;}
+
     /**
      * Cart method to generate an animation sequence for the given elements on the screen.
      * @param cartImage element to move on the screen
      * @param progressbar element to move on the screen
-      element to move on the screen
+     * @param resourceLabel element to move on the screen
      * @return The final TranslateTransition object in the sequence, such that win/lose conditions
      *         can be found on completion of the animation sequence
      */

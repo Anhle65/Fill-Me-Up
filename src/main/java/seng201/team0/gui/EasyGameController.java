@@ -25,11 +25,6 @@ public class EasyGameController {
     private RoundManager roundManager;
     private int trackDistance;
     private int selectedTowerIndex = -1;
-    private boolean tower1Selected = false;
-    private boolean tower2Selected = false;
-    private boolean tower3Selected = false;
-    private boolean tower4Selected = false;
-    private boolean tower5Selected = false;
 
     @FXML
     private ImageView cartImageView;
@@ -72,7 +67,6 @@ public class EasyGameController {
     private Tower selectedTower;
 
     private List<Cart> listCartsInRound;
-    //    private List<Button> listCartsButton;
     private Cart selectedCart;
     private boolean isFull = false;
     private List<ImageView> view = new ArrayList<>();

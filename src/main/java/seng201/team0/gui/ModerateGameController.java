@@ -3,15 +3,22 @@ package seng201.team0.gui;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
+import seng201.team0.models.Cart;
+import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 import javafx.scene.image.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ModerateGameController {
 
     private EnvironmentManager environmentManager;
+    private int selectedTowerIndex = -1;
 
     @FXML
     private ImageView cartImageView1;
@@ -24,6 +31,15 @@ public class ModerateGameController {
 
     @FXML
     private ProgressBar progressBar2;
+
+    @FXML
+    private Label resourceLabel1;
+
+    @FXML
+    private Label resourceLabel2;
+
+    @FXML
+    private Button selectedTowerButton;
 
     @FXML
     private Button tower1Button;
@@ -49,6 +65,22 @@ public class ModerateGameController {
     @FXML
     private Button resumeButton;
 
+
+    float progress;
+    private Tower selectedTower;
+    private Cart selectedCart;
+    private ImageView selectedImage;
+    private ProgressBar selectedProgressBar;
+    private Label selectedResourceLabel;
+    private boolean isFull = false;
+
+    private List<Cart> listCartsInRound = new ArrayList<Cart>();
+    private List<ImageView> listImageView = new ArrayList<ImageView>();
+    private List<ProgressBar> listProgressBar = new ArrayList<ProgressBar>();
+    private List<Label> listResourceLabel = new ArrayList<Label>();
+
+    List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
+
     @FXML
     private void onExitButtonClicked() {
         System.exit(0);
@@ -59,70 +91,81 @@ public class ModerateGameController {
     }
 
     public void initialize() {
-        TranslateTransition translate1 = new TranslateTransition();
-        translate1.setNode(cartImageView1);
-        translate1.setDuration(Duration.millis(2000));
-        translate1.setByX(700);
-
-        TranslateTransition translate2 = new TranslateTransition();
-        translate2.setNode(cartImageView1);
-        translate2.setDuration(Duration.millis(1000));
-        translate2.setByY(100);
-
-
-        TranslateTransition translate3 = new TranslateTransition();
-        translate3.setNode(cartImageView1);
-        translate3.setDuration(Duration.millis(2000));
-        translate3.setByX(-700);
-
-        TranslateTransition translate4 = new TranslateTransition();
-        translate4.setNode(cartImageView1);
-        translate4.setDuration(Duration.millis(1000));
-        translate4.setByY(100);
-
-        TranslateTransition translate5 = new TranslateTransition();
-        translate5.setNode(cartImageView1);
-        translate5.setDuration(Duration.millis(2000));
-        translate5.setByX(700);
-
-        TranslateTransition translatebar1 = new TranslateTransition();
-        translatebar1.setNode(progressBar1);
-        translatebar1.setDuration(Duration.millis(2000));
-        translatebar1.setByX(700);
-
-        TranslateTransition translatebar2 = new TranslateTransition();
-        translatebar2.setNode(progressBar1);
-        translatebar2.setDuration(Duration.millis(1000));
-        translatebar2.setByY(100);
-
-        TranslateTransition translatebar3 = new TranslateTransition();
-        translatebar3.setNode(progressBar1);
-        translatebar3.setDuration(Duration.millis(2000));
-        translatebar3.setByX(-700);
-
-        TranslateTransition translatebar4 = new TranslateTransition();
-        translatebar4.setNode(progressBar1);
-        translatebar4.setDuration(Duration.millis(1000));
-        translatebar4.setByY(100);
-
-        TranslateTransition translatebar5 = new TranslateTransition();
-        translatebar5.setNode(progressBar1);
-        translatebar5.setDuration(Duration.millis(2000));
-        translatebar5.setByX(700);
+        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getType(), 20f, 100);
+        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getType(), 20f, 100);
+        System.out.println(cart1.getTypeResourceCart());
+        System.out.println(cart2.getTypeResourceCart());
+        listCartsInRound = List.of(cart1, cart2);
+        listImageView = List.of(cartImageView1, cartImageView2);
+        listProgressBar = List.of(progressBar1, progressBar2);
+        listResourceLabel = List.of(resourceLabel1, resourceLabel2);
+        for (int i = 0; i < listImageView.size(); i++) {
+            int finalI = i;
+            listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
+                selectedCart = listCartsInRound.get(finalI);
+                selectedProgressBar = listProgressBar.get(finalI);
+                if (selectedTower != null) {
+                    selectedCart.incrementAmountResourceIntoCart(selectedTower);
+                    if (selectedCart.getIsIncrementIntoCart()) {
+                        progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                        selectedProgressBar.setProgress(progress);
+                        selectedCart.setIncrementIntoCartToFalse();
+                        this.isFull = selectedCart.isCartFilledUp();
+                    }
+                    selectedTower = null;
+                    System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
+                }
+            });
+        }
 
 
-        translate1.setOnFinished(actionEvent -> translate2.play());
-        translate2.setOnFinished(actionEvent -> translate3.play());
-        translate3.setOnFinished(actionEvent -> translate4.play());
-        translate4.setOnFinished(actionEvent -> translate5.play());
+        for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
+            int finalI = i; // variables used within lambdas must be final
+            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getType());
+            listTowerButtons.get(i).setOnAction(event -> {
+                selectedTowerIndex = finalI;
+                listTowerButtons.forEach(button -> {
+                    if (button == listTowerButtons.get(finalI)) {
+                        selectedTowerButton = button;
+                        this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
+                        TranslateTransition translateButton = new TranslateTransition();
+                        translateButton.setNode(selectedTowerButton);
+                        translateButton.setDuration(Duration.millis((long)selectedTower.getRecoveryTime()));
+                        selectedTowerButton.setDisable(true);
+                        translateButton.setOnFinished(actionEvent -> {
+                            selectedTowerButton.setDisable(false);
+                        });
+                        translateButton.play();
+                        button.setStyle("-fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+        }
 
-        translatebar1.setOnFinished(actionEvent -> translatebar2.play());
-        translatebar2.setOnFinished(actionEvent -> translatebar3.play());
-        translatebar3.setOnFinished(actionEvent -> translatebar4.play());
-        translatebar4.setOnFinished(actionEvent -> translatebar5.play());
+        for (int i = 0; i < listCartsInRound.size(); i++) {
+            int finalI = i;
+            selectedCart = listCartsInRound.get(finalI);
+            selectedImage = listImageView.get(finalI);
+            selectedProgressBar = listProgressBar.get(finalI);
+            selectedResourceLabel = listResourceLabel.get(finalI);
+            this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
+        }
 
-        translate1.play();
-        translatebar1.play();
+        listCartsInRound.getLast().getCartTranslate().setOnFinished(actionEvent -> {
+            System.out.println("End game");
+            if (isFull) {
+                environmentManager.closeRoundDifficultySelectScreen();
+                environmentManager.launchWinnerNextRoundScreen();
+            }
+            else {
+                environmentManager.closeRoundDifficultySelectScreen();
+                environmentManager.launchLoserScreen();
+            }
+        });
 
+        listCartsInRound.get(0).startAnimation();
+        listCartsInRound.get(1).startAnimation();
     }
 }

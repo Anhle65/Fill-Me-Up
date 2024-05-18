@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -39,7 +40,7 @@
                   <Image url="@../image/seng201_cart.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="cartImageView2" fitHeight="108.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <ImageView fx:id="cartImageView2" fitHeight="108.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
                   <Image url="@../image/seng201_cart.png" />
                </image>
@@ -49,7 +50,7 @@
                   <Image url="@../image/flag.gif" />
                </image>
             </ImageView>
-            <ProgressBar fx:id="progressBar2" prefWidth="200.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <ProgressBar fx:id="progressBar2" prefWidth="200.0" progress="0.0" translateX="-300.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <ProgressBar fx:id="progressBar1" prefWidth="200.0" progress="0.0" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <Button fx:id="tower1Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
@@ -91,6 +92,16 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <Label fx:id="resourceLabel1" text="Resource" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="resourceLabel2" text="Resource" translateX="-300.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>
