@@ -5,6 +5,7 @@ import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 
 
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -32,6 +33,9 @@ public class EasyGameController {
 
     @FXML
     private ImageView cartImageView;
+
+//    @FXML
+//    private Label resourceLabel;
 
     @FXML
     private Button tower1Button;
@@ -82,17 +86,11 @@ public class EasyGameController {
         this.environmentManager = environmentManager;
     }
 
-    public void isReachDestination(){
-        if ((cartImageView.getX() == 700) && (cartImageView.getY() == 200)) {
-            System.out.println("reach");}
-    }
-
+    // TODO: As this game easy mode only has one cart, we can remove lists and looping over them as it is not needed. (Will still use this way for moderate and challenging)
     public void initialize() {
-//        this.roundManager = new RoundManager(this.environmentManager);
-//        this.trackDistance = roundManager.getTrackDistance();
         Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getType(), 20f, 100);
         System.out.println(cart.getTypeResourceCart());
-        listCartsInRound = List.of(cart, new Cart("fire", 20f, 120));
+        listCartsInRound = List.of(cart);
         List<ImageView> listImageView = List.of(cartImageView);
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
@@ -106,17 +104,12 @@ public class EasyGameController {
                         selectedCart.setIncrementIntoCartToFalse();
                         this.isFull = selectedCart.isCartFilledUp();
                     }
-                    if (isFull) {
-                        environmentManager.closeRoundDifficultySelectScreen();
-                        environmentManager.launchWinnerNextRoundScreen();
-                    }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
         }
-        if ((cartImageView.getX() == 700) && (cartImageView.getY() == 200)) {
-            System.out.println("reach destination");}
+
 
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
@@ -146,85 +139,21 @@ public class EasyGameController {
             });
         }
 
-        // TODO: turn building animations into a RoundManager method. This will save having to explicitly type out each and every animation sequence.
+        selectedCart = listCartsInRound.get(0);
 
-//        List<>
-        TranslateTransition translate1 = new TranslateTransition();
-        translate1.setNode(cartImageView);
-        translate1.setDuration(Duration.millis(3000));
-        translate1.setByX(700);
-
-        TranslateTransition translate2 = new TranslateTransition();
-        translate2.setNode(cartImageView);
-        translate2.setDuration(Duration.millis(1000));
-        translate2.setByY(100);
-
-
-        TranslateTransition translate3 = new TranslateTransition();
-        translate3.setNode(cartImageView);
-        translate3.setDuration(Duration.millis(3000));
-        translate3.setByX(-700);
-
-        TranslateTransition translate4 = new TranslateTransition();
-        translate4.setNode(cartImageView);
-        translate4.setDuration(Duration.millis(1000));
-        translate4.setByY(100);
-
-        TranslateTransition translate5 = new TranslateTransition();
-        translate5.setNode(cartImageView);
-        translate5.setDuration(Duration.millis(3000));
-        translate5.setByX(700);
-
-        TranslateTransition translatebar1 = new TranslateTransition();
-        translatebar1.setNode(progressCart1);
-        translatebar1.setDuration(Duration.millis(3000));
-        translatebar1.setByX(700);
-
-        TranslateTransition translatebar2 = new TranslateTransition();
-        translatebar2.setNode(progressCart1);
-        translatebar2.setDuration(Duration.millis(1000));
-        translatebar2.setByY(100);
-
-        TranslateTransition translatebar3 = new TranslateTransition();
-        translatebar3.setNode(progressCart1);
-        translatebar3.setDuration(Duration.millis(3000));
-        translatebar3.setByX(-700);
-
-        TranslateTransition translatebar4 = new TranslateTransition();
-        translatebar4.setNode(progressCart1);
-        translatebar4.setDuration(Duration.millis(1000));
-        translatebar4.setByY(100);
-
-        TranslateTransition translatebar5 = new TranslateTransition();
-        translatebar5.setNode(progressCart1);
-        translatebar5.setDuration(Duration.millis(3000));
-        translatebar5.setByX(700);
-
-
-        translate1.setOnFinished(actionEvent -> translate2.play());
-        translate2.setOnFinished(actionEvent -> translate3.play());
-        translate3.setOnFinished(actionEvent -> translate4.play());
-        translate4.setOnFinished(actionEvent -> translate5.play());
-
-        translatebar1.setOnFinished(actionEvent -> translatebar2.play());
-        translatebar2.setOnFinished(actionEvent -> translatebar3.play());
-        translatebar3.setOnFinished(actionEvent -> translatebar4.play());
-        translatebar4.setOnFinished(actionEvent -> translatebar5.play());
-
-        translatebar5.setOnFinished(actionEvent -> {
+        this.selectedCart.generateAnimation(cartImageView, progressCart1).setOnFinished(actionEvent -> {
             System.out.println("End game");
-            if (!isFull) {
-//                environmentManager.closeRoundDifficultySelectScreen();
-//                environmentManager.launchWinnerNextRoundScreen();
-//            }
-//            else {
+            if (isFull) {
+                environmentManager.closeRoundDifficultySelectScreen();
+                environmentManager.launchWinnerNextRoundScreen();
+            }
+            else {
                 environmentManager.closeRoundDifficultySelectScreen();
                 environmentManager.launchLoserScreen();
             }
         });
 
-        translate1.play();
-        translatebar1.play();
+        selectedCart.startAnimation();
 
         }
     }
