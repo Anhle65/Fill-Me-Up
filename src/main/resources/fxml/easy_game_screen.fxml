@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -86,6 +87,11 @@
             </Button>
             <ProgressBar fx:id="progressCart1" prefWidth="200.0" progress="0.0" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <ImageView fitHeight="106.0" fitWidth="97.0" layoutX="97.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <Label fx:id="resourceLabel" text="Resource" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>
