@@ -167,10 +167,12 @@ public class ModerateGameController {
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(25);
                 }
+                // another if else block to check for end of game. if enviroment.getcurrentround = numberofround
                 environmentManager.closeRoundDifficultySelectScreen();
                 environmentManager.launchWinnerNextRoundScreen();
             }
             else {
+                // another if else block to check for end of game. if enviroment.getcurrentround = numberofround
                 environmentManager.closeRoundDifficultySelectScreen();
                 environmentManager.launchLoserScreen();
             }
