@@ -2,7 +2,7 @@ package seng201.team0.models;
 /**
  * Tower class which will be interacted by user in game
  */
-public class Tower {
+public class Tower extends PurchasableItem {
     private String resourceType;
     private int level;
     private int cost;
@@ -39,7 +39,7 @@ public class Tower {
      * Get the current type of the tower
      * @return Current (String)type
      */
-    public String getType(){ return resourceType;}
+    public String getName(){ return resourceType;}
 
     /**
      * @param newType
