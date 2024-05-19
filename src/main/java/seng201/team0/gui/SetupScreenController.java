@@ -207,14 +207,14 @@ public class SetupScreenController{
             int finalI = i; // variables used within lambdas must be final
             selectedTowerButtons.get(i).setOnAction(event -> {
                 if (selectedTowerIndex != -1) {
-                    selectedTowerButtons.get(finalI).setText(environmentManager.getDefaultTowers().get(selectedTowerIndex).getType());
+                    selectedTowerButtons.get(finalI).setText(environmentManager.getDefaultTowers().get(selectedTowerIndex).getName());
                     selectedTowers[finalI] = environmentManager.getDefaultTowers().get(selectedTowerIndex);
                 }
             });
         }
     }
     private void updateStats(Tower tower) {
-        towerType.setText(tower.getType());
+        towerType.setText(tower.getName());
         towerCost.setText(String.valueOf(tower.getCost()));
         levelTower.setText(String.valueOf(tower.getLevel()));
         recoveryTime.setText(String.valueOf(tower.getRecoveryTime()));
