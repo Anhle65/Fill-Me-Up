@@ -45,7 +45,7 @@ public class SetupScreenController{
     @FXML
     private RadioButton moderateGameRadioButton;
     @FXML
-    private RadioButton difficultyGameRadioButton;
+    private RadioButton challengingGameRadioButton;
 
 
     @FXML
@@ -115,7 +115,7 @@ public class SetupScreenController{
     private void onEasyGameRadioButtonClicked(){
         easyGameRadioButton.setSelected(true);
         moderateGameRadioButton.setSelected(false);
-        difficultyGameRadioButton.setSelected(false);
+        challengingGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
         environmentManager.setGameDifficulty("Easy");
 
@@ -125,15 +125,15 @@ public class SetupScreenController{
     private void onModerateGameRadioButtonClicked(){
         moderateGameRadioButton.setSelected(true);
         easyGameRadioButton.setSelected(false);
-        difficultyGameRadioButton.setSelected(false);
+        challengingGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
         environmentManager.setGameDifficulty("Moderate");
 
     }
 
     @FXML
-    private void onDifficultyGameRadioButtonClicked(){
-        difficultyGameRadioButton.setSelected(true);
+    private void onChallengingGameRadioButtonClicked(){
+        challengingGameRadioButton.setSelected(true);
         easyGameRadioButton.setSelected(false);
         moderateGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;

@@ -73,14 +73,17 @@ public class RoundDifficultySelectController {
 
     public void onPlayNowButtonClicked() {
         if (environmentManager.getGameDifficulty().equals("Easy")){
+            System.out.println("Playing Easy mode");
             environmentManager.closeRoundDifficultySelectScreen();
             environmentManager.launchEasyGameScreen();
         }
         if (environmentManager.getGameDifficulty().equals("Moderate")) {
+            System.out.println("Playing Moderate mode");
             environmentManager.closeRoundDifficultySelectScreen();
             environmentManager.launchModerateGameScreen();
         }
         if (environmentManager.getGameDifficulty().equals("Challenging")){
+            System.out.println("Playing Challenging mode");
             environmentManager.closeRoundDifficultySelectScreen();
             environmentManager.launchChallengingGameScreen();
 

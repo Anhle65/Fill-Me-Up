@@ -17,7 +17,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
    <children>
 
    <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -300,7 +300,7 @@
                         <Font size="17.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="difficultyGameRadioButton" mnemonicParsing="false" onAction="#onDifficultyGameRadioButtonClicked" text="Difficulty" GridPane.columnIndex="2">
+                  <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" GridPane.columnIndex="2">
                      <font>
                         <Font size="17.0" />
                      </font>
