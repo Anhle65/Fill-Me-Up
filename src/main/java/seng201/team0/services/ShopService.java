@@ -1,11 +1,13 @@
-package seng201.team0.models;
+package seng201.team0.services;
 
+import seng201.team0.models.Tower;
+import seng201.team0.models.UpgradeItems;
 import seng201.team0.services.EnvironmentManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Shop {
+public class ShopService {
 //    private final Consumer<Shop> shopScreenLauncher;
 //    private final Runnable clearScreen;
     private EnvironmentManager environmentManager;
@@ -13,7 +15,7 @@ public class Shop {
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
     private List<String> towerType = List.of("Water", "Fire", "Gold", "Coal", "Diamond");
     private int currentCoin;
-    public Shop(){
+    public ShopService(){
 //        this.currentCoin = environmentManager.getPlayerCoins();
     }
 //    private final String[] TYPE_RESOURCES = {"Water", "Fire", "Gold", "Food", "Coal", "Diamond"};

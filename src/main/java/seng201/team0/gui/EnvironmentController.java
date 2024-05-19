@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import seng201.team0.models.Shop;
+import seng201.team0.services.ShopService;
 import seng201.team0.services.EnvironmentManager;
 
 import java.io.IOException;
@@ -103,7 +103,7 @@ public class EnvironmentController {
     public void launchShopScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ShopController(environmentManager, new Shop()));
+            mainScreenLoader.setControllerFactory(param -> new ShopController(environmentManager, new ShopService()));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Shop Screen");

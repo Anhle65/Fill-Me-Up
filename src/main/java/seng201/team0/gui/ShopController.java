@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.models.PurchasableItem;
-import seng201.team0.models.Shop;
+import seng201.team0.services.ShopService;
 import seng201.team0.models.UpgradeItems;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
@@ -28,7 +28,7 @@ public class ShopController {
     @FXML
     private Button tower3;
     private EnvironmentManager environmentManager;
-    private Shop shop;
+    private ShopService shopService;
     private int selectedItemIndex = -1;
     private List<Tower> listTowersInShop = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
@@ -36,9 +36,9 @@ public class ShopController {
     private final float[] TIME_ENHANCEMENT = {1, 1.5f, 2, 2.5f, 3};
     private final Integer[] COST = {10, 15, 25, 40, 50};
     private final Integer[] RESOURCE_ENHANCEMENT = {5, 7, 10, 12, 15};
-    public ShopController(EnvironmentManager environmentManager, Shop shop) {
+    public ShopController(EnvironmentManager environmentManager, ShopService shopService) {
         this.environmentManager = environmentManager;
-        this.shop = shop;
+        this.shopService = shopService;
     }
 
     /**
@@ -64,7 +64,7 @@ public class ShopController {
                 new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], 40, 20, 6),
                 new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], 40, 20, 6)
         ));
-        shop.setListTowersInShop(listTowersInShop);
+        shopService.setListTowersInShop(listTowersInShop);
 
         // Create 3 random upgrade card
         listUpgradeCardsInShop.addAll(List.of(
@@ -72,8 +72,8 @@ public class ShopController {
                 new UpgradeItems("Upgrade\nAmount", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
                 new UpgradeItems("Changing Type\nTower to " + TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)], TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)] , 60)
         ));
-        shop.setListUpgradeCardsInShop(listUpgradeCardsInShop);
-        System.out.println("This is the first upgrade item in Shop: " + shop.getListUpgradeCardsInShop().get(0).getName());
+        shopService.setListUpgradeCardsInShop(listUpgradeCardsInShop);
+        System.out.println("This is the first upgrade item in Shop: " + shopService.getListUpgradeCardsInShop().get(0).getName());
 
         ArrayList<PurchasableItem> allItemsInShop = new ArrayList<>();
         for(UpgradeItems card : listUpgradeCardsInShop){
@@ -117,6 +117,7 @@ public class ShopController {
     }
     public void onBuyClicked(){
         System.out.println("Clicked on Buy button");
+
 
     }
 
