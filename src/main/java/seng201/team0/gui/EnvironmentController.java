@@ -44,7 +44,7 @@ public class EnvironmentController {
     public void launchInventoryScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/inventory_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new InventoryController(environmentManager));
+            mainScreenLoader.setControllerFactory(param -> new InventoryController(environmentManager, new ShopService(environmentManager)));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Tower Manager Inventory Screen");
@@ -103,7 +103,7 @@ public class EnvironmentController {
     public void launchShopScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ShopController(environmentManager, new ShopService()));
+            mainScreenLoader.setControllerFactory(param -> new ShopController(environmentManager, new ShopService(environmentManager)));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Shop Screen");
