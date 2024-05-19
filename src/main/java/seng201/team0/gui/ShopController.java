@@ -29,6 +29,10 @@ public class ShopController {
     private Button tower3;
     private EnvironmentManager environmentManager;
     private ShopService shopService;
+    private Tower selectedTowerInShop = null;
+    private UpgradeItems selectedUpgradeCardInShop = null;
+    private Button itemIsBought;
+//    private Button cardIsBought;
     private int selectedItemIndex = -1;
     private List<Tower> listTowersInShop = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
@@ -46,7 +50,7 @@ public class ShopController {
      * or have new tower. The price is different depending on how good the upgrade card can do to the tower.
      */
     public void initialize(){
-//        playerCoins.setText(String.valueOf(environmentManager.getPlayerCoins()));
+        playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
         List<Button> listUpgradeCardButtons = List.of(upgradeCard1, upgradeCard2, upgradeCard3);
         List<Button> listTowersInShopButtons = List.of(tower1, tower2, tower3);
         List<Button> listItemsButton = List.of(upgradeCard1, upgradeCard2, upgradeCard3, tower1, tower2, tower3);
@@ -103,8 +107,13 @@ public class ShopController {
             int finalI = i; // variables used within lambdas must be final
             PurchasableItem item = allItemsInShop.get(finalI);
             listItemsButton.get(finalI).setText(item.getName());
-            listItemsButton.get(i).setOnAction(event -> {
+            listItemsButton.get(finalI).setOnAction(event -> {
                 selectedItemIndex = finalI;
+                itemIsBought = listItemsButton.get(finalI);
+                if(item instanceof Tower){
+                    selectedTowerInShop = shopService.getListTowersInShop().get(finalI - 3);
+                }else
+                    selectedUpgradeCardInShop = shopService.getListUpgradeCardsInShop().get(finalI);
                 listItemsButton.forEach(button -> {
                     if (button == listItemsButton.get(finalI)) {
                         button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 10px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
@@ -116,12 +125,24 @@ public class ShopController {
         }
     }
     public void onBuyClicked(){
+        playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
+        System.out.println(environmentManager.getReservedTowerList().size());
         System.out.println("Clicked on Buy button");
-
-
+        if(selectedTowerInShop != null) {
+            shopService.buy(selectedTowerInShop);
+            itemIsBought.setDisable(true);
+        }
+        else if (selectedUpgradeCardInShop != null) {
+            shopService.buy(selectedUpgradeCardInShop);
+            itemIsBought.setDisable(true);
+        }else
+            System.out.println("Please choose item to buy");
+        playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
     }
 
     public void onNextClicked(){
         System.out.println("Clicked on Next button");
+        environmentManager.closeShopScreen();
+        environmentManager.launchInventoryScreen();
     }
 }
