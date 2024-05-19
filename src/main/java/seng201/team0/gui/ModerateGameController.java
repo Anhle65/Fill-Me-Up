@@ -2,6 +2,7 @@ package seng201.team0.gui;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -73,7 +74,6 @@ public class ModerateGameController {
     private ImageView selectedImage;
     private ProgressBar selectedProgressBar;
     private Label selectedResourceLabel;
-    private boolean isFull = false;
 
     private List<Cart> listCartsInRound = new ArrayList<Cart>();
     private List<ImageView> listImageView = new ArrayList<ImageView>();
@@ -111,7 +111,6 @@ public class ModerateGameController {
                         progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                         selectedProgressBar.setProgress(progress);
                         selectedCart.setIncrementIntoCartToFalse();
-                        this.isFull = selectedCart.isCartFilledUp();
                     }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
@@ -124,7 +123,7 @@ public class ModerateGameController {
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
-            listTowerButtons.get(i).setOnAction(event -> {
+            listTowerButtons.get(finalI).setOnAction(event -> {
                 selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
@@ -158,7 +157,7 @@ public class ModerateGameController {
 
         lastMove.setOnFinished(actionEvent -> {
             System.out.println("End game");
-            if (isFull) {
+            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp()) {
                 environmentManager.closeRoundDifficultySelectScreen();
                 environmentManager.launchWinnerNextRoundScreen();
             }
@@ -168,7 +167,16 @@ public class ModerateGameController {
             }
         });
 
+        // Implementing a non-blocking delay between starting the cart animations
+        ImageView bogus = new ImageView();
+        TranslateTransition cartDelayTransition = new TranslateTransition();
+        cartDelayTransition.setDuration(Duration.millis(1000));
+        cartDelayTransition.setNode(bogus);
+        cartDelayTransition.setOnFinished(actionEvent -> {
+            listCartsInRound.get(1).startAnimation();
+        });
+
         listCartsInRound.get(0).startAnimation();
-        listCartsInRound.get(1).startAnimation();
+        cartDelayTransition.play();
     }
 }

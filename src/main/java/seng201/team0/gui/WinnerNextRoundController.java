@@ -15,6 +15,8 @@ public class WinnerNextRoundController {
 
     @FXML
     private void onNextRoundButtonClicked(){
+        environmentManager.incrementCurrentRoundNumber();
+        System.out.println("Current rounds: " + environmentManager.getNumberOfRounds()); // This print the current round
         environmentManager.closeWinnerNextRoundScreen();
         environmentManager.launchRoundDifficultySelectScreen();
     }

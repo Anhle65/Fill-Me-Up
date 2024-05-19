@@ -40,8 +40,6 @@ public class RoundDifficultySelectController {
     }
 
     public void onBackButtonClicked() {
-        environmentManager.incrementCurrentRoundNumber();
-        System.out.println("Current rounds: " + environmentManager.getNumberOfRounds()); // This print the current round
         environmentManager.closeEasyGameScreen();
         environmentManager.launchSetupScreen();
     }
