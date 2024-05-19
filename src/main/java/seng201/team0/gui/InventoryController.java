@@ -249,10 +249,12 @@ public class InventoryController {
         if(selectedUpgradeCard != null && selectedCurrentTowers != null){
             if(selectedUpgradeCard.getName().contains("Changing Type")){
                 selectedCurrentTowers.changeTypeResource(selectedUpgradeCard.getNewTypeTower());
+                System.out.println("New type: " + selectedCurrentTowers.getName());
             }else {
                 selectedCurrentTowers.levelIncrement();
                 selectedCurrentTowers.upgradeTime(selectedUpgradeCard.getImprovedTime());
                 selectedCurrentTowers.upgradeResourceAmount(selectedUpgradeCard.getImprovedAmountResource());
+                System.out.println("new stat: " + selectedCurrentTowers.getLevel() + " " + selectedCurrentTowers.getRecoveryTime() +"ms ");
             }
             environmentManager.getListUpgradeCardsInInventory().remove(selectedUpgradeCard);
         } else if (selectedUpgradeCard != null && selectedCurrentTowers == null) {

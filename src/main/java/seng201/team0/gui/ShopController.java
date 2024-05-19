@@ -128,16 +128,21 @@ public class ShopController {
         playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
         System.out.println(environmentManager.getReservedTowerList().size());
         System.out.println("Clicked on Buy button");
+//        System.out.println("Item " + se);
         if(selectedTowerInShop != null) {
+            System.out.println("Selected " + selectedTowerInShop.getName());
             shopService.buy(selectedTowerInShop);
             itemIsBought.setDisable(true);
         }
         else if (selectedUpgradeCardInShop != null) {
+            System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
             shopService.buy(selectedUpgradeCardInShop);
             itemIsBought.setDisable(true);
         }else
             System.out.println("Please choose item to buy");
         playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
+        selectedTowerInShop = null;
+        selectedUpgradeCardInShop = null;
     }
 
     public void onNextClicked(){
