@@ -6,22 +6,13 @@ import java.util.List;
 /**
  * Purchasable class to keep track all the items can be bought from shop
  */
-public class PurchasableItems {
+public class UpgradeItems extends PurchasableItem {
     private String nameItem;
     private float improvedTime = 0;
     private int improvedAmountResource = 0;
     private int cost;
     private String newTypeTower = null;
-    private List<PurchasableItems> items = new ArrayList<>();
-
-    /**
-     * This constructor to initialize tower as an item in shop
-     * @param tower
-     */
-    public PurchasableItems(Tower tower){
-        this.nameItem = tower.getType();
-        this.cost = tower.getCost();
-    }
+    private List<UpgradeItems> items = new ArrayList<>();
 
     /**
      * This constructor to initialize an upgrade card which can be used for tower
@@ -30,7 +21,7 @@ public class PurchasableItems {
      * @param improvedTime
      * @param cost
      */
-    public PurchasableItems(String name, int improvedAmountResource, float improvedTime, int cost) {
+    public UpgradeItems(String name, int improvedAmountResource, float improvedTime, int cost) {
         this.nameItem = name;
         this.improvedAmountResource = improvedAmountResource;
         this.improvedTime = improvedTime;
@@ -43,7 +34,7 @@ public class PurchasableItems {
      * @param newTypeTower
      * @param cost
      */
-    public PurchasableItems(String name, String newTypeTower, int cost){
+    public UpgradeItems(String name, String newTypeTower, int cost){
         this.nameItem = name;
         this.newTypeTower = newTypeTower;
         this.cost = cost;
@@ -52,14 +43,14 @@ public class PurchasableItems {
     /**
      * @return name of the Item
      */
-    public String getNameItem(){
+    public String getName(){
         return nameItem;
     };
 
     /**
      * @return the price to buy the item in shop
      */
-    public int getCostItem(){
+    public int getCost(){
         return cost;
     }
 

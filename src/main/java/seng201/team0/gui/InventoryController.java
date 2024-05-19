@@ -73,7 +73,7 @@ public class InventoryController {
         for(int i = 0; i < this.environmentManager.getCurrentTowerList().size(); ++i) {
             int finalI = i;
             this.updateStats((Tower)this.environmentManager.getCurrentTowerList().get(finalI), (Label)this.towerTimeList.get(finalI), (Label)this.towerResourceList.get(finalI), (Label)this.towerLevelList.get(finalI));
-            ((Button)towerButtons.get(finalI)).setText(String.valueOf(((Tower)this.environmentManager.getCurrentTowerList().get(finalI)).getType()));
+            ((Button)towerButtons.get(finalI)).setText(String.valueOf(((Tower)this.environmentManager.getCurrentTowerList().get(finalI)).getName()));
             ((Button)towerButtons.get(i)).setOnAction((event) -> {
                 this.selectedTowerIndex = finalI;
                 towerButtons.forEach((button) -> {
