@@ -167,6 +167,8 @@ public class EnvironmentManager {
 
     public void closeLoserScreen() { clearScreen.run();}
 
+    public void closeShopScreen() { clearScreen.run();}
+
     public void launchShopScreen() { shopScreenLauncher.accept(this);}
 
     public void launchEasyGameScreen() {easyGameScreenLauncher.accept(this);}
