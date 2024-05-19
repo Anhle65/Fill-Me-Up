@@ -9,6 +9,7 @@ import javafx.util.Duration;
 import seng201.team0.models.Cart;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
+import seng201.team0.models.RoundManager;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class ModerateGameController {
     private List<ProgressBar> listProgressBar = new ArrayList<ProgressBar>();
     private List<Label> listResourceLabel = new ArrayList<Label>();
 
-    List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
+
 
     @FXML
     private void onExitButtonClicked() {
@@ -90,82 +91,84 @@ public class ModerateGameController {
         this.environmentManager = environmentManager;
     }
 
-//    public void initialize() {
-//        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
-//        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 20f, 100);
-//        System.out.println(cart1.getTypeResourceCart());
-//        System.out.println(cart2.getTypeResourceCart());
-//        listCartsInRound = List.of(cart1, cart2);
-//        listImageView = List.of(cartImageView1, cartImageView2);
-//        listProgressBar = List.of(progressBar1, progressBar2);
-//        listResourceLabel = List.of(resourceLabel1, resourceLabel2);
-//        for (int i = 0; i < listImageView.size(); i++) {
-//            int finalI = i;
-//            listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
-//                selectedCart = listCartsInRound.get(finalI);
-//                selectedProgressBar = listProgressBar.get(finalI);
-//                if (selectedTower != null) {
-//                    selectedCart.incrementAmountResourceIntoCart(selectedTower);
-//                    if (selectedCart.getIsIncrementIntoCart()) {
-//                        progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
-//                        selectedProgressBar.setProgress(progress);
-//                        selectedCart.setIncrementIntoCartToFalse();
-//                        this.isFull = selectedCart.isCartFilledUp();
-//                    }
-//                    selectedTower = null;
-//                    System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
-//                }
-//            });
-//        }
-//
-//
-//        for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
-//            int finalI = i; // variables used within lambdas must be final
-//            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
-//            listTowerButtons.get(i).setOnAction(event -> {
-//                selectedTowerIndex = finalI;
-//                listTowerButtons.forEach(button -> {
-//                    if (button == listTowerButtons.get(finalI)) {
-//                        selectedTowerButton = button;
-//                        this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
-//                        TranslateTransition translateButton = new TranslateTransition();
-//                        translateButton.setNode(selectedTowerButton);
-//                        translateButton.setDuration(Duration.millis((long)selectedTower.getRecoveryTime()));
-//                        selectedTowerButton.setDisable(true);
-//                        translateButton.setOnFinished(actionEvent -> {
-//                            selectedTowerButton.setDisable(false);
-//                        });
-//                        translateButton.play();
-//                        button.setStyle("-fx-background-radius: 5;");
-//                    } else {
-//                        button.setStyle("");
-//                    }
-//                });
-//            });
-//        }
-//
-//        for (int i = 0; i < listCartsInRound.size(); i++) {
-//            int finalI = i;
-//            selectedCart = listCartsInRound.get(finalI);
-//            selectedImage = listImageView.get(finalI);
-//            selectedProgressBar = listProgressBar.get(finalI);
-//            selectedResourceLabel = listResourceLabel.get(finalI);
-//            this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
-//        }
-//
-//        listCartsInRound.get(listCartsInRound.size() - 1).getCartTranslate().setOnFinished(actionEvent -> {
-//            System.out.println("End game");
-//            if (isFull) {
-//                environmentManager.closeRoundDifficultySelectScreen();
-//                environmentManager.launchWinnerNextRoundScreen();
-//            }
-//            else {
-//                environmentManager.closeRoundDifficultySelectScreen();
-//                environmentManager.launchLoserScreen();
-//            }
-//        });
-//
-//        listCartsInRound.get(0).startAnimation();
-//        listCartsInRound.get(1).startAnimation();
-//    }
+    public void initialize() {
+        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
+        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 20f, 100);
+        System.out.println(cart1.getTypeResourceCart());
+        System.out.println(cart2.getTypeResourceCart());
+        listCartsInRound = List.of(cart1, cart2);
+        listImageView = List.of(cartImageView1, cartImageView2);
+        listProgressBar = List.of(progressBar1, progressBar2);
+        listResourceLabel = List.of(resourceLabel1, resourceLabel2);
+        for (int i = 0; i < listImageView.size(); i++) {
+            int finalI = i;
+            listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
+                selectedCart = listCartsInRound.get(finalI);
+                selectedProgressBar = listProgressBar.get(finalI);
+                if (selectedTower != null) {
+                    selectedCart.incrementAmountResourceIntoCart(selectedTower);
+                    if (selectedCart.getIsIncrementIntoCart()) {
+                        progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                        selectedProgressBar.setProgress(progress);
+                        selectedCart.setIncrementIntoCartToFalse();
+                        this.isFull = selectedCart.isCartFilledUp();
+                    }
+                    selectedTower = null;
+                    System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
+                }
+            });
+        }
+
+        List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
+
+        for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
+            int finalI = i; // variables used within lambdas must be final
+            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
+            listTowerButtons.get(i).setOnAction(event -> {
+                selectedTowerIndex = finalI;
+                listTowerButtons.forEach(button -> {
+                    if (button == listTowerButtons.get(finalI)) {
+                        selectedTowerButton = button;
+                        this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
+                        TranslateTransition translateButton = new TranslateTransition();
+                        translateButton.setNode(selectedTowerButton);
+                        translateButton.setDuration(Duration.millis((long)selectedTower.getRecoveryTime()));
+                        selectedTowerButton.setDisable(true);
+                        translateButton.setOnFinished(actionEvent -> {
+                            selectedTowerButton.setDisable(false);
+                        });
+                        translateButton.play();
+                        button.setStyle("-fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+        }
+
+        TranslateTransition lastMove = new TranslateTransition();
+        for (int i = 0; i < listCartsInRound.size(); i++) {
+            int finalI = i;
+            selectedCart = listCartsInRound.get(finalI);
+            selectedImage = listImageView.get(finalI);
+            selectedProgressBar = listProgressBar.get(finalI);
+            selectedResourceLabel = listResourceLabel.get(finalI);
+            lastMove = this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
+        }
+
+        lastMove.setOnFinished(actionEvent -> {
+            System.out.println("End game");
+            if (isFull) {
+                environmentManager.closeRoundDifficultySelectScreen();
+                environmentManager.launchWinnerNextRoundScreen();
+            }
+            else {
+                environmentManager.closeRoundDifficultySelectScreen();
+                environmentManager.launchLoserScreen();
+            }
+        });
+
+        listCartsInRound.get(0).startAnimation();
+        listCartsInRound.get(1).startAnimation();
+    }
 }

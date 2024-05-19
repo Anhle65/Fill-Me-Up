@@ -20,7 +20,7 @@ public class EnvironmentController {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultySelectScreen, this::launchRoundGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::clearPane);
+        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultySelectScreen, this::launchEasyGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::clearPane);
 //        new Shop(this:: launchShopScreen);
     }
 
@@ -64,7 +64,7 @@ public class EnvironmentController {
         }
     }
 
-    public void launchRoundGameScreen(EnvironmentManager environmentManager) {
+    public void launchEasyGameScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/easy_game_screen.fxml"));
             mainScreenLoader.setControllerFactory(param -> new EasyGameController(environmentManager));
