@@ -1,6 +1,7 @@
 package seng201.team0.models;
 
 import seng201.team0.services.EnvironmentManager;
+import seng201.team0.services.ShopService;
 
 import java.util.List;
 
