@@ -91,8 +91,8 @@ public class ModerateGameController {
     }
 
     public void initialize() {
-        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getType(), 20f, 100);
-        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getType(), 20f, 100);
+        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
+        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 20f, 100);
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
         listCartsInRound = List.of(cart1, cart2);
@@ -121,7 +121,7 @@ public class ModerateGameController {
 
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
-            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getType());
+            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(i).setOnAction(event -> {
                 selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
@@ -153,7 +153,7 @@ public class ModerateGameController {
             this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
         }
 
-        listCartsInRound.getLast().getCartTranslate().setOnFinished(actionEvent -> {
+        listCartsInRound.get(listCartsInRound.size() - 1).getCartTranslate().setOnFinished(actionEvent -> {
             System.out.println("End game");
             if (isFull) {
                 environmentManager.closeRoundDifficultySelectScreen();

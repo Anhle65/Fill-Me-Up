@@ -60,7 +60,7 @@ public class Cart {
      * Increment the amount resource into cart if the input is the same type with cart's type
      */
     public void incrementAmountResourceIntoCart(Tower tower) {
-        if(tower.getType().equals(this.typeResourceCart)){
+        if(tower.getName().equals(this.typeResourceCart)){
             currentAmount += tower.getResourceAmount();
             this.isIncrementIntoCart = true;
             if(currentAmount > sizeOfCart)

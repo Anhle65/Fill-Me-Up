@@ -82,7 +82,7 @@ public class EasyGameController {
 
     // TODO: As this game easy mode only has one cart, we can remove lists and looping over them as it is not needed. (Will still use this way for moderate and challenging)
     public void initialize() {
-        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getType(), 20f, 100);
+        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
         System.out.println(cart.getTypeResourceCart());
         listCartsInRound = List.of(cart);
         List<ImageView> listImageView = List.of(cartImageView);
@@ -110,7 +110,7 @@ public class EasyGameController {
 
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
-            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getType());
+            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(i).setOnAction(event -> {
                 selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
