@@ -1,15 +1,18 @@
 package seng201.team0.services;
 
 import seng201.team0.models.Tower;
+import seng201.team0.models.UpgradeItems;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class EnvironmentManager {
+    private int playerCoins;
     private String playerName;
     private List<Tower> currentTowerList;
-    private List<Tower> reservedTowerList;
+    private List<Tower> reservedTowerList = new ArrayList<>();
+    private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<>();
     private String gameDifficulty;
     private int numberOfRounds;
     private int currentRoundNumber = 1;
@@ -28,6 +31,7 @@ public class EnvironmentManager {
      * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
      */
     public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultySelectScreenLauncher, Consumer<EnvironmentManager> easyGameScreenLauncher, Consumer<EnvironmentManager> winnerScreenLauncher, Consumer<EnvironmentManager> loserScreenLauncher, Consumer<EnvironmentManager> shopScreenLauncher, Consumer<EnvironmentManager> moderateGameScreenLauncher, Consumer<EnvironmentManager> challengingGameScreenLauncher,Runnable clearScreen) {
+//        this.playerCoins = 150;
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.roundDifficultySelectScreenLauncher = roundDifficultySelectScreenLauncher;
@@ -38,11 +42,28 @@ public class EnvironmentManager {
         this.moderateGameScreenLauncher = moderateGameScreenLauncher;
         this.challengingGameScreenLauncher = challengingGameScreenLauncher;
         this.clearScreen = clearScreen;
-        defaultTowers.addAll(List.of(new Tower("fire",40,20,3000), new Tower("water",40,20,3000),
-                new Tower("gold",40,20,3000), new Tower("diamond",40,20,3000), new Tower("coal",40,20,3000)));
+        defaultTowers.addAll(List.of(
+                new Tower("Fire",40,20,3000),
+                new Tower("Water",40,20,3000),
+                new Tower("Gold",40,20,3000),
+                new Tower("Diamond",40,20,3000),
+                new Tower("Coal",40,20,3000))
+        );
         launchSetupScreen();
     }
 
+    /**
+     * Get the player coin
+     * @return playerCoins
+     */
+//    public int getPlayerCoins(){return this.playerCoins;}
+
+    public List<UpgradeItems> getListUpgradeCardsInInventory(){return this.listUpgradeCardsInInventory;}
+    /**
+     * Get list of the reserved tower
+     * @return reservedTowerList
+     */
+    public List<Tower> getReservedTowerList(){return this.reservedTowerList;}
     /**
      * Set the difficult level which will be chosen by user on setup page and keep through the whole game
      * @param difficulty
