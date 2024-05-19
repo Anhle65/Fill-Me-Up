@@ -10,7 +10,6 @@ public class RoundDifficultySelectController {
     private String easy;
     private String moderate;
     private String challenging;
-    private String roundDifficulty;
     private EnvironmentManager environmentManager;
 
     @FXML
@@ -46,7 +45,7 @@ public class RoundDifficultySelectController {
 
     public void onEasyRadioButtonClicked() {
         easyRadioButton.setSelected(true);
-        roundDifficulty = "Easy";
+        environmentManager.setRoundDifficulty("Easy");
         moderateRadioButton.setSelected(false);
         challengingRadioButton.setSelected(false);
         playNowButton.setDisable(false);
@@ -54,7 +53,7 @@ public class RoundDifficultySelectController {
     }
     public void onModerateRadioButtonClicked() {
         moderateRadioButton.setSelected(true);
-        roundDifficulty = "Moderate";
+        environmentManager.setRoundDifficulty("Moderate");
         easyRadioButton.setSelected(false);
         challengingRadioButton.setSelected(false);
         playNowButton.setDisable(false);
@@ -62,7 +61,7 @@ public class RoundDifficultySelectController {
     }
     public void onChallengingRadioButtonClicked() {
         challengingRadioButton.setSelected(true);
-        roundDifficulty = "Challenging";
+        environmentManager.setRoundDifficulty("Challenging");
         easyRadioButton.setSelected(false);
         moderateRadioButton.setSelected(false);
         playNowButton.setDisable(false);

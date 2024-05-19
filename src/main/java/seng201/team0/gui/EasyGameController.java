@@ -138,6 +138,15 @@ public class EasyGameController {
         this.selectedCart.generateAnimation(cartImageView, progressCart1, resourceLabel).setOnFinished(actionEvent -> {
             System.out.println("End game");
             if (isFull) {
+                if (environmentManager.getRoundDifficulty().equals("Easy")) {
+                    environmentManager.incrementScore(10);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
+                    environmentManager.incrementScore(12);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
+                    environmentManager.incrementScore(15);
+                }
                 environmentManager.closeRoundDifficultySelectScreen();
                 environmentManager.launchWinnerNextRoundScreen();
             }

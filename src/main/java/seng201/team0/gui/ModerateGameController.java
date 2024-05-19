@@ -158,6 +158,15 @@ public class ModerateGameController {
         lastMove.setOnFinished(actionEvent -> {
             System.out.println("End game");
             if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp()) {
+                if (environmentManager.getRoundDifficulty().equals("Easy")) {
+                    environmentManager.incrementScore(20);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
+                    environmentManager.incrementScore(22);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
+                    environmentManager.incrementScore(25);
+                }
                 environmentManager.closeRoundDifficultySelectScreen();
                 environmentManager.launchWinnerNextRoundScreen();
             }

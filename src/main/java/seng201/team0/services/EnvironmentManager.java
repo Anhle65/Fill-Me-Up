@@ -14,8 +14,10 @@ public class EnvironmentManager {
     private List<Tower> reservedTowerList = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<>();
     private String gameDifficulty;
+    private String roundDifficulty;
     private int numberOfRounds;
     private int currentRoundNumber = 1;
+    private int score = 0;
     private final List<Tower> defaultTowers = new ArrayList<>();
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
@@ -64,6 +66,39 @@ public class EnvironmentManager {
      * @return reservedTowerList
      */
     public List<Tower> getReservedTowerList(){return this.reservedTowerList;}
+
+    /**
+     * Get the current score
+     * @return score
+     */
+    public int getScore() {return this.score;}
+
+    /**
+     * Increment the score by the given amount
+     * @param amount amount to add to the score
+     */
+    public void incrementScore(int amount) {
+        this.score += amount;
+    }
+
+    /**
+     * Clear player score and reset score to zero when start a new game
+     */
+    public void resetScore() {
+        this.score = 0;
+    }
+
+    /**
+     * Get current round difficulty
+     */
+    public String getRoundDifficulty() {return this.roundDifficulty;}
+
+    /**
+     * Set the round difficulty level inside the chosen game difficulty
+     * @param roundDifficulty
+     */
+    public void setRoundDifficulty(String roundDifficulty) {this.roundDifficulty = roundDifficulty;}
+
     /**
      * Set the difficult level which will be chosen by user on setup page and keep through the whole game
      * @param difficulty

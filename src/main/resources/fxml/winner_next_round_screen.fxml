@@ -78,7 +78,7 @@
                         <Font name="System Bold Italic" size="25.0" />
                      </font>
                   </Label>
-                  <Label text="Points" GridPane.columnIndex="1" GridPane.halignment="LEFT">
+                  <Label fx:id="scoreLabel" text="Points" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
