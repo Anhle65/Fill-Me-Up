@@ -352,7 +352,7 @@
       </Button>
       <Button mnemonicParsing="false" onAction="#onReturnedClicked" prefHeight="40.0" prefWidth="150.0" text="Return" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
          <font>
-            <Font name="Berlin Sans FB Bold" size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
          <effect>
             <Lighting diffuseConstant="2.0" specularConstant="0.97" specularExponent="40.0" surfaceScale="1.04">
