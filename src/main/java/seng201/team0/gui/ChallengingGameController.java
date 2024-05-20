@@ -177,8 +177,14 @@ public class ChallengingGameController {
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(35);
                 }
-                environmentManager.closeRoundDifficultySelectScreen();
-                environmentManager.launchWinnerNextRoundScreen();
+
+                if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeRoundDifficultySelectScreen();
+                    environmentManager.launchWinnerNextRoundScreen();
+                } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeRoundDifficultySelectScreen();
+                    environmentManager.launchWinnerGameScreen();
+                }
             }
             else {
                 environmentManager.closeRoundDifficultySelectScreen();
