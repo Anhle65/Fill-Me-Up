@@ -114,7 +114,7 @@
                         <Font name="System Bold Italic" size="25.0" />
                      </font>
                   </Label>
-                  <Label text="Total Round" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="roundCompletedLabel" text="Total Round" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold Italic" size="25.0" />
                      </font>
@@ -129,7 +129,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label text="Player Name" textFill="#0025c9" translateX="40.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Label fx:id="playerNameLabel" text="Player Name" textFill="#0025c9" translateX="40.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
