@@ -33,7 +33,7 @@ public class TowerTest {
     @Test
     void testChangeTypeResource(){
         tower.changeTypeResource("fire");
-        assertEquals("fire", tower.getType());
+        assertEquals("fire", tower.getName());
     }
 
     /**
