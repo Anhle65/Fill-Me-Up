@@ -31,7 +31,7 @@
             <RowConstraints maxHeight="209.0" minHeight="10.0" prefHeight="192.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="203.0" fitWidth="355.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+            <ImageView fitHeight="169.0" fitWidth="322.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                <image>
                   <Image url="@../image/LOSE.gif" />
                </image>
@@ -93,9 +93,10 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Your Score:" translateX="150.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Label text="Your Score:" translateX="60.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
@@ -108,8 +109,31 @@
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Label>
+                  <Label text="Round Completed:" translateX="220.0" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Total Round" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="25.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
+            <Label text="Oh no!" translateX="-360.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label text="Player Name" textFill="#0025c9" translateX="40.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>

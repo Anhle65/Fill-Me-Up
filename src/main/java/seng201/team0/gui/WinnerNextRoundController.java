@@ -35,8 +35,8 @@ public class WinnerNextRoundController {
 
     public void initialize(){
         scoreLabel.setText(environmentManager.getScore() + " points");
-        playerNameLabel.setText(environmentManager.getPlayerName());
-        roundCompletedLabel.setText(environmentManager.getCurrentRoundNumber() + " in total");
+        playerNameLabel.setText(environmentManager.getPlayerName() + "player");
+        roundCompletedLabel.setText(environmentManager.getCurrentRoundNumber() + " round completed");
 
     }
 

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 
 public class LoserController {
     private EnvironmentManager environmentManager;
+    private int currentRound;
 
     public LoserController(EnvironmentManager environmentManager) {
         this.environmentManager = environmentManager;
@@ -13,6 +14,13 @@ public class LoserController {
 
     @FXML
     private Label totalScoreLabel;
+
+    @FXML
+    private Label playerNameLabel;
+
+    @FXML
+    private Label roundCompletedLabel;
+
 
     @FXML
     private void onExitGameButtonClicked() {
@@ -27,6 +35,10 @@ public class LoserController {
     }
 
     public void initialize(){
+        currentRound = environmentManager.getCurrentRoundNumber() - 1;
         totalScoreLabel.setText(environmentManager.getScore() + " points");
+        playerNameLabel.setText(environmentManager.getPlayerName());
+        roundCompletedLabel.setText(currentRound + " round completed");
+
     }
 }

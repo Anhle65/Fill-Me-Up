@@ -95,12 +95,12 @@
                         <Image url="@../image/cup.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="Wow!" translateX="20.0" GridPane.halignment="LEFT">
+                  <Label text="Wow!" translateX="50.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="playerNameLabel" text="Player Name" textFill="#112ff2" translateX="30.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Label fx:id="playerNameLabel" text="Player Name" textFill="#112ff2" translateX="30.0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
