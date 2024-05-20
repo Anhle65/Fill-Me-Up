@@ -11,8 +11,8 @@ public class EnvironmentManager {
     private int playerCoins;
     private String playerName;
     private List<Tower> currentTowerList;
-    private List<Tower> reservedTowerList = new ArrayList<>();
-    private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<>();
+    private List<Tower> reservedTowerList = new ArrayList<>(5);
+    private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<>(5);
     private String gameDifficulty;
     private String roundDifficulty;
     private int numberOfRounds;
