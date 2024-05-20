@@ -9,8 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class Cart {
+    private double cartSpeed;
     private final String typeResourceCart;
-    private final float speed;
     private final int sizeOfCart;
     private int currentAmount = 0;
     private boolean isIncrementIntoCart = false;
@@ -19,9 +19,9 @@ public class Cart {
     private TranslateTransition progressTranslate = new TranslateTransition();
     private TranslateTransition labelTranslate = new TranslateTransition();
 
-    public Cart(String inputResoure, float inputSpeed, int inputSize ) {
+    public Cart(String inputResoure, double inputSpeed, int inputSize ) {
         this.typeResourceCart = inputResoure;
-        this.speed = inputSpeed;
+        this.cartSpeed = inputSpeed;
         this.sizeOfCart = inputSize;
     }
 
@@ -41,7 +41,12 @@ public class Cart {
      * Get the speed of cart
      * @return speed
      */
-    public float getSpeed(){return this.speed;}
+    public double getSpeed(){return this.cartSpeed;}
+
+    /**
+     * Set the speed of cart
+     */
+    public void setCartSpeed(double speed) { this.cartSpeed = speed;}
 
     /**
      * Get the condition to increment into cart if it is true, no action otherwise
@@ -92,8 +97,8 @@ public class Cart {
      */
     public TranslateTransition generateAnimation (ImageView cartImage, ProgressBar progressbar, Label resourceLabel) {
         // Translate Transition for cart image
-        double DurX = 3000;
-        double DurY = 2000;
+        double DurX = 4000;
+        double DurY = 3000;
 
         this.cartTranslate = this.getTranslation(cartImage, DurX, 700, 0);
         TranslateTransition cartMove2 = this.getTranslation(cartImage, DurY, 0, 100);

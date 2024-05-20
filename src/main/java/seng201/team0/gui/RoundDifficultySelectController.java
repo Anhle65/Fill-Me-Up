@@ -4,13 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import seng201.team0.models.Cart;
 import seng201.team0.services.EnvironmentManager;
+
 
 public class RoundDifficultySelectController {
     private String easy;
     private String moderate;
     private String challenging;
     private EnvironmentManager environmentManager;
+    private Cart cart;
 
     @FXML
     private RadioButton easyRadioButton;
@@ -70,17 +73,15 @@ public class RoundDifficultySelectController {
 
     public void onPlayNowButtonClicked() {
         if (environmentManager.getGameDifficulty().equals("Easy")){
-            System.out.println("Playing Easy mode");
             environmentManager.closeCurrentScreen();
             environmentManager.launchEasyGameScreen();
         }
         if (environmentManager.getGameDifficulty().equals("Moderate")) {
-            System.out.println("Playing Moderate mode");
             environmentManager.closeCurrentScreen();
             environmentManager.launchModerateGameScreen();
+
         }
         if (environmentManager.getGameDifficulty().equals("Challenging")){
-            System.out.println("Playing Challenging mode");
             environmentManager.closeCurrentScreen();
             environmentManager.launchChallengingGameScreen();
 

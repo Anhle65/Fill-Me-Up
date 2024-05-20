@@ -21,6 +21,7 @@ public class LoserController {
 
     @FXML
     private void onPlayAgainButtonClicked() {
+        environmentManager.resetScore();
         environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
     }

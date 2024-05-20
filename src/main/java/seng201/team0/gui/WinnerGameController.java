@@ -21,8 +21,10 @@ public class WinnerGameController {
 
     @FXML
     private void onNewGameButtonClicked() {
+        environmentManager.resetScore();
         environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
+
     }
 
     public WinnerGameController(EnvironmentManager environmentManager) {

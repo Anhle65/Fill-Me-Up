@@ -66,12 +66,14 @@ public class ModerateGameController {
     private Button resumeButton;
 
 
-    float progress;
+    float progress1;
+    float progress2;
     private Tower selectedTower;
     private Cart selectedCart;
     private ImageView selectedImage;
     private ProgressBar selectedProgressBar;
     private Label selectedResourceLabel;
+
 
     private List<Cart> listCartsInRound = new ArrayList<Cart>();
     private List<ImageView> listImageView = new ArrayList<ImageView>();
@@ -98,17 +100,26 @@ public class ModerateGameController {
         listImageView = List.of(cartImageView1, cartImageView2);
         listProgressBar = List.of(progressBar1, progressBar2);
         listResourceLabel = List.of(resourceLabel1, resourceLabel2);
+
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
             listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
                 selectedCart = listCartsInRound.get(finalI);
                 selectedProgressBar = listProgressBar.get(finalI);
+
                 if (selectedTower != null) {
                     selectedCart.incrementAmountResourceIntoCart(selectedTower);
                     if (selectedCart.getIsIncrementIntoCart()) {
-                        progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
-                        selectedProgressBar.setProgress(progress);
-                        selectedCart.setIncrementIntoCartToFalse();
+                        if (finalI == 0) {
+                            progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress1);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
+                        else if (finalI == 1) {
+                            progress2 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress2);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
                     }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
@@ -166,13 +177,9 @@ public class ModerateGameController {
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(25);
                 }
-                if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeCurrentScreen();
-                    environmentManager.launchWinnerNextRoundScreen();
-                } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeCurrentScreen();
-                    environmentManager.launchWinnerGameScreen();
-                }
+                environmentManager.closeCurrentScreen();
+                environmentManager.launchWinnerNextRoundScreen();
+
             }
             else {
 

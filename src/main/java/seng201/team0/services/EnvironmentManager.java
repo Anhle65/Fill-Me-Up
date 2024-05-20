@@ -63,6 +63,7 @@ public class EnvironmentManager {
 //    public int getPlayerCoins(){return this.playerCoins;}
 
     public List<UpgradeItems> getListUpgradeCardsInInventory(){return this.listUpgradeCardsInInventory;}
+
     /**
      * Get list of the reserved tower
      * @return reservedTowerList
@@ -106,16 +107,19 @@ public class EnvironmentManager {
      * @param difficulty
      */
     public void setGameDifficulty(String difficulty) {this.gameDifficulty = difficulty;}
+
     /**
      * Get the difficult level
      * @return difficulty in String
      */
     public String getGameDifficulty(){return this.gameDifficulty;}
+
     /**
      * set the number of rounds which will be chosen by user on setup page and keep through the whole game
      * @param numberOfRounds
      */
     public void setNumberOfRounds(int numberOfRounds){this.numberOfRounds = numberOfRounds;}
+
     /**
      * Get numberOfRounds
      * @return numberOfRounds in int
@@ -144,6 +148,7 @@ public class EnvironmentManager {
     public String getPlayerName() {
         return playerName;
     }
+
     /**
      * set player name which will be input by user from keyboard
      * @param playerName
@@ -151,12 +156,14 @@ public class EnvironmentManager {
     public void setName(String playerName) {
         this.playerName = playerName;
     }
+
     /**
      * @return List of the current towers are used
      */
     public List<Tower> getCurrentTowerList() {
         return currentTowerList;
     }
+
     /**
      * set the current towers are used
      * @param currentTowerList
@@ -164,6 +171,7 @@ public class EnvironmentManager {
     public void setCurrentTowerList(List<Tower> currentTowerList) {
         this.currentTowerList = currentTowerList;
     }
+
     /**
      * @return List of the default towers which can be selected by player on the setup page
      */

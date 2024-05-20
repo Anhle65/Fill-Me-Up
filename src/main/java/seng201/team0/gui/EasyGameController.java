@@ -48,9 +48,6 @@ public class EasyGameController {
     private Button tower5Button;
 
     @FXML
-    private Button exitButton;
-
-    @FXML
     private Button pauseButton;
 
     @FXML
