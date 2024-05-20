@@ -110,13 +110,14 @@ public class EasyGameController {
             listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(i).setOnAction(event -> {
                 selectedTowerIndex = finalI;
+                long time = selectedTower.getRecoveryTime();
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
                         selectedTowerButton = button;
                         this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
                         TranslateTransition translateButton = new TranslateTransition();
                         translateButton.setNode(selectedTowerButton);
-                        translateButton.setDuration(Duration.millis((long)selectedTower.getRecoveryTime()));
+                        translateButton.setDuration(Duration.millis(time));
                         selectedTowerButton.setDisable(true);
                         translateButton.setOnFinished(actionEvent -> {
                             selectedTowerButton.setDisable(false);

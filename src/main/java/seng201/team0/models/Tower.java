@@ -8,12 +8,12 @@ public class Tower extends PurchasableItem {
     private int cost;
     private boolean isWorking;
     private int resourceAmount;
-    private float recoveryTime;
+    private long recoveryTime;
     boolean inUse;
     /**
      * This constructor will create tower by the different input paras(resourceType, level, price, resourceAmount)
      */
-    public Tower(String resourceType, int cost, int resourceAmount, float recoveryTime){
+    public Tower(String resourceType, int cost, int resourceAmount, long recoveryTime){
         this.resourceType = resourceType;
         this.level = 1;
         this.cost = cost;
@@ -92,9 +92,9 @@ public class Tower extends PurchasableItem {
 
     /**
      * Get the current recovery time after each action
-     * @return current recovery time in float
+     * @return current recovery time in long
      */
-    public float getRecoveryTime(){ return recoveryTime;}
+    public long getRecoveryTime(){ return recoveryTime;}
 
     /**
      * @param decrementTime
