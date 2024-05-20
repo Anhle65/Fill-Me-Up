@@ -74,7 +74,9 @@ public class ChallengingGameController {
     private Button resumeButton;
 
 
-    float progress;
+    float progress1;
+    float progress2;
+    float progress3;
     private Tower selectedTower;
     private Cart selectedCart;
     private ImageView selectedImage;
@@ -108,17 +110,30 @@ public class ChallengingGameController {
         listImageView = List.of(cartImageView1, cartImageView2, cartImageView3);
         listProgressBar = List.of(progressBar1, progressBar2, progressBar3);
         listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3);
+
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
             listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
                 selectedCart = listCartsInRound.get(finalI);
                 selectedProgressBar = listProgressBar.get(finalI);
+
                 if (selectedTower != null) {
                     selectedCart.incrementAmountResourceIntoCart(selectedTower);
                     if (selectedCart.getIsIncrementIntoCart()) {
-                        progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
-                        selectedProgressBar.setProgress(progress);
-                        selectedCart.setIncrementIntoCartToFalse();
+                        if (finalI == 0) {
+                            progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress1);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
+                        else if (finalI == 1) {
+                            progress2 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress2);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        } else if (finalI == 2) {
+                            progress3 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress3);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
                     }
                     selectedTower = null;
                     System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());

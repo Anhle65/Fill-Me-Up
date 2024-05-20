@@ -177,8 +177,13 @@ public class ModerateGameController {
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(25);
                 }
-                environmentManager.closeCurrentScreen();
-                environmentManager.launchWinnerNextRoundScreen();
+                if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeCurrentScreen();
+                    environmentManager.launchWinnerNextRoundScreen();
+                } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeCurrentScreen();
+                    environmentManager.launchWinnerGameScreen();
+                }
 
             }
             else {
