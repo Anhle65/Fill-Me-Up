@@ -4,7 +4,6 @@ import javafx.scene.control.*;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 
-import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -168,7 +167,8 @@ public class SetupScreenController{
             environmentManager.setNumberOfRounds((int) roundSlider.getValue());
             System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
             environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
-            environmentManager.closeSetupScreen();
+            environmentManager.closeCurrentScreen();
+            environmentManager.launchRoundDifficultySelectScreen();
         }
 
 

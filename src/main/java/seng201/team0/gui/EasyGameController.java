@@ -148,15 +148,15 @@ public class EasyGameController {
                     environmentManager.incrementScore(15);
                 }
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeRoundDifficultySelectScreen();
+                    environmentManager.closeCurrentScreen();
                     environmentManager.launchWinnerNextRoundScreen();
                 } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeRoundDifficultySelectScreen();
+                    environmentManager.closeCurrentScreen();
                     environmentManager.launchWinnerGameScreen();
                 }
             }
             else {
-                environmentManager.closeRoundDifficultySelectScreen();
+                environmentManager.closeCurrentScreen();
                 environmentManager.launchLoserScreen();
             }
         });

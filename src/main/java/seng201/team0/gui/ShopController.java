@@ -147,7 +147,7 @@ public class ShopController {
 
     public void onNextClicked(){
         System.out.println("Clicked on Next button");
-        environmentManager.closeShopScreen();
+        environmentManager.closeCurrentScreen();
         environmentManager.launchInventoryScreen();
     }
 }

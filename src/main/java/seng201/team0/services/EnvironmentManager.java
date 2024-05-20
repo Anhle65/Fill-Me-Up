@@ -175,13 +175,6 @@ public class EnvironmentManager {
         setupScreenLauncher.accept(this);
     }
 
-    public void closeSetupScreen() {
-        clearScreen.run();
-        launchRoundDifficultySelectScreen();
-    }
-
-    public void closeRoundDifficultySelectScreen() {clearScreen.run();}
-
     public void returnedSetupScreen() {
         clearScreen.run();
     }
@@ -192,21 +185,11 @@ public class EnvironmentManager {
 
     public void launchRoundDifficultySelectScreen() {roundDifficultySelectScreenLauncher.accept(this);}
 
-    public void closeEasyGameScreen() {
-        clearScreen.run();
-    }
-
     public void launchWinnerNextRoundScreen() { winnerScreenLauncher.accept(this);}
 
     public void launchLoserScreen() { loserScreenLauncher.accept(this);}
 
-    public void closeWinnerNextRoundScreen() { clearScreen.run(); }
-
-    public void closeLoserScreen() { clearScreen.run();}
-
-    public void closeWinnerGameScreen() { clearScreen.run();}
-
-    public void closeShopScreen() { clearScreen.run();}
+    public void closeCurrentScreen() { clearScreen.run();}
 
     public void launchShopScreen() { shopScreenLauncher.accept(this);}
 

@@ -21,7 +21,7 @@ public class WinnerGameController {
 
     @FXML
     private void onNewGameButtonClicked() {
-        environmentManager.closeWinnerGameScreen();
+        environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
     }
 

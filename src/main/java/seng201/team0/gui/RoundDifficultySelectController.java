@@ -34,12 +34,12 @@ public class RoundDifficultySelectController {
     }
     @FXML
     public void onOpenInventoryButtonClicked() {
-        environmentManager.closeEasyGameScreen();
+        environmentManager.closeCurrentScreen();
         environmentManager.launchInventoryScreen();
     }
 
     public void onBackButtonClicked() {
-        environmentManager.closeEasyGameScreen();
+        environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
     }
 
@@ -71,17 +71,17 @@ public class RoundDifficultySelectController {
     public void onPlayNowButtonClicked() {
         if (environmentManager.getGameDifficulty().equals("Easy")){
             System.out.println("Playing Easy mode");
-            environmentManager.closeRoundDifficultySelectScreen();
+            environmentManager.closeCurrentScreen();
             environmentManager.launchEasyGameScreen();
         }
         if (environmentManager.getGameDifficulty().equals("Moderate")) {
             System.out.println("Playing Moderate mode");
-            environmentManager.closeRoundDifficultySelectScreen();
+            environmentManager.closeCurrentScreen();
             environmentManager.launchModerateGameScreen();
         }
         if (environmentManager.getGameDifficulty().equals("Challenging")){
             System.out.println("Playing Challenging mode");
-            environmentManager.closeRoundDifficultySelectScreen();
+            environmentManager.closeCurrentScreen();
             environmentManager.launchChallengingGameScreen();
 
         }

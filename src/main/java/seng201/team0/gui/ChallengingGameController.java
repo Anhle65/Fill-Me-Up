@@ -2,7 +2,6 @@ package seng201.team0.gui;
 
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -10,7 +9,6 @@ import javafx.util.Duration;
 import seng201.team0.models.Cart;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
-import seng201.team0.models.RoundManager;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
@@ -179,15 +177,15 @@ public class ChallengingGameController {
                 }
 
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeRoundDifficultySelectScreen();
+                    environmentManager.closeCurrentScreen();
                     environmentManager.launchWinnerNextRoundScreen();
                 } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeRoundDifficultySelectScreen();
+                    environmentManager.closeCurrentScreen();
                     environmentManager.launchWinnerGameScreen();
                 }
             }
             else {
-                environmentManager.closeRoundDifficultySelectScreen();
+                environmentManager.closeCurrentScreen();
                 environmentManager.launchLoserScreen();
             }
         });

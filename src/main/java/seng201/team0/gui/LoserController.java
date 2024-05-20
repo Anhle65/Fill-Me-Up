@@ -21,7 +21,7 @@ public class LoserController {
 
     @FXML
     private void onPlayAgainButtonClicked() {
-        environmentManager.closeLoserScreen();
+        environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
     }
 
