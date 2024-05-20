@@ -187,6 +187,7 @@ public class SetupScreenController{
      */
 
     public void initialize(){
+        environmentManager.resetCurrentRoundNumber();
         List<Button> selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         List<Button> towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
         for (int i = 0; i < towerButtons.size(); i++) {
