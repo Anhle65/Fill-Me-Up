@@ -9,5 +9,10 @@ public class Inventory {
     private int playerCoins;
     private List<Tower> reservedTowerList;
     private EnvironmentManager environmentManager;
+    public void swapTower(){
 
+    }
+    public void upgradeTower(){
+
+    }
 }

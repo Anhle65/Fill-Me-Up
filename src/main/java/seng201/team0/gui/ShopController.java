@@ -59,6 +59,7 @@ public class ShopController {
         Random randomTypeResource = new Random();
         int enhancedResourceIndex=  randomResource.nextInt(RESOURCE_ENHANCEMENT.length);
         int timeIndex = randomTimeUpgrade.nextInt(TIME_ENHANCEMENT.length);
+        int typeResourceIndex = randomResource.nextInt(TYPE_RESOURCES.length);
         List<Integer> towerRandomTypeIndexes = List.of(randomTypeResource.nextInt(TYPE_RESOURCES.length),
                 randomTypeResource.nextInt(TYPE_RESOURCES.length), randomTypeResource.nextInt(TYPE_RESOURCES.length));
 
@@ -74,10 +75,10 @@ public class ShopController {
         listUpgradeCardsInShop.addAll(List.of(
                 new UpgradeItems("Upgrade Time", 0, TIME_ENHANCEMENT[timeIndex], COST[timeIndex]),
                 new UpgradeItems("Upgrade\nAmount", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
-                new UpgradeItems("Changing Type\nTower to " + TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)], TYPE_RESOURCES[randomResource.nextInt(TYPE_RESOURCES.length)] , 60)
+                new UpgradeItems("Changing Type\nTower to " + TYPE_RESOURCES[typeResourceIndex], TYPE_RESOURCES[typeResourceIndex] , 20)
         ));
         shopService.setListUpgradeCardsInShop(listUpgradeCardsInShop);
-        System.out.println("This is the first upgrade item in Shop: " + shopService.getListUpgradeCardsInShop().get(0).getName());
+        System.out.println("This is the first upgrade item in Shop: " + shopService.getListTowersInShop().get(0).getName());
 
         ArrayList<PurchasableItem> allItemsInShop = new ArrayList<>();
         for(UpgradeItems card : listUpgradeCardsInShop){
@@ -86,6 +87,7 @@ public class ShopController {
         for(Tower tower : listTowersInShop){
             allItemsInShop.add(tower);
         }
+        System.out.println("This is the first upgrade item in Shop in long list: " + shopService.getListTowersInShop().get(0).getName());
 
         System.out.println("Length of items in Shop: " + allItemsInShop.size());
         // Set the upgrade card in shop
@@ -126,20 +128,24 @@ public class ShopController {
     }
     public void onBuyClicked(){
         playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
-        System.out.println(environmentManager.getReservedTowerList().size());
+        int sizeBeforeBuyTower = environmentManager.getReservedTowerList().size();
+        int sizeBeforeBuyItem = environmentManager.getListUpgradeCardsInInventory().size();
         System.out.println("Clicked on Buy button");
 //        System.out.println("Item " + se);
-        if(selectedTowerInShop != null) {
-            System.out.println("Selected " + selectedTowerInShop.getName());
-            shopService.buy(selectedTowerInShop);
-            itemIsBought.setDisable(true);
+        if(sizeBeforeBuyTower < 5 && sizeBeforeBuyItem < 5) {
+            if (selectedTowerInShop != null) {
+                System.out.println("Selected " + selectedTowerInShop.getName());
+                shopService.buy(selectedTowerInShop);
+                if (environmentManager.getReservedTowerList().size() > sizeBeforeBuyTower)
+                    itemIsBought.setDisable(true);
+            } else if (selectedUpgradeCardInShop != null) {
+                System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
+                shopService.buy(selectedUpgradeCardInShop);
+                if (environmentManager.getListUpgradeCardsInInventory().size() > sizeBeforeBuyItem)
+                    itemIsBought.setDisable(true);
+            } else
+                System.out.println("Please choose item to buy");
         }
-        else if (selectedUpgradeCardInShop != null) {
-            System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
-            shopService.buy(selectedUpgradeCardInShop);
-            itemIsBought.setDisable(true);
-        }else
-            System.out.println("Please choose item to buy");
         playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
         selectedTowerInShop = null;
         selectedUpgradeCardInShop = null;
