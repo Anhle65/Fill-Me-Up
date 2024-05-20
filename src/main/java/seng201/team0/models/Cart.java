@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class Cart {
-    private double cartSpeed;
+    private long cartSpeed;       // Specified in Pixels per second
     private final String typeResourceCart;
     private final int sizeOfCart;
     private int currentAmount = 0;
@@ -19,10 +19,10 @@ public class Cart {
     private TranslateTransition progressTranslate = new TranslateTransition();
     private TranslateTransition labelTranslate = new TranslateTransition();
 
-    public Cart(String inputResoure, double inputSpeed, int inputSize ) {
-        this.typeResourceCart = inputResoure;
-        this.cartSpeed = inputSpeed;
-        this.sizeOfCart = inputSize;
+    public Cart(String inputResource, long speed, int size ) {
+        this.typeResourceCart = inputResource;
+        this.cartSpeed = speed;
+        this.sizeOfCart = size;
     }
 
     /**
@@ -38,15 +38,15 @@ public class Cart {
     public int getSizeOfCart(){return this.sizeOfCart;}
 
     /**
-     * Get the speed of cart
+     * Get the speed of cart in pixels per second
      * @return speed
      */
-    public double getSpeed(){return this.cartSpeed;}
+    public long getSpeed(){return this.cartSpeed;}
 
     /**
-     * Set the speed of cart
+     * Set the speed of cart in pixels per second
      */
-    public void setCartSpeed(double speed) { this.cartSpeed = speed;}
+    public void setCartSpeed(long speed) { this.cartSpeed = speed;}
 
     /**
      * Get the condition to increment into cart if it is true, no action otherwise
@@ -97,28 +97,31 @@ public class Cart {
      */
     public TranslateTransition generateAnimation (ImageView cartImage, ProgressBar progressbar, Label resourceLabel) {
         // Translate Transition for cart image
-        double DurX = 6000;
-        double DurY = 5000;
+        double distanceX = 700;
+        double distanceY = 100;
 
-        this.cartTranslate = this.getTranslation(cartImage, DurX, 700, 0);
-        TranslateTransition cartMove2 = this.getTranslation(cartImage, DurY, 0, 100);
-        TranslateTransition cartMove3 = this.getTranslation(cartImage, DurX, -700, 0);
-        TranslateTransition cartMove4 = this.getTranslation(cartImage, DurY, 0, 100);
-        TranslateTransition cartMove5 = this.getTranslation(cartImage, DurX, 700, 0);
+        double durationX = ((distanceX*1000) / this.cartSpeed);   // t = d / s
+        double durationY = ((distanceY*1000) / this.cartSpeed);
+
+        this.cartTranslate = this.getTranslation(cartImage, durationX, distanceX, 0);
+        TranslateTransition cartMove2 = this.getTranslation(cartImage, durationY, 0, distanceY);
+        TranslateTransition cartMove3 = this.getTranslation(cartImage, durationX, -distanceX, 0);
+        TranslateTransition cartMove4 = this.getTranslation(cartImage, durationY, 0, distanceY);
+        TranslateTransition cartMove5 = this.getTranslation(cartImage, durationX, distanceX, 0);
 
         // Translate transition for cart progress bar
-        this.progressTranslate = this.getTranslation(progressbar,DurX,700,0);
-        TranslateTransition progressMove2 = this.getTranslation(progressbar,DurY,0,100);
-        TranslateTransition progressMove3 = this.getTranslation(progressbar,DurX,-700,0);
-        TranslateTransition progressMove4 = this.getTranslation(progressbar,DurY,0,100);
-        TranslateTransition progressMove5 = this.getTranslation(progressbar,DurX,700,0);
+        this.progressTranslate = this.getTranslation(progressbar,durationX,distanceX,0);
+        TranslateTransition progressMove2 = this.getTranslation(progressbar,durationY,0,distanceY);
+        TranslateTransition progressMove3 = this.getTranslation(progressbar,durationX,-distanceX,0);
+        TranslateTransition progressMove4 = this.getTranslation(progressbar,durationY,0,distanceY);
+        TranslateTransition progressMove5 = this.getTranslation(progressbar,durationX,distanceX,0);
 
         // Translate transition for cart resource label
-        this.labelTranslate = this.getTranslation(resourceLabel,DurX,700,0);
-        TranslateTransition labelMove2 = this.getTranslation(resourceLabel,DurY,0,100);
-        TranslateTransition labelMove3 = this.getTranslation(resourceLabel,DurX,-700,0);
-        TranslateTransition labelMove4 = this.getTranslation(resourceLabel,DurY,0,100);
-        TranslateTransition labelMove5 = this.getTranslation(resourceLabel,DurX,700,0);
+        this.labelTranslate = this.getTranslation(resourceLabel,durationX,distanceX,0);
+        TranslateTransition labelMove2 = this.getTranslation(resourceLabel,durationY,0,distanceY);
+        TranslateTransition labelMove3 = this.getTranslation(resourceLabel,durationX,-distanceX,0);
+        TranslateTransition labelMove4 = this.getTranslation(resourceLabel,durationY,0,distanceY);
+        TranslateTransition labelMove5 = this.getTranslation(resourceLabel,durationX,distanceX,0);
 
         resourceLabel.setText(this.typeResourceCart);
 

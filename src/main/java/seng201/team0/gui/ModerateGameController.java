@@ -18,7 +18,7 @@ import java.util.List;
 public class ModerateGameController {
 
     private EnvironmentManager environmentManager;
-    private int selectedTowerIndex = -1;
+//    private int selectedTowerIndex = -1;
 
     @FXML
     private ImageView cartImageView1;
@@ -92,8 +92,8 @@ public class ModerateGameController {
     }
 
     public void initialize() {
-        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
-        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 20f, 100);
+        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 115, 100);
+        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 115, 100);
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
         listCartsInRound = List.of(cart1, cart2);
@@ -133,7 +133,7 @@ public class ModerateGameController {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(finalI).setOnAction(event -> {
-                selectedTowerIndex = finalI;
+//                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
                         selectedTowerButton = button;

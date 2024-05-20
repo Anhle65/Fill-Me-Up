@@ -98,9 +98,9 @@ public class ChallengingGameController {
     }
 
     public void initialize() {
-        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
-        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 20f, 100);
-        Cart cart3 = new Cart(environmentManager.getCurrentTowerList().get(2).getName(), 20f, 100);
+        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 115, 100);
+        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 115, 100);
+        Cart cart3 = new Cart(environmentManager.getCurrentTowerList().get(2).getName(), 115, 100);
 
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());

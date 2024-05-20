@@ -13,9 +13,9 @@ public class CartTest {
     private Tower towerDiffTypeCart;
     @BeforeEach
     public void setUpTest(){
-        cart = new Cart("water", 20f, 40);
-        towerSameTypeCart = new Tower("water", 20, 20, 3f);
-        towerDiffTypeCart = new Tower("fire", 20, 20, 3f);
+        cart = new Cart("water", 115, 40);
+        towerSameTypeCart = new Tower("water", 20, 20, 2000);
+        towerDiffTypeCart = new Tower("fire", 20, 20, 2000);
     }
     @Test
     public void testIncrementAmountResourceIntoCartWithInputIsSameType(){
