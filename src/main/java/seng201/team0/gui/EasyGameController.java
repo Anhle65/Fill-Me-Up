@@ -58,11 +58,11 @@ public class EasyGameController {
     @FXML
     float progress;
     private Tower selectedTower;
-
     private List<Cart> listCartsInRound;
     private Cart selectedCart;
     private boolean isFull = false;
     private List<ImageView> view = new ArrayList<>();
+    private int roundDifficultySpeed = 0;
 
     @FXML
     private void onExitButtonClicked() {
@@ -75,8 +75,13 @@ public class EasyGameController {
 
     // TODO: As this game easy mode only has one cart, we can remove lists and looping over them as it is not needed. (Will still use this way for moderate and challenging)
     public void initialize() {
+        if (environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
+        else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}
+        else if (environmentManager.getRoundDifficulty().equals("Challenging")) {roundDifficultySpeed = 120;}
 
-        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 115, 100);
+        long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
+
+        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
         System.out.println(cart.getTypeResourceCart());
         listCartsInRound = List.of(cart);
         List<ImageView> listImageView = List.of(cartImageView);

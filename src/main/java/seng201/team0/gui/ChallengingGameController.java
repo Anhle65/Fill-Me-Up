@@ -82,6 +82,8 @@ public class ChallengingGameController {
     private ImageView selectedImage;
     private ProgressBar selectedProgressBar;
     private Label selectedResourceLabel;
+    private int roundDifficultySpeed = 0;
+
 
     private List<Cart> listCartsInRound = new ArrayList<Cart>();
     private List<ImageView> listImageView = new ArrayList<ImageView>();
@@ -98,9 +100,15 @@ public class ChallengingGameController {
     }
 
     public void initialize() {
-        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 115, 100);
-        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 115, 100);
-        Cart cart3 = new Cart(environmentManager.getCurrentTowerList().get(2).getName(), 115, 100);
+        if (environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
+        else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}
+        else if (environmentManager.getRoundDifficulty().equals("Challenging")) {roundDifficultySpeed = 120;}
+
+        long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
+
+        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
+        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart3 = new Cart(environmentManager.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
 
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
@@ -208,7 +216,7 @@ public class ChallengingGameController {
         // Implementing a non-blocking delay between starting the cart animations
         ImageView bogus = new ImageView();
         TranslateTransition cartDelayTransition = new TranslateTransition();
-        cartDelayTransition.setDuration(Duration.millis(2000));
+        cartDelayTransition.setDuration(Duration.millis(1500));
         cartDelayTransition.setNode(bogus);
         cartDelayTransition.setOnFinished(actionEvent -> {
             listCartsInRound.get(1).startAnimation();

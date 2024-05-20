@@ -47,11 +47,11 @@ public class EnvironmentManager {
         this.winnerGameScreenLauncher = winnerGameScreenLauncher;
         this.clearScreen = clearScreen;
         defaultTowers.addAll(List.of(
-                new Tower("Fire",40,20,2000),
-                new Tower("Water",40,20,2000),
-                new Tower("Gold",40,20,2000),
-                new Tower("Diamond",40,20,2000),
-                new Tower("Coal",40,20,2000))
+                new Tower("Fire",40,20,1000),
+                new Tower("Water",40,20,1000),
+                new Tower("Gold",40,20,1000),
+                new Tower("Diamond",40,20,1000),
+                new Tower("Coal",40,20,1000))
         );
         launchSetupScreen();
     }
