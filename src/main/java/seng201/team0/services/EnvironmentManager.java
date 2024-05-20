@@ -135,7 +135,7 @@ public class EnvironmentManager {
     /**
      * Reset the current round number back to 1
      */
-    public void resetCurrentRoundNumber(){this.currentRoundNumber = 0;}
+    public void resetCurrentRoundNumber(){this.currentRoundNumber = 1;}
 
     /**
      * Increment the current round when click to play
