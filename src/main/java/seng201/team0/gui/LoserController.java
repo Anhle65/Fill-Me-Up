@@ -15,6 +15,13 @@ public class LoserController {
     private Label totalScoreLabel;
 
     @FXML
+    private Label playerNameLabel;
+
+    @FXML
+    private Label roundCompletedLabel;
+
+
+    @FXML
     private void onExitGameButtonClicked() {
         System.exit(0);
     }
@@ -28,5 +35,8 @@ public class LoserController {
 
     public void initialize(){
         totalScoreLabel.setText(environmentManager.getScore() + " points");
+        playerNameLabel.setText(environmentManager.getPlayerName());
+        roundCompletedLabel.setText((environmentManager.getCurrentRoundNumber() - 1) + " round completed");
+
     }
 }

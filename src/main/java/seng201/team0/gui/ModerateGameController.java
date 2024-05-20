@@ -18,7 +18,7 @@ import java.util.List;
 public class ModerateGameController {
 
     private EnvironmentManager environmentManager;
-    private int selectedTowerIndex = -1;
+//    private int selectedTowerIndex = -1;
 
     @FXML
     private ImageView cartImageView1;
@@ -73,6 +73,7 @@ public class ModerateGameController {
     private ImageView selectedImage;
     private ProgressBar selectedProgressBar;
     private Label selectedResourceLabel;
+    private int roundDifficultySpeed = 0;
 
 
     private List<Cart> listCartsInRound = new ArrayList<Cart>();
@@ -92,8 +93,14 @@ public class ModerateGameController {
     }
 
     public void initialize() {
-        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
-        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), 20f, 100);
+        if (environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
+        else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}
+        else if (environmentManager.getRoundDifficulty().equals("Challenging")) {roundDifficultySpeed = 120;}
+
+        long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
+
+        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
+        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
         listCartsInRound = List.of(cart1, cart2);
@@ -133,7 +140,7 @@ public class ModerateGameController {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(finalI).setOnAction(event -> {
-                selectedTowerIndex = finalI;
+//                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
                         selectedTowerButton = button;
@@ -196,7 +203,7 @@ public class ModerateGameController {
         // Implementing a non-blocking delay between starting the cart animations
         ImageView bogus = new ImageView();
         TranslateTransition cartDelayTransition = new TranslateTransition();
-        cartDelayTransition.setDuration(Duration.millis(1000));
+        cartDelayTransition.setDuration(Duration.millis(3000));
         cartDelayTransition.setNode(bogus);
         cartDelayTransition.setOnFinished(actionEvent -> {
             listCartsInRound.get(1).startAnimation();

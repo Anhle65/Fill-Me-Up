@@ -52,7 +52,7 @@
             </ImageView>
             <ProgressBar fx:id="progressBar2" prefWidth="200.0" progress="0.0" translateX="-200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <ProgressBar fx:id="progressBar1" prefWidth="200.0" progress="0.0" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <Button fx:id="tower1Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="tower1Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -77,19 +77,19 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Pause" GridPane.columnIndex="3" GridPane.rowIndex="6">
+            <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="resumeButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Resume" GridPane.columnIndex="5" GridPane.rowIndex="6">
+            <Button fx:id="resumeButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Resume" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="40.0" prefWidth="100.0" text="Exit" GridPane.columnIndex="7" GridPane.rowIndex="6">
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="40.0" prefWidth="80.0" text="Exit" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
             <Label fx:id="resourceLabel1" text="Resource" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">

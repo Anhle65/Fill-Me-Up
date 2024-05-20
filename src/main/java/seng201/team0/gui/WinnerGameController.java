@@ -12,7 +12,10 @@ public class WinnerGameController {
     private Label totalScoreLabel;
 
     @FXML
-    private Button newGameButton;
+    private Label playerNameLabel;
+
+    @FXML
+    private Label roundCompletedLabel;
 
     @FXML
     private void onExitButtonClicked() {
@@ -33,5 +36,8 @@ public class WinnerGameController {
 
     public void initialize(){
         totalScoreLabel.setText(environmentManager.getScore() + " points");
+        playerNameLabel.setText(environmentManager.getPlayerName());
+        roundCompletedLabel.setText(environmentManager.getCurrentRoundNumber() + " round completed" );
+
     }
 }

@@ -37,7 +37,7 @@
                   <Image url="@../image/Congratulations.gif.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="202.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" translateX="100.0" GridPane.rowIndex="3">
+            <ImageView fitHeight="202.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" translateX="600.0" GridPane.rowIndex="3">
                <image>
                   <Image url="@../image/firework.gif" />
                </image>
@@ -81,6 +81,21 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Button>
+            <Label text="Wow!" translateX="100.0" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold Italic" size="31.0" />
+               </font>
+            </Label>
+            <Label fx:id="playerNameLabel" text="Player Name" textFill="#1b18eb" translateX="50.0" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold Italic" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="roundCompletedLabel" text="Round Completed" translateX="30.0" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>

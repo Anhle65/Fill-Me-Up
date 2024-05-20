@@ -39,6 +39,7 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <GridPane GridPane.columnIndex="1">
@@ -57,9 +58,19 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label text="Your score:" GridPane.halignment="RIGHT">
+                  <Label text="Your score:" translateX="-70.0" GridPane.halignment="RIGHT">
                      <font>
                         <Font name="System Bold Italic" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="Round Completed:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="roundCompletedLabel" text="Total Round" translateX="50.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Label>
                </children>
@@ -79,16 +90,21 @@
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                     <image>
-                        <Image url="@../image/you%20won.gif" />
-                     </image>
-                  </ImageView>
                   <ImageView fitHeight="167.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                      <image>
                         <Image url="@../image/cup.jpg" />
                      </image>
                   </ImageView>
+                  <Label text="Wow!" translateX="50.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="playerNameLabel" text="Player Name" textFill="#112ff2" translateX="30.0" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
             <ImageView fitHeight="234.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
@@ -136,6 +152,11 @@
                   <Font name="System Bold Italic" size="31.0" />
                </font>
             </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" translateX="100.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <image>
+                  <Image url="@../image/you%20won.gif" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <SepiaTone level="0.35" />

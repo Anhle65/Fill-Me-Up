@@ -10,7 +10,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import seng201.team0.models.Cart;
-import seng201.team0.models.RoundManager;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 
@@ -22,9 +21,6 @@ import javafx.scene.control.Button;
 
 public class EasyGameController {
     private EnvironmentManager environmentManager;
-    private RoundManager roundManager;
-    private int trackDistance;
-    private int selectedTowerIndex = -1;
 
     @FXML
     private ImageView cartImageView;
@@ -62,11 +58,11 @@ public class EasyGameController {
     @FXML
     float progress;
     private Tower selectedTower;
-
     private List<Cart> listCartsInRound;
     private Cart selectedCart;
     private boolean isFull = false;
     private List<ImageView> view = new ArrayList<>();
+    private int roundDifficultySpeed = 0;
 
     @FXML
     private void onExitButtonClicked() {
@@ -79,7 +75,13 @@ public class EasyGameController {
 
     // TODO: As this game easy mode only has one cart, we can remove lists and looping over them as it is not needed. (Will still use this way for moderate and challenging)
     public void initialize() {
-        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 20f, 100);
+        if (environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
+        else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}
+        else if (environmentManager.getRoundDifficulty().equals("Challenging")) {roundDifficultySpeed = 120;}
+
+        long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
+
+        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
         System.out.println(cart.getTypeResourceCart());
         listCartsInRound = List.of(cart);
         List<ImageView> listImageView = List.of(cartImageView);
@@ -105,23 +107,24 @@ public class EasyGameController {
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
 
+
         for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(i).setOnAction(event -> {
-                selectedTowerIndex = finalI;
-                long time = selectedTower.getRecoveryTime();
+//                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
                         selectedTowerButton = button;
                         this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
+                        long time = selectedTower.getRecoveryTime();
                         TranslateTransition translateButton = new TranslateTransition();
                         translateButton.setNode(selectedTowerButton);
                         translateButton.setDuration(Duration.millis(time));
-                        selectedTowerButton.setDisable(true);
                         translateButton.setOnFinished(actionEvent -> {
                             selectedTowerButton.setDisable(false);
                         });
+                        selectedTowerButton.setDisable(true);
                         translateButton.play();
                         button.setStyle("-fx-background-radius: 5;");
                     } else {

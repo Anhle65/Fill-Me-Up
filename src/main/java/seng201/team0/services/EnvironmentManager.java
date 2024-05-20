@@ -47,11 +47,11 @@ public class EnvironmentManager {
         this.winnerGameScreenLauncher = winnerGameScreenLauncher;
         this.clearScreen = clearScreen;
         defaultTowers.addAll(List.of(
-                new Tower("Fire",40,20,2000),
-                new Tower("Water",40,20,2000),
-                new Tower("Gold",40,20,2000),
-                new Tower("Diamond",40,20,2000),
-                new Tower("Coal",40,20,2000))
+                new Tower("Fire",40,20,1000),
+                new Tower("Water",40,20,1000),
+                new Tower("Gold",40,20,1000),
+                new Tower("Diamond",40,20,1000),
+                new Tower("Coal",40,20,1000))
         );
         launchSetupScreen();
     }
@@ -132,6 +132,10 @@ public class EnvironmentManager {
      */
     public int getCurrentRoundNumber(){return this.currentRoundNumber;}
 
+    /**
+     * Reset the current round number back to 1
+     */
+    public void resetCurrentRoundNumber(){this.currentRoundNumber = 1;}
 
     /**
      * Increment the current round when click to play
