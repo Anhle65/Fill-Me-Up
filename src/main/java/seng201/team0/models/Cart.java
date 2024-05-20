@@ -92,8 +92,8 @@ public class Cart {
      */
     public TranslateTransition generateAnimation (ImageView cartImage, ProgressBar progressbar, Label resourceLabel) {
         // Translate Transition for cart image
-        double DurX = 5000;
-        double DurY = 3000;
+        double DurX = 3000;
+        double DurY = 2000;
 
         this.cartTranslate = this.getTranslation(cartImage, DurX, 700, 0);
         TranslateTransition cartMove2 = this.getTranslation(cartImage, DurY, 0, 100);

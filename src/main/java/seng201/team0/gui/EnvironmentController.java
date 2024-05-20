@@ -20,7 +20,7 @@ public class EnvironmentController {
 
     public void init(Stage stage) {
         this.stage = stage;
-        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultySelectScreen, this::launchEasyGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::clearPane);
+        new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultySelectScreen, this::launchEasyGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::launchWinnerGameScreen, this::clearPane);
 //        new Shop(this:: launchShopScreen);
     }
 
@@ -131,6 +131,18 @@ public class EnvironmentController {
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Challenging Game Screen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void launchWinnerGameScreen(EnvironmentManager environmentManager) {
+        try {
+            FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/winner_game_screen.fxml"));
+            mainScreenLoader.setControllerFactory(param -> new WinnerGameController(environmentManager));
+            Parent setupParent  = mainScreenLoader.load();
+            pane.getChildren().add(setupParent);
+            stage.setTitle("Game Winning Screen");
         } catch (IOException e) {
             e.printStackTrace();
         }

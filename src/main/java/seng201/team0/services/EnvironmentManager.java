@@ -28,11 +28,12 @@ public class EnvironmentManager {
     private final Consumer<EnvironmentManager> shopScreenLauncher;
     private final Consumer<EnvironmentManager> moderateGameScreenLauncher;
     private final Consumer<EnvironmentManager> challengingGameScreenLauncher;
+    private final Consumer<EnvironmentManager> winnerGameScreenLauncher;
     private final Runnable clearScreen;
     /**
      * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
      */
-    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultySelectScreenLauncher, Consumer<EnvironmentManager> easyGameScreenLauncher, Consumer<EnvironmentManager> winnerScreenLauncher, Consumer<EnvironmentManager> loserScreenLauncher, Consumer<EnvironmentManager> shopScreenLauncher, Consumer<EnvironmentManager> moderateGameScreenLauncher, Consumer<EnvironmentManager> challengingGameScreenLauncher,Runnable clearScreen) {
+    public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultySelectScreenLauncher, Consumer<EnvironmentManager> easyGameScreenLauncher, Consumer<EnvironmentManager> winnerScreenLauncher, Consumer<EnvironmentManager> loserScreenLauncher, Consumer<EnvironmentManager> shopScreenLauncher, Consumer<EnvironmentManager> moderateGameScreenLauncher, Consumer<EnvironmentManager> challengingGameScreenLauncher, Consumer<EnvironmentManager> winnerGameScreenLauncher, Runnable clearScreen) {
 //        this.playerCoins = 150;
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
@@ -43,6 +44,7 @@ public class EnvironmentManager {
         this.shopScreenLauncher = shopScreenLauncher;
         this.moderateGameScreenLauncher = moderateGameScreenLauncher;
         this.challengingGameScreenLauncher = challengingGameScreenLauncher;
+        this.winnerGameScreenLauncher = winnerGameScreenLauncher;
         this.clearScreen = clearScreen;
         defaultTowers.addAll(List.of(
                 new Tower("Fire",40,20,3000),
@@ -202,6 +204,8 @@ public class EnvironmentManager {
 
     public void closeLoserScreen() { clearScreen.run();}
 
+    public void closeWinnerGameScreen() { clearScreen.run();}
+
     public void closeShopScreen() { clearScreen.run();}
 
     public void launchShopScreen() { shopScreenLauncher.accept(this);}
@@ -211,4 +215,6 @@ public class EnvironmentManager {
     public void launchModerateGameScreen() {moderateGameScreenLauncher.accept(this);}
 
     public void launchChallengingGameScreen() {challengingGameScreenLauncher.accept(this);}
+
+    public void launchWinnerGameScreen() {winnerGameScreenLauncher.accept(this);}
 }
