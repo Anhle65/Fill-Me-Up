@@ -10,7 +10,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import seng201.team0.models.Cart;
-import seng201.team0.models.RoundManager;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 
@@ -22,9 +21,6 @@ import javafx.scene.control.Button;
 
 public class EasyGameController {
     private EnvironmentManager environmentManager;
-    private RoundManager roundManager;
-    private int trackDistance;
-//    private int selectedTowerIndex = -1;
 
     @FXML
     private ImageView cartImageView;
@@ -79,6 +75,7 @@ public class EasyGameController {
 
     // TODO: As this game easy mode only has one cart, we can remove lists and looping over them as it is not needed. (Will still use this way for moderate and challenging)
     public void initialize() {
+
         Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), 115, 100);
         System.out.println(cart.getTypeResourceCart());
         listCartsInRound = List.of(cart);
