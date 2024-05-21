@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1100.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1100.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.InventoryController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -144,7 +144,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" onAction="#onSwappedClicked" prefHeight="60.0" prefWidth="150.0" text="Swap" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+      <Button mnemonicParsing="false" onAction="#onAddToCurrentClicked" prefHeight="60.0" prefWidth="198.0" text="Add To Current" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets left="15.0" />
          </GridPane.margin>
@@ -458,13 +458,28 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="150.0" text="Sell" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+      <Button mnemonicParsing="false" onAction="#onSellClicked" prefHeight="60.0" prefWidth="150.0" text="Sell" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin>
+      </Button>
+      <Label fx:id="playerCoins" text="Label" GridPane.columnIndex="4">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="outputMessage" text="Label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button mnemonicParsing="false" onAction="#onPutBackReservedClicked" prefHeight="60.0" prefWidth="218.0" text="Put Back Reserved" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
       </Button>
    </children>
    <effect>
