@@ -38,7 +38,7 @@ public class ShopController {
     private int selectedItemIndex = -1;
     private List<Tower> listTowersInShop = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
-    private final String[] TYPE_RESOURCES = {"Water", "Fire", "Gold", "Coal", "Diamond"};
+    private final String[] TYPE_RESOURCES = {"Water", "Fire", "Gold", "Coal", "Ruby"};
     private final float[] TIME_ENHANCEMENT = {1, 1.5f, 2, 2.5f, 3};
     private final Integer[] COST = {10, 15, 25, 40, 50};
     private final Integer[] RESOURCE_ENHANCEMENT = {5, 7, 10, 12, 15};
