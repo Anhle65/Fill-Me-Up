@@ -22,12 +22,33 @@ import seng201.team0.services.InventoryService;
 
 public class EasyGameController {
     private EnvironmentManager environmentManager;
+    private int selectedTowerIndex = -1;
 
     @FXML
-    private ImageView cartImageView;
+    private ImageView cartImageView1;
 
     @FXML
-    private Label resourceLabel;
+    private ImageView cartImageView2;
+
+    @FXML
+    private ImageView cartImageView3;
+
+    @FXML
+    private Label resourceLabel1;
+
+    @FXML
+    private Label resourceLabel2;
+
+    @FXML
+    private Label resourceLabel3;
+
+    @FXML
+    private ProgressBar progressBar1;
+
+    @FXML
+    private ProgressBar progressBar2;
+    @FXML
+    private ProgressBar progressBar3;
 
     @FXML
     private Button tower1Button;
@@ -44,26 +65,22 @@ public class EasyGameController {
     @FXML
     private Button tower5Button;
 
-    @FXML
-    private Button pauseButton;
 
-    @FXML
-    private Button resumeButton;
-
-    @FXML
-    private Button selectedTowerButton;
-
-    @FXML
-    private ProgressBar progressCart1;
-
-    @FXML
-    float progress;
+    float progress1;
+    float progress2;
+    float progress3;
     private Tower selectedTower;
-    private List<Cart> listCartsInRound;
     private Cart selectedCart;
-    private boolean isFull = false;
-    private List<ImageView> view = new ArrayList<>();
+    private ImageView selectedImage;
+    private ProgressBar selectedProgressBar;
+    private Label selectedResourceLabel;
     private int roundDifficultySpeed = 0;
+
+
+    private List<Cart> listCartsInRound = new ArrayList<Cart>();
+    private List<ImageView> listImageView = new ArrayList<ImageView>();
+    private List<ProgressBar> listProgressBar = new ArrayList<ProgressBar>();
+    private List<Label> listResourceLabel = new ArrayList<Label>();
     private InventoryService inventoryService;
 
     @FXML
@@ -76,7 +93,6 @@ public class EasyGameController {
         this.inventoryService = inventoryService;
     }
 
-    // TODO: As this game easy mode only has one cart, we can remove lists and looping over them as it is not needed. (Will still use this way for moderate and challenging)
     public void initialize() {
         if (environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
         else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}
@@ -84,21 +100,42 @@ public class EasyGameController {
 
         long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
 
-        Cart cart = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
-        System.out.println(cart.getTypeResourceCart());
-        listCartsInRound = List.of(cart);
-        List<ImageView> listImageView = List.of(cartImageView);
+        Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
+        Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart3 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
+
+        System.out.println(cart1.getTypeResourceCart());
+        System.out.println(cart2.getTypeResourceCart());
+        System.out.println(cart3.getTypeResourceCart());
+
+        listCartsInRound = List.of(cart1, cart2, cart3);
+        listImageView = List.of(cartImageView1, cartImageView2, cartImageView3);
+        listProgressBar = List.of(progressBar1, progressBar2, progressBar3);
+        listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3);
+
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
             listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
                 selectedCart = listCartsInRound.get(finalI);
+                selectedProgressBar = listProgressBar.get(finalI);
+
                 if (selectedTower != null) {
                     selectedCart.incrementAmountResourceIntoCart(selectedTower);
                     if (selectedCart.getIsIncrementIntoCart()) {
-                        progress += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
-                        progressCart1.setProgress(progress);
-                        selectedCart.setIncrementIntoCartToFalse();
-                        this.isFull = selectedCart.isCartFilledUp();
+                        if (finalI == 0) {
+                            progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress1);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
+                        else if (finalI == 1) {
+                            progress2 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress2);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        } else if (finalI == 2) {
+                            progress3 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress3);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
                     }
                     selectedTower = null;
                 }
@@ -115,7 +152,8 @@ public class EasyGameController {
         for (int i = 0; i < inventoryService.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(inventoryService.getCurrentTowerList().get(finalI).getName());
-            listTowerButtons.get(i).setOnAction(event -> {
+            listTowerButtons.get(finalI).setOnAction(event -> {
+                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
                         this.selectedTower = inventoryService.getCurrentTowerList().get(finalI);
@@ -135,20 +173,29 @@ public class EasyGameController {
             });
         }
 
-        selectedCart = listCartsInRound.get(0);
+        TranslateTransition lastMove = new TranslateTransition();
+        for (int i = 0; i < listCartsInRound.size(); i++) {
+            int finalI = i;
+            selectedCart = listCartsInRound.get(finalI);
+            selectedImage = listImageView.get(finalI);
+            selectedProgressBar = listProgressBar.get(finalI);
+            selectedResourceLabel = listResourceLabel.get(finalI);
+            lastMove = this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
+        }
 
-        this.selectedCart.generateAnimation(cartImageView, progressCart1, resourceLabel).setOnFinished(actionEvent -> {
+        lastMove.setOnFinished(actionEvent -> {
             System.out.println("End game");
-            if (isFull) {
+            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp()) {
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
-                    environmentManager.incrementScore(10);
+                    environmentManager.incrementScore(30);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
-                    environmentManager.incrementScore(12);
+                    environmentManager.incrementScore(32);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
-                    environmentManager.incrementScore(15);
+                    environmentManager.incrementScore(35);
                 }
+
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
                     environmentManager.closeCurrentScreen();
                     environmentManager.launchWinnerNextRoundScreen();
@@ -162,11 +209,21 @@ public class EasyGameController {
                 environmentManager.launchLoserScreen();
             }
         });
-        selectedCart.startAnimation();
-        }
+
+        // Implementing a non-blocking delay between starting the cart animations
+        ImageView bogus = new ImageView();
+        TranslateTransition cartDelayTransition = new TranslateTransition();
+        cartDelayTransition.setDuration(Duration.millis(1500));
+        cartDelayTransition.setNode(bogus);
+        cartDelayTransition.setOnFinished(actionEvent -> {
+            listCartsInRound.get(1).startAnimation();
+            cartDelayTransition.setOnFinished(actionEvent1 -> {
+                listCartsInRound.get(2).startAnimation();
+            });
+            cartDelayTransition.play();
+        });
+
+        listCartsInRound.get(0).startAnimation();
+        cartDelayTransition.play();
     }
-
-
-
-
-
+}

@@ -48,9 +48,6 @@ public class ChallengingGameController {
     private Label resourceLabel3;
 
     @FXML
-    private Button selectedTowerButton;
-
-    @FXML
     private Button tower1Button;
 
     @FXML
@@ -64,16 +61,6 @@ public class ChallengingGameController {
 
     @FXML
     private Button tower5Button;
-
-    @FXML
-    private Button exitButton;
-
-    @FXML
-    private Button pauseButton;
-
-    @FXML
-    private Button resumeButton;
-
 
     float progress1;
     float progress2;
