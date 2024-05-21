@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.models.PurchasableItem;
+import seng201.team0.services.InventoryService;
 import seng201.team0.services.ShopService;
 import seng201.team0.models.UpgradeItems;
 import seng201.team0.models.Tower;
@@ -29,6 +30,7 @@ public class ShopController {
     private Button tower3;
     private EnvironmentManager environmentManager;
     private ShopService shopService;
+    private InventoryService inventoryService;
     private Tower selectedTowerInShop = null;
     private UpgradeItems selectedUpgradeCardInShop = null;
     private Button itemIsBought;
@@ -40,9 +42,10 @@ public class ShopController {
     private final float[] TIME_ENHANCEMENT = {1, 1.5f, 2, 2.5f, 3};
     private final Integer[] COST = {10, 15, 25, 40, 50};
     private final Integer[] RESOURCE_ENHANCEMENT = {5, 7, 10, 12, 15};
-    public ShopController(EnvironmentManager environmentManager, ShopService shopService) {
+    public ShopController(EnvironmentManager environmentManager, ShopService shopService, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
         this.shopService = shopService;
+        this.inventoryService = inventoryService;
     }
 
     /**
@@ -128,20 +131,20 @@ public class ShopController {
     }
     public void onBuyClicked(){
         playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
-        int sizeBeforeBuyTower = environmentManager.getReservedTowerList().size();
-        int sizeBeforeBuyItem = environmentManager.getListUpgradeCardsInInventory().size();
+        int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
+        int sizeBeforeBuyItem = inventoryService.getListUpgradeCardsInInventory().size();
         System.out.println("Clicked on Buy button");
 //        System.out.println("Item " + se);
         if(sizeBeforeBuyTower < 5 && sizeBeforeBuyItem < 5) {
             if (selectedTowerInShop != null) {
                 System.out.println("Selected " + selectedTowerInShop.getName());
                 shopService.buy(selectedTowerInShop);
-                if (environmentManager.getReservedTowerList().size() > sizeBeforeBuyTower)
+                if (inventoryService.getReservedTowerList().size() > sizeBeforeBuyTower)
                     itemIsBought.setDisable(true);
             } else if (selectedUpgradeCardInShop != null) {
                 System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
                 shopService.buy(selectedUpgradeCardInShop);
-                if (environmentManager.getListUpgradeCardsInInventory().size() > sizeBeforeBuyItem)
+                if (inventoryService.getListUpgradeCardsInInventory().size() > sizeBeforeBuyItem)
                     itemIsBought.setDisable(true);
             } else
                 System.out.println("Please choose item to buy");

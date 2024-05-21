@@ -10,6 +10,7 @@ import seng201.team0.models.Cart;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
 import javafx.scene.image.ImageView;
+import seng201.team0.services.InventoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,7 @@ public class ModerateGameController {
     private List<ImageView> listImageView = new ArrayList<ImageView>();
     private List<ProgressBar> listProgressBar = new ArrayList<ProgressBar>();
     private List<Label> listResourceLabel = new ArrayList<Label>();
+    private InventoryService inventoryService;
 
 
 
@@ -88,19 +90,20 @@ public class ModerateGameController {
         System.exit(0);
     }
 
-    public ModerateGameController(EnvironmentManager environmentManager) {
+    public ModerateGameController(EnvironmentManager environmentManager, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
+        this.inventoryService = inventoryService;
     }
 
     public void initialize() {
-        if (environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
+        if(environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
         else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}
         else if (environmentManager.getRoundDifficulty().equals("Challenging")) {roundDifficultySpeed = 120;}
 
         long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
 
-        Cart cart1 = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
-        Cart cart2 = new Cart(environmentManager.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
+        Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
         listCartsInRound = List.of(cart1, cart2);
@@ -136,15 +139,15 @@ public class ModerateGameController {
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
 
-        for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
+        for (int i = 0; i < inventoryService.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
-            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
+            listTowerButtons.get(finalI).setText(inventoryService.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(finalI).setOnAction(event -> {
 //                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
                         selectedTowerButton = button;
-                        this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
+                        this.selectedTower = inventoryService.getCurrentTowerList().get(finalI);
                         TranslateTransition translateButton = new TranslateTransition();
                         translateButton.setNode(selectedTowerButton);
                         translateButton.setDuration(Duration.millis((long)selectedTower.getRecoveryTime()));

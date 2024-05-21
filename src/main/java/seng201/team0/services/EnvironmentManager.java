@@ -1,24 +1,13 @@
 package seng201.team0.services;
-
-import seng201.team0.models.Tower;
-import seng201.team0.models.UpgradeItems;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 public class EnvironmentManager {
-    private int playerCoins;
     private String playerName;
-    private List<Tower> currentTowerList;
-    private List<Tower> reservedTowerList = new ArrayList<>(5);
-    private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<>(5);
     private String gameDifficulty;
     private String roundDifficulty;
     private int numberOfRounds;
     private int currentRoundNumber = 1;
     private int score = 0;
-    private final List<Tower> defaultTowers = new ArrayList<>();
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
     private final Consumer<EnvironmentManager> roundDifficultySelectScreenLauncher;
@@ -46,29 +35,8 @@ public class EnvironmentManager {
         this.challengingGameScreenLauncher = challengingGameScreenLauncher;
         this.winnerGameScreenLauncher = winnerGameScreenLauncher;
         this.clearScreen = clearScreen;
-        defaultTowers.addAll(List.of(
-                new Tower("Fire",40,20,1000),
-                new Tower("Water",40,20,1000),
-                new Tower("Gold",40,20,1000),
-                new Tower("Diamond",40,20,1000),
-                new Tower("Coal",40,20,1000))
-        );
         launchSetupScreen();
     }
-
-    /**
-     * Get the player coin
-     * @return playerCoins
-     */
-//    public int getPlayerCoins(){return this.playerCoins;}
-
-    public List<UpgradeItems> getListUpgradeCardsInInventory(){return this.listUpgradeCardsInInventory;}
-
-    /**
-     * Get list of the reserved tower
-     * @return reservedTowerList
-     */
-    public List<Tower> getReservedTowerList(){return this.reservedTowerList;}
 
     /**
      * Get the current score
@@ -98,13 +66,13 @@ public class EnvironmentManager {
 
     /**
      * Set the round difficulty level inside the chosen game difficulty
-     * @param roundDifficulty
+     * @param roundDifficulty in String
      */
     public void setRoundDifficulty(String roundDifficulty) {this.roundDifficulty = roundDifficulty;}
 
     /**
      * Set the difficult level which will be chosen by user on setup page and keep through the whole game
-     * @param difficulty
+     * @param difficulty in String
      */
     public void setGameDifficulty(String difficulty) {this.gameDifficulty = difficulty;}
 
@@ -116,7 +84,7 @@ public class EnvironmentManager {
 
     /**
      * set the number of rounds which will be chosen by user on setup page and keep through the whole game
-     * @param numberOfRounds
+     * @param numberOfRounds in Integer
      */
     public void setNumberOfRounds(int numberOfRounds){this.numberOfRounds = numberOfRounds;}
 
@@ -155,32 +123,10 @@ public class EnvironmentManager {
 
     /**
      * set player name which will be input by user from keyboard
-     * @param playerName
+     * @param playerName in String
      */
     public void setName(String playerName) {
         this.playerName = playerName;
-    }
-
-    /**
-     * @return List of the current towers are used
-     */
-    public List<Tower> getCurrentTowerList() {
-        return currentTowerList;
-    }
-
-    /**
-     * set the current towers are used
-     * @param currentTowerList
-     */
-    public void setCurrentTowerList(List<Tower> currentTowerList) {
-        this.currentTowerList = currentTowerList;
-    }
-
-    /**
-     * @return List of the default towers which can be selected by player on the setup page
-     */
-    public List<Tower> getDefaultTowers() {
-        return defaultTowers;
     }
 
     public void launchSetupScreen() {

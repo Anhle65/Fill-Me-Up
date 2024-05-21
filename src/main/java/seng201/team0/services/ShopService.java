@@ -8,29 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShopService {
-//    private final Consumer<Shop> shopScreenLauncher;
-//    private final Runnable clearScreen;
-    private EnvironmentManager environmentManager;
-    private List<Tower> listTowersInShop = new ArrayList<>();
-    private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
+    private InventoryService inventoryService;
+    private List<Tower> listTowersInShop = new ArrayList<Tower>();
+    private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<UpgradeItems>();
     private List<String> towerType = List.of("Water", "Fire", "Gold", "Coal", "Diamond");
     private int currentCoin = 150;
-    public ShopService(EnvironmentManager environmentManager){
-        this.environmentManager = environmentManager;
+    public ShopService(InventoryService inventoryService){
+        this.inventoryService= inventoryService;
 //        this.currentCoin = environmentManager.getPlayerCoins();
     }
 
     public void buy(UpgradeItems item){
         if(this.currentCoin >= item.getCost()){
             this.currentCoin -= item.getCost();
-            environmentManager.getListUpgradeCardsInInventory().add(item);
+            inventoryService.getListUpgradeCardsInInventory().add(item);
         }
     }
 
     public void buy(Tower item){
         if(this.currentCoin >= item.getCost()){
             this.currentCoin -= item.getCost();
-            environmentManager.getReservedTowerList().add(item);
+            inventoryService.getReservedTowerList().add(item);
         }
     }
 

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Button;
+import seng201.team0.services.InventoryService;
 
 
 public class EasyGameController {
@@ -63,14 +64,16 @@ public class EasyGameController {
     private boolean isFull = false;
     private List<ImageView> view = new ArrayList<>();
     private int roundDifficultySpeed = 0;
+    private InventoryService inventoryService;
 
     @FXML
     private void onExitButtonClicked() {
         System.exit(0);
     }
 
-    public EasyGameController(EnvironmentManager environmentManager) {
+    public EasyGameController(EnvironmentManager environmentManager, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
+        this.inventoryService = inventoryService;
     }
 
     // TODO: As this game easy mode only has one cart, we can remove lists and looping over them as it is not needed. (Will still use this way for moderate and challenging)
@@ -81,7 +84,7 @@ public class EasyGameController {
 
         long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
 
-        Cart cart = new Cart(environmentManager.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
+        Cart cart = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
         System.out.println(cart.getTypeResourceCart());
         listCartsInRound = List.of(cart);
         List<ImageView> listImageView = List.of(cartImageView);
@@ -106,26 +109,30 @@ public class EasyGameController {
 
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
-
-
-        for (int i = 0; i < environmentManager.getCurrentTowerList().size(); i++) {
+        TranslateTransition translateButton1 = new TranslateTransition();
+        TranslateTransition translateButton2 = new TranslateTransition();
+        TranslateTransition translateButton3 = new TranslateTransition();
+        TranslateTransition translateButton4 = new TranslateTransition();
+        TranslateTransition translateButton5 = new TranslateTransition();
+        List<TranslateTransition> translateButtons = List.of(translateButton1, translateButton2, translateButton3, translateButton4, translateButton5);
+        for (int i = 0; i < inventoryService.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
-            listTowerButtons.get(finalI).setText(environmentManager.getCurrentTowerList().get(finalI).getName());
+            listTowerButtons.get(finalI).setText(inventoryService.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(i).setOnAction(event -> {
 //                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
                         selectedTowerButton = button;
-                        this.selectedTower = environmentManager.getCurrentTowerList().get(finalI);
+                        this.selectedTower = inventoryService.getCurrentTowerList().get(finalI);
                         long time = selectedTower.getRecoveryTime();
-                        TranslateTransition translateButton = new TranslateTransition();
-                        translateButton.setNode(selectedTowerButton);
-                        translateButton.setDuration(Duration.millis(time));
-                        translateButton.setOnFinished(actionEvent -> {
+//                        TranslateTransition translateButton = new TranslateTransition();
+                        translateButtons.get(finalI).setNode(selectedTowerButton);
+                        translateButtons.get(finalI).setDuration(Duration.millis(time));
+                        translateButtons.get(finalI).setOnFinished(actionEvent -> {
                             selectedTowerButton.setDisable(false);
                         });
                         selectedTowerButton.setDisable(true);
-                        translateButton.play();
+                        translateButtons.get(finalI).play();
                         button.setStyle("-fx-background-radius: 5;");
                     } else {
                         button.setStyle("");

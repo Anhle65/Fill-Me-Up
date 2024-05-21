@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import seng201.team0.services.InventoryService;
 import seng201.team0.services.ShopService;
 import seng201.team0.services.EnvironmentManager;
 
@@ -16,6 +17,7 @@ public class EnvironmentController {
     private Pane pane;
 
     private Stage stage;
+    private InventoryService inventoryService = new InventoryService();
 
 
     public void init(Stage stage) {
@@ -28,7 +30,7 @@ public class EnvironmentController {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/setup_screen.fxml"));
             // provide a custom Controller with parameters
-            setupLoader.setControllerFactory(param -> new SetupScreenController(environmentManager));
+            setupLoader.setControllerFactory(param -> new SetupScreenController(environmentManager, this.inventoryService));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Set Up Screen");
@@ -44,7 +46,7 @@ public class EnvironmentController {
     public void launchInventoryScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/inventory_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new InventoryController(environmentManager, new ShopService(environmentManager)));
+            mainScreenLoader.setControllerFactory(param -> new InventoryController(environmentManager, new ShopService(this.inventoryService), this.inventoryService));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Tower Manager Inventory Screen");
@@ -67,7 +69,7 @@ public class EnvironmentController {
     public void launchEasyGameScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/easy_game_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new EasyGameController(environmentManager));
+            mainScreenLoader.setControllerFactory(param -> new EasyGameController(environmentManager, this.inventoryService));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Easy Game Screen");
@@ -103,7 +105,7 @@ public class EnvironmentController {
     public void launchShopScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/shop_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ShopController(environmentManager, new ShopService(environmentManager)));
+            mainScreenLoader.setControllerFactory(param -> new ShopController(environmentManager, new ShopService(this.inventoryService), this.inventoryService));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Shop Screen");
@@ -115,7 +117,7 @@ public class EnvironmentController {
     public void launchModerateGameScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/moderate_game_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ModerateGameController(environmentManager));
+            mainScreenLoader.setControllerFactory(param -> new ModerateGameController(environmentManager, this.inventoryService));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Moderate Game Screen");
@@ -127,7 +129,7 @@ public class EnvironmentController {
     public void launchChallengingGameScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/challenging_game_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new ChallengingGameController(environmentManager));
+            mainScreenLoader.setControllerFactory(param -> new ChallengingGameController(environmentManager, this.inventoryService));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Challenging Game Screen");

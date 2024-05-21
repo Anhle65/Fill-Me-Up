@@ -3,7 +3,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import seng201.team0.models.Tower;
 import seng201.team0.services.EnvironmentManager;
+import seng201.team0.services.InventoryService;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -60,10 +62,12 @@ public class SetupScreenController{
     private boolean initialTowerSelectedEmpty = true;
     @FXML
     private EnvironmentManager environmentManager;
+    private InventoryService inventoryService;
     private int selectedTowerIndex = -1;
-    private final Tower[] selectedTowers = new Tower[3];
-    public SetupScreenController(EnvironmentManager environmentManager){
+    private final List<Tower> selectedTowers = new ArrayList<Tower>(3);
+    public SetupScreenController(EnvironmentManager environmentManager, InventoryService inventoryService){
         this.environmentManager = environmentManager;
+        this.inventoryService = inventoryService;
     }
     @FXML
     private void onTower1ButtonClicked(){
@@ -142,7 +146,8 @@ public class SetupScreenController{
     @FXML
     private void onNameTextFieldChanged() {
         if (!Objects.equals(nameTextField.getText(), "") || !(nameTextField.getText().trim().isEmpty())){
-            nameTextFieldEmpty = false;
+            if((nameTextField.getText()).length() >= 3 && (nameTextField.getText()).length() <= 15)
+                nameTextFieldEmpty = false;
         }
         System.out.println(nameTextField.getText());
     }
@@ -153,7 +158,7 @@ public class SetupScreenController{
         onSelectedTower2ButtonClicked();
         onSelectedTower3ButtonClicked();
         if (nameTextFieldEmpty) {
-                warningLabel.setText("Please enter your name!");
+                warningLabel.setText("Please enter your name with length 3-15 characters!");
         }
         else if (gameDifficultyEmpty) {
             // Print error message
@@ -166,7 +171,10 @@ public class SetupScreenController{
             System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
             environmentManager.setNumberOfRounds((int) roundSlider.getValue());
             System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
-            environmentManager.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
+            for(Tower tower : selectedTowers){
+                inventoryService.getCurrentTowerList().add(tower);
+            }
+//            inventoryService.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
             environmentManager.closeCurrentScreen();
             environmentManager.launchRoundDifficultySelectScreen();
         }
@@ -193,7 +201,7 @@ public class SetupScreenController{
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             towerButtons.get(i).setOnAction(event -> {
-                updateStats(environmentManager.getDefaultTowers().get(finalI));
+                updateStats(inventoryService.getDefaultTowers().get(finalI));
                 selectedTowerIndex = finalI;
                 towerButtons.forEach(button -> {
                     if (button == towerButtons.get(finalI)) {
@@ -208,8 +216,8 @@ public class SetupScreenController{
             int finalI = i; // variables used within lambdas must be final
             selectedTowerButtons.get(i).setOnAction(event -> {
                 if (selectedTowerIndex != -1) {
-                    selectedTowerButtons.get(finalI).setText(environmentManager.getDefaultTowers().get(selectedTowerIndex).getName());
-                    selectedTowers[finalI] = environmentManager.getDefaultTowers().get(selectedTowerIndex);
+                    selectedTowerButtons.get(finalI).setText(inventoryService.getDefaultTowers().get(selectedTowerIndex).getName());
+                    selectedTowers.add(inventoryService.getDefaultTowers().get(selectedTowerIndex));
                 }
             });
         }
