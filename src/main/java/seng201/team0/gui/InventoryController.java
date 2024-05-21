@@ -226,7 +226,7 @@ public class InventoryController {
         }
     }
     private void updateStats(Tower tower, Label towerTime, Label towerResource, Label towerLevel) {
-        towerTime.setText(String.valueOf(tower.getRecoveryTime()));
+        towerTime.setText(String.valueOf(tower.getRecoveryTime()/1000)+" s");
         towerResource.setText(String.valueOf(tower.getResourceAmount()));
         towerLevel.setText(String.valueOf(tower.getLevel()));
     }

@@ -226,7 +226,7 @@ public class SetupScreenController{
         towerType.setText(tower.getName());
         towerCost.setText(String.valueOf(tower.getCost()));
         levelTower.setText(String.valueOf(tower.getLevel()));
-        recoveryTime.setText(String.valueOf(tower.getRecoveryTime()));
+        recoveryTime.setText(String.valueOf(tower.getRecoveryTime()/1000) + " s");
         resourceAmount.setText(String.valueOf(tower.getResourceAmount()));
     }
 }
