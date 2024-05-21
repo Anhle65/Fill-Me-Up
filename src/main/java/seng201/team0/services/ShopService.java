@@ -11,7 +11,7 @@ public class ShopService {
     private InventoryService inventoryService;
     private List<Tower> listTowersInShop = new ArrayList<Tower>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<UpgradeItems>();
-    private List<String> towerType = List.of("Water", "Fire", "Gold", "Coal", "Diamond");
+    private List<String> towerType = List.of("Water", "Fire", "Gold", "Coal", "Ruby");
     private int currentCoin = 150;
     public ShopService(InventoryService inventoryService){
         this.inventoryService= inventoryService;

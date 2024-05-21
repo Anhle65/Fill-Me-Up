@@ -18,7 +18,7 @@ public class InventoryService {
                 new Tower("Fire",40,20,3000),
                 new Tower("Water",40,20,3000),
                 new Tower("Gold",40,20,3000),
-                new Tower("Diamond",40,20,3000),
+                new Tower("Ruby",40,20,3000),
                 new Tower("Coal",40,20,3000))
         );
     }
