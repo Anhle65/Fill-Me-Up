@@ -147,7 +147,6 @@ public class ChallengingGameController {
                         }
                     }
                     selectedTower = null;
-                    System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
         }
