@@ -307,6 +307,7 @@
                   </RadioButton>
                </children>
             </GridPane>
+            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" text="Reset Tower" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
       </children>
    </GridPane>
    </children>

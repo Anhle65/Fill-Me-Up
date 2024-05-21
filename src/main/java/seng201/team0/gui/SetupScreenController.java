@@ -59,12 +59,16 @@ public class SetupScreenController{
     private boolean selectedTower1Empty = true;
     private boolean selectedTower2Empty = true;
     private boolean selectedTower3Empty = true;
+    private Button selectDefaultTowerButton;
+    private Button selectTowerButton;
+    private List<Button> selectedTowerButtons;
+    private List<Button> towerButtons;
     private boolean initialTowerSelectedEmpty = true;
     @FXML
     private EnvironmentManager environmentManager;
     private InventoryService inventoryService;
     private int selectedTowerIndex = -1;
-    private final List<Tower> selectedTowers = new ArrayList<Tower>(3);
+    private final Tower[] selectedTowers = new Tower[3];;
     public SetupScreenController(EnvironmentManager environmentManager, InventoryService inventoryService){
         this.environmentManager = environmentManager;
         this.inventoryService = inventoryService;
@@ -165,16 +169,11 @@ public class SetupScreenController{
             warningLabel.setText("Please choose game difficulty!");
         }
         else {
-
-            System.out.println("reach here ");
             environmentManager.setName(nameTextField.getText());
             System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
             environmentManager.setNumberOfRounds((int) roundSlider.getValue());
             System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
-            for(Tower tower : selectedTowers){
-                inventoryService.getCurrentTowerList().add(tower);
-            }
-//            inventoryService.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
+            inventoryService.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
             environmentManager.closeCurrentScreen();
             environmentManager.launchRoundDifficultySelectScreen();
         }
@@ -187,8 +186,16 @@ public class SetupScreenController{
         System.exit(0);
     }
 
-
-
+    @FXML
+    private void onResetSelectedTowerClicked(){
+        for(int i=0; i < this.selectedTowerButtons.size(); i++){
+            this.selectedTowerButtons.get(i).setDisable(false);
+            this.selectedTowerButtons.get(i).setText("");
+        }
+        for(int i=0; i < this.towerButtons.size(); i++){
+            this.towerButtons.get(i).setDisable(false);
+        }
+    }
 
     /**
      * Initialize the setup page
@@ -196,8 +203,8 @@ public class SetupScreenController{
 
     public void initialize(){
         environmentManager.resetCurrentRoundNumber();
-        List<Button> selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
-        List<Button> towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
+        this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
+        this.towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             towerButtons.get(i).setOnAction(event -> {
@@ -205,6 +212,7 @@ public class SetupScreenController{
                 selectedTowerIndex = finalI;
                 towerButtons.forEach(button -> {
                     if (button == towerButtons.get(finalI)) {
+                        this.selectDefaultTowerButton = button;
                         button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
@@ -217,7 +225,11 @@ public class SetupScreenController{
             selectedTowerButtons.get(i).setOnAction(event -> {
                 if (selectedTowerIndex != -1) {
                     selectedTowerButtons.get(finalI).setText(inventoryService.getDefaultTowers().get(selectedTowerIndex).getName());
-                    selectedTowers.add(inventoryService.getDefaultTowers().get(selectedTowerIndex));
+                    selectedTowers[finalI] = inventoryService.getDefaultTowers().get(selectedTowerIndex);
+                    this.selectedTowerIndex = -1;
+                    this.selectTowerButton = selectedTowerButtons.get(finalI);
+                    this.selectTowerButton.setDisable(true);
+                    this.selectDefaultTowerButton.setDisable(true);
                 }
             });
         }
