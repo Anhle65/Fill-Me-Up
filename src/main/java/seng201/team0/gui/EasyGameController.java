@@ -213,7 +213,7 @@ public class EasyGameController {
         // Implementing a non-blocking delay between starting the cart animations
         ImageView bogus = new ImageView();
         TranslateTransition cartDelayTransition = new TranslateTransition();
-        cartDelayTransition.setDuration(Duration.millis(1500));
+        cartDelayTransition.setDuration(Duration.millis(2000));
         cartDelayTransition.setNode(bogus);
         cartDelayTransition.setOnFinished(actionEvent -> {
             listCartsInRound.get(1).startAnimation();

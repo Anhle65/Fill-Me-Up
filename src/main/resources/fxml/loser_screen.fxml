@@ -16,9 +16,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.LoserController">
+<AnchorPane prefHeight="1100.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.LoserController">
    <children>
-      <GridPane layoutX="7.0" prefHeight="700.0" prefWidth="900.0">
+      <GridPane layoutX="7.0" prefHeight="1100.0" prefWidth="1500.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -31,14 +31,14 @@
             <RowConstraints maxHeight="209.0" minHeight="10.0" prefHeight="192.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="169.0" fitWidth="322.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <ImageView fitHeight="320.0" fitWidth="642.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                <image>
                   <Image url="@../image/LOSE.gif" />
                </image>
             </ImageView>
             <Label text="Do you want to try again?" textFill="#e40707" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
-                  <Font name="System Bold Italic" size="33.0" />
+                  <Font name="System Bold Italic" size="45.0" />
                </font>
             </Label>
             <GridPane GridPane.rowIndex="5">
@@ -50,7 +50,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="playAgainButton" mnemonicParsing="false" onAction="#onPlayAgainButtonClicked" text="Play Again" GridPane.halignment="CENTER">
+                  <Button fx:id="playAgainButton" mnemonicParsing="false" onAction="#onPlayAgainButtonClicked" prefHeight="60.0" prefWidth="170.0" text="Play Again" GridPane.halignment="CENTER">
                      <font>
                         <Font name="System Bold" size="26.0" />
                      </font>
@@ -69,21 +69,21 @@
                         </Lighting>
                      </effect>
                   </Button>
-                  <Button fx:id="exitGameButton" mnemonicParsing="false" onAction="#onExitGameButtonClicked" text="Exit Game" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <Button fx:id="exitGameButton" mnemonicParsing="false" onAction="#onExitGameButtonClicked" prefHeight="60.0" prefWidth="160.0" text="Exit Game" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
                </children>
             </GridPane>
-            <ImageView fitHeight="113.0" fitWidth="189.0" pickOnBounds="true" preserveRatio="true" translateX="-150.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <ImageView fitHeight="172.0" fitWidth="593.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <image>
                   <Image url="@../image/LOST%20FACE.gif" />
                </image>
             </ImageView>
-            <Label prefHeight="61.0" prefWidth="202.0" text="YOU LOSE" textFill="#101011e5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label prefHeight="61.0" prefWidth="323.0" text="YOU LOSE" textFill="#101011e5" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
-                  <Font name="System Bold Italic" size="31.0" />
+                  <Font name="System Bold Italic" size="57.0" />
                </font>
             </Label>
             <GridPane GridPane.rowIndex="3">
@@ -96,9 +96,9 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Your Score:" translateX="60.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                  <Label text="Your Score:" translateX="100.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                      <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold Italic" size="43.0" />
                      </font>
                      <GridPane.margin>
                         <Insets />
@@ -106,32 +106,32 @@
                   </Label>
                   <Label fx:id="totalScoreLabel" text="Points" translateX="30.0" GridPane.columnIndex="1" GridPane.halignment="LEFT">
                      <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold Italic" size="43.0" />
                      </font>
                   </Label>
-                  <Label text="Round Completed:" translateX="150.0" GridPane.rowIndex="1">
+                  <Label text="Round Completed:" translateX="360.0" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold Italic" size="25.0" />
+                        <Font name="System Bold Italic" size="43.0" />
                      </font>
                   </Label>
                   <Label fx:id="roundCompletedLabel" text="Total Round" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold Italic" size="25.0" />
+                        <Font name="System Bold Italic" size="43.0" />
                      </font>
                   </Label>
                </children>
             </GridPane>
-            <Label text="Oh no!" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Label prefHeight="50.0" prefWidth="150.0" text="Oh no!" textFill="#e40707" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                <font>
-                  <Font name="System Bold Italic" size="33.0" />
+                  <Font name="System Bold Italic" size="41.0" />
                </font>
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label fx:id="playerNameLabel" text="Player Name" textFill="#0025c9" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label fx:id="playerNameLabel" prefWidth="850.0" text="Player Name" textFill="#0025c9" translateX="300.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
-                  <Font name="System Bold" size="33.0" />
+                  <Font name="System Bold" size="43.0" />
                </font>
             </Label>
          </children>
