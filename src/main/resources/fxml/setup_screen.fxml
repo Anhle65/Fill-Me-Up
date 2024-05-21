@@ -17,7 +17,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
    <children>
 
    <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -35,9 +35,9 @@
        <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <Label alignment="CENTER" text="Welcome to Tower Manager!" textFill="#d90000" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+         <Label alignment="CENTER" text="Welcome to FILL ME UP Game!!" textFill="#d90000" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
             <font>
-               <Font name="Verdana Bold" size="24.0" />
+               <Font name="System Bold Italic" size="24.0" />
             </font>
             <GridPane.margin>
                <Insets left="10.0" />
@@ -45,7 +45,7 @@
          </Label>
          <Label text="What is your name?" GridPane.halignment="LEFT" GridPane.rowIndex="1">
             <font>
-               <Font name="Verdana Bold" size="18.0" />
+               <Font name="System Bold" size="18.0" />
             </font>
             <GridPane.margin>
                <Insets left="10.0" />
@@ -56,7 +56,7 @@
                <Insets left="10.0" />
             </GridPane.margin>
             <font>
-               <Font name="Verdana Bold" size="18.0" />
+               <Font name="System Bold" size="18.0" />
             </font>
          </Label>
          <TextField fx:id="nameTextField" onAction="#onNameTextFieldChanged" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -71,7 +71,7 @@
          </Slider>
          <Label text="Selected:" GridPane.rowIndex="5">
             <font>
-               <Font name="Verdana Bold" size="18.0" />
+               <Font name="System Bold" size="18.0" />
             </font>
             <GridPane.margin>
                <Insets left="10.0" />
@@ -238,7 +238,7 @@
                <Insets right="20.0" />
             </GridPane.margin>
                <font>
-                  <Font name="Verdana Bold" size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
                <effect>
                   <Lighting bumpInput="$null" diffuseConstant="2.0" specularConstant="2.0" specularExponent="40.0" surfaceScale="0.0">
@@ -260,12 +260,12 @@
                <Insets left="10.0" />
             </GridPane.margin>
                <font>
-                  <Font name="Verdana Bold" size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
          </Label>
             <Button mnemonicParsing="false" onAction="#onExitClicked" prefHeight="46.0" prefWidth="160.0" text="Exit Game" translateX="140.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
-                  <Font name="Verdana Bold" size="22.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
                <effect>
                   <DropShadow height="10.0" radius="5.75" spread="0.45" width="15.0">
@@ -292,17 +292,17 @@
                <children>
                   <RadioButton fx:id="easyGameRadioButton" mnemonicParsing="false" onAction="#onEasyGameRadioButtonClicked" text="Easy">
                      <font>
-                        <Font size="17.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </RadioButton>
                   <RadioButton fx:id="moderateGameRadioButton" mnemonicParsing="false" onAction="#onModerateGameRadioButtonClicked" text="Moderate" GridPane.columnIndex="1">
                      <font>
-                        <Font size="17.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </RadioButton>
                   <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" GridPane.columnIndex="2">
                      <font>
-                        <Font size="17.0" />
+                        <Font name="System Bold" size="17.0" />
                      </font>
                   </RadioButton>
                </children>
