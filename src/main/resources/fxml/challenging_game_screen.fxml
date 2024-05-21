@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.ChallengingGameController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.ChallengingGameController">
    <children>
       <GridPane layoutY="1.0" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: Pink;">
         <columnConstraints>
@@ -67,16 +67,6 @@
                </font>
             </Button>
             <Button fx:id="tower5Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 5" GridPane.columnIndex="8" GridPane.halignment="LEFT" GridPane.rowIndex="5">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="resumeButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Resume" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

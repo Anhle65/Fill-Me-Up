@@ -75,16 +75,6 @@
                   <Font name="Verdana Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="pauseButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Pause" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Verdana Bold" size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="resumeButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="85.0" text="Resume" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6">
-               <font>
-                  <Font name="Verdana Bold" size="14.0" />
-               </font>
-            </Button>
             <ProgressBar fx:id="progressCart1" prefWidth="200.0" progress="0.0" GridPane.rowIndex="2" GridPane.valignment="TOP" />
             <ImageView fitHeight="106.0" fitWidth="97.0" layoutX="97.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="7" GridPane.rowIndex="3" />
             <Label fx:id="resourceLabel" text="Resource" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">

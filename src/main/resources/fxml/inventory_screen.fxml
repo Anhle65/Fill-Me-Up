@@ -37,7 +37,7 @@
             <Insets left="10.0" />
          </GridPane.margin>
          <font>
-            <Font name="Verdana Bold" size="22.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
       <Button fx:id="tower3" mnemonicParsing="false" prefHeight="86.0" prefWidth="150.0" text="Tower 3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -114,7 +114,7 @@
             <Insets left="15.0" />
          </GridPane.margin>
          <font>
-            <Font name="Verdana Bold" size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Button mnemonicParsing="false" onAction="#onSwappedClicked" prefHeight="40.0" prefWidth="100.0" text="Swap" GridPane.halignment="CENTER" GridPane.rowIndex="5">
@@ -122,7 +122,7 @@
             <Insets left="15.0" />
          </GridPane.margin>
          <font>
-            <Font name="Verdana Bold" size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Button>
       <Label fx:id="tower1Time" text="Label" GridPane.rowIndex="2" GridPane.valignment="TOP">
@@ -175,7 +175,7 @@
             <Insets left="45.0" />
          </GridPane.margin>
          <font>
-            <Font name="Verdana Bold" size="22.0" />
+            <Font name="System Bold Italic" size="22.0" />
          </font>
       </Label>
       <Button fx:id="tower4" mnemonicParsing="false" prefHeight="86.0" prefWidth="150.0" text="Empty" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -370,7 +370,7 @@
          </effect></Button>
       <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Sell" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <font>
-            <Font name="Verdana Bold" size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
          <GridPane.margin>
             <Insets left="40.0" />
