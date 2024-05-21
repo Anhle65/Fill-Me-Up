@@ -187,13 +187,13 @@ public class EasyGameController {
             System.out.println("End game");
             if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp()) {
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
-                    environmentManager.incrementScore(30);
+                    environmentManager.incrementScore(10);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
-                    environmentManager.incrementScore(32);
+                    environmentManager.incrementScore(15);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
-                    environmentManager.incrementScore(35);
+                    environmentManager.incrementScore(20);
                 }
 
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.ChallengingGameController">
+<AnchorPane prefHeight="1100.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.ChallengingGameController">
    <children>
-      <GridPane layoutY="1.0" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: Pink;">
+      <GridPane layoutY="1.0" prefHeight="1100.0" prefWidth="1500.0" style="-fx-background-color: Pink;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -40,60 +40,60 @@
                   <Image url="@../image/seng201_cart.png" />
                </image>
             </ImageView>
-            <ProgressBar fx:id="progressBar1" prefWidth="200.0" progress="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <ImageView fitHeight="115.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="3">
+            <ProgressBar fx:id="progressBar1" prefWidth="120.0" progress="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <ImageView fitHeight="156.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="8" GridPane.rowIndex="3">
                <image>
                   <Image url="@../image/flag.gif" />
                </image>
             </ImageView>
-            <Button fx:id="tower1Button" minHeight="100.0" mnemonicParsing="false" prefWidth="90.0" text="Tower 1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+            <Button fx:id="tower1Button" minHeight="150.0" mnemonicParsing="false" prefWidth="140.0" text="Tower 1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="tower2Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="tower2Button" mnemonicParsing="false" prefHeight="140.0" prefWidth="150.0" text="Tower 2" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="tower3Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 3" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="tower3Button" mnemonicParsing="false" prefHeight="140.0" prefWidth="150.0" text="Tower 3" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="tower4Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 4" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+            <Button fx:id="tower4Button" mnemonicParsing="false" prefHeight="140.0" prefWidth="150.0" text="Tower 4" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="tower5Button" mnemonicParsing="false" prefHeight="100.0" prefWidth="90.0" text="Tower 5" GridPane.columnIndex="8" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+            <Button fx:id="tower5Button" mnemonicParsing="false" prefHeight="140.0" prefWidth="150.0" text="Tower 5" GridPane.columnIndex="8" GridPane.halignment="LEFT" GridPane.rowIndex="5">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="40.0" prefWidth="80.0" text="Exit" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+            <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="60.0" prefWidth="140.0" text="Exit" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Button>
-            <ImageView fx:id="cartImageView2" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <ImageView fx:id="cartImageView2" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-300.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
                   <Image url="@../image/seng201_cart.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="cartImageView3" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-400.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <ImageView fx:id="cartImageView3" fitHeight="100.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" translateX="-635.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <image>
                   <Image url="@../image/seng201_cart.png" />
                </image>
             </ImageView>
-            <ProgressBar fx:id="progressBar2" prefWidth="200.0" progress="0.0" translateX="-200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <ProgressBar fx:id="progressBar3" prefWidth="200.0" progress="0.0" translateX="-400.0" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <Label fx:id="resourceLabel2" text="Resource" translateX="-200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <ProgressBar fx:id="progressBar2" prefWidth="120.0" progress="0.0" translateX="-310.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <ProgressBar fx:id="progressBar3" prefWidth="120.0" progress="0.0" translateX="-645.0" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Label fx:id="resourceLabel2" text="Resource" translateX="-335.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="resourceLabel3" text="Resource" translateX="-400.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+            <Label fx:id="resourceLabel3" text="Resource" translateX="-668.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>

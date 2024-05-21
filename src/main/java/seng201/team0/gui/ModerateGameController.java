@@ -28,10 +28,22 @@ public class ModerateGameController {
     private ImageView cartImageView2;
 
     @FXML
+    private ImageView cartImageView3;
+
+    @FXML
+    private ImageView cartImageView4;
+
+    @FXML
     private ProgressBar progressBar1;
 
     @FXML
     private ProgressBar progressBar2;
+
+    @FXML
+    private ProgressBar progressBar3;
+
+    @FXML
+    private ProgressBar progressBar4;
 
     @FXML
     private Label resourceLabel1;
@@ -40,7 +52,10 @@ public class ModerateGameController {
     private Label resourceLabel2;
 
     @FXML
-    private Button selectedTowerButton;
+    private Label resourceLabel3;
+
+    @FXML
+    private Label resourceLabel4;
 
     @FXML
     private Button tower1Button;
@@ -57,18 +72,11 @@ public class ModerateGameController {
     @FXML
     private Button tower5Button;
 
-    @FXML
-    private Button exitButton;
-
-    @FXML
-    private Button pauseButton;
-
-    @FXML
-    private Button resumeButton;
-
 
     float progress1;
     float progress2;
+    float progress3;
+    float progress4;
     private Tower selectedTower;
     private Cart selectedCart;
     private ImageView selectedImage;
@@ -104,12 +112,17 @@ public class ModerateGameController {
 
         Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
         Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart3 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
+        Cart cart4 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
-        listCartsInRound = List.of(cart1, cart2);
-        listImageView = List.of(cartImageView1, cartImageView2);
-        listProgressBar = List.of(progressBar1, progressBar2);
-        listResourceLabel = List.of(resourceLabel1, resourceLabel2);
+        System.out.println(cart3.getTypeResourceCart());
+        System.out.println(cart4.getTypeResourceCart());
+        listCartsInRound = List.of(cart1, cart2, cart3, cart4);
+        listImageView = List.of(cartImageView1, cartImageView2, cartImageView3, cartImageView4);
+        listProgressBar = List.of(progressBar1, progressBar2, progressBar3, progressBar4);
+        listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3, resourceLabel4);
 
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
@@ -128,6 +141,16 @@ public class ModerateGameController {
                         else if (finalI == 1) {
                             progress2 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress2);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
+                        else if (finalI == 2) {
+                            progress3 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress3);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
+                        else if (finalI == 3) {
+                            progress4 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress4);
                             selectedCart.setIncrementIntoCartToFalse();
                         }
                     }
@@ -180,15 +203,16 @@ public class ModerateGameController {
         lastMove.setOnFinished(actionEvent -> {
             System.out.println("End game");
 
-            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp()) {
+            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp() && listCartsInRound.get(3).isCartFilledUp()) {
+
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
                     environmentManager.incrementScore(20);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
-                    environmentManager.incrementScore(22);
+                    environmentManager.incrementScore(25);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
-                    environmentManager.incrementScore(25);
+                    environmentManager.incrementScore(30);
                 }
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
                     environmentManager.closeCurrentScreen();
@@ -209,13 +233,22 @@ public class ModerateGameController {
         // Implementing a non-blocking delay between starting the cart animations
         ImageView bogus = new ImageView();
         TranslateTransition cartDelayTransition = new TranslateTransition();
-        cartDelayTransition.setDuration(Duration.millis(3000));
+        cartDelayTransition.setDuration(Duration.millis(2500));
         cartDelayTransition.setNode(bogus);
+
         cartDelayTransition.setOnFinished(actionEvent -> {
             listCartsInRound.get(1).startAnimation();
+            cartDelayTransition.setOnFinished(actionEvent1 -> {
+                listCartsInRound.get(2).startAnimation();
+                cartDelayTransition.setOnFinished(actionEvent2 -> {
+                    listCartsInRound.get(3).startAnimation();
+                });
+                cartDelayTransition.play();
+            });
+            cartDelayTransition.play();
         });
-
         listCartsInRound.get(0).startAnimation();
         cartDelayTransition.play();
+
     }
 }

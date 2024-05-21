@@ -209,17 +209,26 @@ public class ChallengingGameController {
         // Implementing a non-blocking delay between starting the cart animations
         ImageView bogus = new ImageView();
         TranslateTransition cartDelayTransition = new TranslateTransition();
-        cartDelayTransition.setDuration(Duration.millis(1500));
+        cartDelayTransition.setDuration(Duration.millis(2500));
         cartDelayTransition.setNode(bogus);
+
         cartDelayTransition.setOnFinished(actionEvent -> {
             listCartsInRound.get(1).startAnimation();
             cartDelayTransition.setOnFinished(actionEvent1 -> {
                 listCartsInRound.get(2).startAnimation();
+                cartDelayTransition.setOnFinished(actionEvent2 -> {
+                    listCartsInRound.get(3).startAnimation();
+                    cartDelayTransition.setOnFinished(actionEvent3 -> {
+                        listCartsInRound.get(4).startAnimation();
+                    });
+                    cartDelayTransition.play();
+                });
+                cartDelayTransition.play();
             });
             cartDelayTransition.play();
         });
-
         listCartsInRound.get(0).startAnimation();
         cartDelayTransition.play();
+
     }
 }
