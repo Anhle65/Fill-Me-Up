@@ -30,6 +30,12 @@ public class ChallengingGameController {
     private ImageView cartImageView3;
 
     @FXML
+    private ImageView cartImageView4;
+
+    @FXML
+    private ImageView cartImageView5;
+
+    @FXML
     private ProgressBar progressBar1;
 
     @FXML
@@ -39,6 +45,13 @@ public class ChallengingGameController {
     private ProgressBar progressBar3;
 
     @FXML
+    private ProgressBar progressBar4;
+
+    @FXML
+    private ProgressBar progressBar5;
+
+
+    @FXML
     private Label resourceLabel1;
 
     @FXML
@@ -46,6 +59,12 @@ public class ChallengingGameController {
 
     @FXML
     private Label resourceLabel3;
+
+    @FXML
+    private Label resourceLabel4;
+
+    @FXML
+    private Label resourceLabel5;
 
     @FXML
     private Button tower1Button;
@@ -65,6 +84,8 @@ public class ChallengingGameController {
     float progress1;
     float progress2;
     float progress3;
+    float progress4;
+    float progress5;
     private Tower selectedTower;
     private Cart selectedCart;
     private ImageView selectedImage;
@@ -99,15 +120,19 @@ public class ChallengingGameController {
         Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
         Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
         Cart cart3 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
+        Cart cart4 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart5 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
 
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
         System.out.println(cart3.getTypeResourceCart());
+        System.out.println(cart4.getTypeResourceCart());
+        System.out.println(cart5.getTypeResourceCart());
 
-        listCartsInRound = List.of(cart1, cart2, cart3);
-        listImageView = List.of(cartImageView1, cartImageView2, cartImageView3);
-        listProgressBar = List.of(progressBar1, progressBar2, progressBar3);
-        listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3);
+        listCartsInRound = List.of(cart1, cart2, cart3,cart4, cart5);
+        listImageView = List.of(cartImageView1, cartImageView2, cartImageView3, cartImageView4, cartImageView5);
+        listProgressBar = List.of(progressBar1, progressBar2, progressBar3, progressBar4, progressBar5);
+        listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3, resourceLabel4, resourceLabel5);
 
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
@@ -129,6 +154,16 @@ public class ChallengingGameController {
                             selectedCart.setIncrementIntoCartToFalse();
                         } else if (finalI == 2) {
                             progress3 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress3);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
+                        else if (finalI == 3) {
+                            progress4 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
+                            selectedProgressBar.setProgress(progress3);
+                            selectedCart.setIncrementIntoCartToFalse();
+                        }
+                        else if (finalI == 4) {
+                            progress5 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress3);
                             selectedCart.setIncrementIntoCartToFalse();
                         }
@@ -181,15 +216,15 @@ public class ChallengingGameController {
 
         lastMove.setOnFinished(actionEvent -> {
             System.out.println("End game");
-            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp()) {
+            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp() && listCartsInRound.get(3).isCartFilledUp() && listCartsInRound.get(4).isCartFilledUp()) {
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
                     environmentManager.incrementScore(30);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
-                    environmentManager.incrementScore(32);
+                    environmentManager.incrementScore(35);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
-                    environmentManager.incrementScore(35);
+                    environmentManager.incrementScore(40);
                 }
 
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
