@@ -35,7 +35,7 @@ public class LoserController {
 
     public void initialize(){
         totalScoreLabel.setText(environmentManager.getScore() + " points");
-        playerNameLabel.setText(environmentManager.getPlayerName());
+        playerNameLabel.setText(environmentManager.getPlayerName() + " player");
         roundCompletedLabel.setText((environmentManager.getCurrentRoundNumber() - 1) + " round completed");
 
     }

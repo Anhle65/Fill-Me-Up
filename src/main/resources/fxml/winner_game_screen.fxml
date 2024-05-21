@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.WinnerGameController">
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.WinnerGameController">
    <children>
       <GridPane layoutX="-7.0" prefHeight="700.0" prefWidth="900.0">
         <columnConstraints>
@@ -59,7 +59,7 @@
             </Label>
             <Button fx:id="newGameButton" mnemonicParsing="false" onAction="#onNewGameButtonClicked" prefHeight="40.0" prefWidth="150.0" text="New Game" translateX="200.0" GridPane.rowIndex="6" GridPane.valignment="TOP">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
                <effect>
                   <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="40.0">
@@ -78,7 +78,7 @@
             </Button>
             <Button fx:id="exitButton" mnemonicParsing="false" onAction="#onExitButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Exit Game" translateX="-200.0" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="TOP">
                <font>
-                  <Font name="System Bold" size="22.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
             <Label text="Wow!" translateX="100.0" GridPane.rowIndex="1">
