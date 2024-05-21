@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import seng201.team0.models.Tower;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TowerTest {
     private Tower tower;
@@ -46,8 +47,14 @@ public class TowerTest {
     }
 
     @Test
-    void testUpgradeTime(){
+    void testUpgradeTimeWithNoException() throws Exception {
         tower.upgradeTime(2000);
         assertEquals(1000, tower.getRecoveryTime());
+    }
+
+    @Test
+    void testUpgradeTimeWithException(){
+        Exception exception = assertThrows(Exception.class, () -> tower.upgradeTime(3000));
+        assertEquals("You can't upgrade time lower than 0.5 second", exception.getMessage());
     }
 }

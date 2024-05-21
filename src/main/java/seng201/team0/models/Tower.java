@@ -100,8 +100,10 @@ public class Tower extends PurchasableItem {
      * @param decrementTime
      * Decrement the recovery time of the tower by decrementTime
      */
-    public void upgradeTime(float decrementTime){
-        if (recoveryTime - decrementTime >= 1)
+    public void upgradeTime(float decrementTime) throws Exception{
+        if (recoveryTime - decrementTime >= 500)
             recoveryTime -= decrementTime;
+        else
+            throw new Exception("You can't upgrade time lower than 0.5 second");
     }
 }
