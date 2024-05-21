@@ -17,13 +17,13 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1100.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
    <children>
 
-   <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <GridPane layoutX="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1100.0" prefWidth="1483.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
      <columnConstraints>
-       <ColumnConstraints hgrow="SOMETIMES" maxWidth="456.0" minWidth="10.0" prefWidth="442.0" />
-       <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="458.0" />
+       <ColumnConstraints hgrow="SOMETIMES" maxWidth="1029.0" minWidth="10.0" prefWidth="775.0" />
+       <ColumnConstraints hgrow="SOMETIMES" maxWidth="727.0" minWidth="10.0" prefWidth="708.0" />
      </columnConstraints>
      <rowConstraints>
        <RowConstraints maxHeight="91.0" minHeight="4.0" prefHeight="91.0" vgrow="SOMETIMES" />
@@ -33,30 +33,31 @@
          <RowConstraints maxHeight="272.0" minHeight="10.0" prefHeight="252.0" vgrow="SOMETIMES" />
          <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
        <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
          <Label alignment="CENTER" text="Welcome to FILL ME UP Game!!" textFill="#d90000" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
             <font>
-               <Font name="System Bold Italic" size="24.0" />
+               <Font name="System Bold Italic" size="49.0" />
             </font>
             <GridPane.margin>
                <Insets left="10.0" />
             </GridPane.margin>
          </Label>
-         <Label text="What is your name?" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+         <Label prefWidth="330.0" text="What is your name?" translateX="-50.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <font>
-               <Font name="System Bold" size="18.0" />
+               <Font name="System Bold" size="24.0" />
             </font>
             <GridPane.margin>
                <Insets left="10.0" />
             </GridPane.margin>
          </Label>
-         <Label text="How many round do you want to play?" GridPane.rowIndex="3">
+         <Label text="How many round do you want to play?" GridPane.halignment="CENTER" GridPane.rowIndex="3">
             <GridPane.margin>
                <Insets left="10.0" />
             </GridPane.margin>
             <font>
-               <Font name="System Bold" size="18.0" />
+               <Font name="System Bold" size="24.0" />
             </font>
          </Label>
          <TextField fx:id="nameTextField" onAction="#onNameTextFieldChanged" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -69,7 +70,7 @@
                <Insets left="10.0" right="10.0" />
             </GridPane.margin>
          </Slider>
-         <Label text="Selected:" GridPane.rowIndex="5">
+         <Label text="Selected:" GridPane.halignment="CENTER" GridPane.rowIndex="5">
             <font>
                <Font name="System Bold" size="18.0" />
             </font>
@@ -106,7 +107,7 @@
                         <Font name="Verdana Bold" size="14.0" />
                      </font>
                </Label>
-               <Label fx:id="towerStatsLabel" layoutX="10.0" layoutY="117.0" prefHeight="19.0" prefWidth="49.0" text="Type:" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <Label fx:id="towerStatsLabel" layoutX="10.0" layoutY="117.0" prefHeight="19.0" prefWidth="49.0" text="Type:" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                   <GridPane.margin>
                      <Insets />
                   </GridPane.margin>
@@ -163,13 +164,13 @@
          </GridPane>
          <GridPane GridPane.rowIndex="4">
             <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="138.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="150.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="10.0" prefWidth="147.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="433.0" minWidth="10.0" prefWidth="219.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="420.0" minWidth="10.0" prefWidth="252.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.0" minWidth="0.0" prefWidth="238.0" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="141.0" vgrow="SOMETIMES" />
-               <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="118.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                <Button fx:id="towerStat4" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onTower4ButtonClicked" prefHeight="84.0" prefWidth="90.0" text="Tower 4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
@@ -211,12 +212,13 @@
          </GridPane>
          <GridPane GridPane.rowIndex="6">
             <columnConstraints>
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="140.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.0" minWidth="10.0" prefWidth="144.0" />
-               <ColumnConstraints hgrow="SOMETIMES" maxWidth="151.0" minWidth="10.0" prefWidth="148.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="256.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="286.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="1.0" prefWidth="233.0" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="139.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="97.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                <Button fx:id="selectedTower3" mnemonicParsing="false" onAction="#onSelectedTower3ButtonClicked" prefHeight="84.0" prefWidth="90.0" GridPane.columnIndex="2" GridPane.halignment="CENTER">
@@ -255,12 +257,12 @@
                   </Lighting>
                </effect>
          </Button>
-         <Label text="Game Difficulty:" GridPane.rowIndex="2">
+         <Label prefWidth="330.0" text="Game Difficulty:" translateX="-50.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
             <GridPane.margin>
                <Insets left="10.0" />
             </GridPane.margin>
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
          </Label>
             <Button mnemonicParsing="false" onAction="#onExitClicked" prefHeight="46.0" prefWidth="160.0" text="Exit Game" translateX="140.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
@@ -290,24 +292,28 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <RadioButton fx:id="easyGameRadioButton" mnemonicParsing="false" onAction="#onEasyGameRadioButtonClicked" text="Easy">
+                  <RadioButton fx:id="easyGameRadioButton" mnemonicParsing="false" onAction="#onEasyGameRadioButtonClicked" text="Easy" textFill="#cf19cd">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="moderateGameRadioButton" mnemonicParsing="false" onAction="#onModerateGameRadioButtonClicked" text="Moderate" GridPane.columnIndex="1">
+                  <RadioButton fx:id="moderateGameRadioButton" mnemonicParsing="false" onAction="#onModerateGameRadioButtonClicked" text="Moderate" textFill="#1627e4" GridPane.columnIndex="1">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" GridPane.columnIndex="2">
+                  <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" textFill="#eb0505" GridPane.columnIndex="2">
                      <font>
-                        <Font name="System Bold" size="17.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" text="Reset Tower" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Tower" translateX="20.0" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Button>
       </children>
    </GridPane>
    </children>
