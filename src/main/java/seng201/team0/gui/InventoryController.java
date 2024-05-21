@@ -239,6 +239,8 @@ public class InventoryController {
             inventoryService.getCurrentTowerList().set(selectedCurrentTowerIndex, selectedReservedTowers);
 //            environmentManager.getReservedTowerList().remove(selectedReservedTowers);
             inventoryService.getReservedTowerList().set(selectedReversedTowerIndex, selectedCurrentTowers);
+            selectedReservedTowersButton.setStyle("");
+            selectedCurrentTowersButton.setStyle("");
         }else if(selectedCurrentTowerIndex != -1 && selectedReservedTowers != null){
             System.out.println("Do something...");
             inventoryService.getCurrentTowerList().add(selectedReservedTowers);
@@ -253,21 +255,14 @@ public class InventoryController {
         selectedCurrentTowerIndex = -1;
         selectedReversedTowerIndex = -1;
         selectedReservedTowers = null;
-        selectedReservedTowersButton.setStyle("");
-        selectedCurrentTowersButton.setStyle("");
     }
 
     @FXML
     private void onUpgradedClicked() {
         System.out.println("onUpgradedClicked");
         if(selectedUpgradeCard != null && selectedCurrentTowers != null){
-            System.out.println("selectedCurrentTowers1st: " + selectedCurrentTowers);
             inventoryService.upgradeTower(selectedUpgradeCard, selectedCurrentTowers);
-            System.out.println("selectedCurrentTowers2nd: " + selectedCurrentTowers);
-//            System.out.println("Update: " + selectedCurrentTowers.getName());
-            System.out.println("selectedCurrentTowersIndex1st " + selectedCurrentTowerIndex);
             this.updateStats((Tower) selectedCurrentTowers, (Label) this.towerTimeList.get(selectedCurrentTowerIndex), (Label) this.towerResourceList.get(selectedCurrentTowerIndex), (Label) this.towerLevelList.get(selectedCurrentTowerIndex));
-            System.out.println("selectedCurrentTowersIndex2nd " + selectedCurrentTowerIndex);
             selectedCurrentTowersButton.setText(String.valueOf(selectedCurrentTowers.getName()));
             selectedUpgradeCardButton.setStyle("");
             selectedCurrentTowersButton.setStyle("");
