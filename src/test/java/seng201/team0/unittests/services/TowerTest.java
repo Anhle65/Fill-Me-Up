@@ -47,7 +47,7 @@ public class TowerTest {
 
     @Test
     void testUpgradeTime(){
-        tower.upgradeTime(2f);
-        assertEquals(1, tower.getRecoveryTime());
+        tower.upgradeTime(2000);
+        assertEquals(1000, tower.getRecoveryTime());
     }
 }
