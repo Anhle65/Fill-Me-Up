@@ -132,7 +132,7 @@ public class ShopController {
     public void onBuyClicked(){
         playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
         int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
-        int sizeBeforeBuyItem = inventoryService.getListUpgradeCardsInInventory().size();
+        int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
         System.out.println("Clicked on Buy button");
 //        System.out.println("Item " + se);
         if(sizeBeforeBuyTower < 5 && sizeBeforeBuyItem < 5) {
@@ -144,7 +144,7 @@ public class ShopController {
             } else if (selectedUpgradeCardInShop != null) {
                 System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
                 shopService.buy(selectedUpgradeCardInShop);
-                if (inventoryService.getListUpgradeCardsInInventory().size() > sizeBeforeBuyItem)
+                if (inventoryService.getListUpgradeItemsInInventory().size() > sizeBeforeBuyItem)
                     itemIsBought.setDisable(true);
             } else
                 System.out.println("Please choose item to buy");

@@ -2,7 +2,6 @@ package seng201.team0.services;
 
 import seng201.team0.models.Tower;
 import seng201.team0.models.UpgradeItems;
-import seng201.team0.services.EnvironmentManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ public class ShopService {
     public void buy(UpgradeItems item){
         if(this.currentCoin >= item.getCost()){
             this.currentCoin -= item.getCost();
-            inventoryService.getListUpgradeCardsInInventory().add(item);
+            inventoryService.getListUpgradeItemsInInventory().add(item);
         }
     }
 
