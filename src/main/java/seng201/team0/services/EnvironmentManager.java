@@ -8,6 +8,7 @@ public class EnvironmentManager {
     private int numberOfRounds;
     private int currentRoundNumber = 1;
     private int score = 0;
+    private double trackDistance = 2300;
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
     private final Consumer<EnvironmentManager> roundDifficultySelectScreenLauncher;
@@ -37,6 +38,10 @@ public class EnvironmentManager {
         this.clearScreen = clearScreen;
         launchSetupScreen();
     }
+    /**
+     * Get the track distance of current round
+     */
+    public double getTrackDistance(){ return this.trackDistance;}
 
     /**
      * Get the current score
