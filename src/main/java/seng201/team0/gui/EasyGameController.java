@@ -101,12 +101,9 @@ public class EasyGameController {
                         this.isFull = selectedCart.isCartFilledUp();
                     }
                     selectedTower = null;
-                    System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
         }
-
-
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
         TranslateTransition translateButton1 = new TranslateTransition();
@@ -119,19 +116,16 @@ public class EasyGameController {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(inventoryService.getCurrentTowerList().get(finalI).getName());
             listTowerButtons.get(i).setOnAction(event -> {
-//                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
-                        selectedTowerButton = button;
                         this.selectedTower = inventoryService.getCurrentTowerList().get(finalI);
                         long time = selectedTower.getRecoveryTime();
-//                        TranslateTransition translateButton = new TranslateTransition();
-                        translateButtons.get(finalI).setNode(selectedTowerButton);
+                        translateButtons.get(finalI).setNode(listTowerButtons.get(finalI));
                         translateButtons.get(finalI).setDuration(Duration.millis(time));
+                        button.setDisable(true);
                         translateButtons.get(finalI).setOnFinished(actionEvent -> {
-                            selectedTowerButton.setDisable(false);
+                            button.setDisable(false);
                         });
-                        selectedTowerButton.setDisable(true);
                         translateButtons.get(finalI).play();
                         button.setStyle("-fx-background-radius: 5;");
                     } else {
@@ -168,9 +162,7 @@ public class EasyGameController {
                 environmentManager.launchLoserScreen();
             }
         });
-
         selectedCart.startAnimation();
-
         }
     }
 

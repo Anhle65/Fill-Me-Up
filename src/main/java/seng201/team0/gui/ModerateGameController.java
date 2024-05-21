@@ -132,13 +132,17 @@ public class ModerateGameController {
                         }
                     }
                     selectedTower = null;
-                    System.out.println("Mouse event " + selectedCart.getTypeResourceCart() + " " + selectedCart.getCurrentAmountOfCart());
                 }
             });
         }
 
         List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
-
+        TranslateTransition translateButton1 = new TranslateTransition();
+        TranslateTransition translateButton2 = new TranslateTransition();
+        TranslateTransition translateButton3 = new TranslateTransition();
+        TranslateTransition translateButton4 = new TranslateTransition();
+        TranslateTransition translateButton5 = new TranslateTransition();
+        List<TranslateTransition> translateButtons = List.of(translateButton1, translateButton2, translateButton3, translateButton4, translateButton5);
         for (int i = 0; i < inventoryService.getCurrentTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             listTowerButtons.get(finalI).setText(inventoryService.getCurrentTowerList().get(finalI).getName());
@@ -146,16 +150,15 @@ public class ModerateGameController {
 //                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
-                        selectedTowerButton = button;
                         this.selectedTower = inventoryService.getCurrentTowerList().get(finalI);
-                        TranslateTransition translateButton = new TranslateTransition();
-                        translateButton.setNode(selectedTowerButton);
-                        translateButton.setDuration(Duration.millis((long)selectedTower.getRecoveryTime()));
-                        selectedTowerButton.setDisable(true);
-                        translateButton.setOnFinished(actionEvent -> {
-                            selectedTowerButton.setDisable(false);
+                        long time = selectedTower.getRecoveryTime();
+                        translateButtons.get(finalI).setNode(listTowerButtons.get(finalI));
+                        translateButtons.get(finalI).setDuration(Duration.millis(time));
+                        button.setDisable(true);
+                        translateButtons.get(finalI).setOnFinished(actionEvent -> {
+                            button.setDisable(false);
                         });
-                        translateButton.play();
+                        translateButtons.get(finalI).play();
                         button.setStyle("-fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
