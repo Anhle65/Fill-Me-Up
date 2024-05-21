@@ -5,6 +5,9 @@ import org.junit.jupiter.api.Test;
 import seng201.team0.models.Cart;
 import seng201.team0.models.Tower;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CartTest {
@@ -49,5 +52,16 @@ public class CartTest {
         assertTrue(cart.isCartFilledUp());
         cart.incrementAmountResourceIntoCart(towerSameTypeCart);
         assertTrue(cart.isCartFilledUp());
+    }
+
+    @Test
+    public void testList(){
+        List<Tower> list = new ArrayList<>();
+        list.add(new Tower("a", 1, 2, 3));
+        list.add(new Tower("b", 1, 2, 3));
+        list.add(new Tower("c", 1, 2, 3));
+        list.add(new Tower("d", 1, 2, 3));
+
+        list.set(0, new Tower("e", 1, 2, 3));
     }
 }

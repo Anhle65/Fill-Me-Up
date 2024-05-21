@@ -10,7 +10,7 @@ public class InventoryService {
     private int playerCoins;
     private final List<Tower> reservedTowerList = new ArrayList<Tower>(5);
     private final List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<UpgradeItems>(5);
-    private List<Tower> currentTowerList = new ArrayList<>();
+    private List<Tower> currentTowerList = new ArrayList<>(5);
     private final List<Tower> defaultTowers = new ArrayList<>();
 
     public InventoryService(){
@@ -49,7 +49,7 @@ public class InventoryService {
      * @return currentTowerList
      */
     public List<Tower> getCurrentTowerList() {
-        return currentTowerList;
+        return this.currentTowerList;
     }
 
     /**
@@ -57,18 +57,26 @@ public class InventoryService {
      * @param currentTowerList ArrayList<Tower>
      */
     public void setCurrentTowerList(List<Tower> currentTowerList) {
-        this.currentTowerList = currentTowerList;
+        this.currentTowerList = new ArrayList<Tower>(currentTowerList);
     }
 
     /**
      * Get list of the upgrade card in Inventory
      * @return listUpgradeCardsInInventory
      */
-    public List<UpgradeItems> getListUpgradeCardsInInventory(){return this.listUpgradeCardsInInventory;}
+    public List<UpgradeItems> getListUpgradeItemsInInventory(){return this.listUpgradeCardsInInventory;}
 
     /**
      * Get list of the reserved tower in Inventory
      * @return reservedTowerList
      */
     public List<Tower> getReservedTowerList(){return this.reservedTowerList;}
+
+    /**
+     * set the current towers are used
+     * @param reservedTowerList ArrayList<Tower>
+     */
+    public void setReservedTowerList(List<Tower> reservedTowerList) {
+        this.currentTowerList = new ArrayList<>(reservedTowerList);
+    }
 }
