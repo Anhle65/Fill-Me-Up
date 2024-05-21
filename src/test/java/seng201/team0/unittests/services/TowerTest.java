@@ -15,7 +15,7 @@ public class TowerTest {
     @BeforeEach
     public void setupTest() {
         // Use CounterService directly
-        tower = new Tower("water", 40, 15, 3f);
+        tower = new Tower("water", 40, 15, 3000);
     }
 
     /**
