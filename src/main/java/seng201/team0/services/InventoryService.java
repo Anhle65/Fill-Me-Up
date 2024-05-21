@@ -15,11 +15,11 @@ public class InventoryService {
 
     public InventoryService(){
         defaultTowers.addAll(List.of(
-                new Tower("Fire",40,20,1000),
-                new Tower("Water",40,20,1000),
-                new Tower("Gold",40,20,1000),
-                new Tower("Diamond",40,20,1000),
-                new Tower("Coal",40,20,1000))
+                new Tower("Fire",40,20,3000),
+                new Tower("Water",40,20,3000),
+                new Tower("Gold",40,20,3000),
+                new Tower("Diamond",40,20,3000),
+                new Tower("Coal",40,20,3000))
         );
     }
     public void swapTower(){
