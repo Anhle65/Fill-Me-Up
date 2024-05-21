@@ -8,12 +8,13 @@ import java.util.List;
 
 public class InventoryService {
     private int playerCoins;
-    private final List<Tower> reservedTowerList = new ArrayList<Tower>(5);
-    private final List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<UpgradeItems>(5);
+    private List<Tower> reservedTowerList = new ArrayList<Tower>(5);
+    private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<UpgradeItems>(5);
     private List<Tower> currentTowerList = new ArrayList<>(5);
     private final List<Tower> defaultTowers = new ArrayList<>();
 
     public InventoryService(){
+        this.playerCoins = 150;
         defaultTowers.addAll(List.of(
                 new Tower("Fire",40,20,3000),
                 new Tower("Water",40,20,3000),
@@ -22,21 +23,44 @@ public class InventoryService {
                 new Tower("Coal",40,20,3000))
         );
     }
-    public void swapTower(){
 
+    public int getPlayerCoins(){return playerCoins;}
+    public void setPlayerCoins(int playerCoins){this.playerCoins = playerCoins;}
+
+    public void sellTower(Tower selectedCurrentTowers){
+        this.setPlayerCoins(this.playerCoins + selectedCurrentTowers.getCost());
+        this.currentTowerList.remove(selectedCurrentTowers);
     }
-    public void upgradeTower(UpgradeItems selectedUpgradeCard, Tower selectedCurrentTowers){
-        if(selectedUpgradeCard.getName().contains("Changing Type")){
-            selectedCurrentTowers.changeTypeResource(selectedUpgradeCard.getNewTypeTower());
-            System.out.println("Card type:" + selectedUpgradeCard.getNewTypeTower());
-            System.out.println("New type: " + selectedCurrentTowers.getName());
-        }else {
-            selectedCurrentTowers.levelIncrement();
-            selectedCurrentTowers.upgradeTime(selectedUpgradeCard.getImprovedTime());
-            selectedCurrentTowers.upgradeResourceAmount(selectedUpgradeCard.getImprovedAmountResource());
-//                System.out.println("new stat: " + selectedCurrentTowers.getLevel() + " " + selectedCurrentTowers.getRecoveryTime() +"ms ");
+    public void putTowerBackToReserved(Tower selectedCurrentTowers) throws Exception{
+        if(this.reservedTowerList.size() < 5) {
+            this.reservedTowerList.add(selectedCurrentTowers);
+            this.currentTowerList.remove(selectedCurrentTowers);
+        }else
+            throw new Exception("Can't add more towers back to reserved");
+    }
+    public void addTowerToCurrent(Tower selectedReservedTowers) throws Exception{
+        if(this.currentTowerList.size() < 5) {
+            this.currentTowerList.add(selectedReservedTowers);
+            this.reservedTowerList.remove(selectedReservedTowers);
+        }else
+            throw new Exception("Can't add more towers into current");
+    }
+    public void upgradeTower (UpgradeItems selectedUpgradeCard, Tower selectedCurrentTowers) throws Exception {
+        try {
+            if (selectedUpgradeCard.getName().contains("Changing Type")) {
+                selectedCurrentTowers.changeTypeResource(selectedUpgradeCard.getNewTypeTower());
+                System.out.println("Card type:" + selectedUpgradeCard.getNewTypeTower());
+                System.out.println("New type: " + selectedCurrentTowers.getName());
+            } else {
+                selectedCurrentTowers.levelIncrement();
+                selectedCurrentTowers.upgradeTime(selectedUpgradeCard.getImprovedTime());
+                selectedCurrentTowers.upgradeResourceAmount(selectedUpgradeCard.getImprovedAmountResource());
+            }
         }
-        System.out.println("selectedCurrentTowers in shop: " + selectedCurrentTowers);
+        catch (Exception e) {
+            e.getMessage();
+        }
+        System.out.println("selectedCurrentTowers in inventory: " + selectedCurrentTowers.getName());
     }
     /**
      * @return List of the default towers which can be selected by player on the setup page
@@ -67,6 +91,14 @@ public class InventoryService {
     public List<UpgradeItems> getListUpgradeItemsInInventory(){return this.listUpgradeCardsInInventory;}
 
     /**
+     * Get list of the upgrade card in Inventory
+     * @param listUpgradeCardsInInventory ArrayList<UpgradeItems>
+     */
+    public void setListUpgradeItemsInInventory(List<UpgradeItems> listUpgradeCardsInInventory){
+        this.listUpgradeCardsInInventory = new ArrayList<>(listUpgradeCardsInInventory);
+    }
+
+    /**
      * Get list of the reserved tower in Inventory
      * @return reservedTowerList
      */
@@ -77,6 +109,6 @@ public class InventoryService {
      * @param reservedTowerList ArrayList<Tower>
      */
     public void setReservedTowerList(List<Tower> reservedTowerList) {
-        this.currentTowerList = new ArrayList<>(reservedTowerList);
+        this.reservedTowerList = new ArrayList<>(reservedTowerList);
     }
 }

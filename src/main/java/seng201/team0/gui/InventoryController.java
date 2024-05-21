@@ -14,6 +14,10 @@ import java.util.List;
 
 public class InventoryController {
     @FXML
+    private Label playerCoins;
+    @FXML
+    private Label outputMessage;
+    @FXML
     private Label playerName;
     @FXML
     private Label tower1Time;
@@ -78,11 +82,11 @@ public class InventoryController {
     private int selectedCurrentTowerIndex = -1;
     private int selectedUpgradeCardIndex = -1;
     private int selectedReversedTowerIndex = -1;
-    private Tower selectedCurrentTowers = null;
-    private Button selectedCurrentTowersButton;
+    private Tower selectedCurrentUsedTowers = null;
+    private Button selectedCurrentTowerButton;
     private Tower selectedReservedTowers = null;
     private Button selectedReservedTowersButton;
-    private UpgradeItems selectedUpgradeCard = null;
+    private UpgradeItems selectedUpgradeItem = null;
     private Button selectedUpgradeCardButton;
     private EnvironmentManager environmentManager;
     private ShopService shopService;
@@ -94,17 +98,27 @@ public class InventoryController {
     private List<Label> towerResourceList;
     private List<Label> towerLevelList;
     private List<Button> towerButtons = new ArrayList<>();
-    private List<Button> reservedTowerButton = new ArrayList<>();
-    private List<Button> upgradeCardButton = new ArrayList<>();
+    private List<Button> reservedTowersButton = new ArrayList<>();
+    private List<Button> upgradeItemsButton = new ArrayList<>();
 
+    /**
+     * A constructors that pass the parameters from other classes to use in this Inventory Screen
+     * @param environmentManager EnvironmentManager
+     * @param shopService ShopService
+     * @param inventoryService InventoryService
+     */
     public InventoryController(EnvironmentManager environmentManager, ShopService shopService, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
         this.shopService = shopService;
         this.inventoryService = inventoryService;
     }
 
+    /**
+     * Initialize the screen
+     */
     @FXML
     public void initialize() {
+        this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         this.upgradeItemsFromInventory = inventoryService.getListUpgradeItemsInInventory();
         this.currentTowersFromInventory = inventoryService.getCurrentTowerList();
         this.reservedTowerFromInventory = inventoryService.getReservedTowerList();
@@ -113,23 +127,39 @@ public class InventoryController {
         this.towerResourceList = List.of(this.tower1Resource, this.tower2Resource, this.tower3Resource, this.tower4Resource, this.tower5Resource);
         this.towerLevelList = List.of(this.tower1Level, this.tower2Level, this.tower3Level, this.tower4Level, this.tower5Level);
         this.towerButtons = List.of(this.tower1, this.tower2, this.tower3, this.tower4, this.tower5);
-        this.reservedTowerButton = List.of(this.reservedTower1, this.reservedTower2, this.reservedTower3, this.reservedTower4, this.reservedTower5);
-        this.upgradeCardButton = List.of(this.upgradeCard1, this.upgradeCard2, this.upgradeCard3, this.upgradeCard4, this.upgradeCard5);
+        this.reservedTowersButton = List.of(this.reservedTower1, this.reservedTower2, this.reservedTower3, this.reservedTower4, this.reservedTower5);
+        this.upgradeItemsButton = List.of(this.upgradeCard1, this.upgradeCard2, this.upgradeCard3, this.upgradeCard4, this.upgradeCard5);
 
+        this.showAllCurrentTower(this.towerButtons, this.currentTowersFromInventory);
+        this.showAllReservedTower(this.reservedTowersButton, this.reservedTowerFromInventory);
+        this.showAllUpgradeItems(this.upgradeItemsButton, this.upgradeItemsFromInventory);
+    }
+
+    /**
+     * Show all the current used towers and its statistics, which is reach from inventory, on the screen
+     * @param towerButtons List<Button>
+     * @param currentTowersFromInventory List<Tower>
+     */
+    private void showAllCurrentTower(List<Button> towerButtons, List<Tower> currentTowersFromInventory){
         for(int i = 0; i < towerButtons.size(); ++i) {
             int finalI = i;
             if(finalI < currentTowersFromInventory.size()) {
-                this.updateStats((Tower) this.currentTowersFromInventory.get(finalI), (Label) this.towerTimeList.get(finalI), (Label) this.towerResourceList.get(finalI), (Label) this.towerLevelList.get(finalI));
-                ((Button) towerButtons.get(finalI)).setText(String.valueOf(((Tower) this.currentTowersFromInventory.get(finalI)).getName()));
+                this.updateStats((Tower) currentTowersFromInventory.get(finalI), (Label) this.towerTimeList.get(finalI), (Label) this.towerResourceList.get(finalI), (Label) this.towerLevelList.get(finalI));
+                ((Button) towerButtons.get(finalI)).setText(String.valueOf(((Tower) currentTowersFromInventory.get(finalI)).getName()));
+            }else{
+                this.towerButtons.get(finalI).setText("Empty");
+                this.towerTimeList.get(finalI).setText("");
+                this.towerResourceList.get(finalI).setText("");
+                this.towerLevelList.get(finalI).setText("");
             }
             ((Button)towerButtons.get(finalI)).setOnAction((event) -> {
                 towerButtons.forEach((button) -> {
                     if (button == towerButtons.get(finalI)) {
-                        this.selectedCurrentTowerIndex = finalI;
-                        this.selectedCurrentTowersButton = button;
+                        selectedCurrentTowerIndex = finalI;
+                        selectedCurrentTowerButton = button;
                         if(finalI < currentTowersFromInventory.size()) {
-                            this.selectedCurrentTowers = (Tower) this.currentTowersFromInventory.get(finalI);
-                            System.out.println("Selected current tower: " + selectedCurrentTowers);
+                            selectedCurrentUsedTowers = (Tower) currentTowersFromInventory.get(finalI);
+                            System.out.println("Selected current tower: " + selectedCurrentUsedTowers.getName());
                         }
                         button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
@@ -138,21 +168,36 @@ public class InventoryController {
                 });
             });
         }
+    }
 
+    /**
+     * Show all the reserved tower, which is reach from inventory, on the screen
+     * @param reservedTowerButton List<Button>
+     * @param reservedTowerFromInventory List<Tower>
+     */
+    private void showAllReservedTower(List<Button> reservedTowerButton, List<Tower> reservedTowerFromInventory){
         for(int j = 0; j < reservedTowerButton.size(); ++j){
             int finalJ = j;
             if(finalJ < reservedTowerFromInventory.size())
                 reservedTowerButton.get(finalJ).setText(reservedTowerFromInventory.get(finalJ).getName());
+            else{
+                reservedTowerButton.get(finalJ).setText("Empty");
+            }
             reservedTowerButton.get(finalJ).setOnAction((event) -> {
                 reservedTowerButton.forEach((button) -> {
                     if (button == reservedTowerButton.get(finalJ)) {
                         this.selectedReversedTowerIndex = finalJ;
                         this.selectedUpgradeCardIndex = -1;
-                        if(this.selectedUpgradeCardButton != null)
+                        this.selectedReversedTowerIndex = -1;
+                        if(this.selectedUpgradeCardButton != null) {
                             this.selectedUpgradeCardButton.setStyle("");
+                            this.selectedCurrentTowerButton.setStyle("");
+                        }
                         this.selectedReservedTowersButton = button;
-                        if(finalJ < reservedTowerFromInventory.size())
+                        if(finalJ < reservedTowerFromInventory.size()) {
                             selectedReservedTowers = reservedTowerFromInventory.get(finalJ);
+                            System.out.println("Selected reserved tower: " + selectedReservedTowers.getName());
+                        }
                         button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
@@ -160,21 +205,33 @@ public class InventoryController {
                 });
             });
         }
+    }
 
-        for(int k = 0; k < upgradeCardButton.size(); ++k){
+    /**
+     * Show all the upgrade items, which is reach from inventory, on the screen
+     * @param upgradeItemsButton List<Button>
+     * @param upgradeItemsFromInventory List<UpgradeItems>
+     */
+    private void showAllUpgradeItems(List<Button> upgradeItemsButton, List<UpgradeItems> upgradeItemsFromInventory){
+        for(int k = 0; k < upgradeItemsButton.size(); ++k){
             int finalK = k;
             if(finalK < upgradeItemsFromInventory.size())
-                upgradeCardButton.get(finalK).setText(upgradeItemsFromInventory.get(finalK).getName());
-            upgradeCardButton.get(finalK).setOnAction((event) -> {
-                upgradeCardButton.forEach((button) -> {
-                    if (button == upgradeCardButton.get(finalK)) {
+                upgradeItemsButton.get(finalK).setText(upgradeItemsFromInventory.get(finalK).getName());
+            else{
+                upgradeItemsButton.get(finalK).setText("Empty");
+            }
+            upgradeItemsButton.get(finalK).setOnAction((event) -> {
+                upgradeItemsButton.forEach((button) -> {
+                    if (button == upgradeItemsButton.get(finalK)) {
                         this.selectedUpgradeCardIndex = finalK;
                         this.selectedReversedTowerIndex = -1;
                         if(selectedReservedTowersButton != null)
                             selectedReservedTowersButton.setStyle("");
                         this.selectedUpgradeCardButton = button;
-                        if(finalK < upgradeItemsFromInventory.size())
-                            selectedUpgradeCard = upgradeItemsFromInventory.get(finalK);
+                        if(finalK < upgradeItemsFromInventory.size()) {
+                            selectedUpgradeItem = upgradeItemsFromInventory.get(finalK);
+                            System.out.println("Selected item tower: " + selectedUpgradeItem.getName());
+                        }
                         button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
@@ -184,106 +241,128 @@ public class InventoryController {
         }
     }
 
-    private void showAllCurrentTower(List<Tower> currentTowersFromInventory){
-        for(int i = 0; i < towerButtons.size(); ++i) {
-            if(i < currentTowersFromInventory.size()) {
-                this.updateStats(currentTowersFromInventory.get(i), towerTimeList.get(i), this.towerResourceList.get(i), this.towerLevelList.get(i));
-                (towerButtons.get(i)).setText(String.valueOf((currentTowersFromInventory.get(i)).getName()));
-            }
-        }
-    }
-    private void showObjectInButton(List<Button> buttons, List<Tower> towerList, List<UpgradeItems> itemsList){
-        if(!(towerList == null && itemsList == null)) {
-            for (int j = 0; j < buttons.size(); ++j) {
-                int finalJ = j;
-                if (itemsList == null) {
-                    if (finalJ < towerList.size())
-                        buttons.get(finalJ).setText(towerList.get(finalJ).getName());
-                    else
-                        buttons.get(finalJ).setText("Empty");
-                } else if (towerList == null) {
-                    if (finalJ < itemsList.size())
-                        buttons.get(finalJ).setText(itemsList.get(finalJ).getName());
-                    else
-                        buttons.get(finalJ).setText("Empty");
-                }
-            }
-        }
-    }
+    /**
+     * Show statistics of the input Tower on the labels on screen
+     * @param tower Tower
+     * @param towerTime Label
+     * @param towerResource Label
+     * @param towerLevel Label
+     */
     private void updateStats(Tower tower, Label towerTime, Label towerResource, Label towerLevel) {
         towerTime.setText(String.valueOf(tower.getRecoveryTime()/1000)+" s");
         towerResource.setText(String.valueOf(tower.getResourceAmount()));
         towerLevel.setText(String.valueOf(tower.getLevel()));
     }
 
+    /**
+     * Button when clicked will put the selected tower in current used list back to reserved list.
+     * When the size is out of list capacity it will throw an Exception with message.
+     * @throws Exception
+     */
     @FXML
-    private void onSwappedClicked() {
-        System.out.println("onSwappedClicked");
-        if (selectedCurrentTowers != null && selectedReservedTowers != null){
-            System.out.println("Current size: "+currentTowersFromInventory.size());
+    private void onPutBackReservedClicked() throws Exception{
+        System.out.println("Click on put back");
+        try {
+            if (selectedCurrentUsedTowers != null) {
+                this.outputMessage.setText("");
+                inventoryService.putTowerBackToReserved(selectedCurrentUsedTowers);
+                this.reservedTowersButton.getLast().setText("Empty");
+                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+                this.showAllReservedTower(this.reservedTowersButton, inventoryService.getReservedTowerList());
+                selectedCurrentTowerButton.setStyle("");
+            } else
+                this.outputMessage.setText("Please choose 1 Tower in current list to put back!");
+        }catch (Exception e) {
+            selectedCurrentTowerButton.setStyle("");
+            this.outputMessage.setText(e.getMessage());
+        }
+        selectedCurrentUsedTowers = null;
+    }
 
-            // Update Current Tower List
-//            List<Tower> newCurrentTowerList = new ArrayList<>(inventoryService.getCurrentTowerList());
-            this.currentTowersFromInventory.set(selectedCurrentTowerIndex, selectedReservedTowers);
-//            environmentManager.getReservedTowerList().remove(selectedReservedTowers);
-//            currentTowersFromInventory.remove(selectedCurrentTowers);
-            inventoryService.setCurrentTowerList(this.currentTowersFromInventory);
+    /**
+     * Button when clicked will add the selected tower in reserved list to current used list.
+     * When the size is out of list capacity it will throw an Exception with message.
+     * @throws Exception
+     */
+    @FXML
+    private void onAddToCurrentClicked() throws Exception{
+        System.out.println("Click on add to current");
+        try {
+            if (selectedReservedTowers != null) {
+                this.outputMessage.setText("");
+                inventoryService.addTowerToCurrent(selectedReservedTowers);
+                this.towerButtons.getLast().setText("Empty");
+                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+                this.showAllReservedTower(this.reservedTowersButton, inventoryService.getReservedTowerList());
+                selectedReservedTowersButton.setStyle("");
+            } else
+                this.outputMessage.setText("Please choose 1 Tower in reserved list to add on current!");
+        }catch (Exception e){
             selectedReservedTowersButton.setStyle("");
-            selectedCurrentTowersButton.setStyle("");
-//            List<Tower> currentTowerList = inventoryService.getCurrentTowerList();
-            // Update Reserved Tower List
-//            List<Tower> newReservedTowerList = new ArrayList<>(inventoryService.getReservedTowerList());
-            this.reservedTowerFromInventory.set(selectedReversedTowerIndex, selectedCurrentTowers);
-//            this.reservedTowerFromInventory.remove(selectedReservedTowers);
-            inventoryService.setReservedTowerList(this.reservedTowerFromInventory);
-            showAllCurrentTower(inventoryService.getCurrentTowerList());
-//            inventoryService.getReservedTowerList().a
-            this.showObjectInButton(reservedTowerButton, inventoryService.getReservedTowerList(), null);
-            selectedReservedTowersButton.setStyle("");
-            selectedCurrentTowersButton.setStyle("");
-        }else if(selectedCurrentTowerIndex != -1 && selectedReservedTowers != null){
-            System.out.println("Do something...");
-            inventoryService.getCurrentTowerList().add(selectedReservedTowers);
-            inventoryService.getReservedTowerList().remove(selectedReservedTowers);
-        }else if(selectedCurrentTowers != null && selectedReservedTowers == null){
-            System.out.println("Please choose 1 reserved tower to swap");
-            inventoryService.getReservedTowerList().set(selectedReversedTowerIndex, selectedCurrentTowers);
-        }else
-            System.out.println("Please choose 2 buttons to do the action");
-        this.showObjectInButton(reservedTowerButton, inventoryService.getReservedTowerList(), null);
-        selectedCurrentTowers = null;
-        selectedCurrentTowerIndex = -1;
-        selectedReversedTowerIndex = -1;
+            this.outputMessage.setText(e.getMessage());
+        }
         selectedReservedTowers = null;
     }
 
+    /**
+     * Button when clicked will call upgradeTower method in InventoryService
+     * If the recovery time (in ms) of the tower will be lower than 500ms, throw an Exception with message.
+     * @throws Exception
+     */
     @FXML
-    private void onUpgradedClicked() {
+    private void onUpgradedClicked() throws Exception {
         System.out.println("onUpgradedClicked");
-        if(selectedUpgradeCard != null && selectedCurrentTowers != null){
-            inventoryService.upgradeTower(selectedUpgradeCard, selectedCurrentTowers);
-            this.updateStats((Tower) selectedCurrentTowers, (Label) this.towerTimeList.get(selectedCurrentTowerIndex), (Label) this.towerResourceList.get(selectedCurrentTowerIndex), (Label) this.towerLevelList.get(selectedCurrentTowerIndex));
-            selectedCurrentTowersButton.setText(String.valueOf(selectedCurrentTowers.getName()));
-            selectedUpgradeCardButton.setStyle("");
-            selectedCurrentTowersButton.setStyle("");
-            inventoryService.getListUpgradeItemsInInventory().remove(selectedUpgradeCard);
-            this.showObjectInButton(this.upgradeCardButton,null, inventoryService.getListUpgradeItemsInInventory());
-        }else if (selectedUpgradeCard != null) {
-            System.out.println("Please choose the current tower to upgrade");  //Care when decrement time or not???
-        }else if (selectedCurrentTowers != null) {
-            System.out.println("Please choose the card to upgrade for tower");
-        }else
-            System.out.println("Please choose 1 card and 1 tower to do the action");
-        this.showAllCurrentTower(inventoryService.getCurrentTowerList());
-        selectedCurrentTowers = null;
-        selectedUpgradeCard = null;
+        try {
+            if (selectedUpgradeItem != null && selectedCurrentUsedTowers != null) {
+                this.outputMessage.setText("");
+                inventoryService.upgradeTower(selectedUpgradeItem, selectedCurrentUsedTowers); // when upgraded the selected tower, if the reload time smaller than 0.5s, throw exception;
+                this.updateStats(selectedCurrentUsedTowers, this.towerTimeList.get(selectedCurrentTowerIndex), this.towerResourceList.get(selectedCurrentTowerIndex), this.towerLevelList.get(selectedCurrentTowerIndex));
+                selectedCurrentTowerButton.setText(String.valueOf(selectedCurrentUsedTowers.getName()));
+                inventoryService.getListUpgradeItemsInInventory().remove(selectedUpgradeItem);
+                selectedUpgradeCardButton.setStyle("");
+                selectedCurrentTowerButton.setStyle("");
+                this.showAllUpgradeItems(this.upgradeItemsButton, this.upgradeItemsFromInventory);
+            } else if (selectedUpgradeItem != null) {
+                this.outputMessage.setText("Please choose the current tower to upgrade");
+                System.out.println("Please choose the current tower to upgrade");
+            } else if (selectedCurrentUsedTowers != null) {
+                this.outputMessage.setText("Please choose the card to upgrade for tower");
+                System.out.println("Please choose the card to upgrade for tower");
+            } else
+                this.outputMessage.setText("Please choose 1 card and 1 tower to do the action");
+                System.out.println("Please choose 1 card and 1 tower to do the action");
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            this.outputMessage.setText(e.getMessage());
+        }
+        this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+        selectedCurrentUsedTowers = null;
+        selectedUpgradeItem = null;
     }
 
+    /**
+     * Sell the selected tower in current used list
+     */
     @FXML
     public void onSellClicked(){
         System.out.println("Sell clicked");
+        if(selectedCurrentUsedTowers != null) {
+            this.outputMessage.setText("");
+            inventoryService.sellTower(selectedCurrentUsedTowers);
+            this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
+            this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+            selectedCurrentTowerButton.setStyle("");
+        }else{
+            this.outputMessage.setText("Please choose 1 tower from current towers to sell");
+            System.out.println("Please choose 1 tower from current towers to sell");
+        }
+        selectedCurrentUsedTowers = null;
     }
 
+    /**
+     * When clicked button, close this Inventory Screen and launch the next screen
+     */
     @FXML
     private void onReturnedClicked(){
         environmentManager.returnedSetupScreen();

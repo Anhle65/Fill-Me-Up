@@ -53,7 +53,7 @@ public class ShopController {
      * or have new tower. The price is different depending on how good the upgrade card can do to the tower.
      */
     public void initialize(){
-        playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
+        playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         List<Button> listUpgradeCardButtons = List.of(upgradeCard1, upgradeCard2, upgradeCard3);
         List<Button> listTowersInShopButtons = List.of(tower1, tower2, tower3);
         List<Button> listItemsButton = List.of(upgradeCard1, upgradeCard2, upgradeCard3, tower1, tower2, tower3);
@@ -68,9 +68,9 @@ public class ShopController {
 
         // Create 3 random tower
         listTowersInShop.addAll(List.of(
-                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], 40, 20, 6),
-                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], 40, 20, 6),
-                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], 40, 20, 6)
+                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], 40, 20, 3000),
+                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], 40, 20, 3000),
+                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], 40, 20, 3000)
         ));
         shopService.setListTowersInShop(listTowersInShop);
 
@@ -93,19 +93,6 @@ public class ShopController {
         System.out.println("This is the first upgrade item in Shop in long list: " + shopService.getListTowersInShop().get(0).getName());
 
         System.out.println("Length of items in Shop: " + allItemsInShop.size());
-        // Set the upgrade card in shop
-//        for (int i = 0; i < listUpgradeCardButtons.size(); i++) {
-//            int finalI = i; // variables used within lambdas must be final
-//            UpgradeItems item = listUpgradeCardsInShop.get(finalI);
-//            listUpgradeCardButtons.get(finalI).setText(item.getNameItem());
-//        }
-//
-//        // Set the tower in shop
-//        for (int i = 0; i < listTowersInShopButtons.size(); i++) {
-//            int finalI = i; // variables used within lambdas must be final
-//            Tower item = listTowersInShop.get(finalI);
-//            listTowersInShopButtons.get(finalI).setText("Tower:\n" + item.getType());
-//        }
 
         // Change color of the button which is chosen by player
         for (int i = 0; i < listItemsButton.size(); i++) {
@@ -130,7 +117,7 @@ public class ShopController {
         }
     }
     public void onBuyClicked(){
-        playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
+        playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
         int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
         System.out.println("Clicked on Buy button");
@@ -149,7 +136,7 @@ public class ShopController {
             } else
                 System.out.println("Please choose item to buy");
         }
-        playerCoins.setText(String.valueOf(shopService.getCurrentCoin()));
+        playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         selectedTowerInShop = null;
         selectedUpgradeCardInShop = null;
     }

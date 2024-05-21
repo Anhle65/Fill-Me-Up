@@ -11,15 +11,17 @@ public class ShopService {
     private List<Tower> listTowersInShop = new ArrayList<Tower>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<UpgradeItems>();
     private List<String> towerType = List.of("Water", "Fire", "Gold", "Coal", "Ruby");
-    private int currentCoin = 150;
+    private int currentCoin;
     public ShopService(InventoryService inventoryService){
         this.inventoryService= inventoryService;
+        this.currentCoin = inventoryService.getPlayerCoins();
 //        this.currentCoin = environmentManager.getPlayerCoins();
     }
 
     public void buy(UpgradeItems item){
         if(this.currentCoin >= item.getCost()){
             this.currentCoin -= item.getCost();
+            inventoryService.setPlayerCoins(this.currentCoin);
             inventoryService.getListUpgradeItemsInInventory().add(item);
         }
     }
@@ -27,11 +29,10 @@ public class ShopService {
     public void buy(Tower item){
         if(this.currentCoin >= item.getCost()){
             this.currentCoin -= item.getCost();
+            inventoryService.setPlayerCoins(this.currentCoin);
             inventoryService.getReservedTowerList().add(item);
         }
     }
-
-    public int getCurrentCoin(){return this.currentCoin;}
 
     public void setListTowersInShop(List<Tower> listTowersInShop){
         this.listTowersInShop = listTowersInShop;
