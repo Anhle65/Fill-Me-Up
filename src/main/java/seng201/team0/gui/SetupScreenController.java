@@ -32,10 +32,6 @@ public class SetupScreenController{
     @FXML
     private Button selectedTower3;
     @FXML
-    private Button selectedTower4;
-    @FXML
-    private Button selectedTower5;
-    @FXML
     private Button towerStat1;
     @FXML
     private Button towerStat2;
@@ -70,7 +66,7 @@ public class SetupScreenController{
     private EnvironmentManager environmentManager;
     private InventoryService inventoryService;
     private int selectedTowerIndex = -1;
-    private final Tower[] selectedTowers = new Tower[5];;
+    private final Tower[] selectedTowers = new Tower[3];;
     public SetupScreenController(EnvironmentManager environmentManager, InventoryService inventoryService){
         this.environmentManager = environmentManager;
         this.inventoryService = inventoryService;
@@ -124,8 +120,6 @@ public class SetupScreenController{
     private void onEasyGameRadioButtonClicked(){
         easyGameRadioButton.setSelected(true);
         moderateGameRadioButton.setSelected(false);
-        moderateGameRadioButton.setDisable(true);
-        challengingGameRadioButton.setDisable(true);
         challengingGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
 
@@ -137,11 +131,9 @@ public class SetupScreenController{
     private void onModerateGameRadioButtonClicked(){
         moderateGameRadioButton.setSelected(true);
         easyGameRadioButton.setSelected(false);
-        easyGameRadioButton.setDisable(true);
-        challengingGameRadioButton.setDisable(true);
         challengingGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
-        selectedTower4.setDisable(false);
+
 
         environmentManager.setGameDifficulty("Moderate");
 
@@ -151,12 +143,9 @@ public class SetupScreenController{
     private void onChallengingGameRadioButtonClicked(){
         challengingGameRadioButton.setSelected(true);
         easyGameRadioButton.setSelected(false);
-        easyGameRadioButton.setDisable(true);
-        moderateGameRadioButton.setDisable(true);
         moderateGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
-        selectedTower4.setDisable(false);
-        selectedTower5.setDisable(false);
+
 
         environmentManager.setGameDifficulty("Challenging");
     }
@@ -223,7 +212,7 @@ public class SetupScreenController{
 
     public void initialize(){
         environmentManager.resetCurrentRoundNumber();
-        this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3, selectedTower4, selectedTower5);
+        this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         this.towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i; // variables used within lambdas must be final

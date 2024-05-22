@@ -18,7 +18,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
    <children>
 
    <GridPane layoutX="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1483.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -311,7 +311,7 @@
                   </RadioButton>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Screen" translateX="-30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Towers" translateX="-30.0" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -335,8 +335,6 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="selectedTower4" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" translateX="60.0" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
-            <Button fx:id="selectedTower5" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" translateX="15.0" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
       </children>
    </GridPane>
    </children>
