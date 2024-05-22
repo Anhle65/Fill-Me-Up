@@ -46,12 +46,18 @@ public class TowerTest {
         assertEquals(2,tower.getLevel());
     }
 
+    /**
+     * Pass if recoveryTime of Tower after upgraded is smaller than 500 ms
+     */
     @Test
-    void testUpgradeTimeWithNoException() throws Exception {
+    void testUpgradeTimeWithNoException() throws Exception{
         tower.upgradeTime(2000);
         assertEquals(1000, tower.getRecoveryTime());
     }
 
+    /**
+     * Pass if upgradeTime() throw Exception when the recovery time of Tower be smaller than 500 ms after upgrade
+     */
     @Test
     void testUpgradeTimeWithException(){
         Exception exception = assertThrows(Exception.class, () -> tower.upgradeTime(3000));
