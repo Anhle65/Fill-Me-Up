@@ -116,7 +116,7 @@ public class ShopController {
             });
         }
     }
-    public void onBuyClicked(){
+    public void onBuyClicked() throws Exception{
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
         int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
