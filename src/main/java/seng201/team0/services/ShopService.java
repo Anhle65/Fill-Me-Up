@@ -15,7 +15,6 @@ public class ShopService {
     public ShopService(InventoryService inventoryService){
         this.inventoryService= inventoryService;
         this.currentCoin = inventoryService.getPlayerCoins();
-//        this.currentCoin = environmentManager.getPlayerCoins();
     }
 
     public void buy(UpgradeItems item){
