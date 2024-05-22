@@ -29,7 +29,7 @@ public class WinnerNextRoundController {
         environmentManager.incrementCurrentRoundNumber();
         System.out.println("Current rounds: " + environmentManager.getNumberOfRounds()); // This print the current round
         environmentManager.closeCurrentScreen();
-        environmentManager.launchRoundDifficultySelectScreen();
+        environmentManager.launchShopScreen();
     }
 
     public WinnerNextRoundController(EnvironmentManager environmentManager) {
@@ -41,7 +41,6 @@ public class WinnerNextRoundController {
         playerNameLabel.setText(environmentManager.getPlayerName() + " player");
         roundCompletedLabel.setText(environmentManager.getCurrentRoundNumber() + " round completed");
         roundRemainingLabel.setText(environmentManager.getNumberOfRounds() - environmentManager.getCurrentRoundNumber()+ " round remaining");
-
     }
 
 }

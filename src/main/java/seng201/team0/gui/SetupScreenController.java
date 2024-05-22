@@ -201,7 +201,7 @@ public class SetupScreenController{
 
     public void initialize(){
         environmentManager.resetCurrentRoundNumber();
-        this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3, selectedTower4, selectedTower5);
+        this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         this.towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i; // variables used within lambdas must be final

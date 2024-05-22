@@ -366,7 +366,7 @@ public class InventoryController {
     @FXML
     private void onReturnedClicked(){
         environmentManager.returnedSetupScreen();
-//        environmentManager.launchRoundDifficultySelectScreen();
-        environmentManager.launchShopScreen();
+        environmentManager.launchRoundDifficultySelectScreen();
+
     }
 }
