@@ -144,6 +144,6 @@ public class ShopController {
     public void onNextClicked(){
         System.out.println("Clicked on Next button");
         environmentManager.closeCurrentScreen();
-        environmentManager.launchRoundDifficultySelectScreen();
+        environmentManager.launchInventoryScreen();
     }
 }
