@@ -121,16 +121,15 @@ public class ShopController {
         int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
         int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
         System.out.println("Clicked on Buy button");
-//        System.out.println("Item " + se);
         if(sizeBeforeBuyTower < 5 && sizeBeforeBuyItem < 5) {
             if (selectedTowerInShop != null) {
                 System.out.println("Selected " + selectedTowerInShop.getName());
-//                shopService.buy(selectedTowerInShop);
+                shopService.buy(selectedTowerInShop);
                 if (inventoryService.getReservedTowerList().size() > sizeBeforeBuyTower)
                     itemIsBought.setDisable(true);
             } else if (selectedUpgradeCardInShop != null) {
                 System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
-//                shopService.buy(selectedUpgradeCardInShop);
+                shopService.buy(selectedUpgradeCardInShop);
                 if (inventoryService.getListUpgradeItemsInInventory().size() > sizeBeforeBuyItem)
                     itemIsBought.setDisable(true);
             } else
