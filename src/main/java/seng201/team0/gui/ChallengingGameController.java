@@ -117,11 +117,11 @@ public class ChallengingGameController {
 
         long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
 
-        Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
-        Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
-        Cart cart3 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
-        Cart cart4 = new Cart(inventoryService.getCurrentTowerList().get(3).getName(), cartSpeed, 100);
-        Cart cart5 = new Cart(inventoryService.getCurrentTowerList().get(4).getName(), cartSpeed, 100);
+        Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
+        Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
+        Cart cart3 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart4 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
+        Cart cart5 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
 
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
@@ -129,7 +129,7 @@ public class ChallengingGameController {
         System.out.println(cart4.getTypeResourceCart());
         System.out.println(cart5.getTypeResourceCart());
 
-        listCartsInRound = List.of(cart1, cart2, cart3,cart4, cart5);
+        listCartsInRound = List.of(cart1, cart2, cart3, cart4, cart5);
         listImageView = List.of(cartImageView1, cartImageView2, cartImageView3, cartImageView4, cartImageView5);
         listProgressBar = List.of(progressBar1, progressBar2, progressBar3, progressBar4, progressBar5);
         listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3, resourceLabel4, resourceLabel5);
@@ -146,27 +146,24 @@ public class ChallengingGameController {
                         if (finalI == 0) {
                             progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress1);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
                         else if (finalI == 1) {
                             progress2 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress2);
-                            selectedCart.setIncrementIntoCartToFalse();
-                        } else if (finalI == 2) {
+                        }
+                        else if (finalI == 2) {
                             progress3 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress3);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
                         else if (finalI == 3) {
                             progress4 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
-                            selectedProgressBar.setProgress(progress3);
-                            selectedCart.setIncrementIntoCartToFalse();
+                            selectedProgressBar.setProgress(progress4);
                         }
                         else if (finalI == 4) {
                             progress5 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
-                            selectedProgressBar.setProgress(progress3);
-                            selectedCart.setIncrementIntoCartToFalse();
+                            selectedProgressBar.setProgress(progress5);
                         }
+                        selectedCart.setIncrementIntoCartToFalse();
                     }
                     selectedTower = null;
                 }

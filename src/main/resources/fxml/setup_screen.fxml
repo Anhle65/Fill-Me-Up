@@ -293,17 +293,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <RadioButton fx:id="easyGameRadioButton" mnemonicParsing="false" onAction="#onEasyGameRadioButtonClicked" text="Easy">
+                  <RadioButton fx:id="easyGameRadioButton" mnemonicParsing="false" onAction="#onEasyGameRadioButtonClicked" text="Easy" textFill="#ee1515">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="moderateGameRadioButton" mnemonicParsing="false" onAction="#onModerateGameRadioButtonClicked" text="Moderate" GridPane.columnIndex="1">
+                  <RadioButton fx:id="moderateGameRadioButton" mnemonicParsing="false" onAction="#onModerateGameRadioButtonClicked" text="Moderate" textFill="#4173fc" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" GridPane.columnIndex="2">
+                  <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" textFill="#d75a1c" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>

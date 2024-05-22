@@ -113,7 +113,7 @@ public class ModerateGameController {
         Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
         Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
         Cart cart3 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
-        Cart cart4 = new Cart(inventoryService.getCurrentTowerList().get(3).getName(), cartSpeed, 100);
+        Cart cart4 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
 
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
@@ -136,23 +136,21 @@ public class ModerateGameController {
                         if (finalI == 0) {
                             progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress1);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
                         else if (finalI == 1) {
                             progress2 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress2);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
                         else if (finalI == 2) {
                             progress3 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress3);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
                         else if (finalI == 3) {
                             progress4 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress4);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
+                        selectedCart.setIncrementIntoCartToFalse();
+
                     }
                     selectedTower = null;
                 }

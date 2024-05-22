@@ -125,17 +125,16 @@ public class EasyGameController {
                         if (finalI == 0) {
                             progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress1);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
                         else if (finalI == 1) {
                             progress2 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress2);
-                            selectedCart.setIncrementIntoCartToFalse();
                         } else if (finalI == 2) {
                             progress3 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress3);
-                            selectedCart.setIncrementIntoCartToFalse();
                         }
+                        selectedCart.setIncrementIntoCartToFalse();
+
                     }
                     selectedTower = null;
                 }
