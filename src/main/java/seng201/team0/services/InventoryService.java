@@ -6,6 +6,9 @@ import seng201.team0.models.UpgradeItems;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that interact with ShopService, and Controller during the game
+ */
 public class InventoryService {
     private int playerCoins;
     private List<Tower> reservedTowerList = new ArrayList<Tower>(5);

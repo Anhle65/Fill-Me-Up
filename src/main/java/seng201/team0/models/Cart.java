@@ -1,13 +1,14 @@
 package seng201.team0.models;
-
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
+/**
+ * A class that interact with Tower and animation during the round game
+ */
 public class Cart {
     private long cartSpeed;       // Specified in Pixels per second
     private final String typeResourceCart;

@@ -1,6 +1,9 @@
 package seng201.team0.services;
 import java.util.function.Consumer;
 
+/**
+ * A class that manage the interaction between all the launchScreen (GUI)
+ */
 public class EnvironmentManager {
     private String playerName;
     private String gameDifficulty;
