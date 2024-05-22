@@ -12,14 +12,13 @@ public class UpgradeItems extends PurchasableItem {
     private int improvedAmountResource = 0;
     private int cost;
     private String newTypeTower = null;
-    private List<UpgradeItems> items = new ArrayList<>();
 
     /**
      * This constructor to initialize an upgrade card which can be used for tower
-     * @param name
-     * @param improvedAmountResource
-     * @param improvedTime
-     * @param cost
+     * @param name String
+     * @param improvedAmountResource int
+     * @param improvedTime float
+     * @param cost int
      */
     public UpgradeItems(String name, int improvedAmountResource, float improvedTime, int cost) {
         this.nameItem = name;

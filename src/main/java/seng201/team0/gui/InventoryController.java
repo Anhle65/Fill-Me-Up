@@ -80,8 +80,8 @@ public class InventoryController {
     @FXML
     private Button upgradeCard5;
     private int selectedCurrentTowerIndex = -1;
-    private int selectedUpgradeCardIndex = -1;
-    private int selectedReversedTowerIndex = -1;
+//    private int selectedUpgradeCardIndex = -1;
+//    private int selectedReversedTowerIndex = -1;
     private Tower selectedCurrentUsedTowers = null;
     private Button selectedCurrentTowerButton;
     private Tower selectedReservedTowers = null;
@@ -186,9 +186,9 @@ public class InventoryController {
             reservedTowerButton.get(finalJ).setOnAction((event) -> {
                 reservedTowerButton.forEach((button) -> {
                     if (button == reservedTowerButton.get(finalJ)) {
-                        this.selectedReversedTowerIndex = finalJ;
-                        this.selectedUpgradeCardIndex = -1;
-                        this.selectedReversedTowerIndex = -1;
+//                        this.selectedReversedTowerIndex = finalJ;
+//                        this.selectedUpgradeCardIndex = -1;
+//                        this.selectedReversedTowerIndex = -1;
                         if(this.selectedUpgradeCardButton != null) {
                             this.selectedUpgradeCardButton.setStyle("");
                             this.selectedCurrentTowerButton.setStyle("");
@@ -223,8 +223,8 @@ public class InventoryController {
             upgradeItemsButton.get(finalK).setOnAction((event) -> {
                 upgradeItemsButton.forEach((button) -> {
                     if (button == upgradeItemsButton.get(finalK)) {
-                        this.selectedUpgradeCardIndex = finalK;
-                        this.selectedReversedTowerIndex = -1;
+//                        this.selectedUpgradeCardIndex = finalK;
+//                        this.selectedReversedTowerIndex = -1;
                         if(selectedReservedTowersButton != null)
                             selectedReservedTowersButton.setStyle("");
                         this.selectedUpgradeCardButton = button;
@@ -330,8 +330,8 @@ public class InventoryController {
                 this.outputMessage.setText("Please choose the card to upgrade for tower");
                 System.out.println("Please choose the card to upgrade for tower");
             } else
-                this.outputMessage.setText("Please choose 1 card and 1 tower to do the action");
-                System.out.println("Please choose 1 card and 1 tower to do the action");
+                this.outputMessage.setText("Please choose 1 upgrade item and 1 tower in current used to do the action");
+                System.out.println("Please choose 1 upgrade item and 1 tower in current used to do the action");
         }
         catch (Exception e){
             System.out.println(e.getMessage());

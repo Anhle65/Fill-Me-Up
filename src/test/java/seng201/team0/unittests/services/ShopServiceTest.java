@@ -3,8 +3,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seng201.team0.models.Tower;
 import seng201.team0.models.UpgradeItems;
+import seng201.team0.services.EnvironmentManager;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.ShopService;
+import seng201.team0.services.TowerService;
+
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -12,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ShopServiceTest {
     private ShopService shopService;
     private InventoryService inventoryService;
+    private TowerService towerService;
     private Tower testTower;
     private UpgradeItems testUpgradeItem;
 
@@ -21,7 +25,8 @@ public class ShopServiceTest {
      */
     @BeforeEach
     public void setUpTest(){
-        inventoryService = new InventoryService();
+        towerService = new TowerService();
+        inventoryService = new InventoryService(towerService);
         shopService = new ShopService(inventoryService);
         inventoryService.setPlayerCoins(30);
         Tower tower1 = new Tower("Water", 30, 20, 2000);
@@ -43,9 +48,10 @@ public class ShopServiceTest {
      */
     @Test
     public void testBuyUpgradedItemWhenHasEnoughCoin() throws Exception{
+        System.out.println("coin " +inventoryService.getPlayerCoins());
         UpgradeItems upgradeItemsToBuy = shopService.getListUpgradeItemsInShop().get(0); // Choose the first upgrade item in shop to  which cost 20 coins
         shopService.buy(upgradeItemsToBuy);
-        assertEquals(1, inventoryService.getReservedTowerList().size()); // Test if the upgrade card is added in inventory or not
+        assertEquals(1, inventoryService.getListUpgradeItemsInInventory().size()); // Test if the upgrade card is added in inventory or not
         assertEquals(10, inventoryService.getPlayerCoins()); // Test the remaining coins after success purchase
     }
 
@@ -120,6 +126,6 @@ public class ShopServiceTest {
         int sizeOfUpgradeItems = inventoryService.getListUpgradeItemsInInventory().size();
         assertEquals(5, sizeOfUpgradeItems);
         Exception exception = assertThrows(Exception.class, () -> shopService.buy(testUpgradeItem));
-        assertEquals("Can't add more towers back to reserved", exception.getMessage());
+        assertEquals("Can't have more than 5 items", exception.getMessage());
     }
 }

@@ -3,20 +3,22 @@ package seng201.team0.unittests.services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seng201.team0.models.Tower;
+import seng201.team0.services.TowerService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TowerTest {
-    private Tower tower;
+public class TowerServiceTest {
+    private TowerService towerService;
+    private Tower mockedTower;
 
     /**
      * Setup before each test, creating a mocked Tower object
      */
     @BeforeEach
     public void setupTest() {
-        // Use CounterService directly
-        tower = new Tower("water", 40, 15, 3000);
+        towerService = new TowerService();
+        mockedTower = new Tower("Water", 40, 15, 3000);
     }
 
     /**
@@ -24,8 +26,8 @@ public class TowerTest {
      */
     @Test
     void testUpgradeResourceAmount(){
-        tower.upgradeResourceAmount(5);
-        assertEquals(20, tower.getResourceAmount());
+        towerService.upgradeResourceAmount(mockedTower,5);
+        assertEquals(20, mockedTower.getResourceAmount());
     }
 
     /**
@@ -33,8 +35,8 @@ public class TowerTest {
      */
     @Test
     void testChangeTypeResource(){
-        tower.changeTypeResource("fire");
-        assertEquals("fire", tower.getName());
+        towerService.changeTypeResource(mockedTower, "Fire");
+        assertEquals("Fire", mockedTower.getName());
     }
 
     /**
@@ -42,8 +44,8 @@ public class TowerTest {
      */
     @Test
     void testLevelIncrement(){
-        tower.levelIncrement();
-        assertEquals(2,tower.getLevel());
+        towerService.levelIncrement(mockedTower);
+        assertEquals(2, mockedTower.getLevel());
     }
 
     /**
@@ -51,8 +53,8 @@ public class TowerTest {
      */
     @Test
     void testUpgradeTimeWithNoException() throws Exception{
-        tower.upgradeTime(2000);
-        assertEquals(1000, tower.getRecoveryTime());
+        towerService.upgradeTime(mockedTower,2000);
+        assertEquals(1000, mockedTower.getRecoveryTime());
     }
 
     /**
@@ -60,7 +62,7 @@ public class TowerTest {
      */
     @Test
     void testUpgradeTimeWithException(){
-        Exception exception = assertThrows(Exception.class, () -> tower.upgradeTime(3000));
+        Exception exception = assertThrows(Exception.class, () -> towerService.upgradeTime(mockedTower, 3000));
         assertEquals("You can't upgrade time lower than 0.5 second", exception.getMessage());
     }
 }

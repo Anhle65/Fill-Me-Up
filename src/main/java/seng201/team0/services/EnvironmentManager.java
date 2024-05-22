@@ -27,7 +27,6 @@ public class EnvironmentManager {
      * Initialize the default towers on page setup and parse the interface Consumer of all related controllers
      */
     public EnvironmentManager(Consumer<EnvironmentManager> setupScreenLauncher, Consumer<EnvironmentManager> inventoryScreenLauncher, Consumer<EnvironmentManager> roundDifficultySelectScreenLauncher, Consumer<EnvironmentManager> easyGameScreenLauncher, Consumer<EnvironmentManager> winnerScreenLauncher, Consumer<EnvironmentManager> loserScreenLauncher, Consumer<EnvironmentManager> shopScreenLauncher, Consumer<EnvironmentManager> moderateGameScreenLauncher, Consumer<EnvironmentManager> challengingGameScreenLauncher, Consumer<EnvironmentManager> winnerGameScreenLauncher, Runnable clearScreen) {
-//        this.playerCoins = 150;
         this.setupScreenLauncher = setupScreenLauncher;
         this.inventoryScreenLauncher = inventoryScreenLauncher;
         this.roundDifficultySelectScreenLauncher = roundDifficultySelectScreenLauncher;

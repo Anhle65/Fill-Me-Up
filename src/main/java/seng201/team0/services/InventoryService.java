@@ -15,12 +15,13 @@ public class InventoryService {
     private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<UpgradeItems>(5);
     private List<Tower> currentTowerList = new ArrayList<>(5);
     private final List<Tower> defaultTowers = new ArrayList<>();
+    private TowerService towerService;
 
     /**
      * Initialize the Inventory and its properties
      */
-    public InventoryService(){
-        this.playerCoins = 150;
+    public InventoryService(TowerService towerService){
+        this.towerService = towerService;
         defaultTowers.addAll(List.of(
                 new Tower("Fire",20,20,2000),
                 new Tower("Water",30,20,3000),
@@ -86,13 +87,13 @@ public class InventoryService {
     public void upgradeTower(UpgradeItems selectedUpgradeCard, Tower selectedCurrentTowers) throws Exception {
         try {
             if (selectedUpgradeCard.getName().contains("Changing Type")) {
-                selectedCurrentTowers.changeTypeResource(selectedUpgradeCard.getNewTypeTower());
+                towerService.changeTypeResource(selectedCurrentTowers, selectedUpgradeCard.getNewTypeTower());
                 System.out.println("Card type:" + selectedUpgradeCard.getNewTypeTower());
                 System.out.println("New type: " + selectedCurrentTowers.getName());
             } else {
-                selectedCurrentTowers.levelIncrement();
-                selectedCurrentTowers.upgradeTime(selectedUpgradeCard.getImprovedTime());
-                selectedCurrentTowers.upgradeResourceAmount(selectedUpgradeCard.getImprovedAmountResource());
+                towerService.levelIncrement(selectedCurrentTowers);
+                towerService.upgradeTime(selectedCurrentTowers, selectedUpgradeCard.getImprovedTime());
+                towerService.upgradeResourceAmount(selectedCurrentTowers, selectedUpgradeCard.getImprovedAmountResource());
             }
             this.getListUpgradeItemsInInventory().remove(selectedUpgradeCard);
         }

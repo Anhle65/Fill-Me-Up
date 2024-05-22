@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.ShopService;
 import seng201.team0.services.EnvironmentManager;
+import seng201.team0.services.TowerService;
 
 import java.io.IOException;
 
@@ -15,15 +16,17 @@ public class EnvironmentController {
     private String difficultyOfGame;
     @FXML
     private Pane pane;
-
     private Stage stage;
-    private InventoryService inventoryService = new InventoryService();
+    private TowerService towerService;
+    private InventoryService inventoryService;
+    private EnvironmentManager environmentManager;
 
 
     public void init(Stage stage) {
+        towerService = new TowerService();
+        inventoryService = new InventoryService(towerService);
         this.stage = stage;
         new EnvironmentManager(this::launchSetupScreen, this::launchInventoryScreen, this::launchRoundDifficultySelectScreen, this::launchEasyGameScreen, this::launchWinnerNextRoundScreen, this::launchLoserScreen, this::launchShopScreen, this::launchModerateGameScreen, this::launchChallengingGameScreen, this::launchWinnerGameScreen, this::clearPane);
-//        new Shop(this:: launchShopScreen);
     }
 
     public void launchSetupScreen(EnvironmentManager environmentManager) {

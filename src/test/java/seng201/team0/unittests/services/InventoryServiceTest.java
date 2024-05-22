@@ -5,12 +5,15 @@ import org.junit.jupiter.api.Test;
 import seng201.team0.models.Tower;
 import seng201.team0.models.UpgradeItems;
 import seng201.team0.services.InventoryService;
+import seng201.team0.services.TowerService;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 public class InventoryServiceTest {
     private InventoryService inventoryService;
+    private TowerService towerService;
     private Tower mockedReservedTower;
     private Tower mockedCurrentUsedTower;
     private Tower mockedCurrentUsedTower2;
@@ -23,7 +26,8 @@ public class InventoryServiceTest {
      */
     @BeforeEach
     public void setUpTest(){
-        inventoryService = new InventoryService();
+        towerService = new TowerService();
+        inventoryService = new InventoryService(towerService);
         mockedReservedTower = new Tower("Water", 30, 20, 3000);
         mockedCurrentUsedTower = new Tower("Fire", 20, 20, 3000);
         mockedCurrentUsedTower2 = new Tower("Fire", 20, 20, 1000);
@@ -64,7 +68,7 @@ public class InventoryServiceTest {
 
     /**
      * Test moving the selected current Tower to the reserved list when
-     * the size of reservedTowerList is equal or bigger than 5 will throw an Exception
+     * the size of reserved towers list is equal or bigger than 5 will throw an Exception
      * @throws Exception
      */
     @Test
@@ -80,8 +84,8 @@ public class InventoryServiceTest {
     }
 
     /**
-     * Test moving the selected Tower in current used Towers to the reservedList when
-     * the size of current used Tower list is smaller than 5
+     * Test moving the selected Tower in current used towers to the reserved list when
+     * the size of current used towers list is smaller than 5
      */
     @Test
     void testAddTowerToCurrentWhenSizeOfCurrentListSmallerThanFive() throws Exception{
@@ -91,19 +95,19 @@ public class InventoryServiceTest {
     }
 
     /**
-     * Test moving the selected current Tower to the reserved list when
-     * the size of reserved Towers list is equal or bigger than 5 will throw an Exception
+     * Test moving the selected Tower in current used towers to the reserved list when
+     * the size of current used towers list is equal or bigger than 5 will throw an Exception
      * @throws Exception
      */
     @Test
-    void testAddTowerToCurrentWhenSizeOfReservedListNotSmallerThanFive() throws Exception{
+    void testAddTowerToCurrentWhenSizeOfCurrentListNotSmallerThanFive() throws Exception{
         List<Tower> currentUsedTowers = inventoryService.getCurrentUsedTowerList();
         currentUsedTowers.add(mockedCurrentUsedTower);
         currentUsedTowers.add(mockedCurrentUsedTower);
         currentUsedTowers.add(mockedCurrentUsedTower);
         currentUsedTowers.add(mockedCurrentUsedTower);
         assertEquals(5, inventoryService.getCurrentUsedTowerList().size());
-        Exception exception = assertThrows(Exception.class, () -> inventoryService.putTowerBackToReserved(mockedReservedTower));
+        Exception exception = assertThrows(Exception.class, () -> inventoryService.addTowerToCurrent(mockedReservedTower));
         assertEquals("Can't add more towers into current", exception.getMessage());
     }
 
@@ -114,8 +118,9 @@ public class InventoryServiceTest {
     @Test
     void testUpgradeTowerWhenItemIsChangeTypeTower() throws Exception {
         inventoryService.upgradeTower(mockedChangeTypeItem, mockedCurrentUsedTower);
-        assertEquals(mockedChangeTypeItem.getName(), mockedCurrentUsedTower.getName()); // After use the card the type of selected tower will be the same item's type
-        assertEquals(2, inventoryService.getListUpgradeItemsInInventory());
+        String newType = mockedChangeTypeItem.getNewTypeTower();
+        assertEquals(newType, mockedCurrentUsedTower.getName()); // After use the card the type of selected tower will be the same item's type
+        assertEquals(2, inventoryService.getListUpgradeItemsInInventory().size());
     }
 
     /**
@@ -127,8 +132,8 @@ public class InventoryServiceTest {
         int amountBeforeUpgrade = mockedCurrentUsedTower.getResourceAmount();
         int expectedAmount = amountBeforeUpgrade + mockedUpgradeResourceItem.getImprovedAmountResource();
         inventoryService.upgradeTower(mockedUpgradeResourceItem, mockedCurrentUsedTower);
-        assertEquals(expectedAmount, mockedCurrentUsedTower.getResourceAmount()); // After use the card the type of selected tower will be the same item's type
-        assertEquals(2, inventoryService.getListUpgradeItemsInInventory());
+        assertEquals(expectedAmount, mockedCurrentUsedTower.getResourceAmount()); // After use the upgrade item the amount resource is added the item's incrementResource
+        assertEquals(2, inventoryService.getListUpgradeItemsInInventory().size());
     }
 
     /**

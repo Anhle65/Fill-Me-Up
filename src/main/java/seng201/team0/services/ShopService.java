@@ -14,7 +14,7 @@ public class ShopService {
     private List<Tower> listTowersInShop = new ArrayList<Tower>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<UpgradeItems>();
     private List<String> towerType = List.of("Water", "Fire", "Gold", "Coal", "Ruby");
-    private int currentCoin;
+    private int remainingCoins;
 
     /**
      * A constructor that has the Inventory Instance is parameter and initialize playerCoin
@@ -22,7 +22,6 @@ public class ShopService {
      */
     public ShopService(InventoryService inventoryService){
         this.inventoryService= inventoryService;
-        this.currentCoin = inventoryService.getPlayerCoins();
     }
 
     /**
@@ -32,11 +31,13 @@ public class ShopService {
      * @throws Exception
      */
     public void buy(UpgradeItems item) throws Exception{
+        List<UpgradeItems> currentUpgradeItemsList = new ArrayList<UpgradeItems>(inventoryService.getListUpgradeItemsInInventory());
         if (inventoryService.getListUpgradeItemsInInventory().size() < 5) {
-            if (this.currentCoin >= item.getCost()) {
-                this.currentCoin -= item.getCost();
-                inventoryService.setPlayerCoins(this.currentCoin);
-                inventoryService.getListUpgradeItemsInInventory().add(item);
+            if (inventoryService.getPlayerCoins() >= item.getCost()) {
+                remainingCoins = inventoryService.getPlayerCoins() - item.getCost();
+                inventoryService.setPlayerCoins(remainingCoins);
+                currentUpgradeItemsList.add(item);
+                inventoryService.setListUpgradeItemsInInventory(currentUpgradeItemsList);
             }
         }else {
             throw new Exception("Can't have more than 5 items");
@@ -50,11 +51,13 @@ public class ShopService {
      * @throws Exception
      */
     public void buy(Tower tower) throws Exception{
+        List<Tower> reservedTowerList = new ArrayList<Tower>(inventoryService.getReservedTowerList());
         if (inventoryService.getReservedTowerList().size() < 5) {
-            if (this.currentCoin >= tower.getCost()) {
-                this.currentCoin -= tower.getCost();
-                inventoryService.setPlayerCoins(this.currentCoin);
-                inventoryService.getReservedTowerList().add(tower);
+            if (inventoryService.getPlayerCoins() >= tower.getCost()) {
+                remainingCoins = inventoryService.getPlayerCoins() - tower.getCost();
+                inventoryService.setPlayerCoins(remainingCoins);
+                reservedTowerList.add(tower);
+                inventoryService.setReservedTowerList(reservedTowerList);
             }
         }
         else {

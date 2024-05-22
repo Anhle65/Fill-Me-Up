@@ -24,16 +24,16 @@ public class Tower extends PurchasableItem {
     }
 
     /**
-     * Get the current amount of resource of the tower
+     * Get the current amount resource of the tower
      * @return Current (int)amountResource
      */
     public int getResourceAmount(){ return resourceAmount;}
 
     /**
-     * @param incrementAmount
-     * Increment the resource amount of the tower by expand
+     * Set the current amount resource of the tower
+     * @param resourceAmount int
      */
-    public void upgradeResourceAmount(int incrementAmount){ resourceAmount += incrementAmount; }
+    public void setResourceAmount(int resourceAmount){ this.resourceAmount = resourceAmount;}
 
     /**
      * Get the current type of the tower
@@ -45,7 +45,7 @@ public class Tower extends PurchasableItem {
      * @param newType
      * Change the resource type of the tower into newType
      */
-    public void changeTypeResource(String newType){ resourceType = newType;}
+    public void setTypeResource(String newType){ this.resourceType = newType;}
 
     /**
      * Get the current level of the tower
@@ -54,10 +54,11 @@ public class Tower extends PurchasableItem {
     public int getLevel(){ return level;}
 
     /**
-     * Increment the level tower whenever it is upgraded by one
+     * Set level tower
+     * @param level int
      */
-    public void levelIncrement(){
-        this.level += 1;
+    public void setLevel(int level){
+        this.level = level;
     }
 
     /**
@@ -101,14 +102,4 @@ public class Tower extends PurchasableItem {
      * @param recoveryTime long
      */
     public void setRecoveryTime(long recoveryTime){this.recoveryTime = recoveryTime;}
-    /**
-     * @param decrementTime
-     * Decrement the recovery time of the tower by decrementTime
-     */
-    public void upgradeTime(float decrementTime) throws Exception{
-        if (recoveryTime - decrementTime >= 500)
-            recoveryTime -= decrementTime;
-        else
-            throw new Exception("You can't upgrade time lower than 0.5 second");
-    }
 }
