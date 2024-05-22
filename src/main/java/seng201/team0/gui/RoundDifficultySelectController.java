@@ -30,6 +30,10 @@ public class RoundDifficultySelectController {
     @FXML
     private Label currentRoundLabel;
 
+    @FXML
+    private void onExitClicked() {
+        System.exit(0);
+    }
     public RoundDifficultySelectController(EnvironmentManager environmentManager) { this.environmentManager = environmentManager; }
 
     public void initialize(){

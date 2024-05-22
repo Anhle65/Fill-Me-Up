@@ -32,10 +32,6 @@ public class SetupScreenController{
     @FXML
     private Button selectedTower3;
     @FXML
-    private Button selectedTower4;
-    @FXML
-    private Button selectedTower5;
-    @FXML
     private Button towerStat1;
     @FXML
     private Button towerStat2;
@@ -70,7 +66,7 @@ public class SetupScreenController{
     private EnvironmentManager environmentManager;
     private InventoryService inventoryService;
     private int selectedTowerIndex = -1;
-    private final Tower[] selectedTowers = new Tower[5];;
+    private final Tower[] selectedTowers = new Tower[3];;
     public SetupScreenController(EnvironmentManager environmentManager, InventoryService inventoryService){
         this.environmentManager = environmentManager;
         this.inventoryService = inventoryService;
@@ -136,7 +132,6 @@ public class SetupScreenController{
         easyGameRadioButton.setSelected(false);
         challengingGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
-        selectedTower4.setDisable(false);
         environmentManager.setGameDifficulty("Moderate");
 
     }
@@ -147,8 +142,6 @@ public class SetupScreenController{
         easyGameRadioButton.setSelected(false);
         moderateGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
-        selectedTower4.setDisable(false);
-        selectedTower5.setDisable(false);
         environmentManager.setGameDifficulty("Challenging");
     }
 
