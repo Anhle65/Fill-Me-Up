@@ -32,10 +32,6 @@ public class SetupScreenController{
     @FXML
     private Button selectedTower3;
     @FXML
-    private Button selectedTower4;
-    @FXML
-    private Button selectedTower5;
-    @FXML
     private Button towerStat1;
     @FXML
     private Button towerStat2;
@@ -51,113 +47,49 @@ public class SetupScreenController{
     private RadioButton moderateGameRadioButton;
     @FXML
     private RadioButton challengingGameRadioButton;
-
-
     @FXML
     private Label warningLabel;
 
     private boolean nameTextFieldEmpty = true;
     private boolean gameDifficultyEmpty = true;
-    private boolean selectedTower1Empty = true;
-    private boolean selectedTower2Empty = true;
-    private boolean selectedTower3Empty = true;
     private Button selectDefaultTowerButton;
     private Button selectTowerButton;
     private List<Button> selectedTowerButtons;
     private List<Button> towerButtons;
-    private boolean initialTowerSelectedEmpty = true;
-    @FXML
     private EnvironmentManager environmentManager;
     private InventoryService inventoryService;
     private int selectedTowerIndex = -1;
-    private final Tower[] selectedTowers = new Tower[5];;
+    private final Tower[] selectedTowers = new Tower[3];
+
     public SetupScreenController(EnvironmentManager environmentManager, InventoryService inventoryService){
         this.environmentManager = environmentManager;
         this.inventoryService = inventoryService;
     }
-    @FXML
-    private void onTower1ButtonClicked(){
-        initialTowerSelectedEmpty = false;
-    }
-
-    @FXML
-    private void onTower2ButtonClicked(){
-        initialTowerSelectedEmpty = false;
-    }
-
-    @FXML
-    private void onTower3ButtonClicked(){
-        initialTowerSelectedEmpty = false;
-    }
-    @FXML
-    private void onTower4ButtonClicked(){
-        initialTowerSelectedEmpty = false;
-    }
-    @FXML
-    private void onTower5ButtonClicked(){
-        initialTowerSelectedEmpty = false;
-    }
-
-    @FXML
-    private void onSelectedTower1ButtonClicked(){
-        if (!initialTowerSelectedEmpty) {
-            selectedTower1Empty = false;
-        }
-    }
-
-    @FXML
-    private void onSelectedTower2ButtonClicked(){
-        if (!initialTowerSelectedEmpty) {
-            selectedTower2Empty = false;
-        }
-    }
-
-    @FXML
-    private void onSelectedTower3ButtonClicked(){
-        if (!initialTowerSelectedEmpty) {
-            selectedTower3Empty = false;
-        }
-    }
-
 
     @FXML
     private void onEasyGameRadioButtonClicked(){
         easyGameRadioButton.setSelected(true);
         moderateGameRadioButton.setSelected(false);
-        moderateGameRadioButton.setDisable(true);
-        challengingGameRadioButton.setDisable(true);
         challengingGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
-
         environmentManager.setGameDifficulty("Easy");
-
     }
 
     @FXML
     private void onModerateGameRadioButtonClicked(){
         moderateGameRadioButton.setSelected(true);
         easyGameRadioButton.setSelected(false);
-        easyGameRadioButton.setDisable(true);
-        challengingGameRadioButton.setDisable(true);
         challengingGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
-        selectedTower4.setDisable(false);
-
         environmentManager.setGameDifficulty("Moderate");
-
     }
 
     @FXML
     private void onChallengingGameRadioButtonClicked(){
         challengingGameRadioButton.setSelected(true);
         easyGameRadioButton.setSelected(false);
-        easyGameRadioButton.setDisable(true);
-        moderateGameRadioButton.setDisable(true);
         moderateGameRadioButton.setSelected(false);
         gameDifficultyEmpty = false;
-        selectedTower4.setDisable(false);
-        selectedTower5.setDisable(false);
-
         environmentManager.setGameDifficulty("Challenging");
     }
 
@@ -169,18 +101,22 @@ public class SetupScreenController{
         }
         System.out.println(nameTextField.getText());
     }
+
     @FXML
     private void onAcceptClicked() {
         onNameTextFieldChanged();
-        onSelectedTower1ButtonClicked();
-        onSelectedTower2ButtonClicked();
-        onSelectedTower3ButtonClicked();
+
         if (nameTextFieldEmpty) {
-                warningLabel.setText("Please enter your name with length 3-15 characters!");
+            warningLabel.setText("Please enter your name from 3-15 characters!");
+        }
+        else if (!environmentManager.isNotSpecialChar(nameTextField.getText())){
+            warningLabel.setText("Your name must not contain special characters!");
         }
         else if (gameDifficultyEmpty) {
-            // Print error message
             warningLabel.setText("Please choose game difficulty!");
+        }
+        else if (!selectedTower1.isDisable() || !selectedTower2.isDisable() || !selectedTower3.isDisable()){
+            warningLabel.setText("Please select 3 towers to start the game!");
         }
         else {
             environmentManager.setName(nameTextField.getText());
@@ -191,8 +127,6 @@ public class SetupScreenController{
             environmentManager.closeCurrentScreen();
             environmentManager.launchRoundDifficultySelectScreen();
         }
-
-
 
     }
     @FXML
@@ -209,12 +143,6 @@ public class SetupScreenController{
         for(int i=0; i < this.towerButtons.size(); i++){
             this.towerButtons.get(i).setDisable(false);
         }
-        easyGameRadioButton.setSelected(false);
-        moderateGameRadioButton.setSelected(false);
-        challengingGameRadioButton.setSelected(false);
-        easyGameRadioButton.setDisable(false);
-        moderateGameRadioButton.setDisable(false);
-        challengingGameRadioButton.setDisable(false);
     }
 
     /**
@@ -223,7 +151,7 @@ public class SetupScreenController{
 
     public void initialize(){
         environmentManager.resetCurrentRoundNumber();
-        this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3, selectedTower4, selectedTower5);
+        this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         this.towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
         for (int i = 0; i < towerButtons.size(); i++) {
             int finalI = i; // variables used within lambdas must be final
@@ -233,7 +161,7 @@ public class SetupScreenController{
                 towerButtons.forEach(button -> {
                     if (button == towerButtons.get(finalI)) {
                         this.selectDefaultTowerButton = button;
-                        button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
+                        button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-family: System; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
                     }

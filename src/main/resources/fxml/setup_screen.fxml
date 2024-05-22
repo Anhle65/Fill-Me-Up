@@ -9,7 +9,6 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.SepiaTone?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: rgba(224,210,250,0.8);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
    <children>
 
    <GridPane layoutX="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1483.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -38,7 +37,7 @@
             <RowConstraints maxHeight="139.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
      </rowConstraints>
       <children>
-         <Label alignment="CENTER" text="Welcome to FILL ME UP Game!!" textFill="#d90000" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+         <Label alignment="CENTER" text="Welcome to FILL IT UP Game!!" textFill="#d90000" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
             <font>
                <Font name="System Bold Italic" size="40.0" />
             </font>
@@ -93,7 +92,7 @@
                <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Label fx:id="towerStatsLabel" prefHeight="19.0" prefWidth="149.0" text="Resource Amount:" GridPane.rowIndex="2">
+               <Label prefHeight="19.0" prefWidth="149.0" text="Resource Amount:" GridPane.rowIndex="2">
                   <GridPane.margin>
                      <Insets />
                   </GridPane.margin>
@@ -109,7 +108,7 @@
                         <Font name="Verdana Bold" size="14.0" />
                      </font>
                </Label>
-               <Label fx:id="towerStatsLabel" layoutX="10.0" layoutY="117.0" prefHeight="19.0" prefWidth="49.0" text="Type:" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <Label layoutX="10.0" layoutY="117.0" prefHeight="19.0" prefWidth="49.0" text="Type:" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                   <GridPane.margin>
                      <Insets />
                   </GridPane.margin>
@@ -175,40 +174,40 @@
                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Button fx:id="towerStat4" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onTower4ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="towerStat4" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="15.0" />
+                        <Font name="Verdana Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat2" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onTower2ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <Button fx:id="towerStat2" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="15.0" />
+                        <Font name="Verdana Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat3" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" onAction="#onTower3ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 3" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <Button fx:id="towerStat3" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 3" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="15.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat5" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" onAction="#onTower5ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="towerStat5" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="15.0" />
+                        <Font name="Verdana Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat1" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" onAction="#onTower1ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 1" GridPane.halignment="CENTER">
+               <Button fx:id="towerStat1" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="15.0" />
+                        <Font name="Verdana Bold" size="18.0" />
                      </font></Button>
             </children>
          </GridPane>
@@ -223,15 +222,15 @@
                   <RowConstraints maxHeight="97.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Button fx:id="selectedTower3" mnemonicParsing="false" onAction="#onSelectedTower3ButtonClicked" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <Button fx:id="selectedTower3" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin></Button>
-               <Button fx:id="selectedTower1" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" onAction="#onSelectedTower1ButtonClicked" prefHeight="100.0" prefWidth="150.0" GridPane.halignment="CENTER">
+               <Button fx:id="selectedTower1" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin></Button>
-               <Button fx:id="selectedTower2" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" onAction="#onSelectedTower2ButtonClicked" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <Button fx:id="selectedTower2" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin></Button>
@@ -294,26 +293,26 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <RadioButton fx:id="easyGameRadioButton" mnemonicParsing="false" onAction="#onEasyGameRadioButtonClicked" text="Easy" textFill="#cf19cd">
+                  <RadioButton fx:id="easyGameRadioButton" mnemonicParsing="false" onAction="#onEasyGameRadioButtonClicked" text="Easy">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="moderateGameRadioButton" mnemonicParsing="false" onAction="#onModerateGameRadioButtonClicked" text="Moderate" textFill="#1627e4" GridPane.columnIndex="1">
+                  <RadioButton fx:id="moderateGameRadioButton" mnemonicParsing="false" onAction="#onModerateGameRadioButtonClicked" text="Moderate" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" textFill="#eb0505" GridPane.columnIndex="2">
+                  <RadioButton fx:id="challengingGameRadioButton" mnemonicParsing="false" onAction="#onChallengingGameRadioButtonClicked" text="Challenging" GridPane.columnIndex="2">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </RadioButton>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Screen" translateX="-30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Towers" translateX="-30.0" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                <effect>
                   <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="40.0" surfaceScale="0.0">
@@ -335,12 +334,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="selectedTower4" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" translateX="60.0" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
-            <Button fx:id="selectedTower5" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" translateX="15.0" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
       </children>
    </GridPane>
    </children>
-   <effect>
-      <SepiaTone level="0.25" />
-   </effect>
 </AnchorPane>
