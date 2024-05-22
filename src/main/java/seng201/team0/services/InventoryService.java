@@ -13,6 +13,9 @@ public class InventoryService {
     private List<Tower> currentTowerList = new ArrayList<>(5);
     private final List<Tower> defaultTowers = new ArrayList<>();
 
+    /**
+     * Initialize the Inventory and its properties
+     */
     public InventoryService(){
         this.playerCoins = 150;
         defaultTowers.addAll(List.of(
@@ -24,13 +27,32 @@ public class InventoryService {
         );
     }
 
+    /**
+     * Get the playerCoins
+     * @return playerCoins
+     */
     public int getPlayerCoins(){return playerCoins;}
+
+    /**
+     * Set the playerCoins
+     * @param playerCoins int
+     */
     public void setPlayerCoins(int playerCoins){this.playerCoins = playerCoins;}
 
+    /**
+     * Sell the selected tower in current used list
+     * @param selectedCurrentTowers Tower
+     */
     public void sellTower(Tower selectedCurrentTowers){
         this.setPlayerCoins(this.playerCoins + selectedCurrentTowers.getCost());
         this.currentTowerList.remove(selectedCurrentTowers);
     }
+
+    /**
+     * Move the selected tower in current used list to reserved list
+     * @param selectedCurrentTowers Tower
+     * @throws Exception when the size reserved list exceed 5
+     */
     public void putTowerBackToReserved(Tower selectedCurrentTowers) throws Exception{
         if(this.reservedTowerList.size() < 5) {
             this.reservedTowerList.add(selectedCurrentTowers);
@@ -38,6 +60,12 @@ public class InventoryService {
         }else
             throw new Exception("Can't add more towers back to reserved");
     }
+
+    /**
+     * Move the selected tower in reserved list to current used list
+     * @param selectedReservedTowers Tower
+     * @throws Exception
+     */
     public void addTowerToCurrent(Tower selectedReservedTowers) throws Exception{
         if(this.currentTowerList.size() < 5) {
             this.currentTowerList.add(selectedReservedTowers);
@@ -45,6 +73,13 @@ public class InventoryService {
         }else
             throw new Exception("Can't add more towers into current");
     }
+
+    /**
+     * Upgrade the selected Tower's statistics and consume the selected upgrade item
+     * @param selectedUpgradeCard UpgradeItems
+     * @param selectedCurrentTowers Tower
+     * @throws Exception
+     */
     public void upgradeTower (UpgradeItems selectedUpgradeCard, Tower selectedCurrentTowers) throws Exception {
         try {
             if (selectedUpgradeCard.getName().contains("Changing Type")) {
@@ -60,16 +95,18 @@ public class InventoryService {
         catch (Exception e) {
             e.getMessage();
         }
-        System.out.println("selectedCurrentTowers in inventory: " + selectedCurrentTowers.getName());
     }
+
     /**
-     * @return List of the default towers which can be selected by player on the setup page
+     * Get the default towers which can be selected by player on the setup page
+     * @return defaultTowers
      */
     public List<Tower> getDefaultTowers() {
         return defaultTowers;
     }
 
-    /** Get list of the current towers are used in round
+    /**
+     * Get list of the current towers are used in round
      * @return currentTowerList
      */
     public List<Tower> getCurrentTowerList() {
