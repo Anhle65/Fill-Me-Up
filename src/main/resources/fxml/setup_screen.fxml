@@ -10,6 +10,7 @@
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.SepiaTone?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -310,16 +311,32 @@
                   </RadioButton>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Tower" translateX="15.0" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+            <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Screen" translateX="-30.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <effect>
+                  <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="40.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="1.0" green="0.6296296119689941" blue="0.6296296119689941" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
             </Button>
             <Label prefHeight="30.0" prefWidth="689.0" text="Select towers and click to the empty tower in selected tower area!" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
+            <Button fx:id="selectedTower4" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" translateX="60.0" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
+            <Button fx:id="selectedTower5" disable="true" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" translateX="15.0" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
       </children>
    </GridPane>
    </children>
