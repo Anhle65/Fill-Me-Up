@@ -68,6 +68,9 @@ public class Cart {
         if (tower.getName().equals(this.typeResourceCart) && (this.currentAmount < this.sizeOfCart)){
             this.currentAmount += tower.getResourceAmount();
             this.isIncrementIntoCart = true;
+            if (this.currentAmount > this.sizeOfCart){
+                this.currentAmount = this.sizeOfCart;
+            }
         }
     }
 
