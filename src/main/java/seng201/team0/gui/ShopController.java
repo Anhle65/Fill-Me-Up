@@ -80,7 +80,7 @@ public class ShopController {
                 new UpgradeItems("Upgrade\nAmount", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
                 new UpgradeItems("Changing Type\nTower to " + TYPE_RESOURCES[typeResourceIndex], TYPE_RESOURCES[typeResourceIndex] , 20)
         ));
-        shopService.setListUpgradeCardsInShop(listUpgradeCardsInShop);
+        shopService.setListUpgradeItemsInShop(listUpgradeCardsInShop);
         System.out.println("This is the first upgrade item in Shop: " + shopService.getListTowersInShop().get(0).getName());
 
         ArrayList<PurchasableItem> allItemsInShop = new ArrayList<>();
@@ -105,7 +105,7 @@ public class ShopController {
                 if(item instanceof Tower){
                     selectedTowerInShop = shopService.getListTowersInShop().get(finalI - 3);
                 }else
-                    selectedUpgradeCardInShop = shopService.getListUpgradeCardsInShop().get(finalI);
+                    selectedUpgradeCardInShop = shopService.getListUpgradeItemsInShop().get(finalI);
                 listItemsButton.forEach(button -> {
                     if (button == listItemsButton.get(finalI)) {
                         button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 10px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
@@ -120,21 +120,21 @@ public class ShopController {
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
         int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
-        System.out.println("Clicked on Buy button");
-        if(sizeBeforeBuyTower < 5 && sizeBeforeBuyItem < 5) {
+//        System.out.println("Clicked on Buy button");
+//        if(sizeBeforeBuyTower < 5 && sizeBeforeBuyItem < 5) {
             if (selectedTowerInShop != null) {
-                System.out.println("Selected " + selectedTowerInShop.getName());
+//                System.out.println("Selected " + selectedTowerInShop.getName());
                 shopService.buy(selectedTowerInShop);
                 if (inventoryService.getReservedTowerList().size() > sizeBeforeBuyTower)
                     itemIsBought.setDisable(true);
             } else if (selectedUpgradeCardInShop != null) {
-                System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
+//                System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
                 shopService.buy(selectedUpgradeCardInShop);
                 if (inventoryService.getListUpgradeItemsInInventory().size() > sizeBeforeBuyItem)
                     itemIsBought.setDisable(true);
             } else
                 System.out.println("Please choose item to buy");
-        }
+//        }
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         selectedTowerInShop = null;
         selectedUpgradeCardInShop = null;
