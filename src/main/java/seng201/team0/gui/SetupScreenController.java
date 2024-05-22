@@ -161,11 +161,11 @@ public class SetupScreenController{
     @FXML
     private void onAcceptClicked() {
         onNameTextFieldChanged();
-        onSelectedTower1ButtonClicked();
-        onSelectedTower2ButtonClicked();
-        onSelectedTower3ButtonClicked();
         if (nameTextFieldEmpty) {
-                warningLabel.setText("Please enter your name with length 3-15 characters!");
+            warningLabel.setText("Please enter your name from 3-15 characters!");
+        }
+        else if (!environmentManager.isNotSpecialChar(nameTextField.getText())){
+            warningLabel.setText("Your name must not contain special characters!");
         }
         else if (gameDifficultyEmpty) {
             // Print error message
@@ -198,12 +198,6 @@ public class SetupScreenController{
         for(int i=0; i < this.towerButtons.size(); i++){
             this.towerButtons.get(i).setDisable(false);
         }
-        easyGameRadioButton.setSelected(false);
-        moderateGameRadioButton.setSelected(false);
-        challengingGameRadioButton.setSelected(false);
-        easyGameRadioButton.setDisable(false);
-        moderateGameRadioButton.setDisable(false);
-        challengingGameRadioButton.setDisable(false);
     }
 
     /**
@@ -222,7 +216,7 @@ public class SetupScreenController{
                 towerButtons.forEach(button -> {
                     if (button == towerButtons.get(finalI)) {
                         this.selectDefaultTowerButton = button;
-                        button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
+                        button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 18px; -fx-font-family: System; -fx-font-weight: bold; -fx-background-radius: 5;");
                     } else {
                         button.setStyle("");
                     }

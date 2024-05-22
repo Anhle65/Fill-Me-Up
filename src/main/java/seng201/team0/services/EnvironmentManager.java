@@ -39,6 +39,12 @@ public class EnvironmentManager {
         launchSetupScreen();
     }
     /**
+     * Check if the name text field does not contain special character
+     * @param input
+     */
+    public boolean isNotSpecialChar(String input){ return input.matches("[a-zA-Z0-9]+");}
+
+    /**
      * Get the track distance of current round
      */
     public double getTrackDistance(){ return this.trackDistance;}
