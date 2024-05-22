@@ -97,6 +97,11 @@ public class Tower extends PurchasableItem {
     public long getRecoveryTime(){ return recoveryTime;}
 
     /**
+     * Set the recovery time of tower
+     * @param recoveryTime long
+     */
+    public void setRecoveryTime(long recoveryTime){this.recoveryTime = recoveryTime;}
+    /**
      * @param decrementTime
      * Decrement the recovery time of the tower by decrementTime
      */

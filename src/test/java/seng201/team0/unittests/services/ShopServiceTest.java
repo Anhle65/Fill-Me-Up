@@ -120,7 +120,6 @@ public class ShopServiceTest {
         int sizeOfUpgradeItems = inventoryService.getListUpgradeItemsInInventory().size();
         assertEquals(5, sizeOfUpgradeItems);
         Exception exception = assertThrows(Exception.class, () -> shopService.buy(testUpgradeItem));
-        assertEquals("Can't have more than 5 items", exception.getMessage());
+        assertEquals("Can't add more towers back to reserved", exception.getMessage());
     }
-
 }

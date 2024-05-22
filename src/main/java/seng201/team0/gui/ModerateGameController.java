@@ -110,10 +110,10 @@ public class ModerateGameController {
 
         long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
 
-        Cart cart1 = new Cart(inventoryService.getCurrentTowerList().get(0).getName(), cartSpeed, 100);
-        Cart cart2 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
-        Cart cart3 = new Cart(inventoryService.getCurrentTowerList().get(2).getName(), cartSpeed, 100);
-        Cart cart4 = new Cart(inventoryService.getCurrentTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart1 = new Cart(inventoryService.getCurrentUsedTowerList().get(0).getName(), cartSpeed, 100);
+        Cart cart2 = new Cart(inventoryService.getCurrentUsedTowerList().get(1).getName(), cartSpeed, 100);
+        Cart cart3 = new Cart(inventoryService.getCurrentUsedTowerList().get(2).getName(), cartSpeed, 100);
+        Cart cart4 = new Cart(inventoryService.getCurrentUsedTowerList().get(1).getName(), cartSpeed, 100);
 
         System.out.println(cart1.getTypeResourceCart());
         System.out.println(cart2.getTypeResourceCart());
@@ -164,14 +164,14 @@ public class ModerateGameController {
         TranslateTransition translateButton4 = new TranslateTransition();
         TranslateTransition translateButton5 = new TranslateTransition();
         List<TranslateTransition> translateButtons = List.of(translateButton1, translateButton2, translateButton3, translateButton4, translateButton5);
-        for (int i = 0; i < inventoryService.getCurrentTowerList().size(); i++) {
+        for (int i = 0; i < inventoryService.getCurrentUsedTowerList().size(); i++) {
             int finalI = i; // variables used within lambdas must be final
-            listTowerButtons.get(finalI).setText(inventoryService.getCurrentTowerList().get(finalI).getName());
+            listTowerButtons.get(finalI).setText(inventoryService.getCurrentUsedTowerList().get(finalI).getName());
             listTowerButtons.get(finalI).setOnAction(event -> {
 //                selectedTowerIndex = finalI;
                 listTowerButtons.forEach(button -> {
                     if (button == listTowerButtons.get(finalI)) {
-                        this.selectedTower = inventoryService.getCurrentTowerList().get(finalI);
+                        this.selectedTower = inventoryService.getCurrentUsedTowerList().get(finalI);
                         long time = selectedTower.getRecoveryTime();
                         translateButtons.get(finalI).setNode(listTowerButtons.get(finalI));
                         translateButtons.get(finalI).setDuration(Duration.millis(time));

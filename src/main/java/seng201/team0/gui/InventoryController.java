@@ -120,7 +120,7 @@ public class InventoryController {
     public void initialize() {
         this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         this.upgradeItemsFromInventory = inventoryService.getListUpgradeItemsInInventory();
-        this.currentTowersFromInventory = inventoryService.getCurrentTowerList();
+        this.currentTowersFromInventory = inventoryService.getCurrentUsedTowerList();
         this.reservedTowerFromInventory = inventoryService.getReservedTowerList();
         this.playerName.setText(this.environmentManager.getPlayerName());
         this.towerTimeList = List.of(this.tower1Time, this.tower2Time, this.tower3Time, this.tower4Time, this.tower5Time);
@@ -268,7 +268,7 @@ public class InventoryController {
                 this.outputMessage.setText("");
                 inventoryService.putTowerBackToReserved(selectedCurrentUsedTowers);
                 this.reservedTowersButton.get(lastIndex).setText("Empty");
-                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
                 this.showAllReservedTower(this.reservedTowersButton, inventoryService.getReservedTowerList());
                 selectedCurrentTowerButton.setStyle("");
             } else
@@ -294,7 +294,7 @@ public class InventoryController {
                 this.outputMessage.setText("");
                 inventoryService.addTowerToCurrent(selectedReservedTowers);
                 this.towerButtons.get(lastIndex).setText("Empty");
-                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
                 this.showAllReservedTower(this.reservedTowersButton, inventoryService.getReservedTowerList());
                 selectedReservedTowersButton.setStyle("");
             } else
@@ -320,7 +320,6 @@ public class InventoryController {
                 inventoryService.upgradeTower(selectedUpgradeItem, selectedCurrentUsedTowers); // when upgraded the selected tower, if the reload time smaller than 0.5s, throw exception;
                 this.updateStats(selectedCurrentUsedTowers, this.towerTimeList.get(selectedCurrentTowerIndex), this.towerResourceList.get(selectedCurrentTowerIndex), this.towerLevelList.get(selectedCurrentTowerIndex));
                 selectedCurrentTowerButton.setText(String.valueOf(selectedCurrentUsedTowers.getName()));
-                inventoryService.getListUpgradeItemsInInventory().remove(selectedUpgradeItem);
                 selectedUpgradeCardButton.setStyle(""); // when finished action, set the style of button to normal
                 selectedCurrentTowerButton.setStyle(""); // when finished action, set the style of button to normal
                 this.showAllUpgradeItems(this.upgradeItemsButton, this.upgradeItemsFromInventory);
@@ -338,7 +337,7 @@ public class InventoryController {
             System.out.println(e.getMessage());
             this.outputMessage.setText(e.getMessage());
         }
-        this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+        this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
         selectedCurrentUsedTowers = null; // when finished action, set the selected tower to null
         selectedUpgradeItem = null; // when finished action, set the selected tower to null
     }
@@ -353,7 +352,7 @@ public class InventoryController {
             this.outputMessage.setText("");
             inventoryService.sellTower(selectedCurrentUsedTowers);
             this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
-            this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentTowerList());
+            this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
             selectedCurrentTowerButton.setStyle("");
         }else{
             this.outputMessage.setText("Please choose 1 tower from current towers to sell");

@@ -83,7 +83,7 @@ public class InventoryService {
      * @param selectedCurrentTowers Tower
      * @throws Exception
      */
-    public void upgradeTower (UpgradeItems selectedUpgradeCard, Tower selectedCurrentTowers) throws Exception {
+    public void upgradeTower(UpgradeItems selectedUpgradeCard, Tower selectedCurrentTowers) throws Exception {
         try {
             if (selectedUpgradeCard.getName().contains("Changing Type")) {
                 selectedCurrentTowers.changeTypeResource(selectedUpgradeCard.getNewTypeTower());
@@ -94,6 +94,7 @@ public class InventoryService {
                 selectedCurrentTowers.upgradeTime(selectedUpgradeCard.getImprovedTime());
                 selectedCurrentTowers.upgradeResourceAmount(selectedUpgradeCard.getImprovedAmountResource());
             }
+            this.getListUpgradeItemsInInventory().remove(selectedUpgradeCard);
         }
         catch (Exception e) {
             e.getMessage();
@@ -112,7 +113,7 @@ public class InventoryService {
      * Get list of the current towers are used in round
      * @return currentTowerList
      */
-    public List<Tower> getCurrentTowerList() {
+    public List<Tower> getCurrentUsedTowerList() {
         return this.currentTowerList;
     }
 
