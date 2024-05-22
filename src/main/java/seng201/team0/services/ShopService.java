@@ -17,19 +17,28 @@ public class ShopService {
         this.currentCoin = inventoryService.getPlayerCoins();
     }
 
-    public void buy(UpgradeItems item){
-        if(this.currentCoin >= item.getCost()){
-            this.currentCoin -= item.getCost();
-            inventoryService.setPlayerCoins(this.currentCoin);
-            inventoryService.getListUpgradeItemsInInventory().add(item);
+    public void buy(UpgradeItems item) throws Exception{
+        if (inventoryService.getListUpgradeItemsInInventory().size() < 5) {
+            if (this.currentCoin >= item.getCost()) {
+                this.currentCoin -= item.getCost();
+                inventoryService.setPlayerCoins(this.currentCoin);
+                inventoryService.getListUpgradeItemsInInventory().add(item);
+            }
+        }else {
+            throw new Exception("Can't have more than 5 items");
         }
     }
 
-    public void buy(Tower item){
-        if(this.currentCoin >= item.getCost()){
-            this.currentCoin -= item.getCost();
-            inventoryService.setPlayerCoins(this.currentCoin);
-            inventoryService.getReservedTowerList().add(item);
+    public void buy(Tower item) throws Exception{
+        if (inventoryService.getListUpgradeItemsInInventory().size() < 5) {
+            if (this.currentCoin >= item.getCost()) {
+                this.currentCoin -= item.getCost();
+                inventoryService.setPlayerCoins(this.currentCoin);
+                inventoryService.getReservedTowerList().add(item);
+            }
+        }
+        else {
+            throw new Exception("Can't have more than 5 tower in reserved");
         }
     }
 
