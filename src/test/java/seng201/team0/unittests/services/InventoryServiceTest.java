@@ -12,6 +12,10 @@ public class InventoryServiceTest {
     private InventoryService inventoryService;
     private Tower mockedReservedTower;
     private Tower mockedCurrentUsedTower;
+
+    /**
+     * Set up before each test set playerCoin, create mockedReservedTower, mockedCurrentUsedTower, Inventory instance
+     */
     @BeforeEach
     public void setUpTest(){
         inventoryService = new InventoryService();
@@ -25,12 +29,14 @@ public class InventoryServiceTest {
     }
 
     /**
-     * Test sellTower method
+     * Test sellTower method when called will remove the selected tower from the current used tower list
+     * and increase the coin to player coins
      */
     @Test
     void testSellTower(){
         inventoryService.sellTower(mockedCurrentUsedTower);
         int sizeCurrentTowerList = inventoryService.getCurrentTowerList().size();
-        assertEquals(sizeCurrentTowerList, 0);
+        assertEquals(50, inventoryService.getPlayerCoins());
+        assertEquals(0, sizeCurrentTowerList);
     }
 }
