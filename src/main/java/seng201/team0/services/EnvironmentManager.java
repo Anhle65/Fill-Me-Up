@@ -38,6 +38,7 @@ public class EnvironmentManager {
         this.clearScreen = clearScreen;
         launchSetupScreen();
     }
+
     /**
      * Check if the name text field does not contain special character
      * @param input

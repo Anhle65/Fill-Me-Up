@@ -174,35 +174,35 @@
                <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Button fx:id="towerStat4" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onTower4ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="towerStat4" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
                         <Font name="Verdana Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat2" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" onAction="#onTower2ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <Button fx:id="towerStat2" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
                         <Font name="Verdana Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat3" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" onAction="#onTower3ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 3" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <Button fx:id="towerStat3" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 3" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat5" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" onAction="#onTower5ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <Button fx:id="towerStat5" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
                         <Font name="Verdana Bold" size="18.0" />
                      </font></Button>
-               <Button fx:id="towerStat1" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" onAction="#onTower1ButtonClicked" prefHeight="100.0" prefWidth="150.0" text="Tower 1" GridPane.halignment="CENTER">
+               <Button fx:id="towerStat1" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
@@ -222,15 +222,15 @@
                   <RowConstraints maxHeight="97.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <Button fx:id="selectedTower3" mnemonicParsing="false" onAction="#onSelectedTower3ButtonClicked" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <Button fx:id="selectedTower3" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin></Button>
-               <Button fx:id="selectedTower1" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" onAction="#onSelectedTower1ButtonClicked" prefHeight="100.0" prefWidth="150.0" GridPane.halignment="CENTER">
+               <Button fx:id="selectedTower1" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin></Button>
-               <Button fx:id="selectedTower2" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" onAction="#onSelectedTower2ButtonClicked" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <Button fx:id="selectedTower2" layoutX="232.0" layoutY="38.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin></Button>
