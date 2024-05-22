@@ -31,7 +31,7 @@ public class MainWindow extends Application {
 
 
         primaryStage.setTitle("SENG201 Example App");
-        Scene scene = new Scene(root, 1500, 1100);
+        Scene scene = new Scene(root, 1500, 900);
         primaryStage.setScene(scene);
         primaryStage.show();
         baseController.init(primaryStage);
