@@ -19,7 +19,6 @@ import java.util.List;
 public class ModerateGameController {
 
     private EnvironmentManager environmentManager;
-//    private int selectedTowerIndex = -1;
 
     @FXML
     private ImageView cartImageView1;
@@ -131,6 +130,136 @@ public class ModerateGameController {
         listProgressBar = List.of(progressBar1, progressBar2, progressBar3, progressBar4);
         listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3, resourceLabel4);
 
+        cartImageClickEventInit();
+
+        towerSelectionButtonsInit();
+
+        TranslateTransition lastMove = cartAnimationInit();
+
+        endOfRoundProcedureInit(lastMove);
+
+        startCartAnimation();
+
+    }
+
+    /**
+     * Implementing a non-blocking delay between starting the cart animations
+     */
+    private void startCartAnimation() {
+        ImageView bogus = new ImageView();
+        TranslateTransition cartDelayTransition = new TranslateTransition();
+        cartDelayTransition.setDuration(Duration.millis(2500));
+        cartDelayTransition.setNode(bogus);
+
+        cartDelayTransition.setOnFinished(actionEvent -> {
+            listCartsInRound.get(1).startAnimation();
+            cartDelayTransition.setOnFinished(actionEvent1 -> {
+                listCartsInRound.get(2).startAnimation();
+                cartDelayTransition.setOnFinished(actionEvent2 -> {
+                    listCartsInRound.get(3).startAnimation();
+                });
+                cartDelayTransition.play();
+            });
+            cartDelayTransition.play();
+        });
+        listCartsInRound.get(0).startAnimation();
+        cartDelayTransition.play();
+    }
+
+    /**
+     * Initialize end of round procedure, use lastMove to check if carts are filled, show result win/lose
+     * and increment the score if winning
+     * @param lastMove
+     */
+    private void endOfRoundProcedureInit(TranslateTransition lastMove) {
+        lastMove.setOnFinished(actionEvent -> {
+            System.out.println("End game");
+
+            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp() && listCartsInRound.get(3).isCartFilledUp()) {
+
+                if (environmentManager.getRoundDifficulty().equals("Easy")) {
+                    environmentManager.incrementScore(20);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
+                    environmentManager.incrementScore(25);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
+                    environmentManager.incrementScore(30);
+                }
+                if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeCurrentScreen();
+                    environmentManager.launchWinnerNextRoundScreen();
+                } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeCurrentScreen();
+                    environmentManager.launchWinnerGameScreen();
+                }
+
+            }
+            else {
+
+                environmentManager.closeCurrentScreen();
+                environmentManager.launchLoserScreen();
+            }
+        });
+    }
+
+    /**
+     * Initialize cart moving animation and return the lastMove
+     * @return lastMove
+     */
+    private TranslateTransition cartAnimationInit() {
+        TranslateTransition lastMove = new TranslateTransition();
+        for (int i = 0; i < listCartsInRound.size(); i++) {
+            int finalI = i;
+            selectedCart = listCartsInRound.get(finalI);
+            selectedImage = listImageView.get(finalI);
+            selectedProgressBar = listProgressBar.get(finalI);
+            selectedResourceLabel = listResourceLabel.get(finalI);
+            lastMove = this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
+        }
+        return lastMove;
+    }
+
+    /**
+     * Implementing selected Tower buttons to get resource stats and enable buttons within set recovery time
+     */
+    private void towerSelectionButtonsInit() {
+        List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
+        TranslateTransition translateButton1 = new TranslateTransition();
+        TranslateTransition translateButton2 = new TranslateTransition();
+        TranslateTransition translateButton3 = new TranslateTransition();
+        TranslateTransition translateButton4 = new TranslateTransition();
+        TranslateTransition translateButton5 = new TranslateTransition();
+        List<TranslateTransition> translateButtons = List.of(translateButton1, translateButton2, translateButton3, translateButton4, translateButton5);
+        for (int i = 0; i < inventoryService.getCurrentUsedTowerList().size(); i++) {
+            int finalI = i;
+            listTowerButtons.get(finalI).setText(inventoryService.getCurrentUsedTowerList().get(finalI).getName());
+            listTowerButtons.get(finalI).setOnAction(event -> {
+                listTowerButtons.forEach(button -> {
+                    if (button == listTowerButtons.get(finalI)) {
+                        this.selectedTower = inventoryService.getCurrentUsedTowerList().get(finalI);
+                        long time = selectedTower.getRecoveryTime();
+                        translateButtons.get(finalI).setNode(listTowerButtons.get(finalI));
+                        translateButtons.get(finalI).setDuration(Duration.millis(time));
+                        button.setDisable(true);
+                        translateButtons.get(finalI).setOnFinished(actionEvent -> {
+                            button.setDisable(false);
+                        });
+                        translateButtons.get(finalI).play();
+                        button.setStyle("-fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+        }
+    }
+
+    /**
+     * Sets up the cart image mouse-click event to increment amount of resource
+     * in the cart, and the progress bar displayed under the cart image
+     */
+    private void cartImageClickEventInit() {
         for (int i = 0; i < listImageView.size(); i++) {
             int finalI = i;
             listImageView.get(finalI).setOnMouseClicked(mouseEvent -> {
@@ -164,97 +293,5 @@ public class ModerateGameController {
                 }
             });
         }
-
-        List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
-        TranslateTransition translateButton1 = new TranslateTransition();
-        TranslateTransition translateButton2 = new TranslateTransition();
-        TranslateTransition translateButton3 = new TranslateTransition();
-        TranslateTransition translateButton4 = new TranslateTransition();
-        TranslateTransition translateButton5 = new TranslateTransition();
-        List<TranslateTransition> translateButtons = List.of(translateButton1, translateButton2, translateButton3, translateButton4, translateButton5);
-        for (int i = 0; i < inventoryService.getCurrentUsedTowerList().size(); i++) {
-            int finalI = i; // variables used within lambdas must be final
-            listTowerButtons.get(finalI).setText(inventoryService.getCurrentUsedTowerList().get(finalI).getName());
-            listTowerButtons.get(finalI).setOnAction(event -> {
-//                selectedTowerIndex = finalI;
-                listTowerButtons.forEach(button -> {
-                    if (button == listTowerButtons.get(finalI)) {
-                        this.selectedTower = inventoryService.getCurrentUsedTowerList().get(finalI);
-                        long time = selectedTower.getRecoveryTime();
-                        translateButtons.get(finalI).setNode(listTowerButtons.get(finalI));
-                        translateButtons.get(finalI).setDuration(Duration.millis(time));
-                        button.setDisable(true);
-                        translateButtons.get(finalI).setOnFinished(actionEvent -> {
-                            button.setDisable(false);
-                        });
-                        translateButtons.get(finalI).play();
-                        button.setStyle("-fx-background-radius: 5;");
-                    } else {
-                        button.setStyle("");
-                    }
-                });
-            });
-        }
-
-        TranslateTransition lastMove = new TranslateTransition();
-        for (int i = 0; i < listCartsInRound.size(); i++) {
-            int finalI = i;
-            selectedCart = listCartsInRound.get(finalI);
-            selectedImage = listImageView.get(finalI);
-            selectedProgressBar = listProgressBar.get(finalI);
-            selectedResourceLabel = listResourceLabel.get(finalI);
-            lastMove = this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
-        }
-
-        lastMove.setOnFinished(actionEvent -> {
-            System.out.println("End game");
-
-            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp() && listCartsInRound.get(3).isCartFilledUp()) {
-
-                if (environmentManager.getRoundDifficulty().equals("Easy")) {
-                    environmentManager.incrementScore(20);
-                }
-                else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
-                    environmentManager.incrementScore(25);
-                }
-                else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
-                    environmentManager.incrementScore(30);
-                }
-                if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeCurrentScreen();
-                    environmentManager.launchWinnerNextRoundScreen();
-                } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
-                    environmentManager.closeCurrentScreen();
-                    environmentManager.launchWinnerGameScreen();
-                }
-
-            }
-            else {
-
-                environmentManager.closeCurrentScreen();
-                environmentManager.launchLoserScreen();
-            }
-        });
-
-        // Implementing a non-blocking delay between starting the cart animations
-        ImageView bogus = new ImageView();
-        TranslateTransition cartDelayTransition = new TranslateTransition();
-        cartDelayTransition.setDuration(Duration.millis(2500));
-        cartDelayTransition.setNode(bogus);
-
-        cartDelayTransition.setOnFinished(actionEvent -> {
-            listCartsInRound.get(1).startAnimation();
-            cartDelayTransition.setOnFinished(actionEvent1 -> {
-                listCartsInRound.get(2).startAnimation();
-                cartDelayTransition.setOnFinished(actionEvent2 -> {
-                    listCartsInRound.get(3).startAnimation();
-                });
-                cartDelayTransition.play();
-            });
-            cartDelayTransition.play();
-        });
-        listCartsInRound.get(0).startAnimation();
-        cartDelayTransition.play();
-
     }
 }
