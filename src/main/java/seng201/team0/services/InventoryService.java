@@ -98,7 +98,7 @@ public class InventoryService {
             this.getListUpgradeItemsInInventory().remove(selectedUpgradeCard);
         }
         catch (Exception e) {
-            e.getMessage();
+            throw new Exception("You can't upgrade time lower than 0.5 second");
         }
     }
 

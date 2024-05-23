@@ -209,7 +209,14 @@ public class EasyGameController {
             }
         });
 
-        // Implementing a non-blocking delay between starting the cart animations
+
+        cartAnimation();
+    }
+
+    /**
+     * Implementing a non-blocking delay between starting the cart animations
+     */
+    private void cartAnimation() {
         ImageView bogus = new ImageView();
         TranslateTransition cartDelayTransition = new TranslateTransition();
         cartDelayTransition.setDuration(Duration.millis(2000));
