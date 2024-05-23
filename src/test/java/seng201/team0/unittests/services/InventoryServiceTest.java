@@ -61,8 +61,8 @@ public class InventoryServiceTest {
     }
 
     /**
-     * Test sellTower method when called will remove the selected tower from the current used tower list
-     * and increase the coin to player coins
+     * Test sellTower method when called will throw an Exception
+     * when the number of current used towers in list is less than 3
      */
     @Test
     void testSellTowerWhenCurrentTowerHasLessThanThree() throws Exception{
@@ -138,7 +138,7 @@ public class InventoryServiceTest {
     void testUpgradeTowerWhenItemIsChangeTypeTower() throws Exception {
         inventoryService.upgradeTower(mockedChangeTypeItem, mockedCurrentUsedTower);
         String newType = mockedChangeTypeItem.getNewTypeTower();
-        assertEquals(newType, mockedCurrentUsedTower.getName()); // After use the card the type of selected tower will be the same item's type
+        assertEquals(newType, mockedCurrentUsedTower.getName());
         assertEquals(2, inventoryService.getListUpgradeItemsInInventory().size());
     }
 
@@ -151,7 +151,7 @@ public class InventoryServiceTest {
         int amountBeforeUpgrade = mockedCurrentUsedTower.getResourceAmount();
         int expectedAmount = amountBeforeUpgrade + mockedUpgradeResourceItem.getImprovedAmountResource();
         inventoryService.upgradeTower(mockedUpgradeResourceItem, mockedCurrentUsedTower);
-        assertEquals(expectedAmount, mockedCurrentUsedTower.getResourceAmount()); // After use the upgrade item the amount resource is added the item's incrementResource
+        assertEquals(expectedAmount, mockedCurrentUsedTower.getResourceAmount());
         assertEquals(2, inventoryService.getListUpgradeItemsInInventory().size());
     }
 
@@ -165,7 +165,7 @@ public class InventoryServiceTest {
         long expectedTime = (long) (timeBeforeUpgrade - mockedUpgradeTimeItem.getImprovedTime());
         inventoryService.upgradeTower(mockedUpgradeTimeItem, mockedCurrentUsedTower);
         long actualTime = mockedCurrentUsedTower.getRecoveryTime();
-        assertEquals(expectedTime, actualTime); // After use the card, the recovery time of selected tower will be reduced
+        assertEquals(expectedTime, actualTime);
         assertEquals(2, inventoryService.getListUpgradeItemsInInventory().size());
     }
 
