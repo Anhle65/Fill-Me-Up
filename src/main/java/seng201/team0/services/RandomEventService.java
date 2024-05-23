@@ -1,6 +1,6 @@
-package seng201.team0.models;
+package seng201.team0.services;
 
-import seng201.team0.services.InventoryService;
+import seng201.team0.models.Tower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +9,18 @@ import java.util.Random;
 /**
  * A class will do a random event
  */
-public class RandomEvent {
+public class RandomEventService {
     private InventoryService inventoryService;
     private final List<Integer> indexesTowerWillBeChosen = new ArrayList<Integer>();
-    private Random randomEvent = new Random(400);
-    private Random randomEventHappened = new Random(500);
+    private Random randomEvent = new Random();
+    private Random randomEventHappened = new Random();
     private boolean hasRandomEvent = false;
 
     /**
      * Constructor to create RandomEvent Instance
      * @param inventoryService InventoryService
      */
-    public RandomEvent(InventoryService inventoryService){
+    public RandomEventService(InventoryService inventoryService){
         this.inventoryService = inventoryService;
     }
     public boolean isHasRandomEvent(){return this.hasRandomEvent;}
@@ -30,10 +30,16 @@ public class RandomEvent {
      */
     public void dicePossibilityToHaveEvent(){
         int randomEventHappenedNumber = randomEventHappened.nextInt(3);
+        System.out.println("random num: " + randomEventHappenedNumber);
         if(randomEventHappenedNumber == 1){
             this.hasRandomEvent = true;
         }
     }
+
+    /**
+     * Set hasRandomEvent to false after it run an event
+     */
+    public void setHasRandomEventToFalse(){this.hasRandomEvent = false;}
 
     /**
      * Event occurs will remove a tower from current used towers list in inventory

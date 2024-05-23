@@ -124,7 +124,6 @@ public class SetupScreenController{
             environmentManager.setNumberOfRounds((int) roundSlider.getValue());
             System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
             inventoryService.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
-            inventoryService.setPlayerCoins(150);
             environmentManager.closeCurrentScreen();
             environmentManager.launchRoundDifficultySelectScreen();
         }

@@ -98,7 +98,7 @@ public class ShopController {
         for (int i = 0; i < listItemsButton.size(); i++) {
             int finalI = i; // variables used within lambdas must be final
             PurchasableItem item = allItemsInShop.get(finalI);
-            listItemsButton.get(finalI).setText(item.getName());
+            listItemsButton.get(finalI).setText(item.getName() + "\n$ " + item.getCost());
             listItemsButton.get(finalI).setOnAction(event -> {
                 selectedItemIndex = finalI;
                 itemIsBought = listItemsButton.get(finalI);

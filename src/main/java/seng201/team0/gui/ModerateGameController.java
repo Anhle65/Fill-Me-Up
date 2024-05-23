@@ -293,5 +293,106 @@ public class ModerateGameController {
                 }
             });
         }
+<<<<<<< HEAD
+=======
+
+        List<Button> listTowerButtons = List.of(tower1Button, tower2Button, tower3Button, tower4Button, tower5Button);
+        TranslateTransition translateButton1 = new TranslateTransition();
+        TranslateTransition translateButton2 = new TranslateTransition();
+        TranslateTransition translateButton3 = new TranslateTransition();
+        TranslateTransition translateButton4 = new TranslateTransition();
+        TranslateTransition translateButton5 = new TranslateTransition();
+        List<TranslateTransition> translateButtons = List.of(translateButton1, translateButton2, translateButton3, translateButton4, translateButton5);
+        for (int i = 0; i < inventoryService.getCurrentUsedTowerList().size(); i++) {
+            int finalI = i; // variables used within lambdas must be final
+            listTowerButtons.get(finalI).setText(inventoryService.getCurrentUsedTowerList().get(finalI).getName());
+            listTowerButtons.get(finalI).setOnAction(event -> {
+//                selectedTowerIndex = finalI;
+                listTowerButtons.forEach(button -> {
+                    if (button == listTowerButtons.get(finalI)) {
+                        this.selectedTower = inventoryService.getCurrentUsedTowerList().get(finalI);
+                        long time = selectedTower.getRecoveryTime();
+                        translateButtons.get(finalI).setNode(listTowerButtons.get(finalI));
+                        translateButtons.get(finalI).setDuration(Duration.millis(time));
+                        button.setDisable(true);
+                        translateButtons.get(finalI).setOnFinished(actionEvent -> {
+                            button.setDisable(false);
+                        });
+                        translateButtons.get(finalI).play();
+                        button.setStyle("-fx-background-radius: 5;");
+                    } else {
+                        button.setStyle("");
+                    }
+                });
+            });
+        }
+
+        TranslateTransition lastMove = new TranslateTransition();
+        for (int i = 0; i < listCartsInRound.size(); i++) {
+            int finalI = i;
+            selectedCart = listCartsInRound.get(finalI);
+            selectedImage = listImageView.get(finalI);
+            selectedProgressBar = listProgressBar.get(finalI);
+            selectedResourceLabel = listResourceLabel.get(finalI);
+            lastMove = this.selectedCart.generateAnimation(selectedImage, selectedProgressBar, selectedResourceLabel);
+        }
+
+        lastMove.setOnFinished(actionEvent -> {
+            System.out.println("End game");
+
+            if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp() && listCartsInRound.get(3).isCartFilledUp()) {
+
+                if (environmentManager.getRoundDifficulty().equals("Easy")) {
+                    environmentManager.incrementScore(20);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
+                    environmentManager.incrementScore(25);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
+                }
+                else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
+                    environmentManager.incrementScore(30);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
+                }
+                if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeCurrentScreen();
+                    environmentManager.launchWinnerNextRoundScreen();
+                } else if (environmentManager.getCurrentRoundNumber() == environmentManager.getNumberOfRounds()) {
+                    environmentManager.closeCurrentScreen();
+                    environmentManager.launchWinnerGameScreen();
+                }
+
+            }
+            else {
+
+                environmentManager.closeCurrentScreen();
+                environmentManager.launchLoserScreen();
+            }
+        });
+
+        // Implementing a non-blocking delay between starting the cart animations
+        ImageView bogus = new ImageView();
+        TranslateTransition cartDelayTransition = new TranslateTransition();
+        cartDelayTransition.setDuration(Duration.millis(2500));
+        cartDelayTransition.setNode(bogus);
+
+        cartDelayTransition.setOnFinished(actionEvent -> {
+            listCartsInRound.get(1).startAnimation();
+            cartDelayTransition.setOnFinished(actionEvent1 -> {
+                listCartsInRound.get(2).startAnimation();
+                cartDelayTransition.setOnFinished(actionEvent2 -> {
+                    listCartsInRound.get(3).startAnimation();
+                });
+                cartDelayTransition.play();
+            });
+            cartDelayTransition.play();
+        });
+        listCartsInRound.get(0).startAnimation();
+        cartDelayTransition.play();
+
+>>>>>>> 223fe77166f60ebeede1f7e98ceff6c32931a338
     }
 }
