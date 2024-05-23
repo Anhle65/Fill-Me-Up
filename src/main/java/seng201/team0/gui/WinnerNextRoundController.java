@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seng201.team0.services.EnvironmentManager;
 import seng201.team0.services.RandomEventService;
+import seng201.team0.models.Tower;
+
 
 public class WinnerNextRoundController {
     private EnvironmentManager environmentManager;
@@ -22,6 +24,9 @@ public class WinnerNextRoundController {
     private Label roundRemainingLabel;
 
     @FXML
+    private Label brokenTowerAlertLabel;
+
+    @FXML
     private void onExitButtonClicked() {
         System.exit(0);
     }
@@ -37,17 +42,19 @@ public class WinnerNextRoundController {
         playerNameLabel.setText(environmentManager.getPlayerName() + " player");
         roundCompletedLabel.setText(environmentManager.getCurrentRoundNumber() + " round completed");
         roundRemainingLabel.setText(environmentManager.getNumberOfRounds() - environmentManager.getCurrentRoundNumber()+ " round remaining");
-    }
-    @FXML
-    private void onNextRoundButtonClicked() {
+
         environmentManager.incrementCurrentRoundNumber();
         System.out.println("Current rounds: " + environmentManager.getNumberOfRounds());
         int currentRound = environmentManager.getCurrentRoundNumber();
         this.randomEventService.dicePossibilityToHaveEvent();
         if (this.randomEventService.isHasRandomEvent()) {
-            randomEventService.eventRemoveRandomTower();
+            Tower removedTower = randomEventService.eventRemoveRandomTower();
+            brokenTowerAlertLabel.setText("OH NO! Your " + removedTower.getName() + " Tower has broken! You can no longer use it");
             randomEventService.setHasRandomEventToFalse();
         }
+    }
+    @FXML
+    private void onNextRoundButtonClicked() {
         environmentManager.closeCurrentScreen();
         environmentManager.launchShopScreen();
     }

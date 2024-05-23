@@ -44,10 +44,12 @@ public class RandomEventService {
     /**
      * Event occurs will remove a tower from current used towers list in inventory
      * if towers is used in previous round, the more chance it will be chosen to removed
+     * @return removedTower
      */
-    public void eventRemoveRandomTower(){
+    public Tower eventRemoveRandomTower(){
         List<Tower> currentTowers = inventoryService.getCurrentUsedTowerList();
-        for(int i=0; i < currentTowers.size(); ++i){
+        indexesTowerWillBeChosen.clear();
+        for(int i=0; i < currentTowers.size(); i++){
             Tower tower = currentTowers.get(i);
             if(tower.isInUse()) {
                 indexesTowerWillBeChosen.add(i);
@@ -55,9 +57,11 @@ public class RandomEventService {
             }
             indexesTowerWillBeChosen.add(i);
         }
-        int randomEventIndex = randomEvent.nextInt(indexesTowerWillBeChosen.size());
-        Tower removedTower = currentTowers.get(randomEventIndex);
+        int randomEventIndex = randomEvent.nextInt(indexesTowerWillBeChosen.size() - 1);
+        int randomTowerIndex = indexesTowerWillBeChosen.get(randomEventIndex);
+        Tower removedTower = currentTowers.get(randomTowerIndex);
         currentTowers.remove(removedTower);
         inventoryService.setCurrentTowerList(currentTowers);
+        return removedTower;
     }
 }
