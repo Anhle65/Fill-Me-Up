@@ -216,8 +216,6 @@ public class EasyGameController {
                 environmentManager.launchLoserScreen();
             }
         });
-
-
         cartAnimation();
     }
 
