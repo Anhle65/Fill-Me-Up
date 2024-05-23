@@ -98,7 +98,7 @@ public class Cart {
      *         can be found on completion of the animation sequence
      */
     public TranslateTransition generateAnimation (ImageView cartImage, ProgressBar progressbar, Label resourceLabel) {
-        // Translate Transition for cart image
+
         double distanceX = 1200;
         double distanceY = 150;
 
@@ -111,14 +111,14 @@ public class Cart {
         TranslateTransition cartMove4 = this.getTranslation(cartImage, durationY, 0, distanceY);
         TranslateTransition cartMove5 = this.getTranslation(cartImage, durationX, distanceX, 0);
 
-        // Translate transition for cart progress bar
+
         this.progressTranslate = this.getTranslation(progressbar,durationX,distanceX,0);
         TranslateTransition progressMove2 = this.getTranslation(progressbar,durationY,0,distanceY);
         TranslateTransition progressMove3 = this.getTranslation(progressbar,durationX,-distanceX,0);
         TranslateTransition progressMove4 = this.getTranslation(progressbar,durationY,0,distanceY);
         TranslateTransition progressMove5 = this.getTranslation(progressbar,durationX,distanceX,0);
 
-        // Translate transition for cart resource label
+
         this.labelTranslate = this.getTranslation(resourceLabel,durationX,distanceX,0);
         TranslateTransition labelMove2 = this.getTranslation(resourceLabel,durationY,0,distanceY);
         TranslateTransition labelMove3 = this.getTranslation(resourceLabel,durationX,-distanceX,0);
