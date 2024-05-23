@@ -58,18 +58,17 @@ public class ShopController {
         List<Button> listItemsButton = List.of(upgradeCard1, upgradeCard2, upgradeCard3, tower1, tower2, tower3);
         Random randomResource = new Random();
         Random randomTimeUpgrade = new Random();
-        Random randomTypeResource = new Random();
+        Random randomTower = new Random();
         int enhancedResourceIndex=  randomResource.nextInt(RESOURCE_ENHANCEMENT.length);
         int timeIndex = randomTimeUpgrade.nextInt(TIME_DECREMENT.length);
-        int typeResourceIndex = randomResource.nextInt(TYPE_RESOURCES.length);
-        List<Integer> towerRandomTypeIndexes = List.of(randomTypeResource.nextInt(TYPE_RESOURCES.length),
-                randomTypeResource.nextInt(TYPE_RESOURCES.length), randomTypeResource.nextInt(TYPE_RESOURCES.length));
+        int typeResourceIndex = randomResource.nextInt(RESOURCE_ENHANCEMENT.length);
+        List<Tower> randomTowers = inventoryService.getDefaultTowers();
 
-        listTowersInShop.addAll(List.of(
-                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], 40, 20, 3000),
-                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], 40, 20, 3000),
-                new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(2)], 40, 20, 3000)
-        ));
+        for(int i=0; i < randomTowers.size(); ++i){
+            int randomTowerIndex = randomTower.nextInt(randomTowers.size());
+            Tower tower = randomTowers.get(randomTowerIndex);
+            listTowersInShop.add(new Tower(tower.getName(), tower.getCost(), tower.getResourceAmount(), tower.getRecoveryTime()));
+        }
         shopService.setListTowersInShop(listTowersInShop);
 
         listUpgradeCardsInShop.addAll(List.of(

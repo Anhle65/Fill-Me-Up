@@ -29,10 +29,13 @@ public class RandomEventService {
      * Random a number if equal to the fixed number is set, the event will happen
      */
     public void dicePossibilityToHaveEvent(){
-        int randomEventHappenedNumber = randomEventHappened.nextInt(3);
-        System.out.println("random num: " + randomEventHappenedNumber);
-        if(randomEventHappenedNumber == 1){
-            this.hasRandomEvent = true;
+        int sizeCurrentUsedTowers = inventoryService.getCurrentUsedTowerList().size();
+        if(sizeCurrentUsedTowers > 2) {
+            int randomEventHappenedNumber = randomEventHappened.nextInt(3);
+            System.out.println("random num: " + randomEventHappenedNumber);
+            if (randomEventHappenedNumber == 1) {
+                this.hasRandomEvent = true;
+            }
         }
     }
 
@@ -64,4 +67,5 @@ public class RandomEventService {
         inventoryService.setCurrentTowerList(currentTowers);
         return removedTower;
     }
+
 }
