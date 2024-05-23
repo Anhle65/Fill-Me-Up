@@ -20,7 +20,9 @@ will randomly break and disappear from their inventory.
 
 ## Authors
 Team 82
-Ngoc Le – ID: 46909266
+
+Ngoc Le – ID: 46909266 
+
 Anh Le - ID:
 ## Prerequisites
 - JDK >= 17 [click here to get the latest stable OpenJDK release (as of writing this README)](https://jdk.java.net/18/)

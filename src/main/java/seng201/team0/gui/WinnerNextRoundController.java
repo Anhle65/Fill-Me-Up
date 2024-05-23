@@ -3,16 +3,21 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seng201.team0.services.EnvironmentManager;
+import seng201.team0.services.InventoryService;
 import seng201.team0.services.RandomEventService;
 import seng201.team0.models.Tower;
 
 
 public class WinnerNextRoundController {
     private EnvironmentManager environmentManager;
+    private InventoryService inventoryService;
     private RandomEventService randomEventService;
 
     @FXML
     private Label scoreLabel;
+
+    @FXML
+    private Label coinsLabel;
 
     @FXML
     private Label playerNameLabel;
@@ -31,14 +36,16 @@ public class WinnerNextRoundController {
         System.exit(0);
     }
 
-    public WinnerNextRoundController(EnvironmentManager environmentManager, RandomEventService randomEventService) {
+    public WinnerNextRoundController(EnvironmentManager environmentManager, RandomEventService randomEventService, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
         this.randomEventService = randomEventService;
+        this.inventoryService = inventoryService;
 
     }
 
     public void initialize(){
         scoreLabel.setText(environmentManager.getScore() + " points");
+        coinsLabel.setText(inventoryService.getPlayerCoins() + " coins");
         playerNameLabel.setText(environmentManager.getPlayerName() + " player");
         roundCompletedLabel.setText(environmentManager.getCurrentRoundNumber() + " round completed");
         roundRemainingLabel.setText(environmentManager.getNumberOfRounds() - environmentManager.getCurrentRoundNumber()+ " round remaining");

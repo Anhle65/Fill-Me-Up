@@ -81,7 +81,7 @@ public class EnvironmentController {
     public void launchWinnerNextRoundScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/winner_next_round_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new WinnerNextRoundController(environmentManager, this.randomEventService));
+            mainScreenLoader.setControllerFactory(param -> new WinnerNextRoundController(environmentManager, this.randomEventService, this.inventoryService));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Winner Next Round Screen");
