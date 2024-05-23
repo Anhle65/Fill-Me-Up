@@ -125,6 +125,7 @@ public class ModerateGameController {
         System.out.println(cart2.getTypeResourceCart());
         System.out.println(cart3.getTypeResourceCart());
         System.out.println(cart4.getTypeResourceCart());
+
         listCartsInRound = List.of(cart1, cart2, cart3, cart4);
         listImageView = List.of(cartImageView1, cartImageView2, cartImageView3, cartImageView4);
         listProgressBar = List.of(progressBar1, progressBar2, progressBar3, progressBar4);

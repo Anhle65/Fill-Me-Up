@@ -348,17 +348,22 @@ public class InventoryController {
     @FXML
     public void onSellClicked(){
         System.out.println("Sell clicked");
-        if(selectedCurrentUsedTowers != null) {
-            this.outputMessage.setText("");
-            inventoryService.sellTower(selectedCurrentUsedTowers);
-            this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
-            this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
-            selectedCurrentTowerButton.setStyle("");
-        }else{
-            this.outputMessage.setText("Please choose 1 tower from current towers to sell");
-            System.out.println("Please choose 1 tower from current towers to sell");
+        if (inventoryService.getCurrentUsedTowerList().size() > 3) {
+            if (selectedCurrentUsedTowers != null) {
+                this.outputMessage.setText("");
+                inventoryService.sellTower(selectedCurrentUsedTowers);
+                this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
+                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
+                selectedCurrentTowerButton.setStyle("");
+            } else {
+                this.outputMessage.setText("Please choose 1 tower from current towers to sell");
+                System.out.println("Please choose 1 tower from current towers to sell");
+            }
+            selectedCurrentUsedTowers = null;
         }
-        selectedCurrentUsedTowers = null;
+        else {
+            this.outputMessage.setText("You must have at least 3 Tower to sell");
+        }
     }
 
     /**
