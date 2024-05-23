@@ -55,7 +55,7 @@ public class WinnerNextRoundController {
         int currentRound = environmentManager.getCurrentRoundNumber();
         this.randomEventService.dicePossibilityToHaveEvent();
         if (this.randomEventService.isHasRandomEvent()) {
-            Tower removedTower = randomEventService.eventRemoveRandomTower();
+            Tower removedTower = randomEventService.getAndRemoveTheRandomTowerBeChosen();
             brokenTowerAlertLabel.setText("OH NO! Your " + removedTower.getName() + " Tower has broken! You can no longer use it");
             randomEventService.setHasRandomEventToFalse();
         }

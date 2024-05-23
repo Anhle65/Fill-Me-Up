@@ -10,9 +10,6 @@ import seng201.team0.models.Cart;
 import seng201.team0.models.Tower;
 
 public class TowerService{
-    public TowerService(){
-    }
-
     /**
      * @param incrementAmount
      * Increment the resource amount of the tower by expand
@@ -43,11 +40,11 @@ public class TowerService{
      * @param decrementTime
      * Decrement the recovery time of the tower by decrementTime
      */
-    public void upgradeTime(Tower tower, float decrementTime) throws Exception{
+    public void upgradeTime(Tower tower, long decrementTime) throws Exception{
         long timeAfterUpgrade;
         long timeBeforeUpgrade = tower.getRecoveryTime();
         if (timeBeforeUpgrade - decrementTime >= 500) {
-            timeAfterUpgrade = (long) (timeBeforeUpgrade - decrementTime);
+            timeAfterUpgrade = timeBeforeUpgrade - decrementTime;
             tower.setRecoveryTime(timeAfterUpgrade);
         }
         else

@@ -24,6 +24,7 @@ public class RandomEventServiceTest {
         List<Tower> listCurrentTowers = new ArrayList<Tower>();
         Tower mockedTower1 = new Tower("Water", 20, 20, 2000);
         Tower mockedTower2 = new Tower("Water", 20, 20, 2000);
+        Tower mockedTower3 = new Tower("Water", 20, 20, 2000);
         mockedTower1.setInUseState(true);
         listCurrentTowers.add(mockedTower1);
         listCurrentTowers.add(mockedTower2);

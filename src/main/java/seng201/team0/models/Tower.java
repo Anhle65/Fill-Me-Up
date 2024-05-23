@@ -3,29 +3,27 @@ package seng201.team0.models;
  * Tower class which will be interacted by user in game
  */
 public class Tower extends PurchasableItem {
-    private String resourceType;
+    private String resourceName;
     private int level;
     private int cost;
-    private boolean isWorking;
     private int resourceAmount;
     private long recoveryTime;
-    boolean inUse;
+    private boolean inUse;
     /**
      * This constructor will create tower by the different input paras(resourceType, level, price, resourceAmount)
      */
-    public Tower(String resourceType, int cost, int resourceAmount, long recoveryTime){
-        this.resourceType = resourceType;
+    public Tower(String resourceName, int cost, int resourceAmount, long recoveryTime){
+        this.resourceName = resourceName;
         this.level = 1;
         this.cost = cost;
         this.resourceAmount = resourceAmount;
         this.recoveryTime = recoveryTime;
-        this.isWorking = true;
         this.inUse = false;
     }
 
     /**
      * Get the current amount resource of the tower
-     * @return Current (int)amountResource
+     * @return resourceAmount int
      */
     public int getResourceAmount(){ return resourceAmount;}
 
@@ -37,19 +35,19 @@ public class Tower extends PurchasableItem {
 
     /**
      * Get the current type of the tower
-     * @return Current (String)type
+     * @return resourceName String
      */
-    public String getName(){ return resourceType;}
+    public String getName(){ return resourceName;}
 
     /**
-     * @param newType
+     * @param newName String
      * Change the resource type of the tower into newType
      */
-    public void setTypeResource(String newType){ this.resourceType = newType;}
+    public void setTypeResource(String newName){ this.resourceName = newName;}
 
     /**
      * Get the current level of the tower
-     * @return Current (int)level
+     * @return level int
      */
     public int getLevel(){ return level;}
 
@@ -63,21 +61,9 @@ public class Tower extends PurchasableItem {
 
     /**
      * Get the price of the tower
-     * @return price of tower in float
+     * @return cost int
      */
     public int getCost(){ return cost;}
-
-    /**
-     * Get the current available state of the tower
-     * @return true if the tower is working OR false if the tower is broken
-     */
-    public boolean isWorkingStatus(){ return isWorking;}
-
-    /**
-     * @param isWorking
-     * Set the property this.isWorking of tower to the isWorking input
-     */
-    public void setWorkingStatus(boolean isWorking){ this.isWorking = isWorking;}
 
     /**
      * Get the current place (in used OR in reserved) of the tower
@@ -86,14 +72,14 @@ public class Tower extends PurchasableItem {
     public boolean isInUse(){ return inUse;}
 
     /**
-     * @param isUsed
      * Set the property this.inUse of tower to the isUsed input
+     * @param isUsed boolean
      */
     public void setInUseState(boolean isUsed){ this.inUse = isUsed;}
 
     /**
      * Get the current recovery time after each action
-     * @return current recovery time in long
+     * @return recoveryTime long
      */
     public long getRecoveryTime(){ return recoveryTime;}
 

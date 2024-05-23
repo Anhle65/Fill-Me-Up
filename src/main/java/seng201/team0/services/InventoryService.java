@@ -12,7 +12,7 @@ import java.util.List;
 public class InventoryService {
     private int playerCoins;
     private List<Tower> reservedTowerList = new ArrayList<Tower>(5);
-    private List<UpgradeItems> listUpgradeCardsInInventory = new ArrayList<UpgradeItems>(5);
+    private List<UpgradeItems> listUpgradeItemsInInventory = new ArrayList<UpgradeItems>(5);
     private List<Tower> currentTowerList = new ArrayList<>(5);
     private final List<Tower> defaultTowers = new ArrayList<>();
     private TowerService towerService;
@@ -45,13 +45,13 @@ public class InventoryService {
 
     /**
      * Sell the selected tower in current used list
-     * @param selectedCurrentTowers Tower
+     * @param tower Tower
      */
-    public void sellTower(Tower selectedCurrentTowers) throws Exception{
+    public void sellTower(Tower tower) throws Exception{
         int sizeCurrentTower = this.currentTowerList.size();
         if(sizeCurrentTower > 2) {
-            this.setPlayerCoins(this.playerCoins + selectedCurrentTowers.getCost());
-            this.currentTowerList.remove(selectedCurrentTowers);
+            this.setPlayerCoins(this.playerCoins + tower.getCost());
+            this.currentTowerList.remove(tower);
         }
         else
             throw new Exception("You can't have less than 3 towers to play next round");
@@ -59,49 +59,49 @@ public class InventoryService {
 
     /**
      * Move the selected tower in current used list to reserved list
-     * @param selectedCurrentTowers Tower
+     * @param tower Tower
      * @throws Exception when the size reserved list exceed 5
      */
-    public void putTowerBackToReserved(Tower selectedCurrentTowers) throws Exception{
+    public void putTowerBackToReserved(Tower tower) throws Exception{
         if(this.reservedTowerList.size() < 5 && this.currentTowerList.size() > 2) {
 
-            this.reservedTowerList.add(selectedCurrentTowers);
-            this.currentTowerList.remove(selectedCurrentTowers);
+            this.reservedTowerList.add(tower);
+            this.currentTowerList.remove(tower);
         }else
             throw new Exception("Can't add more towers back to reserved");
     }
 
     /**
      * Move the selected tower in reserved list to current used list
-     * @param selectedReservedTowers Tower
+     * @param tower Tower
      * @throws Exception
      */
-    public void addTowerToCurrent(Tower selectedReservedTowers) throws Exception{
+    public void addTowerToCurrent(Tower tower) throws Exception{
         if(this.currentTowerList.size() < 5 && this.reservedTowerList.size() > 2) {
-            this.currentTowerList.add(selectedReservedTowers);
-            this.reservedTowerList.remove(selectedReservedTowers);
+            this.currentTowerList.add(tower);
+            this.reservedTowerList.remove(tower);
         }else
             throw new Exception("Can't add more towers into current");
     }
 
     /**
      * Upgrade the selected Tower's statistics and consume the selected upgrade item
-     * @param selectedUpgradeCard UpgradeItems
-     * @param selectedCurrentTowers Tower
+     * @param item UpgradeItems
+     * @param tower Tower
      * @throws Exception
      */
-    public void upgradeTower(UpgradeItems selectedUpgradeCard, Tower selectedCurrentTowers) throws Exception {
+    public void upgradeTower(UpgradeItems item, Tower tower) throws Exception {
         try {
-            if (selectedUpgradeCard.getName().contains("Changing Type")) {
-                towerService.changeTypeResource(selectedCurrentTowers, selectedUpgradeCard.getNewTypeTower());
-                System.out.println("Card type:" + selectedUpgradeCard.getNewTypeTower());
-                System.out.println("New type: " + selectedCurrentTowers.getName());
+            if (item.getName().contains("Changing Type")) {
+                towerService.changeTypeResource(tower, item.getNewTypeTower());
+                System.out.println("Card type:" + item.getNewTypeTower());
+                System.out.println("New type: " + tower.getName());
             } else {
-                towerService.levelIncrement(selectedCurrentTowers);
-                towerService.upgradeTime(selectedCurrentTowers, selectedUpgradeCard.getImprovedTime());
-                towerService.upgradeResourceAmount(selectedCurrentTowers, selectedUpgradeCard.getImprovedAmountResource());
+                towerService.levelIncrement(tower);
+                towerService.upgradeTime(tower, item.getImprovedTime());
+                towerService.upgradeResourceAmount(tower, item.getImprovedAmountResource());
             }
-            this.getListUpgradeItemsInInventory().remove(selectedUpgradeCard);
+            this.getListUpgradeItemsInInventory().remove(item);
         }
         catch (Exception e) {
             throw new Exception("You can't upgrade time lower than 0.5 second");
@@ -136,14 +136,14 @@ public class InventoryService {
      * Get list of the upgrade card in Inventory
      * @return listUpgradeCardsInInventory
      */
-    public List<UpgradeItems> getListUpgradeItemsInInventory(){return this.listUpgradeCardsInInventory;}
+    public List<UpgradeItems> getListUpgradeItemsInInventory(){return this.listUpgradeItemsInInventory;}
 
     /**
      * Get list of the upgrade card in Inventory
      * @param listUpgradeCardsInInventory ArrayList<UpgradeItems>
      */
     public void setListUpgradeItemsInInventory(List<UpgradeItems> listUpgradeCardsInInventory){
-        this.listUpgradeCardsInInventory = new ArrayList<>(listUpgradeCardsInInventory);
+        this.listUpgradeItemsInInventory = new ArrayList<>(listUpgradeCardsInInventory);
     }
 
     /**

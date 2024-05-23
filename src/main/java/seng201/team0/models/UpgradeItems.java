@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class UpgradeItems extends PurchasableItem {
     private String nameItem;
-    private float improvedTime = 0;
+    private long improvedTime = 0;
     private int improvedAmountResource = 0;
     private int cost;
     private String newTypeTower = null;
@@ -20,7 +20,7 @@ public class UpgradeItems extends PurchasableItem {
      * @param improvedTime float
      * @param cost int
      */
-    public UpgradeItems(String name, int improvedAmountResource, float improvedTime, int cost) {
+    public UpgradeItems(String name, int improvedAmountResource, long improvedTime, int cost) {
         this.nameItem = name;
         this.improvedAmountResource = improvedAmountResource;
         this.improvedTime = improvedTime;
@@ -29,9 +29,9 @@ public class UpgradeItems extends PurchasableItem {
 
     /**
      * This constructor to initialize the changing card which can be used to change the type of tower
-     * @param name
-     * @param newTypeTower
-     * @param cost
+     * @param name String
+     * @param newTypeTower String
+     * @param cost int
      */
     public UpgradeItems(String name, String newTypeTower, int cost){
         this.nameItem = name;
@@ -61,9 +61,10 @@ public class UpgradeItems extends PurchasableItem {
     }
 
     /**
-     * @return the amount of time which can decrement the reload time of Tower
+     * Get the amount of time which can decrement the reload time of Tower
+     * @return improvedTime
      */
-    public float getImprovedTime(){ return improvedTime;}
+    public long getImprovedTime(){ return improvedTime;}
 
     /**
      * Get the newTypeTower if the item is a changing card

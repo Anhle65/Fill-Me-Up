@@ -12,8 +12,7 @@ import java.util.List;
 public class ShopService {
     private InventoryService inventoryService;
     private List<Tower> listTowersInShop = new ArrayList<Tower>();
-    private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<UpgradeItems>();
-    private List<String> towerType = List.of("Water", "Fire", "Gold", "Coal", "Ruby");
+    private List<UpgradeItems> listUpgradeItemsInShop = new ArrayList<UpgradeItems>();
     private int remainingCoins;
 
     /**
@@ -78,14 +77,14 @@ public class ShopService {
      * @param listUpgradeCardsInShop List<UpgradeItems>
      */
     public void setListUpgradeItemsInShop(List<UpgradeItems> listUpgradeCardsInShop){
-        this.listUpgradeCardsInShop = listUpgradeCardsInShop;
+        this.listUpgradeItemsInShop = listUpgradeCardsInShop;
     }
 
     /**
      * Get the listUpgradeItemsInShop
      * @return listUpgradeCardsInShop
      */
-    public List<UpgradeItems> getListUpgradeItemsInShop(){return this.listUpgradeCardsInShop;}
+    public List<UpgradeItems> getListUpgradeItemsInShop(){return this.listUpgradeItemsInShop;}
 
     /**
      * Get the listTowersInShop
