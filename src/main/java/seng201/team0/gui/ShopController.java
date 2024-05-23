@@ -39,7 +39,7 @@ public class ShopController {
     private List<Tower> listTowersInShop = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
     private final String[] TYPE_RESOURCES = {"Water", "Fire", "Gold", "Coal", "Ruby"};
-    private final float[] TIME_ENHANCEMENT = {1, 1.5f, 2, 2.5f, 3};
+    private final long[] TIME_DECREMENT = {1000, 1500, 2000, 2500, 3000};
     private final Integer[] COST = {10, 15, 25, 40, 50};
     private final Integer[] RESOURCE_ENHANCEMENT = {5, 7, 10, 12, 15};
     public ShopController(EnvironmentManager environmentManager, ShopService shopService, InventoryService inventoryService) {
@@ -61,7 +61,7 @@ public class ShopController {
         Random randomTimeUpgrade = new Random();
         Random randomTypeResource = new Random();
         int enhancedResourceIndex=  randomResource.nextInt(RESOURCE_ENHANCEMENT.length);
-        int timeIndex = randomTimeUpgrade.nextInt(TIME_ENHANCEMENT.length);
+        int timeIndex = randomTimeUpgrade.nextInt(TIME_DECREMENT.length);
         int typeResourceIndex = randomResource.nextInt(TYPE_RESOURCES.length);
         List<Integer> towerRandomTypeIndexes = List.of(randomTypeResource.nextInt(TYPE_RESOURCES.length),
                 randomTypeResource.nextInt(TYPE_RESOURCES.length), randomTypeResource.nextInt(TYPE_RESOURCES.length));
@@ -76,7 +76,7 @@ public class ShopController {
 
         // Create 3 random upgrade card
         listUpgradeCardsInShop.addAll(List.of(
-                new UpgradeItems("Upgrade Time", 0, TIME_ENHANCEMENT[timeIndex], COST[timeIndex]),
+                new UpgradeItems("Upgrade Time", 0, TIME_DECREMENT[timeIndex], COST[timeIndex]),
                 new UpgradeItems("Upgrade\nAmount", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
                 new UpgradeItems("Changing Type\nTower to " + TYPE_RESOURCES[typeResourceIndex], TYPE_RESOURCES[typeResourceIndex] , 20)
         ));

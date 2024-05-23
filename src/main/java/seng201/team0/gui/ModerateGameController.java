@@ -133,6 +133,7 @@ public class ModerateGameController {
                 if (selectedTower != null) {
                     selectedCart.incrementAmountResourceIntoCart(selectedTower);
                     if (selectedCart.getIsIncrementIntoCart()) {
+                        selectedTower.setInUseState(true);
                         if (finalI == 0) {
                             progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress1);
