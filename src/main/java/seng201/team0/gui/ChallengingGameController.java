@@ -127,9 +127,9 @@ public class ChallengingGameController {
         int sizeCurrentUsedTowers = inventoryService.getCurrentUsedTowerList().size();
         for(int i=0; i < 4; ++i) {
             if(i < sizeCurrentUsedTowers) {
-                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i).getName(), cartSpeed, 100));
+                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i).getName(), cartSpeed, 130));
             }else{
-                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i-sizeCurrentUsedTowers).getName(), cartSpeed, 100));
+                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i-sizeCurrentUsedTowers).getName(), cartSpeed, 130));
             }
         }
         listImageView = List.of(cartImageView1, cartImageView2, cartImageView3, cartImageView4, cartImageView5);
@@ -155,12 +155,15 @@ public class ChallengingGameController {
             if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp() && listCartsInRound.get(3).isCartFilledUp() && listCartsInRound.get(4).isCartFilledUp()) {
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
                     environmentManager.incrementScore(30);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 30);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
                     environmentManager.incrementScore(35);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 35);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(40);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 40);
                 }
 
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {

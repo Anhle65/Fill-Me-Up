@@ -120,9 +120,9 @@ public class ModerateGameController {
 
         for(int i=0; i < 4; ++i) {
             if(i < sizeCurrentUsedTowers) {
-                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i).getName(), cartSpeed, 100));
+                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i).getName(), cartSpeed, 120));
             }else{
-                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i-sizeCurrentUsedTowers).getName(), cartSpeed, 100));
+                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i-sizeCurrentUsedTowers).getName(), cartSpeed, 120));
             }
         }
 
@@ -180,12 +180,15 @@ public class ModerateGameController {
 
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
                     environmentManager.incrementScore(20);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 20);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
                     environmentManager.incrementScore(25);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 25);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(30);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 30);
                 }
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
                     environmentManager.closeCurrentScreen();

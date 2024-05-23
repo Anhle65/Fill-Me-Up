@@ -142,12 +142,15 @@ public class EasyGameController {
             if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp()) {
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
                     environmentManager.incrementScore(10);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 10);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
                     environmentManager.incrementScore(15);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 15);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(20);
+                    inventoryService.setPlayerCoins(inventoryService.getPlayerCoins() + 20);
                 }
 
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
