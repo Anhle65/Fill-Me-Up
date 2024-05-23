@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import seng201.team0.models.Cart;
+import seng201.team0.models.RandomEvent;
 import seng201.team0.services.EnvironmentManager;
 
 
@@ -13,6 +14,7 @@ public class RoundDifficultySelectController {
     private String moderate;
     private String challenging;
     private EnvironmentManager environmentManager;
+    private RandomEvent randomEvent;
     private Cart cart;
 
     @FXML
@@ -29,12 +31,25 @@ public class RoundDifficultySelectController {
 
     @FXML
     private Label currentRoundLabel;
+    @FXML
+    private Label randomEventAlert;
 
     @FXML
     private void onExitClicked() {
         System.exit(0);
     }
-    public RoundDifficultySelectController(EnvironmentManager environmentManager) { this.environmentManager = environmentManager; }
+    public RoundDifficultySelectController(EnvironmentManager environmentManager, RandomEvent randomEvent) {
+        this.environmentManager = environmentManager;
+        int currentRound = environmentManager.getCurrentRoundNumber();
+        if(currentRound > 1){
+            this.randomEvent = randomEvent;
+            randomEvent.dicePossibilityToHaveEvent();
+            if(randomEvent.isHasRandomEvent()) {
+                this.randomEventAlert.setText("Next round will have an undesirable event happens, be smart to manage your current tower list. Good luck!");
+                randomEvent.eventRemoveRandomTower();
+            }
+        }
+    }
 
     public void initialize(){
         currentRoundLabel.setText(String.valueOf(environmentManager.getCurrentRoundNumber()));

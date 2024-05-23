@@ -12,8 +12,8 @@ import java.util.Random;
 public class RandomEvent {
     private InventoryService inventoryService;
     private final List<Integer> indexesTowerWillBeChosen = new ArrayList<Integer>();
-    private Random randomEvent = new Random();
-    private Random randomEventHappened = new Random();
+    private Random randomEvent = new Random(400);
+    private Random randomEventHappened = new Random(500);
     private boolean hasRandomEvent = false;
 
     /**
@@ -22,16 +22,13 @@ public class RandomEvent {
      */
     public RandomEvent(InventoryService inventoryService){
         this.inventoryService = inventoryService;
-        drawPossibilityToHaveEvent();
-        if(this.hasRandomEvent){
-            this.eventRemoveRandomTower();
-        }
     }
+    public boolean isHasRandomEvent(){return this.hasRandomEvent;}
 
     /**
      * Random a number if equal to the fixed number is set, the event will happen
      */
-    private void drawPossibilityToHaveEvent(){
+    public void dicePossibilityToHaveEvent(){
         int randomEventHappenedNumber = randomEventHappened.nextInt(3);
         if(randomEventHappenedNumber == 1){
             this.hasRandomEvent = true;
@@ -42,7 +39,7 @@ public class RandomEvent {
      * Event occurs will remove a tower from current used towers list in inventory
      * if towers is used in previous round, the more chance it will be chosen to removed
      */
-    private void eventRemoveRandomTower(){
+    public void eventRemoveRandomTower(){
         List<Tower> currentTowers = inventoryService.getCurrentUsedTowerList();
         for(int i=0; i < currentTowers.size(); ++i){
             Tower tower = currentTowers.get(i);

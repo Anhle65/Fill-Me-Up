@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import seng201.team0.models.RandomEvent;
 import seng201.team0.services.InventoryService;
 import seng201.team0.services.ShopService;
 import seng201.team0.services.EnvironmentManager;
@@ -19,7 +20,7 @@ public class EnvironmentController {
     private Stage stage;
     private TowerService towerService;
     private InventoryService inventoryService;
-    private EnvironmentManager environmentManager;
+    private RandomEvent randomEvent;
 
 
     public void init(Stage stage) {
@@ -60,7 +61,7 @@ public class EnvironmentController {
     public  void launchRoundDifficultySelectScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader mainScreenLoader = new FXMLLoader(getClass().getResource("/fxml/round_difficulty_select_screen.fxml"));
-            mainScreenLoader.setControllerFactory(param -> new RoundDifficultySelectController(environmentManager));
+            mainScreenLoader.setControllerFactory(param -> new RoundDifficultySelectController(environmentManager, this.randomEvent));
             Parent setupParent  = mainScreenLoader.load();
             pane.getChildren().add(setupParent);
             stage.setTitle("Round Difficulty Select Screen");
