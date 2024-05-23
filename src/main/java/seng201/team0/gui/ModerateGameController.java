@@ -213,12 +213,18 @@ public class ModerateGameController {
 
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
                     environmentManager.incrementScore(20);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
                     environmentManager.incrementScore(25);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(30);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
                 }
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
                     environmentManager.closeCurrentScreen();

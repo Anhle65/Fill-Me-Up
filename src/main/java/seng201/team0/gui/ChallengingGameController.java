@@ -224,12 +224,18 @@ public class ChallengingGameController {
             if (listCartsInRound.get(0).isCartFilledUp() && listCartsInRound.get(1).isCartFilledUp() && listCartsInRound.get(2).isCartFilledUp() && listCartsInRound.get(3).isCartFilledUp() && listCartsInRound.get(4).isCartFilledUp()) {
                 if (environmentManager.getRoundDifficulty().equals("Easy")) {
                     environmentManager.incrementScore(30);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Moderate")) {
                     environmentManager.incrementScore(35);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
                 }
                 else if (environmentManager.getRoundDifficulty().equals("Challenging")) {
                     environmentManager.incrementScore(40);
+                    int coin = environmentManager.getScore();
+                    inventoryService.setPlayerCoins(coin);
                 }
 
                 if (environmentManager.getCurrentRoundNumber() != environmentManager.getNumberOfRounds()) {
