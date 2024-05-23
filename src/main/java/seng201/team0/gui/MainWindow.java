@@ -25,8 +25,6 @@ public class MainWindow extends Application {
         FXMLLoader baseLoader = new FXMLLoader(getClass().getResource("/fxml/wrapper.fxml"));
         Parent root = baseLoader.load();
 
-//        MainController baseController = baseLoader.getController();
-//        RoundController baseController = baseLoader.getController();
         EnvironmentController baseController= baseLoader.getController();
 
 

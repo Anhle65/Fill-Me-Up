@@ -41,14 +41,12 @@ public class WinnerNextRoundController {
     @FXML
     private void onNextRoundButtonClicked() {
         environmentManager.incrementCurrentRoundNumber();
-        System.out.println("Current rounds: " + environmentManager.getNumberOfRounds()); // This print the current round
+        System.out.println("Current rounds: " + environmentManager.getNumberOfRounds());
         int currentRound = environmentManager.getCurrentRoundNumber();
-//        if(currentRound > 1){
         this.randomEventService.dicePossibilityToHaveEvent();
         if (this.randomEventService.isHasRandomEvent()) {
             randomEventService.eventRemoveRandomTower();
             randomEventService.setHasRandomEventToFalse();
-//            }
         }
         environmentManager.closeCurrentScreen();
         environmentManager.launchShopScreen();

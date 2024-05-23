@@ -10,7 +10,7 @@ import javafx.util.Duration;
  * A class that interact with Tower and animation during the round game
  */
 public class Cart {
-    private long cartSpeed;       // Specified in Pixels per second
+    private long cartSpeed;
     private final String typeResourceCart;
     private final int sizeOfCart;
     private int currentAmount = 0;
@@ -102,7 +102,7 @@ public class Cart {
         double distanceX = 1200;
         double distanceY = 150;
 
-        double durationX = ((distanceX*1000) / this.cartSpeed);   // t = d / s
+        double durationX = ((distanceX*1000) / this.cartSpeed);
         double durationY = ((distanceY*1000) / this.cartSpeed);
 
         this.cartTranslate = this.getTranslation(cartImage, durationX, distanceX, 0);

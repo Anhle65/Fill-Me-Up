@@ -169,7 +169,7 @@ public class SetupScreenController{
             });
         }
         for (int i = 0; i < selectedTowerButtons.size(); i++) {
-            int finalI = i; // variables used within lambdas must be final
+            int finalI = i;
             selectedTowerButtons.get(i).setOnAction(event -> {
                 if (selectedTowerIndex != -1) {
                     selectedTowerButtons.get(finalI).setText(inventoryService.getDefaultTowers().get(selectedTowerIndex).getName());

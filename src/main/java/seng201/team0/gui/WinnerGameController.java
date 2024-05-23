@@ -1,7 +1,6 @@
 package seng201.team0.gui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import seng201.team0.services.EnvironmentManager;
 

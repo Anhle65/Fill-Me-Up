@@ -34,7 +34,6 @@ public class EnvironmentController {
     public void launchSetupScreen(EnvironmentManager environmentManager) {
         try {
             FXMLLoader setupLoader = new FXMLLoader(getClass().getResource("/fxml/setup_screen.fxml"));
-            // provide a custom Controller with parameters
             setupLoader.setControllerFactory(param -> new SetupScreenController(environmentManager, this.inventoryService));
             Parent setupParent  = setupLoader.load();
             pane.getChildren().add(setupParent);

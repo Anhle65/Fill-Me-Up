@@ -59,6 +59,7 @@ public class InventoryService {
      */
     public void putTowerBackToReserved(Tower selectedCurrentTowers) throws Exception{
         if(this.reservedTowerList.size() < 5) {
+
             this.reservedTowerList.add(selectedCurrentTowers);
             this.currentTowerList.remove(selectedCurrentTowers);
         }else

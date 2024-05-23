@@ -34,7 +34,6 @@ public class ShopController {
     private Tower selectedTowerInShop = null;
     private UpgradeItems selectedUpgradeCardInShop = null;
     private Button itemIsBought;
-//    private Button cardIsBought;
     private int selectedItemIndex = -1;
     private List<Tower> listTowersInShop = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
@@ -66,7 +65,6 @@ public class ShopController {
         List<Integer> towerRandomTypeIndexes = List.of(randomTypeResource.nextInt(TYPE_RESOURCES.length),
                 randomTypeResource.nextInt(TYPE_RESOURCES.length), randomTypeResource.nextInt(TYPE_RESOURCES.length));
 
-        // Create 3 random tower
         listTowersInShop.addAll(List.of(
                 new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(0)], 40, 20, 3000),
                 new Tower(TYPE_RESOURCES[towerRandomTypeIndexes.get(1)], 40, 20, 3000),
@@ -74,7 +72,6 @@ public class ShopController {
         ));
         shopService.setListTowersInShop(listTowersInShop);
 
-        // Create 3 random upgrade card
         listUpgradeCardsInShop.addAll(List.of(
                 new UpgradeItems("Upgrade Time", 0, TIME_DECREMENT[timeIndex], COST[timeIndex]),
                 new UpgradeItems("Upgrade\nAmount", RESOURCE_ENHANCEMENT[enhancedResourceIndex], 0, COST[enhancedResourceIndex]),
@@ -93,10 +90,8 @@ public class ShopController {
         System.out.println("This is the first upgrade item in Shop in long list: " + shopService.getListTowersInShop().get(0).getName());
 
         System.out.println("Length of items in Shop: " + allItemsInShop.size());
-
-        // Change color of the button which is chosen by player
         for (int i = 0; i < listItemsButton.size(); i++) {
-            int finalI = i; // variables used within lambdas must be final
+            int finalI = i;
             PurchasableItem item = allItemsInShop.get(finalI);
             listItemsButton.get(finalI).setText(item.getName() + "\n$ " + item.getCost());
             listItemsButton.get(finalI).setOnAction(event -> {
@@ -120,21 +115,17 @@ public class ShopController {
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
         int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
-//        System.out.println("Clicked on Buy button");
-//        if(sizeBeforeBuyTower < 5 && sizeBeforeBuyItem < 5) {
+
             if (selectedTowerInShop != null) {
-//                System.out.println("Selected " + selectedTowerInShop.getName());
                 shopService.buy(selectedTowerInShop);
                 if (inventoryService.getReservedTowerList().size() > sizeBeforeBuyTower)
                     itemIsBought.setDisable(true);
             } else if (selectedUpgradeCardInShop != null) {
-//                System.out.println("Selected upgrade " + selectedUpgradeCardInShop.getName());
                 shopService.buy(selectedUpgradeCardInShop);
                 if (inventoryService.getListUpgradeItemsInInventory().size() > sizeBeforeBuyItem)
                     itemIsBought.setDisable(true);
             } else
                 System.out.println("Please choose item to buy");
-//        }
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         selectedTowerInShop = null;
         selectedUpgradeCardInShop = null;

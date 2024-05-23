@@ -10,9 +10,7 @@ import seng201.team0.models.Cart;
 import seng201.team0.models.Tower;
 
 public class TowerService{
-//    private InventoryService inventoryService;
     public TowerService(){
-//        this.inventoryService = inventoryService;
     }
 
     /**

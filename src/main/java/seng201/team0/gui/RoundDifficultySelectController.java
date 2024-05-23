@@ -42,7 +42,6 @@ public class RoundDifficultySelectController {
         this.environmentManager = environmentManager;
         this.randomEventService = randomEventService;
         if(randomEventService.isHasRandomEvent()) {
-//            randomEventAlert.setText("Next round will have an undesirable event happens, be smart to manage your current tower list. Good luck!");
             System.out.println("Next round will have an undesirable event happens, be smart to manage your current tower list. Good luck!");
         }
     }

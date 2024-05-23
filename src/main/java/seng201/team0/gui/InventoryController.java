@@ -79,9 +79,8 @@ public class InventoryController {
     private Button upgradeCard4;
     @FXML
     private Button upgradeCard5;
+
     private int selectedCurrentTowerIndex = -1;
-//    private int selectedUpgradeCardIndex = -1;
-//    private int selectedReversedTowerIndex = -1;
     private Tower selectedCurrentUsedTowers = null;
     private Button selectedCurrentTowerButton;
     private Tower selectedReservedTowers = null;
@@ -186,9 +185,6 @@ public class InventoryController {
             reservedTowerButton.get(finalJ).setOnAction((event) -> {
                 reservedTowerButton.forEach((button) -> {
                     if (button == reservedTowerButton.get(finalJ)) {
-//                        this.selectedReversedTowerIndex = finalJ;
-//                        this.selectedUpgradeCardIndex = -1;
-//                        this.selectedReversedTowerIndex = -1;
                         if(this.selectedUpgradeCardButton != null) {
                             this.selectedUpgradeCardButton.setStyle("");
                             this.selectedCurrentTowerButton.setStyle("");
@@ -223,8 +219,6 @@ public class InventoryController {
             upgradeItemsButton.get(finalK).setOnAction((event) -> {
                 upgradeItemsButton.forEach((button) -> {
                     if (button == upgradeItemsButton.get(finalK)) {
-//                        this.selectedUpgradeCardIndex = finalK;
-//                        this.selectedReversedTowerIndex = -1;
                         if(selectedReservedTowersButton != null)
                             selectedReservedTowersButton.setStyle("");
                         this.selectedUpgradeCardButton = button;
@@ -317,11 +311,11 @@ public class InventoryController {
         try {
             if (selectedUpgradeItem != null && selectedCurrentUsedTowers != null) {
                 this.outputMessage.setText("");
-                inventoryService.upgradeTower(selectedUpgradeItem, selectedCurrentUsedTowers); // when upgraded the selected tower, if the reload time smaller than 0.5s, throw exception;
+                inventoryService.upgradeTower(selectedUpgradeItem, selectedCurrentUsedTowers);
                 this.updateStats(selectedCurrentUsedTowers, this.towerTimeList.get(selectedCurrentTowerIndex), this.towerResourceList.get(selectedCurrentTowerIndex), this.towerLevelList.get(selectedCurrentTowerIndex));
                 selectedCurrentTowerButton.setText(String.valueOf(selectedCurrentUsedTowers.getName()));
-                selectedUpgradeCardButton.setStyle(""); // when finished action, set the style of button to normal
-                selectedCurrentTowerButton.setStyle(""); // when finished action, set the style of button to normal
+                selectedUpgradeCardButton.setStyle("");
+                selectedCurrentTowerButton.setStyle("");
                 this.showAllUpgradeItems(this.upgradeItemsButton, this.upgradeItemsFromInventory);
             } else if (selectedUpgradeItem != null) {
                 this.outputMessage.setText("Please choose the current tower to upgrade");
@@ -338,8 +332,8 @@ public class InventoryController {
             this.outputMessage.setText(e.getMessage());
         }
         this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
-        selectedCurrentUsedTowers = null; // when finished action, set the selected tower to null
-        selectedUpgradeItem = null; // when finished action, set the selected tower to null
+        selectedCurrentUsedTowers = null;
+        selectedUpgradeItem = null;
     }
 
     /**
@@ -348,22 +342,19 @@ public class InventoryController {
     @FXML
     public void onSellClicked(){
         System.out.println("Sell clicked");
-        if (inventoryService.getCurrentUsedTowerList().size() > 3) {
-            if (selectedCurrentUsedTowers != null) {
-                this.outputMessage.setText("");
-                inventoryService.sellTower(selectedCurrentUsedTowers);
-                this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
-                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
-                selectedCurrentTowerButton.setStyle("");
-            } else {
-                this.outputMessage.setText("Please choose 1 tower from current towers to sell");
-                System.out.println("Please choose 1 tower from current towers to sell");
-            }
-            selectedCurrentUsedTowers = null;
+
+        if (selectedCurrentUsedTowers != null) {
+            this.outputMessage.setText("");
+            inventoryService.sellTower(selectedCurrentUsedTowers);
+            this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
+            this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
+            selectedCurrentTowerButton.setStyle("");
+        } else {
+            this.outputMessage.setText("Please choose 1 tower from current towers to sell");
+            System.out.println("Please choose 1 tower from current towers to sell");
         }
-        else {
-            this.outputMessage.setText("You must have at least 3 Tower to sell");
-        }
+        selectedCurrentUsedTowers = null;
+
     }
 
     /**

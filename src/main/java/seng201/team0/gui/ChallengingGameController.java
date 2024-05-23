@@ -123,20 +123,15 @@ public class ChallengingGameController {
         else if (environmentManager.getRoundDifficulty().equals("Challenging")) {roundDifficultySpeed = 120;}
 
         long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
-
-        Cart cart1 = new Cart(inventoryService.getCurrentUsedTowerList().get(2).getName(), cartSpeed, 100);
-        Cart cart2 = new Cart(inventoryService.getCurrentUsedTowerList().get(0).getName(), cartSpeed, 100);
-        Cart cart3 = new Cart(inventoryService.getCurrentUsedTowerList().get(1).getName(), cartSpeed, 100);
-        Cart cart4 = new Cart(inventoryService.getCurrentUsedTowerList().get(2).getName(), cartSpeed, 100);
-        Cart cart5 = new Cart(inventoryService.getCurrentUsedTowerList().get(1).getName(), cartSpeed, 100);
-
-        System.out.println(cart1.getTypeResourceCart());
-        System.out.println(cart2.getTypeResourceCart());
-        System.out.println(cart3.getTypeResourceCart());
-        System.out.println(cart4.getTypeResourceCart());
-        System.out.println(cart5.getTypeResourceCart());
-
-        listCartsInRound = List.of(cart1, cart2, cart3, cart4, cart5);
+        List<Tower> currentTowers = inventoryService.getCurrentUsedTowerList();
+        int sizeCurrentUsedTowers = inventoryService.getCurrentUsedTowerList().size();
+        for(int i=0; i < 4; ++i) {
+            if(i < sizeCurrentUsedTowers) {
+                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i).getName(), cartSpeed, 100));
+            }else{
+                listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i-sizeCurrentUsedTowers).getName(), cartSpeed, 100));
+            }
+        }
         listImageView = List.of(cartImageView1, cartImageView2, cartImageView3, cartImageView4, cartImageView5);
         listProgressBar = List.of(progressBar1, progressBar2, progressBar3, progressBar4, progressBar5);
         listResourceLabel = List.of(resourceLabel1, resourceLabel2, resourceLabel3, resourceLabel4, resourceLabel5);
