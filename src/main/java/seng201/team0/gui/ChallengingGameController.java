@@ -108,6 +108,13 @@ public class ChallengingGameController {
     public ChallengingGameController(EnvironmentManager environmentManager, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
         this.inventoryService = inventoryService;
+        List<Tower> currentTowers = inventoryService.getCurrentUsedTowerList();
+        for(int i=0; i < currentTowers.size(); ++i){
+            Tower tower = currentTowers.get(i);
+            if(tower.isInUse()) {
+                tower.setInUseState(false);
+            }
+        }
     }
 
     public void initialize() {

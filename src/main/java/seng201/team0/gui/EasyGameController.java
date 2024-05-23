@@ -91,6 +91,13 @@ public class EasyGameController {
     public EasyGameController(EnvironmentManager environmentManager, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
         this.inventoryService = inventoryService;
+        List<Tower> currentTowers = inventoryService.getCurrentUsedTowerList();
+        for(int i=0; i < currentTowers.size(); ++i){
+            Tower tower = currentTowers.get(i);
+            if(tower.isInUse()) {
+                tower.setInUseState(false);
+            }
+        }
     }
 
     public void initialize() {
@@ -122,6 +129,7 @@ public class EasyGameController {
                 if (selectedTower != null) {
                     selectedCart.incrementAmountResourceIntoCart(selectedTower);
                     if (selectedCart.getIsIncrementIntoCart()) {
+                        selectedTower.setInUseState(true);
                         if (finalI == 0) {
                             progress1 += (float) selectedTower.getResourceAmount() / selectedCart.getSizeOfCart();
                             selectedProgressBar.setProgress(progress1);
