@@ -17,7 +17,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: rgba(224,210,250,0.8);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1500.0" style="-fx-background-color: rgba(224,210,250,0.8);" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seng201.team0.gui.SetupScreenController">
    <children>
 
    <GridPane layoutX="16.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1483.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -45,7 +45,7 @@
                <Insets left="10.0" />
             </GridPane.margin>
          </Label>
-         <Label prefWidth="400.0" text="What is your name?" translateX="-50.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+         <Label prefWidth="400.0" text="What is your name?" translateX="-60.0" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <font>
                <Font name="System Bold" size="24.0" />
             </font>
@@ -179,14 +179,14 @@
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Button>
                <Button fx:id="towerStat2" layoutX="234.0" layoutY="155.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 2" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Button>
                <Button fx:id="towerStat3" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 3" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                   <GridPane.margin>
@@ -200,14 +200,14 @@
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Button>
                <Button fx:id="towerStat1" layoutX="119.0" layoutY="51.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="150.0" text="Tower 1" GridPane.halignment="CENTER">
                   <GridPane.margin>
                      <Insets left="10.0" />
                   </GridPane.margin>
                      <font>
-                        <Font name="Verdana Bold" size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font></Button>
             </children>
          </GridPane>
@@ -258,7 +258,7 @@
                   </Lighting>
                </effect>
          </Button>
-         <Label prefWidth="400.0" text="Game Difficulty:" translateX="-50.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <Label prefWidth="400.0" text="Game Difficulty:" translateX="-60.0" GridPane.halignment="CENTER" GridPane.rowIndex="2">
             <GridPane.margin>
                <Insets left="10.0" />
             </GridPane.margin>
@@ -312,7 +312,7 @@
             </GridPane>
             <Button mnemonicParsing="false" onAction="#onResetSelectedTowerClicked" prefHeight="46.0" prefWidth="150.0" text="Reset Towers" translateX="-30.0" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
                <effect>
                   <Lighting diffuseConstant="2.0" specularConstant="2.0" specularExponent="40.0" surfaceScale="0.0">
