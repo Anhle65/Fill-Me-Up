@@ -47,9 +47,14 @@ public class InventoryService {
      * Sell the selected tower in current used list
      * @param selectedCurrentTowers Tower
      */
-    public void sellTower(Tower selectedCurrentTowers){
-        this.setPlayerCoins(this.playerCoins + selectedCurrentTowers.getCost());
-        this.currentTowerList.remove(selectedCurrentTowers);
+    public void sellTower(Tower selectedCurrentTowers) throws Exception{
+        int sizeCurrentTower = this.currentTowerList.size();
+        if(sizeCurrentTower > 2) {
+            this.setPlayerCoins(this.playerCoins + selectedCurrentTowers.getCost());
+            this.currentTowerList.remove(selectedCurrentTowers);
+        }
+        else
+            throw new Exception("You can't have less than 3 towers to play next round");
     }
 
     /**

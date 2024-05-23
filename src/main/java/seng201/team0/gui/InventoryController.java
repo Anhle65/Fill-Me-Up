@@ -340,18 +340,21 @@ public class InventoryController {
      * Sell the selected tower in current used list
      */
     @FXML
-    public void onSellClicked(){
+    public void onSellClicked() throws Exception{
         System.out.println("Sell clicked");
-
-        if (selectedCurrentUsedTowers != null) {
-            this.outputMessage.setText("");
-            inventoryService.sellTower(selectedCurrentUsedTowers);
-            this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
-            this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
-            selectedCurrentTowerButton.setStyle("");
-        } else {
-            this.outputMessage.setText("Please choose 1 tower from current towers to sell");
-            System.out.println("Please choose 1 tower from current towers to sell");
+        try {
+            if (selectedCurrentUsedTowers != null) {
+                this.outputMessage.setText("");
+                inventoryService.sellTower(selectedCurrentUsedTowers);
+                this.playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
+                this.showAllCurrentTower(this.towerButtons, inventoryService.getCurrentUsedTowerList());
+                selectedCurrentTowerButton.setStyle("");
+            } else {
+                this.outputMessage.setText("Please choose 1 tower from current towers to sell");
+                System.out.println("Please choose 1 tower from current towers to sell");
+            }
+        }catch (Exception e){
+            this.outputMessage.setText(e.getMessage());
         }
         selectedCurrentUsedTowers = null;
 

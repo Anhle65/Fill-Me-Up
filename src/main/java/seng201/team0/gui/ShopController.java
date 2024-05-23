@@ -38,9 +38,9 @@ public class ShopController {
     private List<Tower> listTowersInShop = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
     private final String[] TYPE_RESOURCES = {"Water", "Fire", "Gold", "Coal", "Ruby"};
-    private final long[] TIME_DECREMENT = {1000, 1500, 2000, 2500, 3000};
-    private final Integer[] COST = {10, 15, 25, 40, 50};
-    private final Integer[] RESOURCE_ENHANCEMENT = {5, 7, 10, 12, 15};
+    private final long[] TIME_DECREMENT = {1000, 1500, 2000};
+    private final Integer[] COST = {15, 20, 25};
+    private final Integer[] RESOURCE_ENHANCEMENT = {10, 12, 15};
     public ShopController(EnvironmentManager environmentManager, ShopService shopService, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
         this.shopService = shopService;
@@ -53,8 +53,6 @@ public class ShopController {
      */
     public void initialize(){
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
-        List<Button> listUpgradeCardButtons = List.of(upgradeCard1, upgradeCard2, upgradeCard3);
-        List<Button> listTowersInShopButtons = List.of(tower1, tower2, tower3);
         List<Button> listItemsButton = List.of(upgradeCard1, upgradeCard2, upgradeCard3, tower1, tower2, tower3);
         Random randomResource = new Random();
         Random randomTimeUpgrade = new Random();

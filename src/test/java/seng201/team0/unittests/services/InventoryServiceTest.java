@@ -9,11 +9,14 @@ import seng201.team0.services.TowerService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class InventoryServiceTest {
     private InventoryService inventoryService;
     private TowerService towerService;
+    private List<Tower> currentUsedTowers = new ArrayList<Tower>();
     private Tower mockedReservedTower;
     private Tower mockedCurrentUsedTower;
     private Tower mockedCurrentUsedTower2;
@@ -38,9 +41,11 @@ public class InventoryServiceTest {
         List<UpgradeItems> listUpgradeItems = List.of(mockedUpgradeResourceItem, mockedUpgradeTimeItem, mockedChangeTypeItem);
         inventoryService.setListUpgradeItemsInInventory(listUpgradeItems);
         List<Tower> listReservedTowers = List.of(mockedReservedTower);
-        List<Tower> listCurrentTowers = List.of(mockedCurrentUsedTower);
+        currentUsedTowers.add(mockedCurrentUsedTower);
+        currentUsedTowers.add(mockedCurrentUsedTower);
+        currentUsedTowers.add(mockedCurrentUsedTower2);
         inventoryService.setReservedTowerList(listReservedTowers);
-        inventoryService.setCurrentTowerList(listCurrentTowers);
+        inventoryService.setCurrentTowerList(currentUsedTowers);
     }
 
     /**
@@ -48,11 +53,25 @@ public class InventoryServiceTest {
      * and increase the coin to player coins
      */
     @Test
-    void testSellTower(){
+    void testSellTowerWhenCurrentTowerHasMoreThanTwo() throws Exception{
         inventoryService.sellTower(mockedCurrentUsedTower);
         int sizeCurrentTowerList = inventoryService.getCurrentUsedTowerList().size();
         assertEquals(50, inventoryService.getPlayerCoins());
-        assertEquals(0, sizeCurrentTowerList);
+        assertEquals(2, sizeCurrentTowerList);
+    }
+
+    /**
+     * Test sellTower method when called will remove the selected tower from the current used tower list
+     * and increase the coin to player coins
+     */
+    @Test
+    void testSellTowerWhenCurrentTowerHasLessThanThree() throws Exception{
+        inventoryService.sellTower(mockedCurrentUsedTower);
+        int sizeCurrentTowerList = inventoryService.getCurrentUsedTowerList().size();
+        assertEquals(50, inventoryService.getPlayerCoins());
+        assertEquals(2, sizeCurrentTowerList);
+        Exception exception = assertThrows(Exception.class, () -> inventoryService.sellTower(mockedCurrentUsedTower2));
+        assertEquals("You can't have less than 3 towers to play next round", exception.getMessage());
     }
 
     /**
@@ -157,7 +176,6 @@ public class InventoryServiceTest {
      */
     @Test
     void testUpgradeTowerWhenItemIsUpgradeTimeAndSmallerThanLimitTime() throws Exception {
-//        mockedCurrentUsedTower.setRecoveryTime(1000);
         int sizeUpgradeItemsBefore = inventoryService.getListUpgradeItemsInInventory().size();
         Exception exception = assertThrows(Exception.class, () -> inventoryService.upgradeTower(mockedUpgradeTimeItem, mockedCurrentUsedTower2));
         assertEquals("You can't upgrade time lower than 0.5 second", exception.getMessage());
