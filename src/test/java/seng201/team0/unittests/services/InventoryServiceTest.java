@@ -20,6 +20,7 @@ public class InventoryServiceTest {
     private Tower mockedReservedTower;
     private Tower mockedCurrentUsedTower;
     private Tower mockedCurrentUsedTower2;
+    private Tower mockedCurrentUsedTower3;
     private UpgradeItems mockedChangeTypeItem;
     private UpgradeItems mockedUpgradeTimeItem;
     private UpgradeItems mockedUpgradeResourceItem;
@@ -34,6 +35,7 @@ public class InventoryServiceTest {
         mockedReservedTower = new Tower("Water", 30, 20, 3000);
         mockedCurrentUsedTower = new Tower("Fire", 20, 20, 3000);
         mockedCurrentUsedTower2 = new Tower("Fire", 20, 20, 1000);
+        mockedCurrentUsedTower3 = new Tower("Fire", 20, 20, 1000);
         inventoryService.setPlayerCoins(30);
         mockedChangeTypeItem = new UpgradeItems("Changing Type", "Gold", 20);
         mockedUpgradeTimeItem = new UpgradeItems("Upgrade Time", 0, 2000, 20);
@@ -41,7 +43,6 @@ public class InventoryServiceTest {
         List<UpgradeItems> listUpgradeItems = List.of(mockedUpgradeResourceItem, mockedUpgradeTimeItem, mockedChangeTypeItem);
         inventoryService.setListUpgradeItemsInInventory(listUpgradeItems);
         List<Tower> listReservedTowers = List.of(mockedReservedTower);
-        currentUsedTowers.add(mockedCurrentUsedTower);
         currentUsedTowers.add(mockedCurrentUsedTower);
         currentUsedTowers.add(mockedCurrentUsedTower2);
         inventoryService.setReservedTowerList(listReservedTowers);
@@ -54,6 +55,8 @@ public class InventoryServiceTest {
      */
     @Test
     void testSellTowerWhenCurrentTowerHasMoreThanTwo() throws Exception{
+        currentUsedTowers.add(mockedCurrentUsedTower3);
+        inventoryService.setCurrentTowerList(currentUsedTowers);
         inventoryService.sellTower(mockedCurrentUsedTower);
         int sizeCurrentTowerList = inventoryService.getCurrentUsedTowerList().size();
         assertEquals(50, inventoryService.getPlayerCoins());
@@ -62,27 +65,37 @@ public class InventoryServiceTest {
 
     /**
      * Test sellTower method when called will throw an Exception
-     * when the number of current used towers in list is less than 3
+     * when the number of current used towers in list is less than 2
      */
     @Test
     void testSellTowerWhenCurrentTowerHasLessThanThree() throws Exception{
-        inventoryService.sellTower(mockedCurrentUsedTower);
-        int sizeCurrentTowerList = inventoryService.getCurrentUsedTowerList().size();
-        assertEquals(50, inventoryService.getPlayerCoins());
-        assertEquals(2, sizeCurrentTowerList);
         Exception exception = assertThrows(Exception.class, () -> inventoryService.sellTower(mockedCurrentUsedTower2));
-        assertEquals("You can't have less than 3 towers to play next round", exception.getMessage());
+        assertEquals("You can't have less than 2 towers to play next round", exception.getMessage());
     }
 
     /**
      * Test moving the selected current Tower to the reserved list when
-     * the size of reserved Towers list is smaller than 5
+     * the size of reserved Towers list is smaller than 5 and the towers in current are bigger than 2
      */
     @Test
-    void testPutTowerBackToReservedWhenSizeOfReservedListSmallerThanFive() throws Exception{
+    void testPutTowerBackToReservedWhenSizeOfReservedListSmallerThanFiveSizeCurrentBiggerThanTwo() throws Exception{
+        currentUsedTowers.add(mockedCurrentUsedTower3);
+        inventoryService.setCurrentTowerList(currentUsedTowers);
+        assertEquals(3, inventoryService.getCurrentUsedTowerList().size());
         inventoryService.putTowerBackToReserved(mockedCurrentUsedTower);
-        assertEquals(0, inventoryService.getCurrentUsedTowerList().size());
+        assertEquals(2, inventoryService.getCurrentUsedTowerList().size());
         assertEquals(2, inventoryService.getReservedTowerList().size());
+    }
+
+    /**
+     * Test moving the selected current Tower to the reserved list when
+     * the size of reserved Towers list is smaller than 5 and the towers in current are smaller than 2
+     * throw Exception
+     */
+    @Test
+    void testPutTowerBackToReservedWhenSizeOfReservedListSmallerThanFiveAndSizeCurrentSmallerThanThree() throws Exception{
+        Exception exception = assertThrows(Exception.class, () -> inventoryService.putTowerBackToReserved(mockedCurrentUsedTower));
+        assertEquals("Can't add more towers back to reserved", exception.getMessage());
     }
 
     /**
@@ -110,7 +123,7 @@ public class InventoryServiceTest {
     void testAddTowerToCurrentWhenSizeOfCurrentListSmallerThanFive() throws Exception{
         inventoryService.addTowerToCurrent(mockedReservedTower);
         assertEquals(0, inventoryService.getReservedTowerList().size());
-        assertEquals(2, inventoryService.getCurrentUsedTowerList().size());
+        assertEquals(3, inventoryService.getCurrentUsedTowerList().size());
     }
 
     /**
@@ -124,8 +137,6 @@ public class InventoryServiceTest {
         currentUsedTowers.add(mockedCurrentUsedTower);
         currentUsedTowers.add(mockedCurrentUsedTower);
         currentUsedTowers.add(mockedCurrentUsedTower);
-        currentUsedTowers.add(mockedCurrentUsedTower);
-        assertEquals(5, inventoryService.getCurrentUsedTowerList().size());
         Exception exception = assertThrows(Exception.class, () -> inventoryService.addTowerToCurrent(mockedReservedTower));
         assertEquals("Can't add more towers into current", exception.getMessage());
     }
@@ -178,7 +189,9 @@ public class InventoryServiceTest {
     void testUpgradeTowerWhenItemIsUpgradeTimeAndSmallerThanLimitTime() throws Exception {
         int sizeUpgradeItemsBefore = inventoryService.getListUpgradeItemsInInventory().size();
         Exception exception = assertThrows(Exception.class, () -> inventoryService.upgradeTower(mockedUpgradeTimeItem, mockedCurrentUsedTower2));
-        assertEquals("You can't upgrade time lower than 0.5 second", exception.getMessage());
+        assertEquals("You can't upgrade time lower than 0 second", exception.getMessage());
         assertEquals(sizeUpgradeItemsBefore, inventoryService.getListUpgradeItemsInInventory().size());
     }
 }
+
+
