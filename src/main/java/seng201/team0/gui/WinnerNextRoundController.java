@@ -52,7 +52,6 @@ public class WinnerNextRoundController {
 
         environmentManager.incrementCurrentRoundNumber();
         System.out.println("Current rounds: " + environmentManager.getNumberOfRounds());
-        int currentRound = environmentManager.getCurrentRoundNumber();
         this.randomEventService.dicePossibilityToHaveEvent();
         if (this.randomEventService.isHasRandomEvent()) {
             Tower removedTower = randomEventService.getAndRemoveTheRandomTowerBeChosen();

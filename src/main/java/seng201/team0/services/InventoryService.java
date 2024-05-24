@@ -44,6 +44,11 @@ public class InventoryService {
     public void setPlayerCoins(int playerCoins){this.playerCoins = playerCoins;}
 
     /**
+     * Reset the player coin to 0 when new game start
+     */
+    public void resetPlayerCoins(){ this.playerCoins = 0;}
+
+    /**
      * Sell the selected tower in current used list
      * @param tower Tower
      */

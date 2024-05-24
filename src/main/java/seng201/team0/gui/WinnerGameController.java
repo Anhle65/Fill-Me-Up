@@ -3,10 +3,11 @@ package seng201.team0.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import seng201.team0.services.EnvironmentManager;
+import seng201.team0.services.InventoryService;
 
 public class WinnerGameController {
     private EnvironmentManager environmentManager;
-
+    private InventoryService inventoryService;
     @FXML
     private Label totalScoreLabel;
 
@@ -17,6 +18,9 @@ public class WinnerGameController {
     private Label roundCompletedLabel;
 
     @FXML
+    private Label totalCoinLabel;
+
+    @FXML
     private void onExitButtonClicked() {
         System.exit(0);
     }
@@ -24,17 +28,20 @@ public class WinnerGameController {
     @FXML
     private void onNewGameButtonClicked() {
         environmentManager.resetScore();
+        inventoryService.resetPlayerCoins();
         environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
 
     }
 
-    public WinnerGameController(EnvironmentManager environmentManager) {
+    public WinnerGameController(EnvironmentManager environmentManager, InventoryService inventoryService) {
         this.environmentManager = environmentManager;
+        this.inventoryService = inventoryService;
     }
 
     public void initialize(){
         totalScoreLabel.setText(environmentManager.getScore() + " points");
+        totalCoinLabel.setText(inventoryService.getPlayerCoins() + " coins");
         playerNameLabel.setText(environmentManager.getPlayerName() + " player");
         roundCompletedLabel.setText(environmentManager.getCurrentRoundNumber() + " round completed" );
 

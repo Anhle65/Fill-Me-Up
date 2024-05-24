@@ -102,6 +102,11 @@
                   <Image url="@../image/you%20won.gif" />
                </image>
             </ImageView>
+            <Label fx:id="totalCoinLabel" text="Total Coins" translateX="-200.0" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
    </children>
