@@ -48,6 +48,6 @@ public class TowerService{
             tower.setRecoveryTime(timeAfterUpgrade);
         }
         else
-            throw new Exception("You can't upgrade time lower than 0.5 second");
+            throw new Exception("You can't upgrade time lower than 0 second");
     }
 }
