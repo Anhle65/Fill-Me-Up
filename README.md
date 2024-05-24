@@ -23,7 +23,7 @@ Team 82
 
 Ngoc Le – ID: 46909266 
 
-Anh Le - ID:
+Anh Le - ID: 51227573
 ## Prerequisites
 - JDK >= 17 [click here to get the latest stable OpenJDK release (as of writing this README)](https://jdk.java.net/18/)
 - *(optional)* Gradle [Download](https://gradle.org/releases/) and [Install](https://gradle.org/install/)
