@@ -98,7 +98,6 @@ public class RoundDifficultySelectController {
         if (environmentManager.getGameDifficulty().equals("Challenging")){
             environmentManager.closeCurrentScreen();
             environmentManager.launchChallengingGameScreen();
-
         }
 
     }

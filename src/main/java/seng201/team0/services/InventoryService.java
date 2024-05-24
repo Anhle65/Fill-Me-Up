@@ -14,7 +14,7 @@ public class InventoryService {
     private List<Tower> reservedTowerList = new ArrayList<Tower>(5);
     private List<UpgradeItems> listUpgradeItemsInInventory = new ArrayList<UpgradeItems>(5);
     private List<Tower> currentTowerList = new ArrayList<>(5);
-    private final List<Tower> defaultTowers = new ArrayList<>();
+    private List<Tower> defaultTowers = new ArrayList<>();
     private TowerService towerService;
 
     /**
@@ -22,13 +22,13 @@ public class InventoryService {
      */
     public InventoryService(TowerService towerService){
         this.towerService = towerService;
-        defaultTowers.addAll(List.of(
-                new Tower("Fire",20,20,2000),
-                new Tower("Water",30,20,3000),
-                new Tower("Gold",35,20,2000),
-                new Tower("Ruby",40,25,3000),
-                new Tower("Coal",15,15,2000))
-        );
+//        defaultTowers.addAll(List.of(
+//                new Tower("Fire",20,20,2000),
+//                new Tower("Water",30,20,3000),
+//                new Tower("Gold",35,20,2000),
+//                new Tower("Ruby",40,25,3000),
+//                new Tower("Coal",15,15,2000))
+//        );
     }
 
     /**
@@ -119,6 +119,14 @@ public class InventoryService {
      */
     public List<Tower> getDefaultTowers() {
         return defaultTowers;
+    }
+
+    /**
+     * set the default towers which can be selected by player on the setup page
+     * @param towers List<Tower>
+     */
+    public void setDefaultTowers(List<Tower> towers) {
+        defaultTowers = towers;
     }
 
     /**

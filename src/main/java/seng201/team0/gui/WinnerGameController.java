@@ -30,7 +30,6 @@ public class WinnerGameController {
         environmentManager.resetScore();
         inventoryService.resetPlayerCoins();
         inventoryService.getReservedTowerList().clear();
-        inventoryService.getDefaultTowers().clear();
         inventoryService.getCurrentUsedTowerList().clear();
         inventoryService.getListUpgradeItemsInInventory().clear();
         environmentManager.closeCurrentScreen();

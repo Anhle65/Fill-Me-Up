@@ -150,6 +150,15 @@ public class SetupScreenController{
      */
 
     public void initialize(){
+        List<Tower> defaultTowers = new ArrayList<Tower>();
+        defaultTowers.addAll(List.of(
+                new Tower("Fire",20,20,2000),
+                new Tower("Water",30,20,3000),
+                new Tower("Gold",35,20,2000),
+                new Tower("Ruby",40,25,3000),
+                new Tower("Coal",15,15,2000))
+        );
+        inventoryService.setDefaultTowers(defaultTowers);
         environmentManager.resetCurrentRoundNumber();
         this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         this.towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
