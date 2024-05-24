@@ -163,7 +163,7 @@ public class SetupScreenController{
         this.selectedTowerButtons = List.of(selectedTower1, selectedTower2, selectedTower3);
         this.towerButtons = List.of(towerStat1, towerStat2, towerStat3, towerStat4, towerStat5);
         for (int i = 0; i < towerButtons.size(); i++) {
-            int finalI = i; // variables used within lambdas must be final
+            int finalI = i;
             towerButtons.get(i).setOnAction(event -> {
                 updateStats(inventoryService.getDefaultTowers().get(finalI));
                 selectedTowerIndex = finalI;

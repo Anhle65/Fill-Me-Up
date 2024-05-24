@@ -143,29 +143,29 @@ public class InventoryController {
         for(int i = 0; i < towerButtons.size(); ++i) {
             int finalI = i;
             if(finalI < currentTowersFromInventory.size()) {
-                this.updateStats((Tower) currentTowersFromInventory.get(finalI), (Label) this.towerTimeList.get(finalI), (Label) this.towerResourceList.get(finalI), (Label) this.towerLevelList.get(finalI));
-                ((Button) towerButtons.get(finalI)).setText(String.valueOf(((Tower) currentTowersFromInventory.get(finalI)).getName()));
+                this.updateStats(currentTowersFromInventory.get(finalI), this.towerTimeList.get(finalI), this.towerResourceList.get(finalI), this.towerLevelList.get(finalI));
+                (towerButtons.get(finalI)).setText(String.valueOf((currentTowersFromInventory.get(finalI)).getName()));
+                (towerButtons.get(finalI)).setOnAction((event) -> {
+                    towerButtons.forEach((button) -> {
+                        if (button == towerButtons.get(finalI)) {
+                            selectedCurrentTowerIndex = finalI;
+                            selectedCurrentTowerButton = button;
+                            if(finalI < currentTowersFromInventory.size()) {
+                                selectedCurrentUsedTowers = currentTowersFromInventory.get(finalI);
+                                System.out.println("Selected current tower: " + selectedCurrentUsedTowers.getName());
+                            }
+                            button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
+                        } else {
+                            button.setStyle("");
+                        }
+                    });
+                });
             }else{
                 this.towerButtons.get(finalI).setText("Empty");
                 this.towerTimeList.get(finalI).setText("");
                 this.towerResourceList.get(finalI).setText("");
                 this.towerLevelList.get(finalI).setText("");
             }
-            ((Button)towerButtons.get(finalI)).setOnAction((event) -> {
-                towerButtons.forEach((button) -> {
-                    if (button == towerButtons.get(finalI)) {
-                        selectedCurrentTowerIndex = finalI;
-                        selectedCurrentTowerButton = button;
-                        if(finalI < currentTowersFromInventory.size()) {
-                            selectedCurrentUsedTowers = (Tower) currentTowersFromInventory.get(finalI);
-                            System.out.println("Selected current tower: " + selectedCurrentUsedTowers.getName());
-                        }
-                        button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 15px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
-                    } else {
-                        button.setStyle("");
-                    }
-                });
-            });
         }
     }
 
@@ -186,6 +186,7 @@ public class InventoryController {
                 reservedTowerButton.forEach((button) -> {
                     if (button == reservedTowerButton.get(finalJ)) {
                         if(this.selectedUpgradeCardButton != null) {
+                            this.selectedCurrentUsedTowers = null;
                             this.selectedUpgradeCardButton.setStyle("");
                             this.selectedCurrentTowerButton.setStyle("");
                         }
@@ -319,9 +320,11 @@ public class InventoryController {
                 this.showAllUpgradeItems(this.upgradeItemsButton, this.upgradeItemsFromInventory);
             } else if (selectedUpgradeItem != null) {
                 this.outputMessage.setText("Please choose the current tower to upgrade");
+                selectedUpgradeCardButton.setStyle("");
                 System.out.println("Please choose the current tower to upgrade");
             } else if (selectedCurrentUsedTowers != null) {
                 this.outputMessage.setText("Please choose the card to upgrade for tower");
+                selectedCurrentTowerButton.setStyle("");
                 System.out.println("Please choose the card to upgrade for tower");
             } else
                 this.outputMessage.setText("Please choose 1 upgrade item and 1 tower in current used to do the action");
