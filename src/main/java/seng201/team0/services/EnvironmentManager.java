@@ -11,7 +11,7 @@ public class EnvironmentManager {
     private int numberOfRounds;
     private int currentRoundNumber = 1;
     private int score = 0;
-    private double trackDistance = 2300;
+    private double trackDistance = 6450;
     private final Consumer<EnvironmentManager> setupScreenLauncher;
     private final Consumer<EnvironmentManager> inventoryScreenLauncher;
     private final Consumer<EnvironmentManager> roundDifficultySelectScreenLauncher;

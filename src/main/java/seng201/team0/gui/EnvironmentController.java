@@ -10,7 +10,6 @@ import seng201.team0.services.*;
 import java.io.IOException;
 
 public class EnvironmentController {
-    private String difficultyOfGame;
     @FXML
     private Pane pane;
     private Stage stage;

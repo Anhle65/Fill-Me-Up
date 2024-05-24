@@ -77,7 +77,6 @@ public class ShopController {
                 new UpgradeItems("Changing Type\nTower to " + TYPE_RESOURCES[typeResourceIndex], TYPE_RESOURCES[typeResourceIndex] , 20)
         ));
         shopService.setListUpgradeItemsInShop(listUpgradeCardsInShop);
-        System.out.println("This is the first upgrade item in Shop: " + shopService.getListTowersInShop().get(0).getName());
 
         ArrayList<PurchasableItem> allItemsInShop = new ArrayList<>();
         for(UpgradeItems card : listUpgradeCardsInShop){
@@ -86,7 +85,6 @@ public class ShopController {
         for(Tower tower : listTowersInShop){
             allItemsInShop.add(tower);
         }
-        System.out.println("This is the first upgrade item in Shop in long list: " + shopService.getListTowersInShop().get(0).getName());
 
         System.out.println("Length of items in Shop: " + allItemsInShop.size());
         for (int i = 0; i < listItemsButton.size(); i++) {
