@@ -22,13 +22,6 @@ public class InventoryService {
      */
     public InventoryService(TowerService towerService){
         this.towerService = towerService;
-//        defaultTowers.addAll(List.of(
-//                new Tower("Fire",20,20,2000),
-//                new Tower("Water",30,20,3000),
-//                new Tower("Gold",35,20,2000),
-//                new Tower("Ruby",40,25,3000),
-//                new Tower("Coal",15,15,2000))
-//        );
     }
 
     /**
