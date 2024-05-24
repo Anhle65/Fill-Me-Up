@@ -30,11 +30,13 @@ public class RandomEventService {
      */
     public void dicePossibilityToHaveEvent(){
         int sizeCurrentUsedTowers = inventoryService.getCurrentUsedTowerList().size();
-        if(sizeCurrentUsedTowers > 2) {
+        if(inventoryService.getCurrentUsedTowerList().size() > 2){
+//        if(sizeCurrentUsedTowers > 2) {
             int randomEventHappenedNumber = randomEventHappened.nextInt(3);
             System.out.println("random num: " + randomEventHappenedNumber);
             if (randomEventHappenedNumber == 1) {
                 this.hasRandomEvent = true;
+//            }
             }
         }
     }

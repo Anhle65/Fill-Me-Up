@@ -54,12 +54,12 @@ public class InventoryService {
      */
     public void sellTower(Tower tower) throws Exception{
         int sizeCurrentTower = this.currentTowerList.size();
-        if(sizeCurrentTower > 2) {
+        if(sizeCurrentTower >= 3) {
             this.setPlayerCoins(this.playerCoins + tower.getCost());
             this.currentTowerList.remove(tower);
         }
         else
-            throw new Exception("You can't have less than 3 towers to play next round");
+            throw new Exception("You can't have less than 2 towers to play next round");
     }
 
     /**
@@ -102,14 +102,14 @@ public class InventoryService {
                 System.out.println("Card type:" + item.getNewTypeTower());
                 System.out.println("New type: " + tower.getName());
             } else {
-                towerService.levelIncrement(tower);
                 towerService.upgradeTime(tower, item.getImprovedTime());
                 towerService.upgradeResourceAmount(tower, item.getImprovedAmountResource());
+                towerService.levelIncrement(tower);
             }
             this.getListUpgradeItemsInInventory().remove(item);
         }
         catch (Exception e) {
-            throw new Exception("You can't upgrade time lower than 0.5 second");
+            throw new Exception("You can't upgrade time lower than 0 second");
         }
     }
 

@@ -49,7 +49,7 @@ public class TowerServiceTest {
     }
 
     /**
-     * Pass if recoveryTime of Tower after upgraded is smaller than 500 ms
+     * Pass if recoveryTime of Tower after upgraded is smaller than 0 s
      */
     @Test
     void testUpgradeTimeWithNoException() throws Exception{
@@ -58,11 +58,11 @@ public class TowerServiceTest {
     }
 
     /**
-     * Pass if upgradeTime() throw Exception when the recovery time of Tower be smaller than 500 ms after upgrade
+     * Pass if upgradeTime() throw Exception when the recovery time of Tower be smaller than 0 s after upgrade
      */
     @Test
     void testUpgradeTimeWithException(){
-        Exception exception = assertThrows(Exception.class, () -> towerService.upgradeTime(mockedTower, 3000));
-        assertEquals("You can't upgrade time lower than 0.5 second", exception.getMessage());
+        Exception exception = assertThrows(Exception.class, () -> towerService.upgradeTime(mockedTower, 4000));
+        assertEquals("You can't upgrade time lower than 0 second", exception.getMessage());
     }
 }

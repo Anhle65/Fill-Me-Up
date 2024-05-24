@@ -35,6 +35,10 @@ public class LoserController {
     private void onPlayAgainButtonClicked() {
         environmentManager.resetScore();
         inventoryService.resetPlayerCoins();
+        inventoryService.getReservedTowerList().clear();
+        inventoryService.getDefaultTowers().clear();
+        inventoryService.getCurrentUsedTowerList().clear();
+        inventoryService.getListUpgradeItemsInInventory().clear();
         environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
     }

@@ -43,7 +43,7 @@ public class TowerService{
     public void upgradeTime(Tower tower, long decrementTime) throws Exception{
         long timeAfterUpgrade;
         long timeBeforeUpgrade = tower.getRecoveryTime();
-        if (timeBeforeUpgrade - decrementTime >= 500) {
+        if (timeBeforeUpgrade - decrementTime >= 0) {
             timeAfterUpgrade = timeBeforeUpgrade - decrementTime;
             tower.setRecoveryTime(timeAfterUpgrade);
         }

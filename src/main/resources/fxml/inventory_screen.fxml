@@ -152,7 +152,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Label fx:id="tower1Time" text="Label" translateX="25.0" GridPane.rowIndex="2" GridPane.valignment="TOP">
+      <Label fx:id="tower1Time" text="Label" translateX="50.0" GridPane.rowIndex="2" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="45.0" top="10.0" />
          </GridPane.margin>
@@ -160,7 +160,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="tower1Resource" layoutX="70.0" layoutY="188.0" text="Label" translateX="40.0" GridPane.rowIndex="2">
+      <Label fx:id="tower1Resource" layoutX="70.0" layoutY="188.0" text="Label" translateX="60.0" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="80.0" />
          </GridPane.margin>
@@ -168,7 +168,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="tower1Level" text="Label" translateX="40.0" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+      <Label fx:id="tower1Level" text="Label" translateX="50.0" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="10.0" left="45.0" />
          </GridPane.margin>
@@ -344,7 +344,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label text="Reversed Tower:" translateY="10.0" GridPane.rowIndex="3" GridPane.valignment="TOP">
+      <Label text="Reserved Towers:" translateY="10.0" GridPane.rowIndex="3" GridPane.valignment="TOP">
          <GridPane.margin>
             <Insets left="10.0" />
          </GridPane.margin>
