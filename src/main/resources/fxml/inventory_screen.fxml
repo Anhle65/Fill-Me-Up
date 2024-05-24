@@ -184,7 +184,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="tower2Resource" text="Label" translateX="35.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <Label fx:id="tower2Resource" text="Label" translateX="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="80.0" />
          </GridPane.margin>
@@ -216,7 +216,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="tower3Resource" text="Label" translateX="40.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+      <Label fx:id="tower3Resource" text="Label" translateX="60.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="80.0" />
          </GridPane.margin>
@@ -224,7 +224,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="playerName" prefHeight="40.0" prefWidth="399.0" text="Label" textFill="#2d3de8" translateX="-135.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+      <Label fx:id="playerName" prefHeight="40.0" prefWidth="399.0" text="Label" textFill="#2d3de8" translateX="-120.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
          <GridPane.margin>
             <Insets left="45.0" />
          </GridPane.margin>
@@ -264,7 +264,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="tower4Resource" layoutX="370.0" layoutY="227.0" text="Label" translateX="40.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+      <Label fx:id="tower4Resource" layoutX="370.0" layoutY="227.0" text="Label" translateX="60.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="80.0" />
          </GridPane.margin>
@@ -288,7 +288,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="tower5Resource" text="Label" translateX="40.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+      <Label fx:id="tower5Resource" text="Label" translateX="50.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets left="80.0" />
          </GridPane.margin>
@@ -466,14 +466,14 @@
             <Insets left="40.0" />
          </GridPane.margin>
       </Button>
-      <Label fx:id="playerCoins" text="Label" GridPane.columnIndex="4">
+      <Label fx:id="playerCoins" GridPane.columnIndex="4">
          <font>
-            <Font size="15.0" />
+            <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="outputMessage" text="Label" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Label fx:id="outputMessage" prefHeight="25.0" prefWidth="400.0" textFill="#f20707" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
       <Button mnemonicParsing="false" onAction="#onPutBackReservedClicked" prefHeight="60.0" prefWidth="218.0" text="Put Back Reserved" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
