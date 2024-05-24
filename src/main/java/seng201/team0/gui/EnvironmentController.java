@@ -17,7 +17,9 @@ public class EnvironmentController {
     private InventoryService inventoryService;
     private RandomEventService randomEventService;
 
-
+    /**
+     * Initialize the environment game controller
+     */
     public void init(Stage stage) {
         towerService = new TowerService();
         inventoryService = new InventoryService(towerService);

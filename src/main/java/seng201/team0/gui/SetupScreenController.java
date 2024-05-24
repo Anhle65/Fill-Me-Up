@@ -120,9 +120,9 @@ public class SetupScreenController{
         }
         else {
             environmentManager.setName(nameTextField.getText());
-            System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option."); // Print the difficulty user choose
+            System.out.println("You chose: " + environmentManager.getGameDifficulty() + " option.");
             environmentManager.setNumberOfRounds((int) roundSlider.getValue());
-            System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds"); // Print number of rounds which user choose
+            System.out.println("You choose: " + environmentManager.getNumberOfRounds() + " rounds");
             inventoryService.setCurrentTowerList(Arrays.stream(selectedTowers).filter((Objects::nonNull)).toList());
             environmentManager.closeCurrentScreen();
             environmentManager.launchRoundDifficultySelectScreen();

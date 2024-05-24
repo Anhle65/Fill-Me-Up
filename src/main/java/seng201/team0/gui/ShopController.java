@@ -86,7 +86,6 @@ public class ShopController {
             allItemsInShop.add(tower);
         }
 
-        System.out.println("Length of items in Shop: " + allItemsInShop.size());
         for (int i = 0; i < listItemsButton.size(); i++) {
             int finalI = i;
             PurchasableItem item = allItemsInShop.get(finalI);
@@ -95,8 +94,6 @@ public class ShopController {
                 selectedItemIndex = finalI;
                 itemIsBought = listItemsButton.get(finalI);
                 if(item instanceof Tower){
-                    System.out.println("Size: " + shopService.getListTowersInShop().size());
-                    System.out.println("index: " + finalI);
                     selectedTowerInShop = shopService.getListTowersInShop().get(finalI - 3);
                     if(selectedUpgradeItemInShop != null)
                         selectedUpgradeItemInShop = null;
@@ -121,14 +118,10 @@ public class ShopController {
         int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
             if (selectedTowerInShop != null) {
                 shopService.buy(selectedTowerInShop);
-                if(inventoryService.getPlayerCoins() < selectedTowerInShop.getCost())
-                    messageAlertLabel.setText("Oh no, you don't have enough money!");
                 if (inventoryService.getReservedTowerList().size() > sizeBeforeBuyTower)
                     itemIsBought.setDisable(true);
             } else if (selectedUpgradeItemInShop != null) {
                 shopService.buy(selectedUpgradeItemInShop);
-                if(inventoryService.getPlayerCoins() < selectedUpgradeItemInShop.getCost())
-                    messageAlertLabel.setText("Oh no, you don't have enough money!");
                 if (inventoryService.getListUpgradeItemsInInventory().size() > sizeBeforeBuyItem)
                     itemIsBought.setDisable(true);
             }

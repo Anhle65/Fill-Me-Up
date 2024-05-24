@@ -41,7 +41,9 @@ public class WinnerGameController {
         this.environmentManager = environmentManager;
         this.inventoryService = inventoryService;
     }
-
+    /**
+     * Initialize the game winning screen, contains player's name, total points and coins and round completed
+     */
     public void initialize(){
         totalScoreLabel.setText(environmentManager.getScore() + " points");
         totalCoinLabel.setText(inventoryService.getPlayerCoins() + " coins");

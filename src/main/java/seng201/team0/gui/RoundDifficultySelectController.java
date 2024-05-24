@@ -10,9 +10,7 @@ import seng201.team0.services.EnvironmentManager;
 
 
 public class RoundDifficultySelectController {
-    private String easy;
-    private String moderate;
-    private String challenging;
+
     private EnvironmentManager environmentManager;
     private RandomEventService randomEventService;
     private Cart cart;
@@ -46,6 +44,9 @@ public class RoundDifficultySelectController {
         }
     }
 
+    /**
+     * Initialize round difficulty select screen
+     */
     public void initialize(){
         currentRoundLabel.setText(String.valueOf(environmentManager.getCurrentRoundNumber()));
     }

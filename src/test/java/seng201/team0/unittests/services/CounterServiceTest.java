@@ -20,7 +20,6 @@ class CounterServiceTest {
      */
     @BeforeEach
     public void setupTest() {
-        // Use CounterService directly
         testCounterService = new CounterService();
     }
 

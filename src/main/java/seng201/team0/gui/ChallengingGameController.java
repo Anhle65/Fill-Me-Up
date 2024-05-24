@@ -116,7 +116,9 @@ public class ChallengingGameController {
             }
         }
     }
-
+    /**
+     * Initialize the challenging game mode
+     */
     public void initialize() {
         if (environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
         else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}

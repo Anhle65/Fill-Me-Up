@@ -108,7 +108,9 @@ public class ModerateGameController {
             }
         }
     }
-
+    /**
+     * Initialize the moderate game mode
+     */
     public void initialize() {
         if(environmentManager.getRoundDifficulty().equals("Easy")) {roundDifficultySpeed = 80;}
         else if (environmentManager.getRoundDifficulty().equals("Moderate")) {roundDifficultySpeed = 100;}

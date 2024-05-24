@@ -43,6 +43,10 @@ public class WinnerNextRoundController {
 
     }
 
+    /**
+     * Initialize the round winning screen which have player name, total points and coins earned
+     * current round completed and round remaining. It may have alert message if tower breaks
+     */
     public void initialize(){
         scoreLabel.setText(environmentManager.getScore() + " points");
         coinsLabel.setText(inventoryService.getPlayerCoins() + " coins");

@@ -41,7 +41,9 @@ public class LoserController {
         environmentManager.closeCurrentScreen();
         environmentManager.launchSetupScreen();
     }
-
+    /**
+     * Initialize the losing screen with player's name, total points and coins amnd round completed
+     */
     public void initialize(){
         totalScoreLabel.setText(environmentManager.getScore() + " points");
         totalCoinLabel.setText(inventoryService.getPlayerCoins() + " coins");

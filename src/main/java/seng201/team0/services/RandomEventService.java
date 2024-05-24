@@ -15,7 +15,6 @@ public class RandomEventService {
     private Random randomEvent = new Random();
     private Random randomEventHappened = new Random();
     private boolean hasRandomEvent = false;
-    private int randomEventHappenedNumber;
 
     /**
      * Constructor to create RandomEvent Instance
@@ -23,7 +22,6 @@ public class RandomEventService {
      */
     public RandomEventService(InventoryService inventoryService){
         this.inventoryService = inventoryService;
-        randomEventHappenedNumber = randomEventHappened.nextInt(3);
     }
 
     /**
@@ -39,6 +37,7 @@ public class RandomEventService {
         int sizeCurrentUsedTowers = inventoryService.getCurrentUsedTowerList().size();
         if(inventoryService.getCurrentUsedTowerList().size() > 2){
         if(sizeCurrentUsedTowers > 2) {
+            int randomEventHappenedNumber = randomEventHappened.nextInt(3);
             System.out.println("Random num: " + randomEventHappenedNumber);
             if (randomEventHappenedNumber == 1) {
                 this.hasRandomEvent = true;
