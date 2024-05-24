@@ -125,7 +125,7 @@ public class ChallengingGameController {
         long cartSpeed = roundDifficultySpeed + ((long)environmentManager.getCurrentRoundNumber() * 20);
         List<Tower> currentTowers = inventoryService.getCurrentUsedTowerList();
         int sizeCurrentUsedTowers = inventoryService.getCurrentUsedTowerList().size();
-        for(int i=0; i < 4; ++i) {
+        for(int i=0; i < 5; ++i) {
             if(i < sizeCurrentUsedTowers) {
                 listCartsInRound.add(new Cart(inventoryService.getCurrentUsedTowerList().get(i).getName(), cartSpeed, 130));
             }else{
