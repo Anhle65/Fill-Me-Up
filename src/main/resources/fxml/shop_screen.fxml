@@ -94,6 +94,11 @@
             <Image url="@../image/dicedreams-dicedream.gif" />
          </image>
       </ImageView>
+      <Label fx:id="messageAlertLabel" layoutX="444.0" layoutY="725.0" textFill="#144ad3">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Label>
    </children>
    <effect>
       <SepiaTone level="0.25" />

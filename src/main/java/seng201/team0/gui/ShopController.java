@@ -15,6 +15,8 @@ import java.util.*;
 
 public class ShopController {
     @FXML
+    private Label messageAlertLabel;
+    @FXML
     private Label playerCoins;
     @FXML
     private Button upgradeCard1;
@@ -32,13 +34,13 @@ public class ShopController {
     private ShopService shopService;
     private InventoryService inventoryService;
     private Tower selectedTowerInShop = null;
-    private UpgradeItems selectedUpgradeCardInShop = null;
+    private UpgradeItems selectedUpgradeItemInShop = null;
     private Button itemIsBought;
     private int selectedItemIndex = -1;
     private List<Tower> listTowersInShop = new ArrayList<>();
     private List<UpgradeItems> listUpgradeCardsInShop = new ArrayList<>();
     private final String[] TYPE_RESOURCES = {"Water", "Fire", "Gold", "Coal", "Ruby"};
-    private final long[] TIME_DECREMENT = {1000, 1500, 2000};
+    private final long[] TIME_DECREMENT = {1000, 1000, 1000};
     private final Integer[] COST = {15, 20, 25};
     private final Integer[] RESOURCE_ENHANCEMENT = {10, 12, 15};
     public ShopController(EnvironmentManager environmentManager, ShopService shopService, InventoryService inventoryService) {
@@ -62,7 +64,7 @@ public class ShopController {
         int typeResourceIndex = randomResource.nextInt(RESOURCE_ENHANCEMENT.length);
         List<Tower> randomTowers = inventoryService.getDefaultTowers();
 
-        for(int i=0; i < randomTowers.size(); ++i){
+        for(int i=0; i < 3; ++i){
             int randomTowerIndex = randomTower.nextInt(randomTowers.size());
             Tower tower = randomTowers.get(randomTowerIndex);
             listTowersInShop.add(new Tower(tower.getName(), tower.getCost(), tower.getResourceAmount(), tower.getRecoveryTime()));
@@ -95,9 +97,16 @@ public class ShopController {
                 selectedItemIndex = finalI;
                 itemIsBought = listItemsButton.get(finalI);
                 if(item instanceof Tower){
+                    System.out.println("Size: " + shopService.getListTowersInShop().size());
+                    System.out.println("index: " + finalI);
                     selectedTowerInShop = shopService.getListTowersInShop().get(finalI - 3);
-                }else
-                    selectedUpgradeCardInShop = shopService.getListUpgradeItemsInShop().get(finalI);
+                    if(selectedUpgradeItemInShop != null)
+                        selectedUpgradeItemInShop = null;
+                }else {
+                    selectedUpgradeItemInShop = shopService.getListUpgradeItemsInShop().get(finalI);
+                    if (selectedTowerInShop != null)
+                        selectedTowerInShop = null;
+                }
                 listItemsButton.forEach(button -> {
                     if (button == listItemsButton.get(finalI)) {
                         button.setStyle("-fx-background-color: pink; -fx-text-fill: black; -fx-font-size: 10px; -fx-font-family: Verdana; -fx-font-weight: bold; -fx-background-radius: 5;");
@@ -112,20 +121,24 @@ public class ShopController {
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         int sizeBeforeBuyTower = inventoryService.getReservedTowerList().size();
         int sizeBeforeBuyItem = inventoryService.getListUpgradeItemsInInventory().size();
-
             if (selectedTowerInShop != null) {
                 shopService.buy(selectedTowerInShop);
+                if(inventoryService.getPlayerCoins() < selectedTowerInShop.getCost())
+                    messageAlertLabel.setText("Oh no, you don't have enough money!");
                 if (inventoryService.getReservedTowerList().size() > sizeBeforeBuyTower)
                     itemIsBought.setDisable(true);
-            } else if (selectedUpgradeCardInShop != null) {
-                shopService.buy(selectedUpgradeCardInShop);
+            } else if (selectedUpgradeItemInShop != null) {
+                shopService.buy(selectedUpgradeItemInShop);
+                if(inventoryService.getPlayerCoins() < selectedUpgradeItemInShop.getCost())
+                    messageAlertLabel.setText("Oh no, you don't have enough money!");
                 if (inventoryService.getListUpgradeItemsInInventory().size() > sizeBeforeBuyItem)
                     itemIsBought.setDisable(true);
-            } else
-                System.out.println("Please choose item to buy");
+            }
+            else
+                messageAlertLabel.setText("Please choose item to buy");
         playerCoins.setText(String.valueOf(inventoryService.getPlayerCoins()));
         selectedTowerInShop = null;
-        selectedUpgradeCardInShop = null;
+        selectedUpgradeItemInShop = null;
     }
 
     public void onNextClicked(){
