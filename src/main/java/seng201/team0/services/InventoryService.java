@@ -77,7 +77,7 @@ public class InventoryService {
      * @throws Exception
      */
     public void addTowerToCurrent(Tower tower) throws Exception{
-        if(this.currentTowerList.size() < 5 && this.reservedTowerList.size() > 2) {
+        if(this.currentTowerList.size() < 5) {
             this.currentTowerList.add(tower);
             this.reservedTowerList.remove(tower);
         }else
